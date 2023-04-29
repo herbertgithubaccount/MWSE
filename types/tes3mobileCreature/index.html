@@ -7766,6 +7766,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#forceweaponattack" class="md-nav__link">
+    forceWeaponAttack
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#getactivemagiceffects" class="md-nav__link">
     getActiveMagicEffects
   </a>
@@ -12996,6 +13003,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#forceweaponattack" class="md-nav__link">
+    forceWeaponAttack
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#getactivemagiceffects" class="md-nav__link">
     getActiveMagicEffects
   </a>
@@ -14666,6 +14680,22 @@ end
 <li><code>result</code> (boolean)</li>
 </ul>
 <hr />
+<h3 id="forceweaponattack"><code>forceWeaponAttack</code><a class="headerlink" href="#forceweaponattack" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">forceweaponattack</div>
+
+<p>Causes the actor to perform a weapon swing immediately towards its current target. For the player, it will swing and release immediately (minimum damage), and also may hit any target in range.</p>
+<p>The actor must be in combat, with its weapon or hands readied, to be able to swing its weapon. This function does not interrupt existing attacks, casting, or any other actions. It returns true if it was able to start the weapon swing.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">myObject</span><span class="p">:</span><span class="n">forceWeaponAttack</span><span class="p">(</span><span class="n">attackType</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Parameters</strong>:</p>
+<ul>
+<li><code>attackType</code> (number): <em>Optional</em>. The physical attack type to use for melee weapons (slash, chop, thrust). Maps to values in <a href="https://mwse.github.io/MWSE/references/physical-attack-types/"><code>tes3.physicalAttackType</code></a> namespace. When not specified, it uses a weighted random attack type for NPCs and creatures.</li>
+</ul>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>result</code> (boolean)</li>
+</ul>
+<hr />
 <h3 id="getactivemagiceffects"><code>getActiveMagicEffects</code><a class="headerlink" href="#getactivemagiceffects" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">getactivemagiceffects, activemagiceffects</div>
 
@@ -14977,7 +15007,7 @@ end
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">April 1, 2023 07:47:31</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">April 29, 2023 21:38:44</span>
       
         <br>
         Created:
