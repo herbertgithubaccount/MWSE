@@ -4259,6 +4259,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -4421,6 +4423,20 @@
     <li class="md-nav__item">
       <a href="../../types/mwseLuaExecutor/" class="md-nav__link">
         mwseLuaExecutor
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../types/mwseOverrideScriptCallbackData/" class="md-nav__link">
+        mwseOverrideScriptCallbackData
       </a>
     </li>
   
@@ -12115,9 +12131,9 @@
 <li><code>cancels</code> (boolean): <em>Default</em>: <code>false</code>. When set to true, a cancel button is automatically added to the buttom of the list, even when paginated.</li>
 <li><code>cancelText</code> (string): <em>Default</em>: <code>tes3.findGMST(tes3.gmst.sCancel).value</code>. The text on the cancel button.</li>
 <li><code>cancelCallback</code> (function): <em>Optional</em>. The function to call when the user clicks the cancel button.</li>
-<li><code>header</code> (string, fun(callbackParams: table): string): <em>Optional</em>. The optional header displayed above the message. Can also be a function that returns a string.</li>
-<li><code>message</code> (string, fun(callbackParams: table): string): <strong>Required</strong> The message at the top of the messagebox. Can also be a function that returns a string.</li>
-<li><code>customBlock</code> (fun(parent: <a href="../../types/tes3uiElement">tes3uiElement</a>)): <em>Optional</em>. A custom element to be displayed below the header.</li>
+<li><code>header</code> (string, fun(): string): <em>Optional</em>. The optional header displayed above the message. Can also be a function that returns a string.</li>
+<li><code>message</code> (string, fun(): string): <strong>Required</strong> The message at the top of the messagebox. Can also be a function that returns a string.</li>
+<li><code>customBlock</code> (fun(parent: <a href="../../types/tes3uiElement">tes3uiElement</a>)): <em>Optional</em>. A custom element to be displayed below the header. This function is passed a parent tes3uiElement, which it can modify to add a custom block according to your needs.</li>
 <li><code>page</code> (integer): <em>Default</em>: <code>1</code>.</li>
 <li><code>pageSize</code> (integer): <em>Default</em>: <code>30</code>.</li>
 </ul>
@@ -12229,7 +12245,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">April 13, 2023 07:32:56</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">April 30, 2023 17:47:02</span>
       
         <br>
         Created:

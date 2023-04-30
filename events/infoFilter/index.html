@@ -3874,6 +3874,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -4036,6 +4038,20 @@
     <li class="md-nav__item">
       <a href="../../types/mwseLuaExecutor/" class="md-nav__link">
         mwseLuaExecutor
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../types/mwseOverrideScriptCallbackData/" class="md-nav__link">
+        mwseOverrideScriptCallbackData
       </a>
     </li>
   
@@ -9421,6 +9437,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -10659,6 +10682,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -10685,7 +10715,7 @@
     More information: https://github.com/MWSE/MWSE/tree/master/docs
 -->
 
-<p>This event fires when a dialogue info object is filtered.</p>
+<p>This event fires when a dialogue info object is filtered. This allows blocking dialogue lines from showing up.</p>
 <div class="highlight"><pre><span></span><code><span class="c1">--- @param e infoFilterEventData</span>
 <span class="kd">local</span> <span class="kr">function</span> <span class="nf">infoFilterCallback</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
 <span class="kr">end</span>
@@ -10700,17 +10730,45 @@
 <li><code>actor</code> (<a href="../../types/tes3object">tes3object</a>): <em>Read-only</em>. The actor.</li>
 <li><code>dialogue</code> (<a href="../../types/tes3dialogue">tes3dialogue</a>): <em>Read-only</em>. The dialogue object.</li>
 <li><code>info</code> (<a href="../../types/tes3dialogueInfo">tes3dialogueInfo</a>): <em>Read-only</em>. The dialogue info object.</li>
-<li><code>passes</code> (boolean): Indicates if the filter passes.</li>
+<li><code>passes</code> (boolean): Indicates if the filter passes. Set to false to block a line.</li>
 <li><code>reference</code> (<a href="../../types/tes3reference">tes3reference</a>): <em>Read-only</em>. The reference.</li>
 <li><code>source</code> (integer): <em>Read-only</em>. The source.</li>
 </ul>
+<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">⚓︎</a></h2>
+<div class="admonition example">
+<p class="admonition-title">Example: Blocking greeting lines</p>
+<p>To block a certain dialogue line efficiently, it's best to check if the line passes first. Only if the line passes do the other checks. Since the game checks each line until it finds one which passes, your callback function registered on this event will be called many times. So, this early out will prevent the game from stalling.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">--- Don&#39;t allow the NPC to speak a greeting line if the player is looking directly at them.</span>
+<span class="c1">---@param e infoFilterEventData</span>
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">blockNPCgreeting</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="c1">-- This early check will make sure our function</span>
+    <span class="c1">-- isn&#39;t executing unnecesarily</span>
+    <span class="kr">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">e</span><span class="p">.</span><span class="n">passes</span><span class="p">)</span> <span class="kr">then</span>
+        <span class="kr">return</span>
+    <span class="kr">end</span>
+
+    <span class="kr">if</span> <span class="n">tes3</span><span class="p">.</span><span class="n">menuMode</span><span class="p">()</span>
+    <span class="ow">or</span> <span class="n">e</span><span class="p">.</span><span class="n">dialogue</span><span class="p">.</span><span class="n">id</span> <span class="o">~=</span> <span class="s2">&quot;Hello&quot;</span> <span class="kr">then</span>
+        <span class="c1">-- Make sure to only block the greeting (Hello) lines</span>
+        <span class="kr">return</span>
+    <span class="kr">end</span>
+
+    <span class="kr">if</span> <span class="n">e</span><span class="p">.</span><span class="n">reference</span> <span class="o">==</span> <span class="n">tes3</span><span class="p">.</span><span class="n">getPlayerTarget</span><span class="p">()</span> <span class="kr">then</span>
+        <span class="n">mwse</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;blockNPCGreeting(): Blocking line:</span><span class="se">\n\&quot;</span><span class="s2">%s</span><span class="se">\&quot;</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">info</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+        <span class="n">e</span><span class="p">.</span><span class="n">passes</span> <span class="o">=</span> <span class="kc">false</span>
+    <span class="kr">end</span>
+<span class="kr">end</span>
+
+<span class="n">event</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">tes3</span><span class="p">.</span><span class="n">event</span><span class="p">.</span><span class="n">infoFilter</span><span class="p">,</span> <span class="n">blockNPCgreeting</span><span class="p">)</span>
+</code></pre></div>
+</div>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">February 5, 2023 01:00:33</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">April 30, 2023 17:47:02</span>
       
         <br>
         Created:
