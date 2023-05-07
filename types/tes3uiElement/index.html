@@ -13462,11 +13462,14 @@
 <div class="search_terms" style="display: none">move</div>
 
 <p>Copies this element to a new parent, then destroys this element. This function can have unintended consequences. The specifics of what exact elements are being copied is important.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">copy</span> <span class="o">=</span> <span class="n">myObject</span><span class="p">:</span><span class="n">move</span><span class="p">(</span><span class="n">to</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">copy</span> <span class="o">=</span> <span class="n">myObject</span><span class="p">:</span><span class="n">move</span><span class="p">({</span> <span class="n">to</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
+<li><code>params</code> (table)<ul>
 <li><code>to</code> (<a href="../../types/tes3uiElement">tes3uiElement</a>): Where to create the copy.</li>
+</ul>
+</li>
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
@@ -13787,7 +13790,7 @@ Widget-specific events:
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">February 11, 2023 19:45:50</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">May 7, 2023 10:54:42</span>
       
         <br>
         Created:
