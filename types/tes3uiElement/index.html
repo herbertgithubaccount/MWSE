@@ -15,7 +15,7 @@
         <link rel="next" href="../tes3uiEventData/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.12">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.13">
     
     
       
@@ -12985,6 +12985,7 @@
 <div class="search_terms" style="display: none">createhorizontalscrollpane, horizontalscrollpane</div>
 
 <p>Creates a horizontally scrolling pane.</p>
+<p>Scroll panes create a complex UI subtree, with a container for child elements. create* methods automatically place new elements in this container, not as a direct child of the scroll pane. The container element can be accessed with the <code>getContentElement()</code> method. It should be used when iterating or clearing the scroll pane contents.</p>
 <p>Scroll pane specific properties can be accessed through the <code>widget</code> property. The widget type for scroll panes is <a href="https://mwse.github.io/MWSE/types/tes3uiScrollPane/"><code>tes3uiScrollPane</code></a>.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">myObject</span><span class="p">:</span><span class="n">createHorizontalScrollPane</span><span class="p">({</span> <span class="n">id</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
 </code></pre></div>
@@ -13269,6 +13270,7 @@
 <div class="search_terms" style="display: none">createverticalscrollpane, verticalscrollpane</div>
 
 <p>Creates a vertically scrolling pane. Useful as a list box.</p>
+<p>Scroll panes create a complex UI subtree, with a container for child elements. create* methods automatically place new elements in this container, not as a direct child of the scroll pane. The container element can be accessed with the <code>getContentElement()</code> method. It should be used when iterating or clearing the scroll pane contents.</p>
 <p>Scroll pane specific properties can be accessed through the <code>widget</code> property. The widget type for scroll panes is <a href="https://mwse.github.io/MWSE/types/tes3uiScrollPane/"><code>tes3uiScrollPane</code></a>.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">myObject</span><span class="p">:</span><span class="n">createVerticalScrollPane</span><span class="p">({</span> <span class="n">id</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
 </code></pre></div>
@@ -13309,6 +13311,7 @@
 <div class="search_terms" style="display: none">destroychildren</div>
 
 <p>Deletes all the child elements of this element. If any element is bound to text input by <code>tes3ui.acquireTextInput</code>_, the input is automatically released.</p>
+<p>Some widgets like ScrollPanes are built of multiple layers of elements. When an element is created in a complex widget, it is automatically placed as a child of a content element. When clearing a widget's children, you should use <code>element:getContentElement():destroyChildren()</code>.</p>
 <div class="highlight"><pre><span></span><code><span class="n">myObject</span><span class="p">:</span><span class="n">destroyChildren</span><span class="p">()</span>
 </code></pre></div>
 <hr />
@@ -13797,7 +13800,7 @@ Widget-specific events:
 <h3 id="updatelayout"><code>updateLayout</code><a class="headerlink" href="#updatelayout" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">updatelayout, layout</div>
 
-<p>Updates a menu's element layout and all child elements. Needs to be called on a top level menu when any elements contained in it are added, moved or resized.</p>
+<p>Updates a menu's element layout and all child elements. Needs to be called on a top level menu when any elements contained in it are added, moved or resized. e.g. <code>menu:updateLayout()</code> or <code>element:getTopLevelMenu():updateLayout()</code></p>
 <div class="highlight"><pre><span></span><code><span class="n">myObject</span><span class="p">:</span><span class="n">updateLayout</span><span class="p">()</span>
 </code></pre></div>
 
@@ -13806,7 +13809,7 @@ Widget-specific events:
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">May 7, 2023 10:54:42</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">May 17, 2023 01:22:21</span>
       
         <br>
         Created:
@@ -13862,7 +13865,7 @@ Widget-specific events:
     <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.code.copy", "content.tabs.link", "navigation.indexes", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.c2be25ad.min.js"></script>
+      <script src="../../assets/javascripts/bundle.b4d07000.min.js"></script>
       
         <script src="../../assets/js/reloadMermaidPagesOnPaletteSwitch.js"></script>
       
