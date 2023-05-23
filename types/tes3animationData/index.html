@@ -5743,6 +5743,20 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#blinkmorphendtime" class="md-nav__link">
+    blinkMorphEndTime
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blinkmorphstarttime" class="md-nav__link">
+    blinkMorphStartTime
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#castspeed" class="md-nav__link">
     castSpeed
   </a>
@@ -5801,6 +5815,13 @@
           <li class="md-nav__item">
   <a href="#headgeometry" class="md-nav__link">
     headGeometry
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#headmorphtiming" class="md-nav__link">
+    headMorphTiming
   </a>
   
 </li>
@@ -5885,6 +5906,27 @@
           <li class="md-nav__item">
   <a href="#spineangle" class="md-nav__link">
     spineAngle
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#talkmorphendtime" class="md-nav__link">
+    talkMorphEndTime
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#talkmorphstarttime" class="md-nav__link">
+    talkMorphStartTime
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timetonextblink" class="md-nav__link">
+    timeToNextBlink
   </a>
   
 </li>
@@ -10994,6 +11036,20 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#blinkmorphendtime" class="md-nav__link">
+    blinkMorphEndTime
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blinkmorphstarttime" class="md-nav__link">
+    blinkMorphStartTime
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#castspeed" class="md-nav__link">
     castSpeed
   </a>
@@ -11052,6 +11108,13 @@
           <li class="md-nav__item">
   <a href="#headgeometry" class="md-nav__link">
     headGeometry
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#headmorphtiming" class="md-nav__link">
+    headMorphTiming
   </a>
   
 </li>
@@ -11136,6 +11199,27 @@
           <li class="md-nav__item">
   <a href="#spineangle" class="md-nav__link">
     spineAngle
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#talkmorphendtime" class="md-nav__link">
+    talkMorphEndTime
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#talkmorphstarttime" class="md-nav__link">
+    talkMorphStartTime
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timetonextblink" class="md-nav__link">
+    timeToNextBlink
   </a>
   
 </li>
@@ -11280,6 +11364,24 @@
 <li><code>result</code> (number[])</li>
 </ul>
 <hr />
+<h3 id="blinkmorphendtime"><code>blinkMorphEndTime</code><a class="headerlink" href="#blinkmorphendtime" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">blinkmorphendtime</div>
+
+<p>Blink animation end time for <code>headMorphTiming</code>. Timing is specific to the current head model.</p>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>result</code> (number)</li>
+</ul>
+<hr />
+<h3 id="blinkmorphstarttime"><code>blinkMorphStartTime</code><a class="headerlink" href="#blinkmorphstarttime" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">blinkmorphstarttime</div>
+
+<p>Blink animation start time for <code>headMorphTiming</code>. Timing is specific to the current head model.</p>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>result</code> (number)</li>
+</ul>
+<hr />
 <h3 id="castspeed"><code>castSpeed</code><a class="headerlink" href="#castspeed" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">castspeed</div>
 
@@ -11358,6 +11460,15 @@
 <p><strong>Returns</strong>:</p>
 <ul>
 <li><code>result</code> (<a href="../../types/niGeometry">niGeometry</a>)</li>
+</ul>
+<hr />
+<h3 id="headmorphtiming"><code>headMorphTiming</code><a class="headerlink" href="#headmorphtiming" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">headmorphtiming</div>
+
+<p>The timing offset of the head morph controller. Used to select either blinking or lipsync animations. Actively updated by the animation system during blinking or voiceovers. Timing is specific to the current head model.</p>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>result</code> (number)</li>
 </ul>
 <hr />
 <h3 id="headnode"><code>headNode</code><a class="headerlink" href="#headnode" title="Permanent link">⚓︎</a></h3>
@@ -11490,6 +11601,33 @@
 <li><code>result</code> (number)</li>
 </ul>
 <hr />
+<h3 id="talkmorphendtime"><code>talkMorphEndTime</code><a class="headerlink" href="#talkmorphendtime" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">talkmorphendtime</div>
+
+<p>Lipsync animation end time for <code>headMorphTiming</code>. Timing is specific to the current head model.</p>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>result</code> (number)</li>
+</ul>
+<hr />
+<h3 id="talkmorphstarttime"><code>talkMorphStartTime</code><a class="headerlink" href="#talkmorphstarttime" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">talkmorphstarttime</div>
+
+<p>Lipsync animation start time for <code>headMorphTiming</code>. Timing is specific to the current head model.</p>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>result</code> (number)</li>
+</ul>
+<hr />
+<h3 id="timetonextblink"><code>timeToNextBlink</code><a class="headerlink" href="#timetonextblink" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">timetonextblink</div>
+
+<p>The time in seconds until the next blink. It is fixed at 0 while the blink animation plays.</p>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>result</code> (number)</li>
+</ul>
+<hr />
 <h3 id="timings"><code>timings</code><a class="headerlink" href="#timings" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">timings</div>
 
@@ -11576,7 +11714,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">April 1, 2023 07:31:49</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">May 23, 2023 00:16:55</span>
       
         <br>
         Created:
