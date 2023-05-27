@@ -10771,7 +10771,7 @@
 <ul>
 <li><code>list</code> (<a href="../../types/tes3leveledItem">tes3leveledItem</a>): <em>Read-only</em>. The list responsible for creating a pick.</li>
 <li><code>pick</code> (<a href="../../types/tes3item">tes3item</a>): The result of the pick by vanilla mechanism.</li>
-<li><code>spawner</code> (<a href="../../types/tes3reference">tes3reference</a>, nil): The reference for the inventory that the item is being picked in. In many cases this may be <code>nil</code>.</li>
+<li><code>spawner</code> (<a href="../../types/tes3reference">tes3reference</a>, nil): The reference for the inventory that the item is being picked in. In a few cases this may be <code>nil</code>. Note that the reference.object.objectType can be either tes3creature/tes3npc/tes3container or tes3creatureInstance/tes3npcInstance/tes3containerInstance, as the inventory is resolved before cloning is fully complete.</li>
 </ul>
 
   <hr>
@@ -10779,7 +10779,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">February 5, 2023 01:00:33</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">May 27, 2023 00:38:13</span>
       
         <br>
         Created:
