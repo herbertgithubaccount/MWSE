@@ -16720,7 +16720,7 @@
 <h3 id="tes3playsound"><code>tes3.playSound</code><a class="headerlink" href="#tes3playsound" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">playsound</div>
 
-<p>Plays a sound on a given reference. Provides control over volume (including volume channel), pitch, and loop control. Triggers <code>addTempSound</code> event if <code>soundPath</code> argument is passed, triggers <code>playSound</code> otherwise.</p>
+<p>Plays a sound on a given reference. Provides control over volume (including volume channel), pitch, and loop control. Triggers <code>addTempSound</code> event if <code>soundPath</code> argument is passed, triggers <code>playSound</code> or <code>soundObjectPlay</code> otherwise.</p>
 <p><strong>Note</strong>: MP3 sound files can only be played if they are inside \Vo\ folder. The files must conform to the MPEG Layer-3, 64 Kbps 44100 kHz, 16-bit mono specification.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">executed</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">playSound</span><span class="p">({</span> <span class="n">sound</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">reference</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">loop</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">mixChannel</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">volume</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">pitch</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">soundPath</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
 </code></pre></div>
@@ -16728,7 +16728,7 @@
 <ul>
 <li><code>params</code> (table)<ul>
 <li><code>sound</code> (<a href="../../types/tes3sound">tes3sound</a>, string): The sound object, or id of the sound to look for.</li>
-<li><code>reference</code> (<a href="../../types/tes3reference">tes3reference</a>, <a href="../../types/tes3mobileActor">tes3mobileActor</a>, string): <em>Optional</em>. The reference to attach the sound to.</li>
+<li><code>reference</code> (<a href="../../types/tes3reference">tes3reference</a>, <a href="../../types/tes3mobileActor">tes3mobileActor</a>, string): <em>Optional</em>. The reference to attach the sound to. If no reference is provided, the sound will be played directly and <code>soundObjectPlay</code> will be triggered instead of <code>playSound</code>.</li>
 <li><code>loop</code> (boolean): <em>Default</em>: <code>false</code>. If true, the sound will loop.</li>
 <li><code>mixChannel</code> (number): <em>Default</em>: <code>tes3.soundMix.effects</code>. The channel to base volume off of. Maps to <a href="https://mwse.github.io/MWSE/references/sound-mix-types/"><code>tes3.soundMix</code></a> constants.</li>
 <li><code>volume</code> (number): <em>Default</em>: <code>1.0</code>. A value between 0.0 and 1.0 to scale the volume off of.</li>
@@ -17886,7 +17886,7 @@ Statics, activators, containers, doors, and lights with non-zero weight.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">May 7, 2023 10:54:42</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">May 27, 2023 11:10:31</span>
       
         <br>
         Created:
