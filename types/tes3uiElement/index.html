@@ -15,7 +15,7 @@
         <link rel="next" href="../tes3uiEventData/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.15">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.16">
     
     
       
@@ -3295,6 +3295,8 @@
       <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
       
       
+        
+          
         
           
         
@@ -7192,6 +7194,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../tes3scriptVariableData/" class="md-nav__link">
+        tes3scriptVariableData
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../tes3skill/" class="md-nav__link">
         tes3skill
       </a>
@@ -8183,26 +8199,6 @@
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#event-forwarding" class="md-nav__link">
-    Event forwarding
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#event-handler" class="md-nav__link">
-    Event handler
-  </a>
-  
-    <nav class="md-nav" aria-label="Event handler">
-      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#registerafter" class="md-nav__link">
@@ -12199,26 +12195,6 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#event-forwarding" class="md-nav__link">
-    Event forwarding
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#event-handler" class="md-nav__link">
-    Event handler
-  </a>
-  
-    <nav class="md-nav" aria-label="Event handler">
-      <ul class="md-nav__list">
-        
           <li class="md-nav__item">
   <a href="#registerafter" class="md-nav__link">
     registerAfter
@@ -13536,99 +13512,78 @@
 
 <p>Sets an <code>event</code> handler, which can add or override an existing event handler. The use of <code>registerBefore</code> or <code>registerAfter</code> is recommended if you do not want to replace the existing event handler. The eventID can be a standard <code>event</code> name, or an event specific to an element class. These can be accessed through <a href="https://mwse.github.io/MWSE/references/ui-events/"><code>tes3.uiEvent</code></a> for convenience. The callback receives an argument with the event data. See below for details.</p>
 <p>The original Morrowind callback is captured and can be invoked with the <code>forwardEvent</code> method on the event argument. If there is an existing Lua callback, it is replaced.</p>
-<pre><code>Standard events:
-    **mouseLeave**
-        Mouse cursor moving outside an element. Triggers once.
-    **mouseOver**
-        Mouse cursor moving over an element. Triggers once.
-    **mouseDown**
-        Left mouse button down over an element.
-    **mouseClick**
-        Left mouse button up over an element, after a mouseDown over the element.
-    **mouseScrollUp**
-        ..
-    **mouseScrollDown**
-        Mouse wheel scrolling.
-    **mouseDoubleClick**
-        Standard double-click.
-    **mouseStillIdle**
-        Mouse cursor positioned outside an element. Triggers every frame.
-    **mouseStillOver**
-        Mouse cursor positioned over an element. Triggers every frame.
-    **mouseStillPressed**
-        Mouse cursor positioned over an element, after a mouseDown over the element. Triggers every frame.
-    **mouseStillPressedOutside**
-        Apparently not working in the engine. Mouse cursor positioned outside an element, after a mouseDown over the element. Triggers every frame.
-    **mouseRelease**
-        Left mouse button up over an element.
-    **keyPress**
-        A raw key press.
-    **keyEnter**
-        The Return key is pressed.
-    **help**
-        On mouseover, but also marking the element as having a tooltip. Create a tooltip within the callback using the `tes3ui.createTooltipMenu` function.
-    **focus**
-        When a menu is clicked on, and moved on top of other menus.
-    **unfocus**
-        Just before another menu is clicked on, or a widget in that menu receives an event, or when the menu mode is toggled off. You may return false from this event to prevent the menu from being deselected, and to prevent leaving menu mode.
-    **preUpdate**
-        Before the menu layout is updated.
-    **update**
-        After the menu layout is updated.
-    **destroy**
-        When the UI element is destroyed, before any data or children are destroyed.
-
-Widget-specific events:
-    Slider:
-        **PartScrollBar_changed**
-            Triggers on value change; moving the slider is not enough if the value is the same.
-</code></pre>
-<h2 id="event-forwarding">Event forwarding<a class="headerlink" href="#event-forwarding" title="Permanent link">⚓︎</a></h2>
-<p>The original Morrowind event handler is saved when you first register an event. It may be optionally invoked with the <code>forwardEvent</code> method.  Note that handler may or may not destroy the event widget or the menu, so you should know how it behaves before accessing any elements after a callback.</p>
+<p>Standard events:</p>
+<ul>
+<li><strong>mouseLeave</strong>
+    Mouse cursor moving outside an element. Triggers once.</li>
+<li><strong>mouseOver</strong>
+    Mouse cursor moving over an element. Triggers once.</li>
+<li><strong>mouseDown</strong>
+    Left mouse button down over an element.</li>
+<li><strong>mouseClick</strong>
+    Left mouse button up over an element, after a mouseDown over the element.</li>
+<li><strong>mouseScrollUp</strong>
+    Mouse wheel scrolling.</li>
+<li><strong>mouseScrollDown</strong>
+    Mouse wheel scrolling.</li>
+<li><strong>mouseDoubleClick</strong>
+    Standard double-click.</li>
+<li><strong>mouseStillIdle</strong>
+    Mouse cursor positioned outside an element. Triggers every frame.</li>
+<li><strong>mouseStillOver</strong>
+    Mouse cursor positioned over an element. Triggers every frame.</li>
+<li><strong>mouseStillPressed</strong>
+    Mouse cursor positioned over an element, after a mouseDown over the element. Triggers every frame.</li>
+<li><strong>mouseStillPressedOutside</strong>
+    Apparently not working in the engine. Mouse cursor positioned outside an element, after a mouseDown over the element. Triggers every frame.</li>
+<li><strong>mouseRelease</strong>
+    Left mouse button up over an element.</li>
+<li><strong>keyPress</strong>
+    A raw key press.</li>
+<li><strong>keyEnter</strong>
+    The Return key is pressed.</li>
+<li><strong>help</strong>
+    On mouseover, but also marking the element as having a tooltip. Create a tooltip within the callback using the <code>tes3ui.createTooltipMenu</code> function.</li>
+<li><strong>focus</strong>
+    When a menu is clicked on, and moved on top of other menus.</li>
+<li><strong>unfocus</strong>
+    Just before another menu is clicked on, or a widget in that menu receives an event, or when the menu mode is toggled off. You may return false from this event to prevent the menu from being deselected, and to prevent leaving menu mode.</li>
+<li><strong>preUpdate</strong>
+    Before the menu layout is updated.</li>
+<li><strong>update</strong>
+    After the menu layout is updated.</li>
+<li><strong>destroy</strong>
+    When the UI element is destroyed, before any data or children are destroyed.</li>
+</ul>
+<p>Widget-specific events:</p>
+<ul>
+<li>Slider:<ul>
+<li><strong>PartScrollBar_changed</strong>
+    Triggers on value change; moving the slider is not enough if the value is the same.</li>
+</ul>
+</li>
+</ul>
+<h4 id="event-forwarding">Event forwarding<a class="headerlink" href="#event-forwarding" title="Permanent link">⚓︎</a></h4>
+<hr />
+<p>The original Morrowind event handler is saved when you first register an event. It may be optionally invoked with the <code>forwardEvent</code> method. Note that handler may or may not destroy the event widget or the menu, so you should know how it behaves before accessing any elements after a callback.</p>
 <p><strong>Example</strong>
-<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="kr">function</span> <span class="nf">onClick</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="c1">---@param e tes3uiEventData</span>
+<span class="c1">---@return boolean? block</span>
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">onClick</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
     <span class="c1">-- pre-event code</span>
     <span class="n">e</span><span class="p">.</span><span class="n">source</span><span class="p">:</span><span class="n">forwardEvent</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
     <span class="c1">-- post-event code</span>
 <span class="kr">end</span>
 
 <span class="kd">local</span> <span class="n">button</span> <span class="o">=</span> <span class="n">menu</span><span class="p">:</span><span class="n">findChild</span><span class="p">(</span><span class="s2">&quot;MenuExample_Ok&quot;</span><span class="p">)</span>
-<span class="n">button</span><span class="p">:</span><span class="n">register</span><span class="p">(</span><span class="s2">&quot;mouseClick&quot;</span><span class="p">,</span> <span class="n">onClick</span><span class="p">)</span>
+<span class="n">button</span><span class="p">:</span><span class="n">register</span><span class="p">(</span><span class="n">tes3</span><span class="p">.</span><span class="n">uiEvent</span><span class="p">.</span><span class="n">mouseClick</span><span class="p">,</span> <span class="n">onClick</span><span class="p">)</span>
 </code></pre></div></p>
-<h2 id="event-handler">Event handler<a class="headerlink" href="#event-handler" title="Permanent link">⚓︎</a></h2>
-<p>The standard type signature for events.</p>
-<pre><code>`boolean`_ eventHandler(**EventData** e)
-    Returns: `optional`
-        Returning `false` may cancel an interaction for certain events. e.g. unfocus
-
-    EventData:
-        **source** (`Element`_)
-            The source element of the event.
-
-        **id** (`number`_)
-            The numeric id of the event type.
-
-        **widget** (`Element`_)
-            The widget element that the source belongs to, if the element is a sub-part of a widget. May not be accurate if the element is not a sub-part.
-
-        **data0** (`number`_)
-            ..
-
-        **data1** (`number`_)
-            Event-specific raw data values. For mouse events, these are the screen X and Y coordinates of the pointer. For keyboard events, data0 is the `scan code`_.
-
-        **relativeX** (`number`_)
-            ..
-
-        **relativeY** (`number`_)
-            For mouse events only. X and Y coordinates of the pointer relative to the top-left of the element.
-</code></pre>
 <div class="highlight"><pre><span></span><code><span class="n">myObject</span><span class="p">:</span><span class="n">register</span><span class="p">(</span><span class="n">eventID</span><span class="p">,</span> <span class="n">callback</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
 <li><code>eventID</code> (string): The event id. Maps to values in <a href="https://mwse.github.io/MWSE/references/ui-events/"><code>tes3.uiEvent</code></a>.</li>
-<li><code>callback</code> (function): The callback function.</li>
+<li><code>callback</code> (fun(e: <a href="../../types/tes3uiEventData">tes3uiEventData</a>): boolean?): The callback function. Returning <code>false</code> from this function may cancel an interaction for certain events, such as unfocus.</li>
 </ul>
 <hr />
 <h3 id="registerafter"><code>registerAfter</code><a class="headerlink" href="#registerafter" title="Permanent link">⚓︎</a></h3>
@@ -13639,8 +13594,8 @@ Widget-specific events:
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>eventID</code> (string): The event id.</li>
-<li><code>callback</code> (function): The callback function.</li>
+<li><code>eventID</code> (string): The event id. Maps to values in <a href="https://mwse.github.io/MWSE/references/ui-events/"><code>tes3.uiEvent</code></a>.</li>
+<li><code>callback</code> (fun(e: <a href="../../types/tes3uiEventData">tes3uiEventData</a>): boolean?): The callback function.</li>
 </ul>
 <hr />
 <h3 id="registerbefore"><code>registerBefore</code><a class="headerlink" href="#registerbefore" title="Permanent link">⚓︎</a></h3>
@@ -13651,8 +13606,8 @@ Widget-specific events:
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>eventID</code> (string): The event id.</li>
-<li><code>callback</code> (function): The callback function.</li>
+<li><code>eventID</code> (string): The event id. Maps to values in <a href="https://mwse.github.io/MWSE/references/ui-events/"><code>tes3.uiEvent</code></a>.</li>
+<li><code>callback</code> (fun(e: <a href="../../types/tes3uiEventData">tes3uiEventData</a>): boolean?): The callback function.</li>
 </ul>
 <hr />
 <h3 id="reorderchildren"><code>reorderChildren</code><a class="headerlink" href="#reorderchildren" title="Permanent link">⚓︎</a></h3>
@@ -13703,6 +13658,16 @@ Widget-specific events:
 <li><code>property</code> (number, string): The property to set.</li>
 <li><code>value</code> (boolean): The value to set.</li>
 </ul>
+<details class="example">
+<summary>Example: Make a UI element update its transparency based on the Menu Transparency setting.</summary>
+<p>This will automatically update the menu's transparency recursively. A requirement is that the menu background is of "rect" contentType.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">--- A menu created before</span>
+<span class="c1">---@type tes3uiElement</span>
+<span class="kd">local</span> <span class="n">menu</span>
+
+<span class="n">menu</span><span class="p">:</span><span class="n">setPropertyBool</span><span class="p">(</span><span class="s2">&quot;use_global_alpha&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
+</code></pre></div>
+</details>
 <hr />
 <h3 id="setpropertycallback"><code>setPropertyCallback</code><a class="headerlink" href="#setpropertycallback" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">setpropertycallback, propertycallback</div>
@@ -13845,7 +13810,7 @@ Widget-specific events:
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">May 22, 2023 06:30:43</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">June 17, 2023 12:41:19</span>
       
         <br>
         Created:
@@ -13901,9 +13866,11 @@ Widget-specific events:
     <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.code.copy", "content.tabs.link", "navigation.indexes", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.b4d07000.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a51614de.min.js"></script>
       
-        <script src="../../assets/js/reloadMermaidPagesOnPaletteSwitch.js"></script>
+        
+          <script src="../../assets/js/reloadMermaidPagesOnPaletteSwitch.js"></script>
+        
       
     
   </body>

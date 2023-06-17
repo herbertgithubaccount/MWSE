@@ -15,7 +15,7 @@
         <link rel="next" href="../tes3ui/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.15">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.16">
     
     
       
@@ -5433,6 +5433,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -8731,6 +8733,20 @@
     <li class="md-nav__item">
       <a href="../../types/tes3scriptContext/" class="md-nav__link">
         tes3scriptContext
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../types/tes3scriptVariableData/" class="md-nav__link">
+        tes3scriptVariableData
       </a>
     </li>
   
@@ -15911,7 +15927,8 @@
 <h3 id="tes3getplayertarget"><code>tes3.getPlayerTarget</code><a class="headerlink" href="#tes3getplayertarget" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">getplayertarget, playertarget</div>
 
-<p>This function is used to see what the player is looking at. Unlike a real raycast, this does not work in all circumstances. As a general rule, it will return the reference if the information box is shown when it is looked at.</p>
+<p>This function is used to see what the player is looking at. Unlike a real raycast, this does not work in all circumstances. For instance, combat targets aren't returned by this function. You can access the last hit combat target using <a href="https://mwse.github.io/MWSE/types/tes3actionData/#hittarget"><code>mobileActor.actionData.hitTarget</code></a>. Other option is to use <code>tes3.rayTest</code>.</p>
+<p>As a general rule, it will return the reference if the information box is shown when it is looked at.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">getPlayerTarget</span><span class="p">()</span>
 </code></pre></div>
 <p><strong>Returns</strong>:</p>
@@ -17952,7 +17969,7 @@ Statics, activators, containers, doors, and lights with non-zero weight.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">May 29, 2023 15:04:28</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">June 17, 2023 10:40:27</span>
       
         <br>
         Created:
@@ -18008,9 +18025,11 @@ Statics, activators, containers, doors, and lights with non-zero weight.</p>
     <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.code.copy", "content.tabs.link", "navigation.indexes", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.b4d07000.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a51614de.min.js"></script>
       
-        <script src="../../assets/js/reloadMermaidPagesOnPaletteSwitch.js"></script>
+        
+          <script src="../../assets/js/reloadMermaidPagesOnPaletteSwitch.js"></script>
+        
       
     
   </body>
