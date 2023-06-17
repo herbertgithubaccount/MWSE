@@ -5435,6 +5435,12 @@
         
           
         
+          
+        
+          
+        
+          
+        
       
       
         <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -8129,8 +8135,50 @@
   
   
     <li class="md-nav__item">
+      <a href="../../types/tes3magicEffectCollisionEventData/" class="md-nav__link">
+        tes3magicEffectCollisionEventData
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../types/tes3magicEffectInstance/" class="md-nav__link">
         tes3magicEffectInstance
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../types/tes3magicEffectResistenceCheckEventData/" class="md-nav__link">
+        tes3magicEffectResistenceCheckEventData
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../types/tes3magicEffectTickEventData/" class="md-nav__link">
+        tes3magicEffectTickEventData
       </a>
     </li>
   
@@ -14050,7 +14098,7 @@
 <li><code>unreflectable</code> (boolean): <em>Default</em>: <code>true</code>. A flag which controls whether this effect can be reflected.</li>
 <li><code>usesNegativeLighting</code> (boolean): <em>Default</em>: <code>true</code>. A flag which controls whether this effect uses negative lighting.</li>
 <li>
-<p><code>onTick</code> (function): <em>Optional</em>. A function which will be called on each tick of a spell containing this effect. A table <code>tickParams</code> will be passed to the callback function. Note: <code>dt</code>(frame time) scaling is handled automatically.</p>
+<p><code>onTick</code> (fun(e: <a href="../../types/tes3magicEffectTickEventData">tes3magicEffectTickEventData</a>)): <em>Optional</em>. A function which will be called on each tick of a spell containing this effect. A table <code>tickParams</code> will be passed to the callback function. Note: <code>dt</code>(frame time) scaling is handled automatically.</p>
 <ul>
 <li><code>tickParams</code> (table)<ul>
 <li><code>effectId</code> (number)</li>
@@ -14073,7 +14121,7 @@
 <li><code>attribute</code> (number): <em>Optional. Default:</em> <code>tes3.effectAttribute.nonResistable</code> The attribute used in resistance calculations agains this effect. Maps to values in <a href="https://mwse.github.io/MWSE/references/effect-attributes/"><code>tes3.effectAttribute</code></a> namespace.</li>
 <li><code>type</code> (number): <em>Optional. Default:</em> <code>tes3.effectEventType.boolean</code>. This flag controls how the effect behaves. For example, <code>tes3.effectEventType.modStatistic</code> will make the effect work as calling <code>tes3.modStatistic</code>. Maps to values in <a href="https://mwse.github.io/MWSE/references/effect-event-types/"><code>tes3.effectEventType</code></a> namespace.</li>
 <li><code>value</code> (number): <em>Optional. Default:</em> <code>0</code>. The variable this effect changes.</li>
-<li><code>resistanceCheck(resistParams)</code> (function): <em>Optional.</em> The function passed as <code>resistanceCheck</code> will be used on any of the game's spell resistance checks. For example, the only effect in vanilla Morrowind that implements this function is Water Walking. It disallows using a spell with Water Walking when the player is deep underwater, by setting it as expired. So, returning <code>true</code> from this function will set your effect to expired, and depending on your trigger code may stop processing. The function passed here must returns boolean values.
+<li><code>resistanceCheck(resistParams)</code> (function): <em>Optional.</em> The function passed as <code>resistanceCheck</code> will be used on any of the game's spell resistance checks. For example, the only effect in vanilla Morrowind that implements this function is Water Walking. It disallows using a spell with Water Walking when the player is deep underwater, by setting it as expired. So, returning <code>true</code> from this function will set your effect to expired, and depending on your trigger code may stop processing. The function passed here must return boolean values.
     <strong>Parameters</strong><ul>
 <li><code>resistParams</code> (table)<ul>
 <li><code>sourceInstance</code> (<a href="https://mwse.github.io/MWSE/types/tes3magicSourceInstance/">tes3magicSourceInstance</a>): Access to the magic source of the effect instance.</li>
@@ -14095,14 +14143,11 @@
 </ul>
 </li>
 <li>
-<p>triggerBoundArmor(<code>params</code>): Performs vanilla armor summoning logic. It can summon one or two armor objects with provided ID(s).
+<p>triggerBoundArmor(<code>id</code>, <code>id2</code>): Performs vanilla armor summoning logic. It can summon one or two armor objects with provided ID(s).
     <strong>Parameters:</strong></p>
 <ul>
-<li><code>params</code> (table)<ul>
 <li><code>id</code> (string): The ID of the armor object to summon.</li>
 <li><code>id2</code> (string): <em>Optional.</em> The ID of the additional armor object to summon.</li>
-</ul>
-</li>
 </ul>
 </li>
 <li>
@@ -14115,7 +14160,7 @@
 </ul>
 </li>
 <li>
-<p><code>onCollision</code> (function): <em>Optional</em>. A function which will be called when a spell containing this spell effect collides with something.</p>
+<p><code>onCollision</code> (fun(e: <a href="../../types/tes3magicEffectCollisionEventData">tes3magicEffectCollisionEventData</a>)): <em>Optional</em>. A function which will be called when a spell containing this spell effect collides with something.</p>
 </li>
 </ul>
 </li>
@@ -14131,15 +14176,25 @@
 <span class="c1">-- creating an effect with that ID</span>
 <span class="n">tes3</span><span class="p">.</span><span class="n">claimSpellEffectId</span><span class="p">(</span><span class="s2">&quot;customFireDmg&quot;</span><span class="p">,</span> <span class="mi">220</span><span class="p">)</span>
 
+<span class="c1">---@param tickParams tes3magicEffectTickEventData</span>
 <span class="kd">local</span> <span class="kr">function</span> <span class="nf">onFireDmgTick</span><span class="p">(</span><span class="n">tickParams</span><span class="p">)</span>
-    <span class="c1">-- This will print current health for any actor our spell hit</span>
-    <span class="n">tes3</span><span class="p">.</span><span class="n">messageBox</span><span class="p">(</span><span class="s2">&quot;%s, health: %s&quot;</span><span class="p">,</span> <span class="n">tickParams</span><span class="p">.</span><span class="n">effectInstance</span><span class="p">.</span><span class="n">target</span><span class="p">.</span><span class="n">object</span><span class="p">.</span><span class="n">id</span><span class="p">,</span> <span class="n">tickParams</span><span class="p">.</span><span class="n">effectInstance</span><span class="p">.</span><span class="n">target</span><span class="p">.</span><span class="n">mobile</span><span class="p">.</span><span class="n">health</span><span class="p">.</span><span class="n">current</span><span class="p">)</span>
+    <span class="kd">local</span> <span class="n">target</span> <span class="o">=</span> <span class="n">tickParams</span><span class="p">.</span><span class="n">effectInstance</span><span class="p">.</span><span class="n">target</span>
+    <span class="kd">local</span> <span class="n">targetHealth</span> <span class="o">=</span> <span class="n">target</span><span class="p">.</span><span class="n">mobile</span><span class="p">.</span><span class="n">health</span>
+    <span class="c1">-- This will print current health for any actor our spell hit,</span>
+    <span class="c1">-- so we can see if it works as expected</span>
+    <span class="n">tes3</span><span class="p">.</span><span class="n">messageBox</span><span class="p">(</span>
+        <span class="s2">&quot;%s, health: %s&quot;</span><span class="p">,</span>
+        <span class="n">target</span><span class="p">.</span><span class="n">object</span><span class="p">.</span><span class="n">id</span><span class="p">,</span>
+        <span class="n">targetHealth</span><span class="p">.</span><span class="n">current</span>
+    <span class="p">)</span>
 
     <span class="n">tickParams</span><span class="p">:</span><span class="n">trigger</span><span class="p">({</span>
         <span class="nb">type</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">effectEventType</span><span class="p">.</span><span class="n">modStatistic</span><span class="p">,</span>
         <span class="c1">-- The resistance attribute against Fire Damage should be Resist Fire</span>
         <span class="n">attribute</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">effectAttribute</span><span class="p">.</span><span class="n">resistFire</span><span class="p">,</span>
-        <span class="n">value</span> <span class="o">=</span> <span class="n">tickParams</span><span class="p">.</span><span class="n">effectInstance</span><span class="p">.</span><span class="n">target</span><span class="p">.</span><span class="n">mobile</span><span class="p">.</span><span class="n">health</span><span class="p">,</span>
+
+        <span class="c1">-- The variable this effect affects</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">targetHealth</span><span class="p">,</span>
         <span class="n">negateOnExpiry</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
         <span class="n">isUncapped</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
     <span class="p">})</span>
@@ -14150,7 +14205,7 @@
         <span class="c1">-- The ID we claimed before is now available in tes3.effect namespace</span>
         <span class="n">id</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">effect</span><span class="p">.</span><span class="n">customFireDmg</span><span class="p">,</span>
 
-        <span class="c1">-- This information if just copied from the Construction Set --</span>
+        <span class="c1">-- This information is copied from the Construction Set</span>
         <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Fire Damage&quot;</span><span class="p">,</span>
         <span class="n">description</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;This spell effect produces a manifestation of elemental fire. Upon &quot;</span> <span class="o">..</span>
         <span class="s2">&quot;contact with an object, this manifestation explodes, causing damage.&quot;</span><span class="p">),</span>
@@ -14172,7 +14227,6 @@
         <span class="n">hitVFX</span> <span class="o">=</span> <span class="s2">&quot;VFX_DestructHit&quot;</span><span class="p">,</span>
         <span class="n">areaSound</span> <span class="o">=</span> <span class="s2">&quot;destruction area&quot;</span><span class="p">,</span>
         <span class="n">areaVFX</span> <span class="o">=</span> <span class="s2">&quot;VFX_DestructArea&quot;</span><span class="p">,</span>
-        <span class="c1">-- --</span>
 
         <span class="n">appliesOnce</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
         <span class="n">hasNoDuration</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
@@ -14189,7 +14243,10 @@
 <span class="kr">end</span><span class="p">)</span>
 
 <span class="n">event</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">tes3</span><span class="p">.</span><span class="n">event</span><span class="p">.</span><span class="n">loaded</span><span class="p">,</span> <span class="kr">function</span><span class="p">()</span>
-    <span class="kd">local</span> <span class="n">spell1</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">createObject</span><span class="p">({</span> <span class="n">objectType</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">objectType</span><span class="p">.</span><span class="n">spell</span> <span class="p">})</span>
+
+    <span class="c1">-- Now let&#39;s create some custom spells to test the new effect.</span>
+
+    <span class="kd">local</span> <span class="n">spell1</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">createObject</span><span class="p">({</span> <span class="n">objectType</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">objectType</span><span class="p">.</span><span class="n">spell</span> <span class="p">})</span> <span class="cm">--[[@as tes3spell]]</span>
     <span class="n">tes3</span><span class="p">.</span><span class="n">setSourceless</span><span class="p">(</span><span class="n">spell1</span><span class="p">)</span>
     <span class="n">spell1</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;TEST SPELL - self&quot;</span>
     <span class="n">spell1</span><span class="p">.</span><span class="n">magickaCost</span> <span class="o">=</span> <span class="mi">1</span>
@@ -14204,7 +14261,7 @@
     <span class="n">effect</span><span class="p">.</span><span class="n">skill</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
     <span class="n">effect</span><span class="p">.</span><span class="n">attribute</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
 
-    <span class="kd">local</span> <span class="n">spell2</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">createObject</span><span class="p">({</span> <span class="n">objectType</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">objectType</span><span class="p">.</span><span class="n">spell</span> <span class="p">})</span>
+    <span class="kd">local</span> <span class="n">spell2</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">createObject</span><span class="p">({</span> <span class="n">objectType</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">objectType</span><span class="p">.</span><span class="n">spell</span> <span class="p">})</span> <span class="cm">--[[@as tes3spell]]</span>
     <span class="n">tes3</span><span class="p">.</span><span class="n">setSourceless</span><span class="p">(</span><span class="n">spell2</span><span class="p">)</span>
     <span class="n">spell2</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;TEST SPELL - target&quot;</span>
     <span class="n">spell2</span><span class="p">.</span><span class="n">magickaCost</span> <span class="o">=</span> <span class="mi">1</span>
@@ -14219,7 +14276,7 @@
     <span class="n">effect</span><span class="p">.</span><span class="n">skill</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
     <span class="n">effect</span><span class="p">.</span><span class="n">attribute</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
 
-    <span class="kd">local</span> <span class="n">spell3</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">createObject</span><span class="p">({</span> <span class="n">objectType</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">objectType</span><span class="p">.</span><span class="n">spell</span> <span class="p">})</span>
+    <span class="kd">local</span> <span class="n">spell3</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">createObject</span><span class="p">({</span> <span class="n">objectType</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">objectType</span><span class="p">.</span><span class="n">spell</span> <span class="p">})</span> <span class="cm">--[[@as tes3spell]]</span>
     <span class="n">tes3</span><span class="p">.</span><span class="n">setSourceless</span><span class="p">(</span><span class="n">spell3</span><span class="p">)</span>
     <span class="n">spell3</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;TEST SPELL - touch&quot;</span>
     <span class="n">spell3</span><span class="p">.</span><span class="n">magickaCost</span> <span class="o">=</span> <span class="mi">1</span>
@@ -17969,7 +18026,7 @@ Statics, activators, containers, doors, and lights with non-zero weight.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">June 17, 2023 10:40:27</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">June 17, 2023 15:52:44</span>
       
         <br>
         Created:
