@@ -15397,15 +15397,16 @@
 <h3 id="tes3getcell"><code>tes3.getCell</code><a class="headerlink" href="#tes3getcell" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">getcell, cell</div>
 
-<p>Finds a cell, either by an id or an X/Y grid position.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">cell</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">getCell</span><span class="p">({</span> <span class="n">id</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">x</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">y</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
+<p>Finds a cell, either by an id, by an object position (finds an exterior cell), or by an X/Y grid position. Returns <code>nil</code> if the cell id cannot be found or the cell does not exist at a position.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">cell</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">getCell</span><span class="p">({</span> <span class="n">id</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">position</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">x</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">y</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
 <li><code>params</code> (table)<ul>
-<li><code>id</code> (string): The cell's ID. If not provided, x and y must be.</li>
-<li><code>x</code> (number)</li>
-<li><code>y</code> (number)</li>
+<li><code>id</code> (string): <em>Optional</em>. The cell's ID. If not provided, position or x and y must be.</li>
+<li><code>position</code> (<a href="../../types/tes3vector3">tes3vector3</a>): <em>Optional</em>. A point in an exterior cell.</li>
+<li><code>x</code> (number): <em>Optional</em>. The X grid-position.</li>
+<li><code>y</code> (number): <em>Optional</em>. The Y grid-position.</li>
 </ul>
 </li>
 </ul>
@@ -18026,7 +18027,7 @@ Statics, activators, containers, doors, and lights with non-zero weight.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">June 17, 2023 15:52:44</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">June 17, 2023 15:21:57</span>
       
         <br>
         Created:
