@@ -10855,6 +10855,10 @@
 
 <h1 id="patches">Patches<a class="headerlink" href="#patches" title="Permanent link">⚓︎</a></h1>
 <p>The following patches are included by MWSE.</p>
+<div class="admonition tip the construction set extender">
+<p class="admonition-title">Tip</p>
+<p>This project also improves the Construction Set. Read more about changes to that program on the <a href="https://mwse.github.io/MWSE/references/general/csse/">CSSE</a> page.</p>
+</div>
 <h2 id="features">Features<a class="headerlink" href="#features" title="Permanent link">⚓︎</a></h2>
 <ul>
 <li>Allows custom classes to have custom images on the class selection menu. The texture used is a bmp file found in the textures\levelup directory, whose name is the id of the class.</li>
@@ -10865,6 +10869,7 @@
 <li>Allows NiUVController to specify its texture correctly.</li>
 <li>Creates crash dump files and logging information to help diagnose mod issues.</li>
 <li><code>Disable</code> mwscript function updates collision information so the player won't collide with invisible references.</li>
+<li>Improved support for NiSortAdjustNode, with additional alpha subtree rendering.</li>
 <li>Improves load times when using Mod Organizer 2.</li>
 <li>Optimizes access to global variables.</li>
 <li>Optimizes access to player kill count, via <code>GetDeadCount</code> or dialogue filtering.</li>
@@ -10873,6 +10878,7 @@
 <li>Optimizes journal updating.</li>
 <li>Optimizes <code>ShowMap</code> and <code>FillMap</code> to not be absurdly slow.</li>
 <li>Raises mod limit from 256 to 1024.</li>
+<li>Replaces Morrowind's dialogue filtering system with one that is much more performant.</li>
 </ul>
 <h2 id="bug-fixes">Bug Fixes<a class="headerlink" href="#bug-fixes" title="Permanent link">⚓︎</a></h2>
 <ul>
@@ -10881,6 +10887,8 @@
 <li>Correctly initialize MobileProjectile tag/objectType. Useful to modders.</li>
 <li><code>Enable</code> and <code>Disable</code> mwscript functions no longer can cause crashes with script variables unset.</li>
 <li>Fixes book and weapon enchantment copying. Useful to modders.</li>
+<li>Fixes cloning of NiObjects with multiple NiStringExtraData attachments.</li>
+<li>Fixes crash when cloning certain NiSortAdjustNode structures.</li>
 <li>Fixes crash when releasing a clone of a light with no reference.</li>
 <li>Fixes crash when saving active VFXs when none are serializable.</li>
 <li>Fixes crash when saving menu position if the derived key name is too long.</li>
@@ -10888,6 +10896,9 @@
 <li>Fixes crash where NPC flee logic tries to select a random node from pathgrids with 0 nodes.</li>
 <li>Fixes crash with paper doll equipping/unequipping.</li>
 <li>Fixes crash with uncloned actors removing items.</li>
+<li>Fixes issue where VFX objects would load incorrectly, or cause save bloat.</li>
+<li>Fixes sound volume calculations. Additional fixes provided when sound loops.</li>
+<li>Fixes terrain render issues when using more than 500 land textures.</li>
 <li>Fixes time being nudged forward by small extra increments when resting.</li>
 <li>Fixes time being truncated when advancing time past midnight.</li>
 <li>Fixes transparency effects from invisibility/chameleon from being desynced when changing equipment.</li>
@@ -10900,7 +10911,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">February 11, 2023 12:29:29</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">June 27, 2023 18:43:13</span>
       
         <br>
         Created:
