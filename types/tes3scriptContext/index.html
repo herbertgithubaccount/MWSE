@@ -10912,6 +10912,26 @@
 -->
 
 <p>A script context object, which allows variables to be get/set using the variable name.</p>
+<details class="example">
+<summary>Example: An example of indexing local script variables inside <code>tes3scriptContext</code> objects</summary>
+<p>Companions usually have a mwscript script with variable named <code>companion</code> set to 1. This can be used to determine if a reference is player's companion or not.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">--- This function returns `true` if the reference</span>
+<span class="c1">--- has a variable companion set to 1 in its script.</span>
+<span class="c1">---@param reference tes3reference</span>
+<span class="c1">---@return boolean</span>
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">hasCompanionShare</span><span class="p">(</span><span class="n">reference</span><span class="p">)</span>
+
+    <span class="c1">-- This shows that we can read any variable inside</span>
+    <span class="c1">-- `tes3scriptContext` objects as if it was normal Lua table</span>
+    <span class="c1">-- (`reference.context` is of `tes3scriptContext` type)</span>
+    <span class="kd">local</span> <span class="n">companion</span> <span class="o">=</span> <span class="n">reference</span><span class="p">.</span><span class="n">context</span><span class="p">[</span><span class="s2">&quot;companion&quot;</span><span class="p">]</span>
+    <span class="kr">return</span> <span class="p">(</span><span class="n">companion</span> <span class="ow">and</span>
+            <span class="n">companion</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">or</span>
+            <span class="kc">false</span>
+    <span class="p">)</span>
+<span class="kr">end</span>
+</code></pre></div>
+</details>
 <h2 id="methods">Methods<a class="headerlink" href="#methods" title="Permanent link">⚓︎</a></h2>
 <h3 id="getvariabledata"><code>getVariableData</code><a class="headerlink" href="#getvariabledata" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">getvariabledata, variabledata</div>
@@ -10940,33 +10960,13 @@
 </tr>
 </tbody>
 </table>
-<details class="example">
-<summary>Example: An example of indexing local script variables inside <code>tes3scriptContext</code> objects</summary>
-<p>Companions usually have a mwscript script with variable named <code>companion</code> set to 1. This can be used to determine if a reference is player's companion or not.</p>
-<div class="highlight"><pre><span></span><code><span class="c1">--- This function returns `true` if the reference</span>
-<span class="c1">--- has a variable companion set to 1 in its script.</span>
-<span class="c1">---@param reference tes3reference</span>
-<span class="c1">---@return boolean</span>
-<span class="kd">local</span> <span class="kr">function</span> <span class="nf">hasCompanionShare</span><span class="p">(</span><span class="n">reference</span><span class="p">)</span>
-
-    <span class="c1">-- This shows that we can read any variable inside</span>
-    <span class="c1">-- `tes3scriptContext` objects as if it was normal Lua table</span>
-    <span class="c1">-- (`reference.context` is of `tes3scriptContext` type)</span>
-    <span class="kd">local</span> <span class="n">companion</span> <span class="o">=</span> <span class="n">reference</span><span class="p">.</span><span class="n">context</span><span class="p">[</span><span class="s2">&quot;companion&quot;</span><span class="p">]</span>
-    <span class="kr">return</span> <span class="p">(</span><span class="n">companion</span> <span class="ow">and</span>
-            <span class="n">companion</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">or</span>
-            <span class="kc">false</span>
-    <span class="p">)</span>
-<span class="kr">end</span>
-</code></pre></div>
-</details>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">June 17, 2023 10:52:14</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">July 4, 2023 16:47:08</span>
       
         <br>
         Created:

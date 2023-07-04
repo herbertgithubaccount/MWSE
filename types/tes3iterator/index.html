@@ -10940,6 +10940,30 @@
 -->
 
 <p>A collection that can be iterated over. Contains items in a simple linked list, and stores its head/tail.</p>
+<details class="example">
+<summary>Example: Iterating Lists</summary>
+<p>In this example, a list is iterated using the pairs iterator function. The node can be used directly.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">-- Check player equipment. Equipment list contains only equipped items.</span>
+<span class="kr">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">stack</span> <span class="kr">in</span> <span class="nb">pairs</span><span class="p">(</span><span class="n">tes3</span><span class="p">.</span><span class="n">player</span><span class="p">.</span><span class="n">object</span><span class="p">.</span><span class="n">equipment</span><span class="p">)</span> <span class="kr">do</span>
+    <span class="c1">-- stack is type tes3equipmentStack, as tes3.player.object.equipment is a list of tes3equipmentStack objects.</span>
+    <span class="n">mwse</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Equipment object ID: %s&quot;</span><span class="p">,</span> <span class="n">stack</span><span class="p">.</span><span class="n">object</span><span class="p">.</span><span class="n">id</span><span class="p">)</span>
+<span class="kr">end</span>
+
+<span class="c1">-- This will iterate over all the items in player&#39;s inventory including equipped items.</span>
+<span class="kr">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">itemStack</span> <span class="kr">in</span> <span class="nb">pairs</span><span class="p">(</span><span class="n">tes3</span><span class="p">.</span><span class="n">player</span><span class="p">.</span><span class="n">object</span><span class="p">.</span><span class="n">inventory</span><span class="p">)</span> <span class="kr">do</span>
+    <span class="c1">-- itemStack is of tes3itemStack type</span>
+    <span class="kd">local</span> <span class="n">item</span> <span class="o">=</span> <span class="n">itemStack</span><span class="p">.</span><span class="n">object</span>
+    <span class="n">mwse</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;The player has %s of %s in inventory.&quot;</span><span class="p">,</span> <span class="n">itemStack</span><span class="p">.</span><span class="n">count</span><span class="p">,</span> <span class="n">item</span><span class="p">.</span><span class="n">id</span><span class="p">)</span>
+<span class="kr">end</span>
+
+<span class="c1">-- tes3.player.object.spells is a tes3spellList with helper functions.</span>
+<span class="c1">-- The actual list is spells.iterator.</span>
+<span class="kr">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">spell</span> <span class="kr">in</span> <span class="nb">pairs</span><span class="p">(</span><span class="n">tes3</span><span class="p">.</span><span class="n">player</span><span class="p">.</span><span class="n">object</span><span class="p">.</span><span class="n">spells</span><span class="p">)</span> <span class="kr">do</span>
+    <span class="c1">-- spell is type tes3spell, as tes3.player.object.spells is a list of tes3spell objects.</span>
+    <span class="n">mwse</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Spell %s, cost %d&quot;</span><span class="p">,</span> <span class="n">spell</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">spell</span><span class="p">.</span><span class="n">magickaCost</span><span class="p">)</span>
+<span class="kr">end</span>
+</code></pre></div>
+</details>
 <h2 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">⚓︎</a></h2>
 <h3 id="current"><code>current</code><a class="headerlink" href="#current" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">current</div>
@@ -10979,37 +11003,13 @@
 <ul>
 <li><code>result</code> (number)</li>
 </ul>
-<details class="example">
-<summary>Example: Iterating Lists</summary>
-<p>In this example, a list is iterated using the pairs iterator function. The node can be used directly.</p>
-<div class="highlight"><pre><span></span><code><span class="c1">-- Check player equipment. Equipment list contains only equipped items.</span>
-<span class="kr">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">stack</span> <span class="kr">in</span> <span class="nb">pairs</span><span class="p">(</span><span class="n">tes3</span><span class="p">.</span><span class="n">player</span><span class="p">.</span><span class="n">object</span><span class="p">.</span><span class="n">equipment</span><span class="p">)</span> <span class="kr">do</span>
-    <span class="c1">-- stack is type tes3equipmentStack, as tes3.player.object.equipment is a list of tes3equipmentStack objects.</span>
-    <span class="n">mwse</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Equipment object ID: %s&quot;</span><span class="p">,</span> <span class="n">stack</span><span class="p">.</span><span class="n">object</span><span class="p">.</span><span class="n">id</span><span class="p">)</span>
-<span class="kr">end</span>
-
-<span class="c1">-- This will iterate over all the items in player&#39;s inventory including equipped items.</span>
-<span class="kr">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">itemStack</span> <span class="kr">in</span> <span class="nb">pairs</span><span class="p">(</span><span class="n">tes3</span><span class="p">.</span><span class="n">player</span><span class="p">.</span><span class="n">object</span><span class="p">.</span><span class="n">inventory</span><span class="p">)</span> <span class="kr">do</span>
-    <span class="c1">-- itemStack is of tes3itemStack type</span>
-    <span class="kd">local</span> <span class="n">item</span> <span class="o">=</span> <span class="n">itemStack</span><span class="p">.</span><span class="n">object</span>
-    <span class="n">mwse</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;The player has %s of %s in inventory.&quot;</span><span class="p">,</span> <span class="n">itemStack</span><span class="p">.</span><span class="n">count</span><span class="p">,</span> <span class="n">item</span><span class="p">.</span><span class="n">id</span><span class="p">)</span>
-<span class="kr">end</span>
-
-<span class="c1">-- tes3.player.object.spells is a tes3spellList with helper functions.</span>
-<span class="c1">-- The actual list is spells.iterator.</span>
-<span class="kr">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">spell</span> <span class="kr">in</span> <span class="nb">pairs</span><span class="p">(</span><span class="n">tes3</span><span class="p">.</span><span class="n">player</span><span class="p">.</span><span class="n">object</span><span class="p">.</span><span class="n">spells</span><span class="p">)</span> <span class="kr">do</span>
-    <span class="c1">-- spell is type tes3spell, as tes3.player.object.spells is a list of tes3spell objects.</span>
-    <span class="n">mwse</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Spell %s, cost %d&quot;</span><span class="p">,</span> <span class="n">spell</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">spell</span><span class="p">.</span><span class="n">magickaCost</span><span class="p">)</span>
-<span class="kr">end</span>
-</code></pre></div>
-</details>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">April 12, 2023 08:53:46</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">July 4, 2023 16:47:08</span>
       
         <br>
         Created:

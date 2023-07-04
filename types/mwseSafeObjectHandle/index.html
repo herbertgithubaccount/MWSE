@@ -10886,28 +10886,6 @@
 -->
 
 <p>A handle to safely operate on (<a href="https://mwse.github.io/MWSE/types/tes3object/">tes3object</a>).</p>
-<h2 id="methods">Methods<a class="headerlink" href="#methods" title="Permanent link">⚓︎</a></h2>
-<h3 id="getobject"><code>getObject</code><a class="headerlink" href="#getobject" title="Permanent link">⚓︎</a></h3>
-<div class="search_terms" style="display: none">getobject, object</div>
-
-<p>Returns the object of this handle.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">myObject</span><span class="p">:</span><span class="n">getObject</span><span class="p">()</span>
-</code></pre></div>
-<p><strong>Returns</strong>:</p>
-<ul>
-<li><code>result</code> (<a href="../../types/tes3reference">tes3reference</a>)</li>
-</ul>
-<hr />
-<h3 id="valid"><code>valid</code><a class="headerlink" href="#valid" title="Permanent link">⚓︎</a></h3>
-<div class="search_terms" style="display: none">valid</div>
-
-<p>Returns true if the object of this handle is still valid. Objects that are invalid do no longer exist and cannot be used.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">valid</span> <span class="o">=</span> <span class="n">myObject</span><span class="p">:</span><span class="n">valid</span><span class="p">()</span>
-</code></pre></div>
-<p><strong>Returns</strong>:</p>
-<ul>
-<li><code>valid</code> (boolean)</li>
-</ul>
 <details class="example">
 <summary>Example: An example of usage</summary>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">rayTest</span><span class="p">{</span> <span class="c1">-- the result can get invalidated</span>
@@ -10933,13 +10911,35 @@
 <span class="kr">end</span>
 </code></pre></div>
 </details>
+<h2 id="methods">Methods<a class="headerlink" href="#methods" title="Permanent link">⚓︎</a></h2>
+<h3 id="getobject"><code>getObject</code><a class="headerlink" href="#getobject" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">getobject, object</div>
+
+<p>Returns the object of this handle.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">myObject</span><span class="p">:</span><span class="n">getObject</span><span class="p">()</span>
+</code></pre></div>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>result</code> (<a href="../../types/tes3reference">tes3reference</a>)</li>
+</ul>
+<hr />
+<h3 id="valid"><code>valid</code><a class="headerlink" href="#valid" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">valid</div>
+
+<p>Returns true if the object of this handle is still valid. Objects that are invalid do no longer exist and cannot be used.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">valid</span> <span class="o">=</span> <span class="n">myObject</span><span class="p">:</span><span class="n">valid</span><span class="p">()</span>
+</code></pre></div>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>valid</code> (boolean)</li>
+</ul>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">April 10, 2023 16:33:00</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">July 4, 2023 16:47:08</span>
       
         <br>
         Created:

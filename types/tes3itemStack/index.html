@@ -10902,33 +10902,6 @@
 <p>A complex container that holds a relationship between an item, and zero or more associated item datas.</p>
 <p>Item stack represents all copies of an item with the same id. Some of those may have itemData and some may not. E.g. you might have two lockpicks and one of them has fewer uses remaining.
 So <code>itemStack.variables</code> is a list of different itemData for each thing in the stack, not a single itemData.</p>
-<h2 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">⚓︎</a></h2>
-<h3 id="count"><code>count</code><a class="headerlink" href="#count" title="Permanent link">⚓︎</a></h3>
-<div class="search_terms" style="display: none">count</div>
-
-<p>The total number of items in the stack.</p>
-<p><strong>Returns</strong>:</p>
-<ul>
-<li><code>result</code> (integer)</li>
-</ul>
-<hr />
-<h3 id="object"><code>object</code><a class="headerlink" href="#object" title="Permanent link">⚓︎</a></h3>
-<div class="search_terms" style="display: none">object</div>
-
-<p><em>Read-only</em>. The core game object that the stack represents.</p>
-<p><strong>Returns</strong>:</p>
-<ul>
-<li><code>result</code> (<a href="../../types/tes3item">tes3item</a>)</li>
-</ul>
-<hr />
-<h3 id="variables"><code>variables</code><a class="headerlink" href="#variables" title="Permanent link">⚓︎</a></h3>
-<div class="search_terms" style="display: none">variables</div>
-
-<p>A collection of variables that are associated with the stack's object, or nil if there aren't any.</p>
-<p><strong>Returns</strong>:</p>
-<ul>
-<li><code>result</code> (<a href="../../types/tes3itemData">tes3itemData</a>[], nil)</li>
-</ul>
 <details class="example">
 <summary>Example: In the iterItems() function we can see that the an item stack can consist of items with itemData and items without it</summary>
 <div class="highlight"><pre><span></span><code><span class="c1">--- This is a generic iterator function that is used</span>
@@ -10970,13 +10943,40 @@ So <code>itemStack.variables</code> is a list of different itemData for each thi
 <span class="kr">end</span>
 </code></pre></div>
 </details>
+<h2 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">⚓︎</a></h2>
+<h3 id="count"><code>count</code><a class="headerlink" href="#count" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">count</div>
+
+<p>The total number of items in the stack.</p>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>result</code> (integer)</li>
+</ul>
+<hr />
+<h3 id="object"><code>object</code><a class="headerlink" href="#object" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">object</div>
+
+<p><em>Read-only</em>. The core game object that the stack represents.</p>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>result</code> (<a href="../../types/tes3item">tes3item</a>)</li>
+</ul>
+<hr />
+<h3 id="variables"><code>variables</code><a class="headerlink" href="#variables" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">variables</div>
+
+<p>A collection of variables that are associated with the stack's object, or nil if there aren't any.</p>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>result</code> (<a href="../../types/tes3itemData">tes3itemData</a>[], nil)</li>
+</ul>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">March 26, 2023 11:52:58</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">July 4, 2023 16:47:08</span>
       
         <br>
         Created:
