@@ -1,3 +1,36 @@
 [data-md-color-scheme="slate"] {
 	--md-typeset-a-color: #3498db;
+
+	/*
+		Primary button
+		Taken from: https://github.com/squidfunk/mkdocs-material/blob/03d065ca206a996885476d877ad7f9b86e467315/src/assets/stylesheets/main/components/_form.scss#L31
+
+		Their size compared to the main text was too big, and the default colors
+		had low contrast to the background.
+	*/
+	.md-button {
+		color: var(--md-primary-bg-color); /* The color property for buttons affects text color. */
+		border-color: var(--md-typeset-a-color);
+
+		font-size: 0.72rem;
+		font-weight: 400;
+		margin: 2px;
+
+		&:is(:focus, :hover) {
+			background-color: var(--md-typeset-a-color);
+			border-color: var(--md-typeset-a-color);
+		}
+	}
+}
+
+[data-md-color-scheme="default"] {
+	/*
+		Also tweak the button size properties for the light theme.
+		No color tweaks here since the defaults are fine.
+	*/
+	.md-button {
+		font-size: 0.72rem;
+		font-weight: 400;
+		margin: 2px;
+	}
 }
