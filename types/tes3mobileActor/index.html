@@ -15,7 +15,7 @@
         <link rel="next" href="../tes3mobileCreature/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.17">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.18">
     
     
       
@@ -14722,6 +14722,31 @@ end
 <ul>
 <li><code>angle</code> (number): In range of [-180, 180] in degrees.</li>
 </ul>
+<details class="example">
+<summary>Example: View cone testing</summary>
+<p>Using the <code>getViewToPoint</code> we can check whether a reference is inside a cone in front of the player.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">-- These are view cone sizes in degrees</span>
+<span class="kd">local</span> <span class="n">viewCone</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">first</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span>
+    <span class="n">third</span> <span class="o">=</span> <span class="mi">45</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1">--- This will return true if the target is inside player&#39;s view cone.</span>
+<span class="c1">--- It doesn&#39;t perform any checks if there is line connecting the player</span>
+<span class="c1">--- and reference. In other words this won&#39;t check if the reference</span>
+<span class="c1">--- isn&#39;t actually visible if it&#39;s covered by a building for example.</span>
+<span class="c1">---@param ref tes3reference</span>
+<span class="c1">---@return boolean</span>
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">inPCViewCone</span><span class="p">(</span><span class="n">ref</span><span class="p">)</span>
+    <span class="kd">local</span> <span class="n">angle</span> <span class="o">=</span> <span class="nb">math.abs</span><span class="p">(</span><span class="n">tes3</span><span class="p">.</span><span class="n">mobilePlayer</span><span class="p">:</span><span class="n">getViewToPoint</span><span class="p">(</span><span class="n">ref</span><span class="p">.</span><span class="n">position</span><span class="p">))</span>
+    <span class="kd">local</span> <span class="n">cone</span> <span class="o">=</span> <span class="p">(</span><span class="n">tes3</span><span class="p">.</span><span class="n">is3rdPerson</span><span class="p">()</span> <span class="ow">and</span> <span class="n">viewCone</span><span class="p">.</span><span class="n">third</span><span class="p">)</span> <span class="ow">or</span> <span class="n">viewCone</span><span class="p">.</span><span class="n">first</span>
+    <span class="kr">if</span> <span class="n">angle</span> <span class="o">&lt;</span> <span class="n">cone</span> <span class="kr">then</span>
+        <span class="kr">return</span> <span class="kc">true</span>
+    <span class="kr">end</span>
+    <span class="kr">return</span> <span class="kc">false</span>
+<span class="kr">end</span>
+</code></pre></div>
+</details>
 <hr />
 <h3 id="getviewtopointwithfacing"><code>getViewToPointWithFacing</code><a class="headerlink" href="#getviewtopointwithfacing" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">getviewtopointwithfacing, viewtopointwithfacing</div>
@@ -14918,7 +14943,7 @@ end
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">April 30, 2023 16:44:33</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">July 4, 2023 07:41:27</span>
       
         <br>
         Created:
@@ -14971,10 +14996,10 @@ end
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.code.copy", "content.tabs.link", "navigation.indexes", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.code.copy", "content.tabs.link", "navigation.indexes", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest"], "search": "../../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.b425cdc4.min.js"></script>
+      <script src="../../assets/javascripts/bundle.220ee61c.min.js"></script>
       
         
           <script src="../../assets/js/reloadMermaidPagesOnPaletteSwitch.js"></script>
