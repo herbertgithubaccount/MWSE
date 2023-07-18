@@ -14692,6 +14692,7 @@
 <div class="search_terms" style="display: none">claimspelleffectid</div>
 
 <p>This function is used to claim a unique spell effect name and id. This is needed before actually creating a new effect by calling <code>tes3.addMagicEffect()</code>. A claimed effect id is then available as: <code>tes3.effect.effectName</code> (just like any other spell effect). For examples of this function in practice see <a href="https://mwse.github.io/MWSE/apis/tes3/#tes3addmagiceffect"><code>tes3.addMagicEffect()</code></a> example.</p>
+<p>You can read a list of already claimed magic effects <a href="https://mwse.github.io/MWSE/references/magic-effects-modded/">here</a>. The new magic effect's <code>id</code> should be higher than 142 (the last vanilla magic effect) and not already claimed.</p>
 <div class="highlight"><pre><span></span><code><span class="n">tes3</span><span class="p">.</span><span class="n">claimSpellEffectId</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">id</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
@@ -18043,7 +18044,7 @@ Statics, activators, containers, doors, and lights with non-zero weight.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">June 17, 2023 21:11:23</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">July 18, 2023 07:57:34</span>
       
         <br>
         Created:
