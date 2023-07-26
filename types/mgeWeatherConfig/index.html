@@ -12,7 +12,7 @@
         <link rel="prev" href="../mgeVersionTable/">
       
       
-        <link rel="next" href="../mwseLogger/">
+        <link rel="next" href="../mgeWindTable/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.19">
@@ -3890,6 +3890,16 @@
         
           
         
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
       
       
         <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -3952,6 +3962,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../mgeDistantFogTable/" class="md-nav__link">
+        mgeDistantFogTable
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../mgeDistantLandRenderConfig/" class="md-nav__link">
         mgeDistantLandRenderConfig
       </a>
@@ -3966,8 +3990,36 @@
   
   
     <li class="md-nav__item">
+      <a href="../mgePerPixelLightingTable/" class="md-nav__link">
+        mgePerPixelLightingTable
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../mgeRenderFeatures/" class="md-nav__link">
         mgeRenderFeatures
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mgeScatteringTable/" class="md-nav__link">
+        mgeScatteringTable
       </a>
     </li>
   
@@ -3996,6 +4048,20 @@
     <li class="md-nav__item">
       <a href="../mgeShadersConfig/" class="md-nav__link">
         mgeShadersConfig
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mgeSkylightScatteringTable/" class="md-nav__link">
+        mgeSkylightScatteringTable
       </a>
     </li>
   
@@ -4142,6 +4208,20 @@
   
 </nav>
       
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mgeWindTable/" class="md-nav__link">
+        mgeWindTable
+      </a>
     </li>
   
 
@@ -11002,12 +11082,16 @@
 <h3 id="getdistantfog"><code>getDistantFog</code><a class="headerlink" href="#getdistantfog" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">getdistantfog, distantfog</div>
 
-<p>No description yet available.</p>
-<div class="highlight"><pre><span></span><code><span class="n">mgeWeatherConfig</span><span class="p">.</span><span class="n">getDistantFog</span><span class="p">(</span><span class="n">weather</span><span class="p">)</span>
+<p>This function returns the distant fog settings for given weather type. These can be found in the Distant Land Weather Settings in MGE XE.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">mgeWeatherConfig</span><span class="p">.</span><span class="n">getDistantFog</span><span class="p">(</span><span class="n">weather</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>weather</code> (number)</li>
+<li><code>weather</code> (integer): Maps to values in <a href="https://mwse.github.io/MWSE/references/weather-types/"><code>tes3.weather</code></a> table.</li>
+</ul>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>result</code> (<a href="../../types/mgeDistantFogTable">mgeDistantFogTable</a>)</li>
 </ul>
 <hr />
 <h3 id="getperpixellighting"><code>getPerPixelLighting</code><a class="headerlink" href="#getperpixellighting" title="Permanent link">⚓︎</a></h3>
@@ -11018,11 +11102,11 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>weather</code> (number)</li>
+<li><code>weather</code> (integer): Maps to values in <a href="https://mwse.github.io/MWSE/references/weather-types/"><code>tes3.weather</code></a> table.</li>
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (table&lt;string, number&gt;)</li>
+<li><code>result</code> (<a href="../../types/mgePerPixelLightingTable">mgePerPixelLightingTable</a>)</li>
 </ul>
 <hr />
 <h3 id="getscattering"><code>getScattering</code><a class="headerlink" href="#getscattering" title="Permanent link">⚓︎</a></h3>
@@ -11033,7 +11117,7 @@
 </code></pre></div>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>scatters</code> (table&lt;string, <a href="../../types/tes3vector3">tes3vector3</a>&gt;)</li>
+<li><code>scatters</code> (<a href="../../types/mgeScatteringTable">mgeScatteringTable</a>)</li>
 </ul>
 <hr />
 <h3 id="getskylightscattering"><code>getSkylightScattering</code><a class="headerlink" href="#getskylightscattering" title="Permanent link">⚓︎</a></h3>
@@ -11044,7 +11128,7 @@
 </code></pre></div>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>scatters</code> (table&lt;string, number[]|number&gt;)</li>
+<li><code>scatters</code> (<a href="../../types/mgeSkylightScatteringTable">mgeSkylightScatteringTable</a>)</li>
 </ul>
 <hr />
 <h3 id="getwind"><code>getWind</code><a class="headerlink" href="#getwind" title="Permanent link">⚓︎</a></h3>
@@ -11055,25 +11139,25 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>weather</code> (number)</li>
+<li><code>weather</code> (integer): Maps to values in <a href="https://mwse.github.io/MWSE/references/weather-types/"><code>tes3.weather</code></a> table.</li>
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (table&lt;string, number&gt;): A package containing the speed property.</li>
+<li><code>result</code> (<a href="../../types/mgeWindTable">mgeWindTable</a>): A package containing the speed property.</li>
 </ul>
 <hr />
 <h3 id="setdistantfog"><code>setDistantFog</code><a class="headerlink" href="#setdistantfog" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">setdistantfog, distantfog</div>
 
-<p>No description yet available.</p>
+<p>This is used to change the distant fog settings for given weather type.</p>
 <div class="highlight"><pre><span></span><code><span class="n">mgeWeatherConfig</span><span class="p">.</span><span class="n">setDistantFog</span><span class="p">({</span> <span class="n">weather</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">distance</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">offset</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>params</code> (table)<ul>
-<li><code>weather</code> (number)</li>
-<li><code>distance</code> (number)</li>
-<li><code>offset</code> (number)</li>
+<li><code>params</code> (table, <a href="../../types/mgeDistantFogTable">mgeDistantFogTable</a>)<ul>
+<li><code>weather</code> (integer): Maps to values in <a href="https://mwse.github.io/MWSE/references/weather-types/"><code>tes3.weather</code></a> table.</li>
+<li><code>distance</code> (number): Corresponds to the value of "Fog range factor" setting for given weather in the Distant Land Weather Settings of MGE XE.</li>
+<li><code>offset</code> (number): Corresponds to the value of "Fog offset" setting for given weather in the Distant Land Weather Settings of MGE XE.</li>
 </ul>
 </li>
 </ul>
@@ -11086,10 +11170,10 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>params</code> (table)<ul>
-<li><code>weather</code> (number)</li>
-<li><code>sun</code> (number)</li>
-<li><code>ambient</code> (number)</li>
+<li><code>params</code> (table, <a href="../../types/mgePerPixelLightingTable">mgePerPixelLightingTable</a>)<ul>
+<li><code>weather</code> (integer): Maps to values in <a href="https://mwse.github.io/MWSE/references/weather-types/"><code>tes3.weather</code></a> table.</li>
+<li><code>sun</code> (number): Corresponds to the value of "Sun brightness multiplier" setting for given weather in the Per-pixel Lighting Settings menu of MGE XE.</li>
+<li><code>ambient</code> (number): Corresponds to the value of "Ambient brightness multiplier" setting for given weather in the Per-pixel Lighting Settings menu of MGE XE.</li>
 </ul>
 </li>
 </ul>
@@ -11102,7 +11186,7 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>params</code> (table)<ul>
+<li><code>params</code> (table, <a href="../../types/mgeScatteringTable">mgeScatteringTable</a>)<ul>
 <li><code>inscatter</code> (<a href="../../types/tes3vector3">tes3vector3</a>, table)</li>
 <li><code>outscatter</code> (<a href="../../types/tes3vector3">tes3vector3</a>, table)</li>
 </ul>
@@ -11117,7 +11201,7 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>params</code> (table)<ul>
+<li><code>params</code> (table, <a href="../../types/mgeSkylightScatteringTable">mgeSkylightScatteringTable</a>)<ul>
 <li><code>skylight</code> (<a href="../../types/tes3vector3">tes3vector3</a>, table)</li>
 <li><code>mix</code> (number): <em>Default</em>: <code>0.44</code>.</li>
 </ul>
@@ -11132,8 +11216,8 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>params</code> (table)<ul>
-<li><code>weather</code> (number)</li>
+<li><code>params</code> (table, <a href="../../types/mgeWindTable">mgeWindTable</a>)<ul>
+<li><code>weather</code> (integer): Maps to values in <a href="https://mwse.github.io/MWSE/references/weather-types/"><code>tes3.weather</code></a> table.</li>
 <li><code>speed</code> (number)</li>
 </ul>
 </li>
@@ -11144,7 +11228,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">February 11, 2023 19:45:50</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">July 26, 2023 07:08:58</span>
       
         <br>
         Created:

@@ -3890,6 +3890,16 @@
         
           
         
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
       
       
         <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -3952,6 +3962,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../mgeDistantFogTable/" class="md-nav__link">
+        mgeDistantFogTable
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../mgeDistantLandRenderConfig/" class="md-nav__link">
         mgeDistantLandRenderConfig
       </a>
@@ -3966,8 +3990,36 @@
   
   
     <li class="md-nav__item">
+      <a href="../mgePerPixelLightingTable/" class="md-nav__link">
+        mgePerPixelLightingTable
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../mgeRenderFeatures/" class="md-nav__link">
         mgeRenderFeatures
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mgeScatteringTable/" class="md-nav__link">
+        mgeScatteringTable
       </a>
     </li>
   
@@ -4008,6 +4060,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../mgeSkylightScatteringTable/" class="md-nav__link">
+        mgeSkylightScatteringTable
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../mgeVersionTable/" class="md-nav__link">
         mgeVersionTable
       </a>
@@ -4024,6 +4090,20 @@
     <li class="md-nav__item">
       <a href="../mgeWeatherConfig/" class="md-nav__link">
         mgeWeatherConfig
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mgeWindTable/" class="md-nav__link">
+        mgeWindTable
       </a>
     </li>
   
@@ -12543,12 +12623,12 @@
 <h3 id="clone"><code>clone</code><a class="headerlink" href="#clone" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">clone</div>
 
-<p>Clones a reference for a base actor into a reference to an instance of that actor. For example, this will force a container to resolve its leveled items and have its own unique inventory.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">myObject</span><span class="p">:</span><span class="n">clone</span><span class="p">()</span>
+<p>Clones a reference for a base actor into a reference to an instance of that actor. For example, this will force a container to resolve its leveled items and have its own unique inventory. Also, marks the new cloned reference as modified.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">cloned</span> <span class="o">=</span> <span class="n">myObject</span><span class="p">:</span><span class="n">clone</span><span class="p">()</span>
 </code></pre></div>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (boolean)</li>
+<li><code>cloned</code> (boolean): Returns <code>true</code> if the reference was successfully cloned. Returns <code>false</code> if the reference was already cloned or can't be cloned.</li>
 </ul>
 <hr />
 <h3 id="delete"><code>delete</code><a class="headerlink" href="#delete" title="Permanent link">⚓︎</a></h3>
@@ -12724,7 +12804,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">April 10, 2023 16:33:00</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">July 26, 2023 07:13:15</span>
       
         <br>
         Created:

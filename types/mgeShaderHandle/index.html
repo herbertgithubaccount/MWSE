@@ -9,7 +9,7 @@
       
       
       
-        <link rel="prev" href="../mgeRenderFeatures/">
+        <link rel="prev" href="../mgeScatteringTable/">
       
       
         <link rel="next" href="../mgeShadersConfig/">
@@ -3890,6 +3890,16 @@
         
           
         
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
       
       
         <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -3952,6 +3962,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../mgeDistantFogTable/" class="md-nav__link">
+        mgeDistantFogTable
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../mgeDistantLandRenderConfig/" class="md-nav__link">
         mgeDistantLandRenderConfig
       </a>
@@ -3966,8 +3990,36 @@
   
   
     <li class="md-nav__item">
+      <a href="../mgePerPixelLightingTable/" class="md-nav__link">
+        mgePerPixelLightingTable
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../mgeRenderFeatures/" class="md-nav__link">
         mgeRenderFeatures
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mgeScatteringTable/" class="md-nav__link">
+        mgeScatteringTable
       </a>
     </li>
   
@@ -4103,6 +4155,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../mgeSkylightScatteringTable/" class="md-nav__link">
+        mgeSkylightScatteringTable
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../mgeVersionTable/" class="md-nav__link">
         mgeVersionTable
       </a>
@@ -4119,6 +4185,20 @@
     <li class="md-nav__item">
       <a href="../mgeWeatherConfig/" class="md-nav__link">
         mgeWeatherConfig
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mgeWindTable/" class="md-nav__link">
+        mgeWindTable
       </a>
     </li>
   
@@ -10979,24 +11059,25 @@
 <p>The calculated ordering priority value of the shader, that allows auto-sorting of shaders. Changing this value will re-sort the shader list.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (number)</li>
+<li><code>result</code> (integer)</li>
 </ul>
 <hr />
 <h3 id="variables"><code>variables</code><a class="headerlink" href="#variables" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">variables</div>
 
 <p>Lists the shader's editable variables. The result table has the variable names as keys, and the variable types as values. To get and set the actual variable, use the expression <code>shaderHandle.&lt;variableName&gt;</code>.</p>
-<pre><code>Variable types are:
-'b' boolean
-'i' integer
-'f' float
-'s' string
-'a' float array
-'2' vec2
-'3' vec3
-'4' vec4
-'m' matrix
-</code></pre>
+<p>Variable types are:</p>
+<ul>
+<li>'b' boolean</li>
+<li>'i' integer</li>
+<li>'f' float</li>
+<li>'s' string</li>
+<li>'a' float array</li>
+<li>'2' vec2</li>
+<li>'3' vec3</li>
+<li>'4' vec4</li>
+<li>'m' matrix</li>
+</ul>
 <p><strong>Returns</strong>:</p>
 <ul>
 <li><code>result</code> (table&lt;string, string&gt;)</li>
@@ -11007,11 +11088,11 @@
 <div class="search_terms" style="display: none">reload</div>
 
 <p>Reloads and recompiles the shader. Returns if the reload was successful.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">myObject</span><span class="p">:</span><span class="n">reload</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">success</span> <span class="o">=</span> <span class="n">myObject</span><span class="p">:</span><span class="n">reload</span><span class="p">()</span>
 </code></pre></div>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (boolean)</li>
+<li><code>success</code> (boolean)</li>
 </ul>
 
   <hr>
@@ -11019,7 +11100,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">February 11, 2023 19:45:50</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">July 26, 2023 07:08:58</span>
       
         <br>
         Created:

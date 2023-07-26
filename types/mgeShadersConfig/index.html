@@ -12,7 +12,7 @@
         <link rel="prev" href="../mgeShaderHandle/">
       
       
-        <link rel="next" href="../mgeVersionTable/">
+        <link rel="next" href="../mgeSkylightScatteringTable/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.19">
@@ -3890,6 +3890,16 @@
         
           
         
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
       
       
         <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -3952,6 +3962,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../mgeDistantFogTable/" class="md-nav__link">
+        mgeDistantFogTable
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../mgeDistantLandRenderConfig/" class="md-nav__link">
         mgeDistantLandRenderConfig
       </a>
@@ -3966,8 +3990,36 @@
   
   
     <li class="md-nav__item">
+      <a href="../mgePerPixelLightingTable/" class="md-nav__link">
+        mgePerPixelLightingTable
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../mgeRenderFeatures/" class="md-nav__link">
         mgeRenderFeatures
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mgeScatteringTable/" class="md-nav__link">
+        mgeScatteringTable
       </a>
     </li>
   
@@ -4103,6 +4155,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../mgeSkylightScatteringTable/" class="md-nav__link">
+        mgeSkylightScatteringTable
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../mgeVersionTable/" class="md-nav__link">
         mgeVersionTable
       </a>
@@ -4119,6 +4185,20 @@
     <li class="md-nav__item">
       <a href="../mgeWeatherConfig/" class="md-nav__link">
         mgeWeatherConfig
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mgeWindTable/" class="md-nav__link">
+        mgeWindTable
       </a>
     </li>
   
@@ -11006,13 +11086,15 @@
 
 <p>Loads a shader by name, from the <code>Data Files/shaders/XEshaders</code> directory. Adds the shader to the existing shader list, or returns the existing shader if it is already loaded.</p>
 <p>If the shader has a category annotation, it is inserted into a position that preserves the category ordering. Shaders without a category will be added to the end of the list.</p>
-<p>Summary of category sort order:
-* scene: Additional objects rendered into the scene.
-* atmosphere: Atmosphere effects that render over all objects, such as mist.
-* lens: Lens effects such as depth of field.
-* sensor: Sensor effects such as bloom.
-* tone: Tone mapping and color grading.
-* final: Any effects that need to run last.</p>
+<p>Summary of category sort order:</p>
+<ul>
+<li>scene: Additional objects rendered into the scene.</li>
+<li>atmosphere: Atmosphere effects that render over all objects, such as mist.</li>
+<li>lens: Lens effects such as depth of field.</li>
+<li>sensor: Sensor effects such as bloom.</li>
+<li>tone: Tone mapping and color grading.</li>
+<li>final: Any effects that need to run last.</li>
+</ul>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">shader</span> <span class="o">=</span> <span class="n">mgeShadersConfig</span><span class="p">.</span><span class="n">load</span><span class="p">({</span> <span class="n">name</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
@@ -11032,7 +11114,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">February 11, 2023 19:45:50</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">July 26, 2023 07:08:58</span>
       
         <br>
         Created:
