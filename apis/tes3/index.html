@@ -14442,16 +14442,18 @@
 <h3 id="tes3addspell"><code>tes3.addSpell</code><a class="headerlink" href="#tes3addspell" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">addspell, spell</div>
 
-<p>Adds a spell to an actor's spell list. If the spell is passive, the effects will be applied.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">wasAdded</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">addSpell</span><span class="p">({</span> <span class="n">reference</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">actor</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">spell</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">updateGUI</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
+<p>Adds a spell to an actor's spell list. If the spell is passive, the effects will be applied. At least one of the <code>actor</code>, <code>mobile</code> or <code>reference</code> arguments needs to be passed.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">wasAdded</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">addSpell</span><span class="p">({</span> <span class="n">reference</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">actor</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">mobile</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">spell</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">updateGUI</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">bypassResistances</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
 <li><code>params</code> (table)<ul>
-<li><code>reference</code> (<a href="../../types/tes3reference">tes3reference</a>, <a href="../../types/tes3mobileActor">tes3mobileActor</a>, string): Who to give the spell to. To manipulate an actor without specifying any particular reference, use <code>actor</code> instead.</li>
-<li><code>actor</code> (<a href="../../types/tes3actor">tes3actor</a>, string): Who to give the spell to. Providing a base actor can be done before a save has been loaded, but may not correctly update effects for instanced versions of that actor in an active save.</li>
+<li><code>reference</code> (<a href="../../types/tes3reference">tes3reference</a>, <a href="../../types/tes3mobileActor">tes3mobileActor</a>, string): <em>Optional</em>. Who to give the spell to. To manipulate an actor without specifying any particular reference, use <code>actor</code> instead.</li>
+<li><code>actor</code> (<a href="../../types/tes3actor">tes3actor</a>, string): <em>Optional</em>. Who to give the spell to. Providing a base actor can be done before a save has been loaded, but may not correctly update effects for instanced versions of that actor in an active save.</li>
+<li><code>mobile</code> (<a href="../../types/tes3reference">tes3reference</a>, <a href="../../types/tes3mobileActor">tes3mobileActor</a>, string): <em>Optional</em>. Who to give the spell to. To manipulate an actor without specifying any particular reference, use <code>actor</code> instead.</li>
 <li><code>spell</code> (<a href="../../types/tes3spell">tes3spell</a>, string): The spell to add.</li>
 <li><code>updateGUI</code> (boolean): <em>Default</em>: <code>true</code>. If true, the GUI will be updated respecting the adding of the spell. This can be useful to disable when batch-adding many spells. The batch should be ended with <a href="https://mwse.github.io/MWSE/apis/tes3/#tes3updatemagicgui"><code>tes3.updateMagicGUI</code></a> to reflect the changes.</li>
+<li><code>bypassResistances</code> (boolean): <em>Default</em>: <code>true</code>. Should the resistances be bypassed when applying the spell?</li>
 </ul>
 </li>
 </ul>
@@ -16117,7 +16119,7 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>id</code> (string)</li>
+<li><code>id</code> (string): <em>Optional</em>.</li>
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
@@ -16128,15 +16130,18 @@
 <div class="search_terms" style="display: none">getregion, region</div>
 
 <p>Gets the current region the player is in. This checks the player's current cell first, but will fall back to the last exterior cell.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">region</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">getRegion</span><span class="p">(</span><span class="n">useDoors</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">region</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">getRegion</span><span class="p">({</span> <span class="n">useDoors</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
+<li><code>params</code> (table): <em>Optional</em>.<ul>
 <li><code>useDoors</code> (boolean): <em>Default</em>: <code>false</code>.</li>
+</ul>
+</li>
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>region</code> (<a href="../../types/tes3region">tes3region</a>)</li>
+<li><code>region</code> (<a href="../../types/tes3region">tes3region</a>, nil)</li>
 </ul>
 <hr />
 <h3 id="tes3getscript"><code>tes3.getScript</code><a class="headerlink" href="#tes3getscript" title="Permanent link">⚓︎</a></h3>
@@ -16430,14 +16435,15 @@
 <h3 id="tes3hasspell"><code>tes3.hasSpell</code><a class="headerlink" href="#tes3hasspell" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">hasspell, spell</div>
 
-<p>Determines if the player has access to a given spell.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">hasSpell</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">hasSpell</span><span class="p">({</span> <span class="n">reference</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">actor</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">spell</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
+<p>Determines if the player has access to a given spell. At least one of the <code>actor</code>, <code>mobile</code> or <code>reference</code> arguments needs to be passed.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">hasSpell</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">hasSpell</span><span class="p">({</span> <span class="n">reference</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">actor</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">mobile</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">spell</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
 <li><code>params</code> (table)<ul>
-<li><code>reference</code> (<a href="../../types/tes3reference">tes3reference</a>, <a href="../../types/tes3mobileActor">tes3mobileActor</a>, string): Who to check the spell list of. To check an actor without specifying any particular reference, use <code>actor</code> instead.</li>
-<li><code>actor</code> (<a href="../../types/tes3actor">tes3actor</a>, string): Who to check the spell list of. Providing a base actor can be done before a save has been loaded, but may not correctly update effects for instanced versions of that actor in an active save.</li>
+<li><code>reference</code> (<a href="../../types/tes3reference">tes3reference</a>, <a href="../../types/tes3mobileActor">tes3mobileActor</a>, string): <em>Optional</em>. Who to check the spell list of. To check an actor without specifying any particular reference, use <code>actor</code> instead.</li>
+<li><code>actor</code> (<a href="../../types/tes3actor">tes3actor</a>, string): <em>Optional</em>. Who to check the spell list of. Providing a base actor can be done before a save has been loaded, but may not correctly update effects for instanced versions of that actor in an active save.</li>
+<li><code>mobile</code> (<a href="../../types/tes3reference">tes3reference</a>, <a href="../../types/tes3mobileActor">tes3mobileActor</a>, string): <em>Optional</em>. Who to check the spell list of. To check an actor without specifying any particular reference, use <code>actor</code> instead.</li>
 <li><code>spell</code> (<a href="../../types/tes3spell">tes3spell</a>, string): The spell to check.</li>
 </ul>
 </li>
@@ -16784,7 +16790,7 @@
 <li><code>messageOrParams</code> (string, table)<ul>
 <li><code>message</code> (string)</li>
 <li><code>buttons</code> (string[]): <em>Optional</em>. An array of strings to use for buttons.</li>
-<li><code>callback</code> (function): The callback function will be executed after a button was pressed. The callback function will be passed a table with <code>button</code> field corresponding to 0-based index of the button from passed <code>buttons</code> array.</li>
+<li><code>callback</code> (function): <em>Optional</em>. The callback function will be executed after a button was pressed. The callback function will be passed a table with <code>button</code> field corresponding to 0-based index of the button from passed <code>buttons</code> array.</li>
 <li><code>showInDialog</code> (boolean): <em>Default</em>: <code>true</code>. Specifying showInDialog = false forces the toast-style message, which is not shown in the dialog menu.</li>
 <li><code>duration</code> (number): <em>Optional</em>. Overrides how long the toast-style message remains visible.</li>
 </ul>
@@ -16965,7 +16971,7 @@
 <p><strong>Parameters</strong>:</p>
 <ul>
 <li><code>params</code> (table)<ul>
-<li><code>sound</code> (<a href="../../types/tes3sound">tes3sound</a>, string): The sound object, or id of the sound to look for.</li>
+<li><code>sound</code> (<a href="../../types/tes3sound">tes3sound</a>, string): <em>Optional</em>. The sound object, or id of the sound to look for.</li>
 <li><code>reference</code> (<a href="../../types/tes3reference">tes3reference</a>, <a href="../../types/tes3mobileActor">tes3mobileActor</a>, string): <em>Optional</em>. The reference to attach the sound to. If no reference is provided, the sound will be played directly and <code>soundObjectPlay</code> will be triggered instead of <code>playSound</code>.</li>
 <li><code>loop</code> (boolean): <em>Default</em>: <code>false</code>. If true, the sound will loop.</li>
 <li><code>mixChannel</code> (number): <em>Default</em>: <code>tes3.soundMix.effects</code>. The channel to base volume off of. Maps to <a href="https://mwse.github.io/MWSE/references/sound-mix-types/"><code>tes3.soundMix</code></a> constants.</li>
@@ -17285,14 +17291,15 @@
 <h3 id="tes3removespell"><code>tes3.removeSpell</code><a class="headerlink" href="#tes3removespell" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">removespell, spell</div>
 
-<p>Removes a spell from an actor's spell list. If the spell is passive, any active effects from that spell are retired.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">wasRemoved</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">removeSpell</span><span class="p">({</span> <span class="n">reference</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">actor</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">spell</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">updateGUI</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
+<p>Removes a spell from an actor's spell list. If the spell is passive, any active effects from that spell are retired. At least one of the <code>actor</code>, <code>mobile</code> or <code>reference</code> arguments needs to be passed.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">wasRemoved</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">removeSpell</span><span class="p">({</span> <span class="n">reference</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">actor</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">mobile</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">spell</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">updateGUI</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
 <li><code>params</code> (table)<ul>
-<li><code>reference</code> (<a href="../../types/tes3reference">tes3reference</a>, <a href="../../types/tes3mobileActor">tes3mobileActor</a>, string): Who to remove the spell from. To manipulate an actor without specifying any particular reference, use <code>actor</code> instead.</li>
-<li><code>actor</code> (<a href="../../types/tes3actor">tes3actor</a>, string): Who to remove the spell from. Providing a base actor can be done before a save has been loaded, but may not correctly update effects for instanced versions of that actor in an active save.</li>
+<li><code>reference</code> (<a href="../../types/tes3reference">tes3reference</a>, <a href="../../types/tes3mobileActor">tes3mobileActor</a>, string): <em>Optional</em>. Who to remove the spell from. To manipulate an actor without specifying any particular reference, use <code>actor</code> instead.</li>
+<li><code>actor</code> (<a href="../../types/tes3actor">tes3actor</a>, string): <em>Optional</em>. Who to remove the spell from. Providing a base actor can be done before a save has been loaded, but may not correctly update effects for instanced versions of that actor in an active save.</li>
+<li><code>mobile</code> (<a href="../../types/tes3reference">tes3reference</a>, <a href="../../types/tes3mobileActor">tes3mobileActor</a>, string): <em>Optional</em>. Who to remove the spell from. To manipulate an actor without specifying any particular reference, use <code>actor</code> instead.</li>
 <li><code>spell</code> (<a href="../../types/tes3spell">tes3spell</a>, string): The spell to remove.</li>
 <li><code>updateGUI</code> (boolean): <em>Default</em>: <code>true</code>. If true, the GUI will be updated respecting the removal of the spell. This can be useful to disable when batch-removing many spells. The batch should be ended with <a href="https://mwse.github.io/MWSE/apis/tes3/#tes3updatemagicgui"><code>tes3.updateMagicGUI</code></a> to reflect the changes.</li>
 </ul>
@@ -17582,14 +17589,13 @@
 <div class="search_terms" style="display: none">setjournalindex, journalindex</div>
 
 <p>Sets the index of a given journal in a way similar to the mwscript function SetJournalIndex.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">wasSet</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">setJournalIndex</span><span class="p">({</span> <span class="n">id</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">index</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">speaker</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">showMessage</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">wasSet</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">setJournalIndex</span><span class="p">({</span> <span class="n">id</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">index</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">showMessage</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
 <li><code>params</code> (table)<ul>
 <li><code>id</code> (<a href="../../types/tes3dialogue">tes3dialogue</a>, string)</li>
-<li><code>index</code> (number)</li>
-<li><code>speaker</code> (<a href="../../types/tes3mobileActor">tes3mobileActor</a>, <a href="../../types/tes3reference">tes3reference</a>, string)</li>
+<li><code>index</code> (integer)</li>
 <li><code>showMessage</code> (boolean): <em>Default</em>: <code>false</code>. If set, a message may be shown to the player.</li>
 </ul>
 </li>
@@ -17937,12 +17943,12 @@ Statics, activators, containers, doors, and lights with non-zero weight.</p>
 <p><strong>Parameters</strong>:</p>
 <ul>
 <li><code>params</code> (table)<ul>
-<li><code>reference1</code> (<a href="../../types/tes3reference">tes3reference</a>): Position of the starting point of the LoS check. For actors, this point is set to position of this reference's head. For other objects the starting point is at the top of its bounding box.</li>
-<li><code>reference2</code> (<a href="../../types/tes3reference">tes3reference</a>): Position of the ending point of the LoS check. For actors, this point is set to position of this reference's head. For other objects the ending point is at the top of its bounding box.</li>
-<li><code>position1</code> (<a href="../../types/tes3vector3">tes3vector3</a>, table): Position of the starting point of the LoS check. Modified by height1.</li>
-<li><code>height1</code> (<a href="../../types/tes3vector3">tes3vector3</a>, table): <em>Optional</em>. Moves the starting point upwards (+Z direction) by this amount. Normally used to simulate head height from a position that is on the ground. Defaults to 0.</li>
-<li><code>position2</code> (<a href="../../types/tes3vector3">tes3vector3</a>, table): Position of the ending point of the LoS check. Modified by height2.</li>
-<li><code>height2</code> (<a href="../../types/tes3vector3">tes3vector3</a>, table): <em>Optional</em>. Moves the starting point upwards (+Z direction) by this amount. Normally used to simulate head height from a position that is on the ground. Defaults to 0.</li>
+<li><code>reference1</code> (<a href="../../types/tes3reference">tes3reference</a>): <em>Optional</em>. Position of the starting point of the LoS check. For actors, this point is set to position of this reference's head. For other objects the starting point is at the top of its bounding box.</li>
+<li><code>reference2</code> (<a href="../../types/tes3reference">tes3reference</a>): <em>Optional</em>. Position of the ending point of the LoS check. For actors, this point is set to position of this reference's head. For other objects the ending point is at the top of its bounding box.</li>
+<li><code>position1</code> (<a href="../../types/tes3vector3">tes3vector3</a>, table): <em>Optional</em>. Position of the starting point of the LoS check. Modified by height1.</li>
+<li><code>height1</code> (number): <em>Default</em>: <code>0</code>. Moves the starting point upwards (+Z direction) by this amount. Normally used to simulate head height from a position that is on the ground.</li>
+<li><code>position2</code> (<a href="../../types/tes3vector3">tes3vector3</a>, table): <em>Optional</em>. Position of the ending point of the LoS check. Modified by height2.</li>
+<li><code>height2</code> (number): <em>Default</em>: <code>0</code>. Moves the starting point upwards (+Z direction) by this amount. Normally used to simulate head height from a position that is on the ground.</li>
 </ul>
 </li>
 </ul>
@@ -18075,20 +18081,21 @@ Statics, activators, containers, doors, and lights with non-zero weight.</p>
 <div class="search_terms" style="display: none">updatejournal, journal</div>
 
 <p>Updates the journal index in a way similar to the mwscript function Journal.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">wasSet</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">updateJournal</span><span class="p">({</span> <span class="n">id</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">index</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">showMessage</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">wasUpdated</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">updateJournal</span><span class="p">({</span> <span class="n">id</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">index</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">speaker</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">showMessage</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
 <li><code>params</code> (table)<ul>
 <li><code>id</code> (<a href="../../types/tes3dialogue">tes3dialogue</a>, string)</li>
-<li><code>index</code> (number)</li>
-<li><code>showMessage</code> (boolean): <em>Default</em>: <code>false</code>. If set, a message may be shown to the player.</li>
+<li><code>index</code> (integer)</li>
+<li><code>speaker</code> (<a href="../../types/tes3mobileActor">tes3mobileActor</a>, <a href="../../types/tes3reference">tes3reference</a>, string)</li>
+<li><code>showMessage</code> (boolean): <em>Default</em>: <code>true</code>. If set, a message may be shown to the player.</li>
 </ul>
 </li>
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>wasSet</code> (boolean)</li>
+<li><code>wasUpdated</code> (boolean)</li>
 </ul>
 <hr />
 <h3 id="tes3updatemagicgui"><code>tes3.updateMagicGUI</code><a class="headerlink" href="#tes3updatemagicgui" title="Permanent link">⚓︎</a></h3>
@@ -18124,7 +18131,7 @@ Statics, activators, containers, doors, and lights with non-zero weight.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">July 18, 2023 07:57:34</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">July 26, 2023 12:20:21</span>
       
         <br>
         Created:
