@@ -14521,7 +14521,14 @@
 <h3 id="tes3applymagicsource"><code>tes3.applyMagicSource</code><a class="headerlink" href="#tes3applymagicsource" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">applymagicsource, magicsource</div>
 
-<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">instance</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">applyMagicSource</span><span class="p">({</span> <span class="n">reference</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">source</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">name</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">effects</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">createCopy</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">fromStack</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">castChance</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">target</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">bypassResistances</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
+<p>Applies magic effects from a spell, potion, or enchantment on the given actor instantly. You can also apply any custom set of effects, by passing an effects table.</p>
+<p>Usage:</p>
+<ul>
+<li>To apply a potion pass a <code>reference</code>.</li>
+<li>When applying a spell, the <code>reference</code> will be the spell's caster, and the <code>target</code> will be the spell's target.</li>
+<li>When using enchantment, you need to pass the <code>reference</code>, <code>target</code>, and <code>fromStack</code>. The charge of the item in the <code>fromStack</code> will be used. If that item is out of charge no enchantment will be applied.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">instance</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">applyMagicSource</span><span class="p">({</span> <span class="n">reference</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">source</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">name</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">effects</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">createCopy</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">fromStack</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">target</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">bypassResistances</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
@@ -14541,8 +14548,7 @@
 </ul>
 </li>
 <li><code>createCopy</code> (boolean): <em>Default</em>: <code>true</code>. This parameter controls whether the function will return the original magic source or a copy of the magic source. This parameter is only used if source is alchemy.</li>
-<li><code>fromStack</code> (<a href="../../types/tes3equipmentStack">tes3equipmentStack</a>): <em>Optional</em>. The piece of equipment this magic source is coming from. The fromStack has to be an already equipped item from tes3actor.equipment. This will probably change in the future.</li>
-<li><code>castChance</code> (number): <em>Optional</em>. This parameter allows overriding the casting chance of the magic source.</li>
+<li><code>fromStack</code> (<a href="../../types/tes3equipmentStack">tes3equipmentStack</a>): <em>Optional</em>. The piece of equipment this magic source is coming from. This item's charge will be used. The fromStack has to be an already equipped item from tes3actor.equipment. This will probably change in the future.</li>
 <li><code>target</code> (<a href="../../types/tes3reference">tes3reference</a>, <a href="../../types/tes3mobileActor">tes3mobileActor</a>, string): <em>Optional</em>. The target of the magic.</li>
 <li><code>bypassResistances</code> (boolean): <em>Default</em>: <code>false</code>. Is this effect going to bypass magic resistance?</li>
 </ul>
@@ -16090,7 +16096,7 @@
 </code></pre></div>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3reference">tes3reference</a>)</li>
+<li><code>result</code> (<a href="../../types/tes3reference">tes3reference</a>, nil)</li>
 </ul>
 <hr />
 <h3 id="tes3getquickkey"><code>tes3.getQuickKey</code><a class="headerlink" href="#tes3getquickkey" title="Permanent link">⚓︎</a></h3>
@@ -17126,7 +17132,7 @@
 <details class="example">
 <summary>Example: Multiple Results</summary>
 <p>This example performs a ray test and displays all results in the entire ray test, rather than ending at the first object hit.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">results</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">rayTest</span><span class="p">{</span> <span class="n">tes3</span><span class="p">.</span><span class="n">getCameraPosition</span><span class="p">(),</span> <span class="n">direction</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">getCameraVector</span><span class="p">(),</span> <span class="n">findAll</span> <span class="o">=</span> <span class="kc">true</span> <span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">results</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">rayTest</span><span class="p">{</span> <span class="n">position</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">getCameraPosition</span><span class="p">(),</span> <span class="n">direction</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">getCameraVector</span><span class="p">(),</span> <span class="n">findAll</span> <span class="o">=</span> <span class="kc">true</span> <span class="p">}</span>
 <span class="kr">if</span> <span class="n">results</span> <span class="kr">then</span>
     <span class="kr">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">hit</span> <span class="kr">in</span> <span class="nb">pairs</span><span class="p">(</span><span class="n">results</span><span class="p">)</span> <span class="kr">do</span>
         <span class="n">mwse</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Ray hit #%d: %s&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">hit</span><span class="p">.</span><span class="n">reference</span> <span class="ow">or</span> <span class="s2">&quot;&lt;non-reference&gt;&quot;</span><span class="p">);</span>
@@ -17440,7 +17446,7 @@
 <li><code>reference</code> (<a href="../../types/tes3mobileActor">tes3mobileActor</a>, <a href="../../types/tes3reference">tes3reference</a>): The escorting actor.</li>
 <li><code>target</code> (<a href="../../types/tes3reference">tes3reference</a>, <a href="../../types/tes3mobileActor">tes3mobileActor</a>): The actor being escorted.</li>
 <li><code>destination</code> (<a href="../../types/tes3vector3">tes3vector3</a>, table)</li>
-<li><code>duration</code> (number): <em>Default</em>: <code>0</code>. How long the escorter will do the escorting, in hours.</li>
+<li><code>duration</code> (integer): <em>Default</em>: <code>0</code>. How long the escorter will do the escorting, in hours.</li>
 <li><code>cell</code> (<a href="../../types/tes3cell">tes3cell</a>, string): <em>Optional</em>.</li>
 <li><code>reset</code> (boolean): <em>Default</em>: <code>true</code>.</li>
 </ul>
@@ -17459,7 +17465,7 @@
 <li><code>reference</code> (<a href="../../types/tes3mobileActor">tes3mobileActor</a>, <a href="../../types/tes3reference">tes3reference</a>): This is the actor that will follow another one.</li>
 <li><code>target</code> (<a href="../../types/tes3reference">tes3reference</a>, <a href="../../types/tes3mobileActor">tes3mobileActor</a>): The actor to follow.</li>
 <li><code>destination</code> (<a href="../../types/tes3vector3">tes3vector3</a>, table): <em>Optional</em>.</li>
-<li><code>duration</code> (number): <em>Default</em>: <code>0</code>. How long the follower will follow, in hours.</li>
+<li><code>duration</code> (integer): <em>Default</em>: <code>0</code>. How long the follower will follow, in hours.</li>
 <li><code>cell</code> (<a href="../../types/tes3cell">tes3cell</a>, string): <em>Optional</em>.</li>
 <li><code>reset</code> (boolean): <em>Default</em>: <code>true</code>.</li>
 </ul>
@@ -17492,10 +17498,10 @@
 <ul>
 <li><code>params</code> (table)<ul>
 <li><code>reference</code> (<a href="../../types/tes3mobileActor">tes3mobileActor</a>, <a href="../../types/tes3reference">tes3reference</a>): This actor will wander around.</li>
-<li><code>idles</code> (number[]): An array with 8 values that corresponds to the chance of playing each idle animation. For more info see <a href="https://mwse.github.io/MWSE/types/tes3aiPackageWander/#idles">tes3aiPackageWander.idles</a>.</li>
-<li><code>range</code> (number): <em>Default</em>: <code>0</code>.</li>
-<li><code>duration</code> (number): <em>Default</em>: <code>0</code>. How long the actor will be wandering around, in hours.</li>
-<li><code>time</code> (number): <em>Default</em>: <code>0</code>.</li>
+<li><code>idles</code> (integer[]): An array with 8 values that corresponds to the chance of playing each idle animation. For more info see <a href="https://mwse.github.io/MWSE/types/tes3aiPackageWander/#idles">tes3aiPackageWander.idles</a>.</li>
+<li><code>range</code> (integer): <em>Default</em>: <code>0</code>.</li>
+<li><code>duration</code> (integer): <em>Default</em>: <code>0</code>. How long the actor will be wandering around, in hours.</li>
+<li><code>time</code> (integer): <em>Default</em>: <code>0</code>.</li>
 <li><code>reset</code> (boolean): <em>Default</em>: <code>true</code>.</li>
 </ul>
 </li>
@@ -17666,7 +17672,7 @@
 <li><code>params</code> (table)<ul>
 <li><code>reference</code> (<a href="../../types/tes3reference">tes3reference</a>, <a href="../../types/tes3mobileActor">tes3mobileActor</a>, string): A reference whose owner to set.</li>
 <li><code>remove</code> (boolean): <em>Default</em>: <code>false</code>. If this parameter is set to true, reference's owner field will be removed.</li>
-<li><code>owner</code> (<a href="../../types/tes3npc">tes3npc</a>, <a href="../../types/tes3npcInstance">tes3npcInstance</a>, <a href="../../types/tes3mobileNPC">tes3mobileNPC</a>, <a href="../../types/tes3mobileCreature">tes3mobileCreature</a>, <a href="../../types/tes3reference">tes3reference</a>, <a href="../../types/tes3faction">tes3faction</a>, string): Assigns this NPC or a faction as the owner of the reference.</li>
+<li><code>owner</code> (<a href="../../types/tes3npc">tes3npc</a>, <a href="../../types/tes3npcInstance">tes3npcInstance</a>, <a href="../../types/tes3mobileNPC">tes3mobileNPC</a>, <a href="../../types/tes3mobileCreature">tes3mobileCreature</a>, <a href="../../types/tes3reference">tes3reference</a>, <a href="../../types/tes3faction">tes3faction</a>, string): <em>Optional</em>. Assigns this NPC or a faction as the owner of the reference.</li>
 <li><code>requiredGlobal</code> (<a href="../../types/tes3globalVariable">tes3globalVariable</a>): <em>Optional</em>. If <code>owner</code> is set to NPC, <code>requiredGlobal</code> variable can be set.</li>
 <li><code>requiredRank</code> (number): <em>Default</em>: <code>0</code>. If <code>owner</code> is set to faction, <code>requitedRank</code> variable controls minimal rank in faction the player has to have to be able to freely take the reference.</li>
 </ul>
@@ -18088,7 +18094,7 @@ Statics, activators, containers, doors, and lights with non-zero weight.</p>
 <li><code>params</code> (table)<ul>
 <li><code>id</code> (<a href="../../types/tes3dialogue">tes3dialogue</a>, string)</li>
 <li><code>index</code> (integer)</li>
-<li><code>speaker</code> (<a href="../../types/tes3mobileActor">tes3mobileActor</a>, <a href="../../types/tes3reference">tes3reference</a>, string)</li>
+<li><code>speaker</code> (<a href="../../types/tes3mobileActor">tes3mobileActor</a>, <a href="../../types/tes3reference">tes3reference</a>, string): <em>Default</em>: <code>tes3.mobilePlayer</code>.</li>
 <li><code>showMessage</code> (boolean): <em>Default</em>: <code>true</code>. If set, a message may be shown to the player.</li>
 </ul>
 </li>
@@ -18131,7 +18137,7 @@ Statics, activators, containers, doors, and lights with non-zero weight.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">July 26, 2023 12:20:21</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 9, 2023 20:17:00</span>
       
         <br>
         Created:

@@ -11216,10 +11216,33 @@
 <div class="search_terms" style="display: none">physicalattacktype</div>
 
 <p>A number from the <a href="https://mwse.github.io/MWSE/references/physical-attack-types/"><code>tes3.physicalAttackType</code></a> enumeration identifying the physical attack type. Can be <code>tes3.physicalAttackType.slash</code>, <code>.chop</code>, <code>.thrust</code>, <code>.projectile</code>, <code>.creature1</code>, <code>.creature2</code>, or <code>.creature3.</code></p>
+<p>Proper time to change the attack direction is the <a href="https://mwse.github.io/MWSE/events/attackStart/">attackStart</a> event. See the example below to see how.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
 <li><code>result</code> (number)</li>
 </ul>
+<details class="example">
+<summary>Example: Changing axe attack direction</summary>
+<div class="highlight"><pre><span></span><code><span class="c1">-- In this example, we force the attack</span>
+<span class="c1">-- direction for axes to always be chop</span>
+
+<span class="c1">---@param e attackStartEventData</span>
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">onAttackStart</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="kd">local</span> <span class="n">mobile</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">reference</span><span class="p">.</span><span class="n">mobile</span>
+    <span class="kr">if</span> <span class="ow">not</span> <span class="n">mobile</span> <span class="kr">then</span> <span class="kr">return</span> <span class="kr">end</span>
+
+    <span class="kd">local</span> <span class="n">weapon</span> <span class="o">=</span> <span class="n">mobile</span><span class="p">.</span><span class="n">readiedWeapon</span><span class="p">.</span><span class="n">object</span> <span class="cm">--[[@as tes3weapon]]</span>
+
+    <span class="kr">if</span> <span class="n">weapon</span><span class="p">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">tes3</span><span class="p">.</span><span class="n">weaponType</span><span class="p">.</span><span class="n">axeOneHand</span>
+    <span class="ow">or</span> <span class="n">weapon</span><span class="p">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">tes3</span><span class="p">.</span><span class="n">weaponType</span><span class="p">.</span><span class="n">axeTwoHand</span> <span class="kr">then</span>
+        <span class="c1">-- Now actually change the attack direction</span>
+        <span class="n">e</span><span class="p">.</span><span class="n">attackType</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">physicalAttackType</span><span class="p">.</span><span class="n">chop</span>
+    <span class="kr">end</span>
+<span class="kr">end</span>
+
+<span class="n">event</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">tes3</span><span class="p">.</span><span class="n">event</span><span class="p">.</span><span class="n">attackStart</span><span class="p">,</span> <span class="n">onAttackStart</span><span class="p">)</span>
+</code></pre></div>
+</details>
 <hr />
 <h3 id="physicaldamage"><code>physicalDamage</code><a class="headerlink" href="#physicaldamage" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">physicaldamage</div>
@@ -11262,7 +11285,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">April 1, 2023 07:47:31</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 9, 2023 20:12:44</span>
       
         <br>
         Created:
