@@ -10947,14 +10947,16 @@
 <li><code>item</code> (<a href="../../types/tes3item">tes3item</a>): <em>Read-only</em>. Only available when isCast is true. The item used to cast the enchantment.</li>
 <li><code>itemData</code> (<a href="../../types/tes3itemData">tes3itemData</a>): <em>Read-only</em>. Only available when isCast is true. The item data of the item used to cast the enchantment.</li>
 <li><code>source</code> (<a href="../../types/tes3enchantment">tes3enchantment</a>): <em>Read-only</em>. The enchantment being used or examined by the UI.</li>
+<li><code>sourceInstance</code> (<a href="../../types/tes3magicSourceInstance">tes3magicSourceInstance</a>, nil): <em>Read-only</em>. Only available when isCast is true. The instance object of the magic being cast.</li>
 </ul>
+<p>Warning: The sourceInstance may be destroyed immediately if the cast fails due to insufficient charge. Do not keep a long-lived reference to this sourceInstance. If you need to reference it in the future, save the source's <code>serialNumber</code> and look it up with <code>tes3.getMagicSourceInstanceBySerial</code>.</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">February 6, 2023 02:39:19</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 12, 2023 20:22:36</span>
       
         <br>
         Created:
