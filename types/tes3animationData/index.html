@@ -11640,7 +11640,7 @@
 <h3 id="hasoverrideanimations"><code>hasOverrideAnimations</code><a class="headerlink" href="#hasoverrideanimations" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">hasoverrideanimations, overrideanimations</div>
 
-<p><em>Read-only</em>. </p>
+<p><em>Read-only</em>. True if the actor has some custom animations in the override layer. For example, drumming or sitting. These are assigned in the Construction Set or using <a href="https://mwse.github.io/MWSE/apis/tes3/#tes3loadanimation">tes3.loadAnimation</a>.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
 <li><code>result</code> (boolean)</li>
@@ -11693,12 +11693,12 @@
 </thead>
 <tbody>
 <tr>
-<td>-1</td>
+<td>-1.0</td>
 <td>The NPC isn't speaking.</td>
 </tr>
 <tr>
 <td>0.0 - 1.0</td>
-<td>The NPC is speaking. The <code>lipsyncLevel</code> can be <code>0.0</code> when there is a silent part in the sound file the NPC is currently speaking.</td>
+<td>The NPC is speaking. The value roughly corresponds to the current loudness of the voiceover line. The <code>lipsyncLevel</code> is <code>0.0</code> when there is a silent part in the sound file the NPC is currently speaking. Also, the speaking actor's mouth is opened more when the value is higher.</td>
 </tr>
 </tbody>
 </table>
@@ -11906,7 +11906,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">May 23, 2023 00:16:55</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 14, 2023 11:19:24</span>
       
         <br>
         Created:
