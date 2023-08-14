@@ -9172,6 +9172,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#related-events" class="md-nav__link">
     Related events
   </a>
@@ -10907,6 +10914,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#related-events" class="md-nav__link">
     Related events
   </a>
@@ -10958,6 +10972,24 @@
 <li><code>actor</code> (<a href="../../types/tes3mobileActor">tes3mobileActor</a>): <em>Read-only</em>. The mobile actor who is entering combat.</li>
 <li><code>target</code> (<a href="../../types/tes3mobileActor">tes3mobileActor</a>): <em>Read-only</em>. The mobile actor who combat is being triggered against.</li>
 </ul>
+<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">⚓︎</a></h2>
+<div class="admonition example">
+<p class="admonition-title">Example: Stop certain actors from initiating combat with the player</p>
+<div class="highlight"><pre><span></span><code><span class="c1">---@param actor tes3mobileActor</span>
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">isPacifistTarget</span><span class="p">(</span><span class="n">actor</span><span class="p">)</span>
+    <span class="c1">-- Here you can filter if the actor should initiate combat with the player.</span>
+    <span class="c1">-- ...</span>
+<span class="kr">end</span>
+
+<span class="c1">--- @param e combatStartEventData</span>
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">forcedPacifism</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="kr">if</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">target</span> <span class="o">==</span> <span class="n">tes3</span><span class="p">.</span><span class="n">player</span> <span class="ow">and</span> <span class="n">isPacifistTarget</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">actor</span><span class="p">))</span> <span class="kr">then</span>
+        <span class="kr">return</span> <span class="kc">false</span>
+    <span class="kr">end</span>
+<span class="kr">end</span>
+<span class="n">event</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">tes3</span><span class="p">.</span><span class="n">event</span><span class="p">.</span><span class="n">combatStart</span><span class="p">,</span> <span class="n">forcedPacifism</span><span class="p">)</span>
+</code></pre></div>
+</div>
 <h2 id="related-events">Related events<a class="headerlink" href="#related-events" title="Permanent link">⚓︎</a></h2>
 <p><a class="md-button" href="../combatStart/">combatStart</a><a class="md-button" href="../combatStarted/">combatStarted</a><a class="md-button" href="../combatStop/">combatStop</a><a class="md-button" href="../combatStopped/">combatStopped</a></p>
 
@@ -10966,7 +10998,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">July 4, 2023 15:20:57</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 14, 2023 15:43:52</span>
       
         <br>
         Created:
