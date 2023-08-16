@@ -11045,8 +11045,21 @@
 <p>The element that is currently focused for text input.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3uiElement">tes3uiElement</a>)</li>
+<li><code>result</code> (<a href="../../types/tes3uiElement">tes3uiElement</a>, nil)</li>
 </ul>
+<details class="example">
+<summary>Example: Checking if text input is active</summary>
+<div class="highlight"><pre><span></span><code><span class="c1">---@return boolean isTextInputActive</span>
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">isTextInputActive</span><span class="p">()</span>
+    <span class="kd">local</span> <span class="n">menuController</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">worldController</span><span class="p">.</span><span class="n">menuController</span>
+    <span class="kd">local</span> <span class="n">inputFocus</span> <span class="o">=</span> <span class="n">menuController</span><span class="p">.</span><span class="n">inputController</span><span class="p">.</span><span class="n">textInputFocus</span>
+    <span class="kr">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">inputFocus</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">inputFocus</span><span class="p">.</span><span class="n">visible</span><span class="p">)</span> <span class="kr">then</span>
+        <span class="kr">return</span> <span class="kc">false</span>
+    <span class="kr">end</span>
+    <span class="kr">return</span> <span class="kc">true</span>
+<span class="kr">end</span>
+</code></pre></div>
+</details>
 <hr />
 <h2 id="methods">Methods<a class="headerlink" href="#methods" title="Permanent link">⚓︎</a></h2>
 <h3 id="flushbufferedtextevents"><code>flushBufferedTextEvents</code><a class="headerlink" href="#flushbufferedtextevents" title="Permanent link">⚓︎</a></h3>
@@ -11061,7 +11074,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">February 11, 2023 19:45:50</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 16, 2023 20:52:15</span>
       
         <br>
         Created:

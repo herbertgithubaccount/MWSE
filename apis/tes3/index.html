@@ -16957,7 +16957,7 @@
 <ul>
 <li><code>params</code> (table)<ul>
 <li><code>reference</code> (<a href="../../types/tes3reference">tes3reference</a>, <a href="../../types/tes3mobileActor">tes3mobileActor</a>, string): <em>Optional</em>. The reference to attach the sound to.</li>
-<li><code>item</code> (<a href="../../types/tes3item">tes3item</a>)</li>
+<li><code>item</code> (<a href="../../types/tes3item">tes3item</a>, string): The appropriate item up/down sound will be played for item of this type.</li>
 <li><code>pickup</code> (boolean): <em>Default</em>: <code>true</code>. If false, the place down item will be used.</li>
 </ul>
 </li>
@@ -17745,7 +17745,7 @@
 <ul>
 <li><code>params</code> (table)<ul>
 <li><code>reference</code> (<a href="../../types/tes3reference">tes3reference</a>, <a href="../../types/tes3mobileActor">tes3mobileActor</a>, string)</li>
-<li><code>spell</code> (<a href="../../types/tes3spell">tes3spell</a>, string)</li>
+<li><code>spell</code> (<a href="../../types/tes3spell">tes3spell</a>, string, nil): Passing <code>nil</code> will untrap the object.</li>
 </ul>
 </li>
 </ul>
@@ -17991,8 +17991,8 @@ Statics, activators, containers, doors, and lights with non-zero weight.</p>
 <li><code>playSound</code> (boolean): <em>Default</em>: <code>true</code>. If false, the up/down sound for the item won't be played.</li>
 <li><code>limitCapacity</code> (boolean): <em>Default</em>: <code>true</code>. If false, items can be placed into containers that shouldn't normally be allowed. This includes organic containers, and containers that are full.</li>
 <li><code>reevaluateEquipment</code> (boolean): <em>Default</em>: <code>true</code>. If true, and the item transferred is armor, clothing, or a weapon, the actors will reevaluate their equipment choices to see if the new item is worth equipping. This does not affect the player.</li>
-<li><code>equipProjectiles</code> (boolean): <em>Default</em>: <code>true</code>. If true, and the reference has the same projectile already equipped, the stacks will be merged. This will only work if the GUI is updated.</li>
-<li><code>updateGUI</code> (boolean): <em>Default</em>: <code>true</code>. If false, the function won't manually resync the player's GUI state. This can result in some optimizations, though <a href="https://mwse.github.io/MWSE/apis/tes3ui/#tes3uiforceplayerinventoryupdate"><code>tes3ui.forcePlayerInventoryUpdate()</code></a> must manually be called after all inventory updates are finished.</li>
+<li><code>equipProjectiles</code> (boolean): <em>Default</em>: <code>true</code>. If true, and the <code>to</code> reference has the same projectile already equipped, the stacks will be merged. This will only work if the GUI is updated.</li>
+<li><code>updateGUI</code> (boolean): <em>Default</em>: <code>true</code>. If false, the function won't manually resync the player's GUI state. This can result in some optimizations, though <a href="https://mwse.github.io/MWSE/apis/tes3ui/#tes3uiforceplayerinventoryupdate">tes3ui.forcePlayerInventoryUpdate</a> or <a href="https://mwse.github.io/MWSE/apis/tes3/#tes3updateinventorygui">tes3.updateInventoryGUI</a> and <a href="https://mwse.github.io/MWSE/apis/tes3/#tes3updatemagicgui">tes3.updateMagicGUI</a> must manually be called after all inventory updates are finished.</li>
 </ul>
 </li>
 </ul>
@@ -18137,7 +18137,7 @@ Statics, activators, containers, doors, and lights with non-zero weight.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 14, 2023 15:43:52</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 16, 2023 20:52:15</span>
       
         <br>
         Created:
