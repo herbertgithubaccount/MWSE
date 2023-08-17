@@ -11030,13 +11030,72 @@
 <ul>
 <li><code>result</code> (<a href="../../types/tes3spell">tes3spell</a>)</li>
 </ul>
+<details class="example">
+<summary>Example: Applying the spell of a trapped door or container on an actor</summary>
+<div class="highlight"><pre><span></span><code><span class="c1">--- Filter only the objects that can have a trap.</span>
+<span class="c1">---@param object tes3object</span>
+<span class="c1">---@return boolean canHaveTrap</span>
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">canHaveTrap</span><span class="p">(</span><span class="n">object</span><span class="p">)</span>
+    <span class="kd">local</span> <span class="nb">type</span> <span class="o">=</span> <span class="n">object</span><span class="p">.</span><span class="n">objectType</span>
+    <span class="kr">return</span> <span class="p">(</span><span class="nb">type</span> <span class="o">==</span> <span class="n">tes3</span><span class="p">.</span><span class="n">objectType</span><span class="p">.</span><span class="n">container</span> <span class="ow">or</span>
+            <span class="nb">type</span> <span class="o">==</span> <span class="n">tes3</span><span class="p">.</span><span class="n">objectType</span><span class="p">.</span><span class="n">door</span><span class="p">)</span>
+<span class="kr">end</span>
+
+<span class="c1">---@param trappedReference tes3reference</span>
+<span class="c1">---@param targetReference tes3reference? *Default:* tes3.player</span>
+<span class="c1">---@return boolean trapApplied</span>
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">triggerTrapSpell</span><span class="p">(</span><span class="n">trappedReference</span><span class="p">,</span> <span class="n">targetReference</span><span class="p">)</span>
+
+    <span class="c1">-- Set the player as default targetReference.</span>
+    <span class="n">targetReference</span> <span class="o">=</span> <span class="n">targetReference</span> <span class="ow">or</span> <span class="n">tes3</span><span class="p">.</span><span class="n">player</span>
+
+    <span class="kd">local</span> <span class="n">object</span> <span class="o">=</span> <span class="n">trappedReference</span><span class="p">.</span><span class="n">object</span>
+    <span class="kr">if</span> <span class="ow">not</span> <span class="n">canHaveTrap</span><span class="p">(</span><span class="n">object</span><span class="p">)</span> <span class="kr">then</span>
+        <span class="kr">return</span> <span class="kc">false</span>
+    <span class="kr">end</span>
+
+    <span class="kd">local</span> <span class="n">lockNode</span> <span class="o">=</span> <span class="n">trappedReference</span><span class="p">.</span><span class="n">lockNode</span>
+    <span class="kr">if</span> <span class="ow">not</span> <span class="n">lockNode</span> <span class="kr">then</span>
+        <span class="kr">return</span> <span class="kc">false</span>
+    <span class="kr">end</span>
+
+    <span class="kd">local</span> <span class="n">trap</span> <span class="o">=</span> <span class="n">lockNode</span><span class="p">.</span><span class="n">trap</span>
+    <span class="kr">if</span> <span class="ow">not</span> <span class="n">trap</span> <span class="kr">then</span>
+        <span class="kr">return</span> <span class="kc">false</span>
+    <span class="kr">end</span>
+
+    <span class="n">tes3</span><span class="p">.</span><span class="n">cast</span><span class="p">({</span>
+        <span class="n">reference</span> <span class="o">=</span> <span class="n">trappedReference</span><span class="p">,</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="n">targetReference</span><span class="p">,</span>
+        <span class="n">spell</span> <span class="o">=</span> <span class="n">trap</span><span class="p">,</span>
+    <span class="p">})</span>
+    <span class="n">lockNode</span><span class="p">.</span><span class="n">trap</span> <span class="o">=</span> <span class="kc">nil</span>
+    <span class="n">trappedReference</span><span class="p">.</span><span class="n">modified</span> <span class="o">=</span> <span class="kc">true</span>
+
+    <span class="c1">-- Let the game update the activation tooltip otherwise,</span>
+    <span class="c1">-- the tooltip would still say &quot;Trapped&quot; if the activation</span>
+    <span class="c1">-- tooltip was active when the triggerTrapSpell() was called.</span>
+    <span class="n">tes3</span><span class="p">.</span><span class="n">game</span><span class="p">:</span><span class="n">clearTarget</span><span class="p">()</span>
+    <span class="kr">return</span> <span class="kc">true</span>
+<span class="kr">end</span>
+
+<span class="c1">-- To test aim at a trapped door or container and press &quot;u&quot; key.</span>
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">onKeyDown</span><span class="p">()</span>
+    <span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">getPlayerTarget</span><span class="p">()</span>
+    <span class="kr">if</span> <span class="ow">not</span> <span class="n">result</span> <span class="kr">then</span> <span class="kr">return</span> <span class="kr">end</span>
+
+    <span class="n">triggerTrapSpell</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="kr">end</span>
+<span class="n">event</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">tes3</span><span class="p">.</span><span class="n">event</span><span class="p">.</span><span class="n">keyDown</span><span class="p">,</span> <span class="n">onKeyDown</span><span class="p">,</span> <span class="p">{</span> <span class="n">filter</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">scanCode</span><span class="p">.</span><span class="n">u</span> <span class="p">})</span>
+</code></pre></div>
+</details>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">February 11, 2023 19:45:50</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 17, 2023 20:33:46</span>
       
         <br>
         Created:

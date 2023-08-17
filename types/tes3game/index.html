@@ -11566,6 +11566,43 @@
 <p>Clears data related to activation, resetting what the player can activate.</p>
 <div class="highlight"><pre><span></span><code><span class="n">myObject</span><span class="p">:</span><span class="n">clearTarget</span><span class="p">()</span>
 </code></pre></div>
+<details class="example">
+<summary>Example: Resetting the activation tooltip text after untrapping a door</summary>
+<div class="highlight"><pre><span></span><code><span class="c1">---@param reference tes3reference</span>
+<span class="c1">---@return boolean untrapped</span>
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">untrap</span><span class="p">(</span><span class="n">reference</span><span class="p">)</span>
+    <span class="kd">local</span> <span class="n">object</span> <span class="o">=</span> <span class="n">reference</span><span class="p">.</span><span class="n">object</span>
+
+    <span class="c1">-- Skip objects that can&#39;t be trapped.</span>
+    <span class="kr">if</span> <span class="n">object</span><span class="p">.</span><span class="n">objectType</span> <span class="o">~=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">objectType</span><span class="p">.</span><span class="n">door</span>
+    <span class="ow">or</span> <span class="n">object</span><span class="p">.</span><span class="n">objectType</span> <span class="o">~=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">objectType</span><span class="p">.</span><span class="n">container</span> <span class="kr">then</span>
+        <span class="kr">return</span> <span class="kc">false</span>
+    <span class="kr">end</span>
+
+    <span class="n">tes3</span><span class="p">.</span><span class="n">setTrap</span><span class="p">({</span>
+        <span class="n">reference</span> <span class="o">=</span> <span class="n">reference</span><span class="p">,</span>
+        <span class="n">spell</span> <span class="o">=</span> <span class="kc">nil</span>
+    <span class="p">})</span>
+    <span class="c1">-- Let the game update the activation tooltip otherwise,</span>
+    <span class="c1">-- the tooltip would still say &quot;Trapped&quot;.</span>
+    <span class="n">tes3</span><span class="p">.</span><span class="n">game</span><span class="p">:</span><span class="n">clearTarget</span><span class="p">()</span>
+
+    <span class="kr">return</span> <span class="kc">true</span>
+<span class="kr">end</span>
+
+<span class="c1">-- To test aim at a trapped door or container and press &quot;u&quot; key.</span>
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">onKeyDown</span><span class="p">()</span>
+    <span class="c1">-- Get the player&#39;s target and apply it&#39;s spell</span>
+    <span class="c1">-- on the player if it&#39;s trapped.</span>
+
+    <span class="kd">local</span> <span class="n">target</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">getPlayerTarget</span><span class="p">()</span>
+    <span class="kr">if</span> <span class="ow">not</span> <span class="n">target</span> <span class="kr">then</span> <span class="kr">return</span> <span class="kr">end</span>
+
+    <span class="n">untrap</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+<span class="kr">end</span>
+<span class="n">event</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">tes3</span><span class="p">.</span><span class="n">event</span><span class="p">.</span><span class="n">keyDown</span><span class="p">,</span> <span class="n">onKeyDown</span><span class="p">,</span> <span class="p">{</span> <span class="n">filter</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">scanCode</span><span class="p">.</span><span class="n">u</span> <span class="p">})</span>
+</code></pre></div>
+</details>
 <hr />
 <h3 id="saveplayeroptions"><code>savePlayerOptions</code><a class="headerlink" href="#saveplayeroptions" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">saveplayeroptions</div>
@@ -11599,7 +11636,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">February 11, 2023 19:45:50</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 17, 2023 20:33:46</span>
       
         <br>
         Created:

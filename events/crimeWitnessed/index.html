@@ -9269,6 +9269,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -10899,6 +10906,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -10943,21 +10957,63 @@
 <ul>
 <li><code>position</code> (<a href="../../types/tes3vector3">tes3vector3</a>): <em>Read-only</em>. The position that the crime ocurred at.</li>
 <li><code>realTimestamp</code> (number): <em>Read-only</em>. The timestamp that the crime ocurred at.</li>
-<li><code>type</code> (string): <em>Read-only</em>. The type of crime that was committed. The type can be "attack", "killing", "stealing", "pickpocket", "theft", "trespass", and "werewolf". Crime "theft" is raised when picking up owned items. Crime "trespass" is raised when lockpicking, probing or sleeping in owned beds.</li>
-<li><code>value</code> (number): <em>Read-only</em>. The bounty value of the crime.</li>
+<li><code>type</code> (string): <em>Read-only</em>. The type of crime that was committed. The type can be "attack", "killing", "stealing", "pickpocket", "theft", "trespass", and "werewolf". Crime "theft" is raised when picking up owned items. Crime "trespass" is raised when lockpicking, probing, using Open magic on owned doors or chests and sleeping in owned beds.</li>
+<li><code>value</code> (number): <em>Read-only</em>. The total stolen items value of the crime. Only valid for thefts. See the example below to calculate the bounty incurred on each crime type.</li>
 <li><code>victim</code> (<a href="../../types/tes3actor">tes3actor</a>, <a href="../../types/tes3faction">tes3faction</a>): <em>Read-only</em>. The victim of the crime, as a general actor base object or faction.</li>
 <li><code>victimFaction</code> (<a href="../../types/tes3faction">tes3faction</a>): <em>Read-only</em>. The faction that the crime was against, assuming the victim is, or is in, one.</li>
 <li><code>victimMobile</code> (<a href="../../types/tes3mobileActor">tes3mobileActor</a>): <em>Read-only</em>. The mobile of the victim, if applicable, giving access to the unique victim.</li>
 <li><code>witness</code> (<a href="../../types/tes3reference">tes3reference</a>): <em>Read-only</em>. The reference that witnessed the crime.</li>
 <li><code>witnessMobile</code> (<a href="../../types/tes3mobileActor">tes3mobileActor</a>): <em>Read-only</em>. The mobile actor of the reference that witnessed the crime.</li>
 </ul>
+<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">⚓︎</a></h2>
+<div class="admonition example">
+<p class="admonition-title">Example: Getting bounty value after certain crime type</p>
+<div class="highlight"><pre><span></span><code><span class="c1">--- This function will return the bounty aquired after a certain</span>
+<span class="c1">--- crime has been commited. To be used with crimeWitnessed event.</span>
+<span class="c1">---@param e crimeWitnessedEventData</span>
+<span class="c1">---@return number bountyValue</span>
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">getBountyValue</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="kr">if</span> <span class="n">e</span><span class="p">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&quot;theft&quot;</span>
+    <span class="ow">or</span> <span class="n">e</span><span class="p">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&quot;stealing&quot;</span> <span class="kr">then</span>
+        <span class="c1">-- Calculate the bounty value for thefts. The default value for fCrimeStealing</span>
+        <span class="c1">-- is 1, so with vanilla settings it doesn&#39;t make a difference, but players</span>
+        <span class="c1">-- might have mods that alter this GMST, so we need to take it into account.</span>
+        <span class="kr">return</span> <span class="n">e</span><span class="p">.</span><span class="n">value</span> <span class="o">*</span> <span class="n">tes3</span><span class="p">.</span><span class="n">findGMST</span><span class="p">(</span><span class="n">tes3</span><span class="p">.</span><span class="n">gmst</span><span class="p">.</span><span class="n">fCrimeStealing</span><span class="p">).</span><span class="n">value</span> <span class="cm">--[[@as number]]</span>
+
+    <span class="kr">elseif</span> <span class="n">e</span><span class="p">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&quot;attack&quot;</span> <span class="kr">then</span>
+        <span class="kr">return</span> <span class="n">tes3</span><span class="p">.</span><span class="n">findGMST</span><span class="p">(</span><span class="n">tes3</span><span class="p">.</span><span class="n">gmst</span><span class="p">.</span><span class="n">iCrimeAttack</span><span class="p">).</span><span class="n">value</span> <span class="cm">--[[@as number]]</span>
+
+    <span class="kr">elseif</span> <span class="n">e</span><span class="p">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&quot;killing&quot;</span> <span class="kr">then</span>
+        <span class="kr">return</span> <span class="n">tes3</span><span class="p">.</span><span class="n">findGMST</span><span class="p">(</span><span class="n">tes3</span><span class="p">.</span><span class="n">gmst</span><span class="p">.</span><span class="n">iCrimeKilling</span><span class="p">).</span><span class="n">value</span> <span class="cm">--[[@as number]]</span>
+
+    <span class="kr">elseif</span> <span class="n">e</span><span class="p">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&quot;pickpocket&quot;</span> <span class="kr">then</span>
+        <span class="kr">return</span> <span class="n">tes3</span><span class="p">.</span><span class="n">findGMST</span><span class="p">(</span><span class="n">tes3</span><span class="p">.</span><span class="n">gmst</span><span class="p">.</span><span class="n">iCrimePickPocket</span><span class="p">).</span><span class="n">value</span> <span class="cm">--[[@as number]]</span>
+
+    <span class="kr">elseif</span> <span class="n">e</span><span class="p">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&quot;trespass&quot;</span> <span class="kr">then</span>
+        <span class="kr">return</span> <span class="n">tes3</span><span class="p">.</span><span class="n">findGMST</span><span class="p">(</span><span class="n">tes3</span><span class="p">.</span><span class="n">gmst</span><span class="p">.</span><span class="n">iCrimeTrespass</span><span class="p">).</span><span class="n">value</span> <span class="cm">--[[@as number]]</span>
+
+    <span class="kr">elseif</span> <span class="n">e</span><span class="p">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&quot;werewolf&quot;</span> <span class="kr">then</span>
+        <span class="kr">return</span> <span class="n">tes3</span><span class="p">.</span><span class="n">findGMST</span><span class="p">(</span><span class="n">tes3</span><span class="p">.</span><span class="n">gmst</span><span class="p">.</span><span class="n">iWerewolfBounty</span><span class="p">).</span><span class="n">value</span> <span class="cm">--[[@as number]]</span>
+    <span class="kr">end</span>
+
+    <span class="kr">return</span> <span class="mi">0</span>
+<span class="kr">end</span>
+
+<span class="c1">---@param e crimeWitnessedEventData</span>
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">onCrimeWitnessed</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="kd">local</span> <span class="n">bounty</span> <span class="o">=</span> <span class="n">getBountyValue</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="c1">-- ...</span>
+<span class="kr">end</span>
+<span class="n">event</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">tes3</span><span class="p">.</span><span class="n">event</span><span class="p">.</span><span class="n">crimeWitnessed</span><span class="p">,</span> <span class="n">onCrimeWitnessed</span><span class="p">)</span>
+</code></pre></div>
+</div>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">February 5, 2023 01:00:33</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 17, 2023 20:33:46</span>
       
         <br>
         Created:
