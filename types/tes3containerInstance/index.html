@@ -15599,7 +15599,7 @@
 <h3 id="organic"><code>organic</code><a class="headerlink" href="#organic" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">organic</div>
 
-<p>Determines if the container's organic flag is enabled.</p>
+<p>Determines if the container's organic flag is enabled. The name of this property comes from the Construction Set. If a container is flagged as organic, no items can be stored inside such containers. In vanilla, those are all plants, mushrooms, and ores. In addition, resupplying guild supply chests are implemented as organic and respawning containers.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
 <li><code>result</code> (boolean)</li>
@@ -15644,7 +15644,8 @@
 <h3 id="respawns"><code>respawns</code><a class="headerlink" href="#respawns" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">respawns</div>
 
-<p>Determines if the container's respawn flag is enabled.</p>
+<p>Determines if the container's respawn flag is enabled. Only the organic containers can have respawn flag set.</p>
+<p>The global script variable, "MonthsToRespawn" is decremented at the end of each month. If it reaches zero at the first day of next month, it is reset to <code>iMonthsToRespawn</code> (GMST) and all respawning containers are refilled.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
 <li><code>result</code> (boolean)</li>
@@ -15814,7 +15815,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 25, 2023 10:03:48</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 25, 2023 10:50:42</span>
       
         <br>
         Created:
