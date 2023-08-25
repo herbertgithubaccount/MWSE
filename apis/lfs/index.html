@@ -15156,7 +15156,7 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>filehandle</code> (<a href="../../types/ioFile">ioFile</a>): The file handle to lock.</li>
+<li><code>filehandle</code> (<a href="../../types/ioFile/">ioFile</a>): The file handle to lock.</li>
 <li><code>mode</code> (string): "r" for a read/shared lock, or "w" for a write/exclusive lock.</li>
 <li><code>start</code> (number): <em>Optional</em>. The starting point of the file to lock.</li>
 <li><code>length</code> (number): <em>Optional</em>. The length of the file, relative to start, to lock.</li>
@@ -15179,7 +15179,7 @@
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>success</code> (<a href="../../types/lfsLock">lfsLock</a>, nil): The lock object to manage, or nil in the case of an error.</li>
+<li><code>success</code> (<a href="../../types/lfsLock/">lfsLock</a>, nil): The lock object to manage, or nil in the case of an error.</li>
 <li><code>error</code> (string, nil): In the case of an error, a string describing the issue. In particular, if the lock exists and is not stale it returns the "File exists" message.</li>
 </ul>
 <hr />
@@ -15224,7 +15224,7 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>file</code> (<a href="../../types/ioFile">ioFile</a>): The file to set mode for.</li>
+<li><code>file</code> (<a href="../../types/ioFile/">ioFile</a>): The file to set mode for.</li>
 <li><code>mode</code> (string): The file's new mode. Can be either "binary" or "text".</li>
 </ul>
 <p><strong>Returns</strong>:</p>
@@ -15259,7 +15259,7 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>filehandle</code> (<a href="../../types/ioFile">ioFile</a>): The file handle to unlock.</li>
+<li><code>filehandle</code> (<a href="../../types/ioFile/">ioFile</a>): The file handle to unlock.</li>
 <li><code>mode</code> (string): "r" for a read/shared lock, or "w" for a write/exclusive unlock.</li>
 <li><code>start</code> (number): <em>Optional</em>. The starting point of the file to unlock.</li>
 <li><code>length</code> (number): <em>Optional</em>. The length of the file, relative to start, to unlock.</li>
@@ -15310,7 +15310,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">March 12, 2023 15:33:10</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 25, 2023 10:03:48</span>
       
         <br>
         Created:

@@ -15667,7 +15667,7 @@
 
 <p>The niParticleSystemController animates an niParticles-based object. The controller handles birth and death, spawning and motion.</p>
 <p>A particle spawn can be set to occur when the particle undergoes a specific condition, such as colliding with an object or dying. When such an event happens, naw particles are generated at the position of the old particle with the same attributes as the original particle. This behaviour will continue until the number of spawn generations equals the number of generations allowed. The number of new particles, precentage of particles that undergo spawning, speed and directional chaos values can be specified.</p>
-<p>This type inherits the following: <a href="../../types/niTimeController">niTimeController</a>, <a href="../../types/niObject">niObject</a></p>
+<p>This type inherits the following: <a href="../niTimeController/">niTimeController</a>, <a href="../niObject/">niObject</a></p>
 <h2 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">⚓︎</a></h2>
 <h3 id="active"><code>active</code><a class="headerlink" href="#active" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">active</div>
@@ -15767,7 +15767,7 @@
 <p>The object that emits the particles. The emitter volume is transformed into the world coordinates of the emitter before new particles are generated. This allows the transforms of the emitter to change without affecting the transforms of all the particles in the system.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/niObject">niObject</a>)</li>
+<li><code>result</code> (<a href="../niObject/">niObject</a>)</li>
 </ul>
 <hr />
 <h3 id="emitterdepth"><code>emitterDepth</code><a class="headerlink" href="#emitterdepth" title="Permanent link">⚓︎</a></h3>
@@ -15794,7 +15794,7 @@
 <p>Modifiers that will influence the particle system by modifying the emmiting object.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/niObject">niObject</a>[])</li>
+<li><code>result</code> (<a href="../niObject/">niObject</a>[])</li>
 </ul>
 <hr />
 <h3 id="emitterwidth"><code>emitterWidth</code><a class="headerlink" href="#emitterwidth" title="Permanent link">⚓︎</a></h3>
@@ -15838,7 +15838,7 @@
 <p>The initial color given to the newly created particles.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/niPackedColor">niPackedColor</a>)</li>
+<li><code>result</code> (<a href="../niPackedColor/">niPackedColor</a>)</li>
 </ul>
 <hr />
 <h3 id="initialnormal"><code>initialNormal</code><a class="headerlink" href="#initialnormal" title="Permanent link">⚓︎</a></h3>
@@ -15847,7 +15847,7 @@
 <p><em>Default</em>: <code>{1.0, 0.0, 0.0}</code>. The normal vector given to the newly created particles.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3vector3">tes3vector3</a>)</li>
+<li><code>result</code> (<a href="../tes3vector3/">tes3vector3</a>)</li>
 </ul>
 <hr />
 <h3 id="initialsize"><code>initialSize</code><a class="headerlink" href="#initialsize" title="Permanent link">⚓︎</a></h3>
@@ -15919,7 +15919,7 @@
 <p>The next animation controller in the list of controllers containing the calling controller.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/niTimeController">niTimeController</a>)</li>
+<li><code>result</code> (<a href="../niTimeController/">niTimeController</a>)</li>
 </ul>
 <hr />
 <h3 id="particlecolliders"><code>particleColliders</code><a class="headerlink" href="#particlecolliders" title="Permanent link">⚓︎</a></h3>
@@ -15928,7 +15928,7 @@
 <p>Collider modifiers that will influence the individual particles.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/niParticleCollider">niParticleCollider</a>[])</li>
+<li><code>result</code> (<a href="../niParticleCollider/">niParticleCollider</a>[])</li>
 </ul>
 <hr />
 <h3 id="particledatacount"><code>particleDataCount</code><a class="headerlink" href="#particledatacount" title="Permanent link">⚓︎</a></h3>
@@ -15946,7 +15946,7 @@
 <p>Modifiers that will influence the individual particles.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/niParticleModifier">niParticleModifier</a>[])</li>
+<li><code>result</code> (<a href="../niParticleModifier/">niParticleModifier</a>[])</li>
 </ul>
 <hr />
 <h3 id="phase"><code>phase</code><a class="headerlink" href="#phase" title="Permanent link">⚓︎</a></h3>
@@ -16000,7 +16000,7 @@
 <p><em>Read-only</em>. The runtime type information for this object. This is an alias for the <code>.runTimeTypeInformation</code> property.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/niRTTI">niRTTI</a>)</li>
+<li><code>result</code> (<a href="../niRTTI/">niRTTI</a>)</li>
 </ul>
 <hr />
 <h3 id="runtimetypeinformation"><code>runTimeTypeInformation</code><a class="headerlink" href="#runtimetypeinformation" title="Permanent link">⚓︎</a></h3>
@@ -16009,7 +16009,7 @@
 <p><em>Read-only</em>. The runtime type information for this object.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/niRTTI">niRTTI</a>)</li>
+<li><code>result</code> (<a href="../niRTTI/">niRTTI</a>)</li>
 </ul>
 <hr />
 <h3 id="scaledlasttime"><code>scaledLastTime</code><a class="headerlink" href="#scaledlasttime" title="Permanent link">⚓︎</a></h3>
@@ -16116,7 +16116,7 @@
 <p><em>Read-only</em>. The scene graph object that this animation controller is to animate.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/niObjectNET">niObjectNET</a>)</li>
+<li><code>result</code> (<a href="../niObjectNET/">niObjectNET</a>)</li>
 </ul>
 <hr />
 <h3 id="usebirthrate"><code>useBirthRate</code><a class="headerlink" href="#usebirthrate" title="Permanent link">⚓︎</a></h3>
@@ -16137,7 +16137,7 @@
 </code></pre></div>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/niObject">niObject</a>)</li>
+<li><code>result</code> (<a href="../niObject/">niObject</a>)</li>
 </ul>
 <hr />
 <h3 id="isinstanceoftype"><code>isInstanceOfType</code><a class="headerlink" href="#isinstanceoftype" title="Permanent link">⚓︎</a></h3>
@@ -16193,7 +16193,7 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>target</code> (<a href="../../types/niObjectNET">niObjectNET</a>): The new target to assign.</li>
+<li><code>target</code> (<a href="../niObjectNET/">niObjectNET</a>): The new target to assign.</li>
 </ul>
 <hr />
 <h3 id="start"><code>start</code><a class="headerlink" href="#start" title="Permanent link">⚓︎</a></h3>
@@ -16219,7 +16219,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">February 11, 2023 19:45:50</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 25, 2023 10:03:48</span>
       
         <br>
         Created:

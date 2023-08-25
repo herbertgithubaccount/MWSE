@@ -16522,7 +16522,7 @@
 <p><em>Read-only</em>. The child elements of this element. This is a copy that does not track changes.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3uiElement">tes3uiElement</a>[])</li>
+<li><code>result</code> (<a href="./">tes3uiElement</a>[])</li>
 </ul>
 <hr />
 <h3 id="color"><code>color</code><a class="headerlink" href="#color" title="Permanent link">⚓︎</a></h3>
@@ -16766,7 +16766,7 @@
 <p><em>Read-only</em>. A reference to the parent element.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3uiElement">tes3uiElement</a>)</li>
+<li><code>result</code> (<a href="./">tes3uiElement</a>)</li>
 </ul>
 <hr />
 <h3 id="positionx"><code>positionX</code><a class="headerlink" href="#positionx" title="Permanent link">⚓︎</a></h3>
@@ -16820,7 +16820,7 @@
 <p><em>Read-only</em>. Underlying access to the scene graph responsible for this element.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/niNode">niNode</a>)</li>
+<li><code>result</code> (<a href="../niNode/">niNode</a>)</li>
 </ul>
 <hr />
 <h3 id="text"><code>text</code><a class="headerlink" href="#text" title="Permanent link">⚓︎</a></h3>
@@ -16842,7 +16842,7 @@
 <p>The underlying texture for the element. This assumes that the element is of an element type. Setting this value will change the element to an image type.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/niSourceTexture">niSourceTexture</a>)</li>
+<li><code>result</code> (<a href="../niSourceTexture/">niSourceTexture</a>)</li>
 </ul>
 <hr />
 <h3 id="type"><code>type</code><a class="headerlink" href="#type" title="Permanent link">⚓︎</a></h3>
@@ -16869,7 +16869,7 @@
 <p>Access to element specific properties. This will be <code>nil</code> if there are no element specific properties. See the return types and the create* functions for more details.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3uiWidget">tes3uiWidget</a>, nil)</li>
+<li><code>result</code> (<a href="../tes3uiWidget/">tes3uiWidget</a>, nil)</li>
 </ul>
 <hr />
 <h3 id="width"><code>width</code><a class="headerlink" href="#width" title="Permanent link">⚓︎</a></h3>
@@ -16914,7 +16914,7 @@
 <p><strong>Parameters</strong>:</p>
 <ul>
 <li><code>params</code> (table)<ul>
-<li><code>to</code> (<a href="../../types/tes3uiElement">tes3uiElement</a>): The element to create the copy in. Will be the parent of the newly created element.</li>
+<li><code>to</code> (<a href="./">tes3uiElement</a>): The element to create the copy in. Will be the parent of the newly created element.</li>
 <li><code>copyChildren</code> (boolean): <em>Default</em>: <code>true</code>. If <code>true</code>, all children will also be copied to the newly created element.</li>
 <li><code>copyProperties</code> (boolean): <em>Default</em>: <code>true</code>. If <code>true</code>, all properties will be copied to the newly created element.</li>
 </ul>
@@ -16922,7 +16922,7 @@
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>copy</code> (<a href="../../types/tes3uiElement">tes3uiElement</a>): The created copy.</li>
+<li><code>copy</code> (<a href="./">tes3uiElement</a>): The created copy.</li>
 </ul>
 <hr />
 <h3 id="createblock"><code>createBlock</code><a class="headerlink" href="#createblock" title="Permanent link">⚓︎</a></h3>
@@ -16940,7 +16940,7 @@
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3uiElement">tes3uiElement</a>)</li>
+<li><code>result</code> (<a href="./">tes3uiElement</a>)</li>
 </ul>
 <hr />
 <h3 id="createbutton"><code>createButton</code><a class="headerlink" href="#createbutton" title="Permanent link">⚓︎</a></h3>
@@ -16960,7 +16960,7 @@
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3uiElement">tes3uiElement</a>)</li>
+<li><code>result</code> (<a href="./">tes3uiElement</a>)</li>
 </ul>
 <hr />
 <h3 id="createcyclebutton"><code>createCycleButton</code><a class="headerlink" href="#createcyclebutton" title="Permanent link">⚓︎</a></h3>
@@ -16974,14 +16974,14 @@
 <ul>
 <li><code>params</code> (table)<ul>
 <li><code>id</code> (string, number): <em>Optional</em>. An identifier to help find this element later.</li>
-<li><code>options</code> (<a href="../../types/tes3uiCycleButtonOption">tes3uiCycleButtonOption</a>[]): An array of options for the button to cycle through. At minimum the option must have a <code>text</code> property defined, to show on the button. If a <code>value</code> is provided, it can be accessed through the <code>.widget</code>'s <code>.value</code> property.</li>
+<li><code>options</code> (<a href="../tes3uiCycleButtonOption/">tes3uiCycleButtonOption</a>[]): An array of options for the button to cycle through. At minimum the option must have a <code>text</code> property defined, to show on the button. If a <code>value</code> is provided, it can be accessed through the <code>.widget</code>'s <code>.value</code> property.</li>
 <li><code>index</code> (number): <em>Optional</em>. The index selected by default.</li>
 </ul>
 </li>
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3uiElement">tes3uiElement</a>)</li>
+<li><code>result</code> (<a href="./">tes3uiElement</a>)</li>
 </ul>
 <hr />
 <h3 id="createdivider"><code>createDivider</code><a class="headerlink" href="#createdivider" title="Permanent link">⚓︎</a></h3>
@@ -16999,7 +16999,7 @@
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3uiElement">tes3uiElement</a>)</li>
+<li><code>result</code> (<a href="./">tes3uiElement</a>)</li>
 </ul>
 <hr />
 <h3 id="createfillbar"><code>createFillBar</code><a class="headerlink" href="#createfillbar" title="Permanent link">⚓︎</a></h3>
@@ -17020,7 +17020,7 @@
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3uiElement">tes3uiElement</a>)</li>
+<li><code>result</code> (<a href="./">tes3uiElement</a>)</li>
 </ul>
 <hr />
 <h3 id="createhorizontalscrollpane"><code>createHorizontalScrollPane</code><a class="headerlink" href="#createhorizontalscrollpane" title="Permanent link">⚓︎</a></h3>
@@ -17040,7 +17040,7 @@
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3uiElement">tes3uiElement</a>)</li>
+<li><code>result</code> (<a href="./">tes3uiElement</a>)</li>
 </ul>
 <hr />
 <h3 id="createhyperlink"><code>createHyperlink</code><a class="headerlink" href="#createhyperlink" title="Permanent link">⚓︎</a></h3>
@@ -17062,7 +17062,7 @@
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>element</code> (<a href="../../types/tes3uiElement">tes3uiElement</a>)</li>
+<li><code>element</code> (<a href="./">tes3uiElement</a>)</li>
 </ul>
 <hr />
 <h3 id="createhypertext"><code>createHypertext</code><a class="headerlink" href="#createhypertext" title="Permanent link">⚓︎</a></h3>
@@ -17080,7 +17080,7 @@
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3uiElement">tes3uiElement</a>)</li>
+<li><code>result</code> (<a href="./">tes3uiElement</a>)</li>
 </ul>
 <hr />
 <h3 id="createimage"><code>createImage</code><a class="headerlink" href="#createimage" title="Permanent link">⚓︎</a></h3>
@@ -17099,7 +17099,7 @@
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3uiElement">tes3uiElement</a>)</li>
+<li><code>result</code> (<a href="./">tes3uiElement</a>)</li>
 </ul>
 <hr />
 <h3 id="createimagebutton"><code>createImageButton</code><a class="headerlink" href="#createimagebutton" title="Permanent link">⚓︎</a></h3>
@@ -17120,7 +17120,7 @@
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3uiElement">tes3uiElement</a>)</li>
+<li><code>result</code> (<a href="./">tes3uiElement</a>)</li>
 </ul>
 <hr />
 <h3 id="createlabel"><code>createLabel</code><a class="headerlink" href="#createlabel" title="Permanent link">⚓︎</a></h3>
@@ -17139,7 +17139,7 @@
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3uiElement">tes3uiElement</a>)</li>
+<li><code>result</code> (<a href="./">tes3uiElement</a>)</li>
 </ul>
 <hr />
 <h3 id="createnif"><code>createNif</code><a class="headerlink" href="#createnif" title="Permanent link">⚓︎</a></h3>
@@ -17158,7 +17158,7 @@
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3uiElement">tes3uiElement</a>)</li>
+<li><code>result</code> (<a href="./">tes3uiElement</a>)</li>
 </ul>
 <hr />
 <h3 id="createparagraphinput"><code>createParagraphInput</code><a class="headerlink" href="#createparagraphinput" title="Permanent link">⚓︎</a></h3>
@@ -17177,7 +17177,7 @@
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3uiElement">tes3uiElement</a>)</li>
+<li><code>result</code> (<a href="./">tes3uiElement</a>)</li>
 </ul>
 <hr />
 <h3 id="createrect"><code>createRect</code><a class="headerlink" href="#createrect" title="Permanent link">⚓︎</a></h3>
@@ -17190,14 +17190,14 @@
 <ul>
 <li><code>params</code> (table): <em>Optional</em>.<ul>
 <li><code>id</code> (string, number): <em>Optional</em>. An identifier to help find this element later.</li>
-<li><code>color</code> (<a href="../../types/tes3vector3">tes3vector3</a>, table): <em>Optional</em>. The fill color for the element.</li>
+<li><code>color</code> (<a href="../tes3vector3/">tes3vector3</a>, table): <em>Optional</em>. The fill color for the element.</li>
 <li><code>randomizeColor</code> (boolean): <em>Default</em>: <code>false</code>. If true, the creation color will be randomized.</li>
 </ul>
 </li>
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3uiElement">tes3uiElement</a>)</li>
+<li><code>result</code> (<a href="./">tes3uiElement</a>)</li>
 </ul>
 <hr />
 <h3 id="createslider"><code>createSlider</code><a class="headerlink" href="#createslider" title="Permanent link">⚓︎</a></h3>
@@ -17220,7 +17220,7 @@
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3uiElement">tes3uiElement</a>)</li>
+<li><code>result</code> (<a href="./">tes3uiElement</a>)</li>
 </ul>
 <hr />
 <h3 id="createslidervertical"><code>createSliderVertical</code><a class="headerlink" href="#createslidervertical" title="Permanent link">⚓︎</a></h3>
@@ -17243,7 +17243,7 @@
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3uiElement">tes3uiElement</a>)</li>
+<li><code>result</code> (<a href="./">tes3uiElement</a>)</li>
 </ul>
 <hr />
 <h3 id="createtextinput"><code>createTextInput</code><a class="headerlink" href="#createtextinput" title="Permanent link">⚓︎</a></h3>
@@ -17266,7 +17266,7 @@
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3uiElement">tes3uiElement</a>)</li>
+<li><code>result</code> (<a href="./">tes3uiElement</a>)</li>
 </ul>
 <hr />
 <h3 id="createtextselect"><code>createTextSelect</code><a class="headerlink" href="#createtextselect" title="Permanent link">⚓︎</a></h3>
@@ -17287,7 +17287,7 @@
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3uiElement">tes3uiElement</a>)</li>
+<li><code>result</code> (<a href="./">tes3uiElement</a>)</li>
 </ul>
 <hr />
 <h3 id="createthinborder"><code>createThinBorder</code><a class="headerlink" href="#createthinborder" title="Permanent link">⚓︎</a></h3>
@@ -17305,7 +17305,7 @@
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3uiElement">tes3uiElement</a>)</li>
+<li><code>result</code> (<a href="./">tes3uiElement</a>)</li>
 </ul>
 <hr />
 <h3 id="createverticalscrollpane"><code>createVerticalScrollPane</code><a class="headerlink" href="#createverticalscrollpane" title="Permanent link">⚓︎</a></h3>
@@ -17325,7 +17325,7 @@
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3uiElement">tes3uiElement</a>)</li>
+<li><code>result</code> (<a href="./">tes3uiElement</a>)</li>
 </ul>
 <details class="example">
 <summary>Example: Sorting the child elements in a scroll pane</summary>
@@ -17369,7 +17369,7 @@
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3uiElement">tes3uiElement</a>)</li>
+<li><code>result</code> (<a href="./">tes3uiElement</a>)</li>
 </ul>
 <hr />
 <h3 id="forwardevent"><code>forwardEvent</code><a class="headerlink" href="#forwardevent" title="Permanent link">⚓︎</a></h3>
@@ -17380,7 +17380,7 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>id</code> (<a href="../../types/tes3uiEventData">tes3uiEventData</a>): The original UI event.</li>
+<li><code>id</code> (<a href="../tes3uiEventData/">tes3uiEventData</a>): The original UI event.</li>
 </ul>
 <hr />
 <h3 id="getcontentelement"><code>getContentElement</code><a class="headerlink" href="#getcontentelement" title="Permanent link">⚓︎</a></h3>
@@ -17392,7 +17392,7 @@
 </code></pre></div>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3uiElement">tes3uiElement</a>)</li>
+<li><code>result</code> (<a href="./">tes3uiElement</a>)</li>
 </ul>
 <hr />
 <h3 id="getluadata"><code>getLuaData</code><a class="headerlink" href="#getluadata" title="Permanent link">⚓︎</a></h3>
@@ -17509,7 +17509,7 @@
 </code></pre></div>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3uiElement">tes3uiElement</a>)</li>
+<li><code>result</code> (<a href="./">tes3uiElement</a>)</li>
 </ul>
 <hr />
 <h3 id="loadmenuposition"><code>loadMenuPosition</code><a class="headerlink" href="#loadmenuposition" title="Permanent link">⚓︎</a></h3>
@@ -17532,13 +17532,13 @@
 <p><strong>Parameters</strong>:</p>
 <ul>
 <li><code>params</code> (table)<ul>
-<li><code>to</code> (<a href="../../types/tes3uiElement">tes3uiElement</a>): Where to create the copy.</li>
+<li><code>to</code> (<a href="./">tes3uiElement</a>): Where to create the copy.</li>
 </ul>
 </li>
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>copy</code> (<a href="../../types/tes3uiElement">tes3uiElement</a>): The created copy.</li>
+<li><code>copy</code> (<a href="./">tes3uiElement</a>): The created copy.</li>
 </ul>
 <hr />
 <h3 id="register"><code>register</code><a class="headerlink" href="#register" title="Permanent link">⚓︎</a></h3>
@@ -17617,7 +17617,7 @@
 <p><strong>Parameters</strong>:</p>
 <ul>
 <li><code>eventID</code> (string): The event id. Maps to values in <a href="https://mwse.github.io/MWSE/references/ui-events/"><code>tes3.uiEvent</code></a>.</li>
-<li><code>callback</code> (fun(e: <a href="../../types/tes3uiEventData">tes3uiEventData</a>): boolean?): The callback function. Returning <code>false</code> from this function may cancel an interaction for certain events, such as unfocus.</li>
+<li><code>callback</code> (fun(e: <a href="../tes3uiEventData/">tes3uiEventData</a>): boolean?): The callback function. Returning <code>false</code> from this function may cancel an interaction for certain events, such as unfocus.</li>
 </ul>
 <hr />
 <h3 id="registerafter"><code>registerAfter</code><a class="headerlink" href="#registerafter" title="Permanent link">⚓︎</a></h3>
@@ -17629,7 +17629,7 @@
 <p><strong>Parameters</strong>:</p>
 <ul>
 <li><code>eventID</code> (string): The event id. Maps to values in <a href="https://mwse.github.io/MWSE/references/ui-events/"><code>tes3.uiEvent</code></a>.</li>
-<li><code>callback</code> (fun(e: <a href="../../types/tes3uiEventData">tes3uiEventData</a>): boolean?): The callback function.</li>
+<li><code>callback</code> (fun(e: <a href="../tes3uiEventData/">tes3uiEventData</a>): boolean?): The callback function.</li>
 </ul>
 <hr />
 <h3 id="registerbefore"><code>registerBefore</code><a class="headerlink" href="#registerbefore" title="Permanent link">⚓︎</a></h3>
@@ -17641,7 +17641,7 @@
 <p><strong>Parameters</strong>:</p>
 <ul>
 <li><code>eventID</code> (string): The event id. Maps to values in <a href="https://mwse.github.io/MWSE/references/ui-events/"><code>tes3.uiEvent</code></a>.</li>
-<li><code>callback</code> (fun(e: <a href="../../types/tes3uiEventData">tes3uiEventData</a>): boolean?): The callback function.</li>
+<li><code>callback</code> (fun(e: <a href="../tes3uiEventData/">tes3uiEventData</a>): boolean?): The callback function.</li>
 </ul>
 <hr />
 <h3 id="reorderchildren"><code>reorderChildren</code><a class="headerlink" href="#reorderchildren" title="Permanent link">⚓︎</a></h3>
@@ -17653,8 +17653,8 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>insertBefore</code> (<a href="../../types/tes3uiElement">tes3uiElement</a>, number): The insertion point (or its 0-based child index).</li>
-<li><code>moveFrom</code> (<a href="../../types/tes3uiElement">tes3uiElement</a>, number): The first child (or 0-based child index) to be moved.</li>
+<li><code>insertBefore</code> (<a href="./">tes3uiElement</a>, number): The insertion point (or its 0-based child index).</li>
+<li><code>moveFrom</code> (<a href="./">tes3uiElement</a>, number): The first child (or 0-based child index) to be moved.</li>
 <li><code>count</code> (number): The number of child elements to move.</li>
 </ul>
 <p><strong>Returns</strong>:</p>
@@ -17782,7 +17782,7 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>eventID</code> (<a href="../../types/tes3uiEventData">tes3uiEventData</a>, string): The event, or event ID.</li>
+<li><code>eventID</code> (<a href="../tes3uiEventData/">tes3uiEventData</a>, string): The event, or event ID.</li>
 </ul>
 <hr />
 <h3 id="unregister"><code>unregister</code><a class="headerlink" href="#unregister" title="Permanent link">⚓︎</a></h3>
@@ -17844,7 +17844,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">July 26, 2023 12:20:21</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 25, 2023 10:03:48</span>
       
         <br>
         Created:

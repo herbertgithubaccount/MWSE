@@ -15014,7 +15014,7 @@
 <p>The time passed since the last tick of the spell.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3magicEffectInstance">tes3magicEffectInstance</a>)</li>
+<li><code>result</code> (<a href="../tes3magicEffectInstance/">tes3magicEffectInstance</a>)</li>
 </ul>
 <hr />
 <h3 id="sourceinstance"><code>sourceInstance</code><a class="headerlink" href="#sourceinstance" title="Permanent link">⚓︎</a></h3>
@@ -15023,7 +15023,7 @@
 <p>Access to the magic source of the effect instance.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3magicSourceInstance">tes3magicSourceInstance</a>)</li>
+<li><code>result</code> (<a href="../tes3magicSourceInstance/">tes3magicSourceInstance</a>)</li>
 </ul>
 <hr />
 <h2 id="methods">Methods<a class="headerlink" href="#methods" title="Permanent link">⚓︎</a></h2>
@@ -15040,8 +15040,8 @@
 <li><code>isUncapped</code> (boolean): <em>Optional</em>.</li>
 <li><code>attribute</code> (integer): <em>Default</em>: <code>tes3.effectAttribute.nonResistable</code>. The attribute used in resistance calculations agains this effect. Maps to values in <a href="https://mwse.github.io/MWSE/references/effect-attributes/"><code>tes3.effectAttribute</code></a> table.</li>
 <li><code>type</code> (integer): <em>Default</em>: <code>tes3.effectEventType.boolean</code>. This flag controls how the effect behaves. For example, <code>tes3.effectEventType.modStatistic</code> will make the effect work as calling <code>tes3.modStatistic</code>. Maps to values in <a href="https://mwse.github.io/MWSE/references/effect-event-types/"><code>tes3.effectEventType</code></a> table.</li>
-<li><code>value</code> (boolean, integer, number, <a href="../../types/tes3statistic">tes3statistic</a>): <em>Default</em>: <code>0</code>. The variable this effect changes. This can be a local variable in a script or a tes3statistic property on a <code>tes3mobileActor</code>. The type of the passed variable must match the type of the <code>type</code> parameter.</li>
-<li><code>resistanceCheck</code> (fun(e: <a href="../../types/tes3magicEffectResistenceCheckEventData">tes3magicEffectResistenceCheckEventData</a>): boolean?): <em>Optional</em>. The function passed as <code>resistanceCheck</code> will be used on any of the game's spell resistance checks. Returning <code>true</code> from this function will set your effect to expired, and depending on your trigger code may stop processing.</li>
+<li><code>value</code> (boolean, integer, number, <a href="../tes3statistic/">tes3statistic</a>): <em>Default</em>: <code>0</code>. The variable this effect changes. This can be a local variable in a script or a tes3statistic property on a <code>tes3mobileActor</code>. The type of the passed variable must match the type of the <code>type</code> parameter.</li>
+<li><code>resistanceCheck</code> (fun(e: <a href="../tes3magicEffectResistenceCheckEventData/">tes3magicEffectResistenceCheckEventData</a>): boolean?): <em>Optional</em>. The function passed as <code>resistanceCheck</code> will be used on any of the game's spell resistance checks. Returning <code>true</code> from this function will set your effect to expired, and depending on your trigger code may stop processing.</li>
 </ul>
 </li>
 </ul>
@@ -15049,7 +15049,7 @@
 <p><strong>Returns</strong>:</p>
 <ul>
 <li><code>eventResult</code> (boolean)</li>
-<li><code>modifiedValue</code> (boolean, integer, number, <a href="../../types/tes3statistic">tes3statistic</a>): The returned type depends on the passed <code>type</code> parameter.</li>
+<li><code>modifiedValue</code> (boolean, integer, number, <a href="../tes3statistic/">tes3statistic</a>): The returned type depends on the passed <code>type</code> parameter.</li>
 </ul>
 <hr />
 <h3 id="triggerboundarmor"><code>triggerBoundArmor</code><a class="headerlink" href="#triggerboundarmor" title="Permanent link">⚓︎</a></h3>
@@ -15091,7 +15091,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">June 17, 2023 15:52:44</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 25, 2023 10:03:48</span>
       
         <br>
         Created:

@@ -15177,7 +15177,7 @@
 
 <p>niParticlesData objects contain the geometry data necessary to render a niParticles object. When a niParticles-based object is created, the actual geometry data is stored in an attached niParticlesData object.</p>
 <p>There are two ways to adjust particle size within an niParticles object. The <code>radius</code> affects all the particles in this niParticlesData object. There is also a <code>size</code> for each particle (available as <code>sizes</code> array), which is a ratio between 0.0 and 1.0 that is multiplied by the radius to obtain the final rendered size of the particle.</p>
-<p>This type inherits the following: <a href="../../types/niTriBasedGeometryData">niTriBasedGeometryData</a>, <a href="../../types/niGeometryData">niGeometryData</a>, <a href="../../types/niObject">niObject</a></p>
+<p>This type inherits the following: <a href="../niTriBasedGeometryData/">niTriBasedGeometryData</a>, <a href="../niGeometryData/">niGeometryData</a>, <a href="../niObject/">niObject</a></p>
 <h2 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">⚓︎</a></h2>
 <h3 id="activecount"><code>activeCount</code><a class="headerlink" href="#activecount" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">activecount</div>
@@ -15212,7 +15212,7 @@
 <p><em>Read-only</em>. The vertex colors for the object. The length of the array is equal to <code>vertexCount</code>.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/niPackedColor">niPackedColor</a>[])</li>
+<li><code>result</code> (<a href="../niPackedColor/">niPackedColor</a>[])</li>
 </ul>
 <hr />
 <h3 id="normals"><code>normals</code><a class="headerlink" href="#normals" title="Permanent link">⚓︎</a></h3>
@@ -15221,7 +15221,7 @@
 <p><em>Read-only</em>. The list of unitized, model-space vertex normals for the object. The length of the array is equal to <code>vertexCount</code>.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3vector3">tes3vector3</a>[])</li>
+<li><code>result</code> (<a href="../tes3vector3/">tes3vector3</a>[])</li>
 </ul>
 <hr />
 <h3 id="radius"><code>radius</code><a class="headerlink" href="#radius" title="Permanent link">⚓︎</a></h3>
@@ -15248,7 +15248,7 @@
 <p><em>Read-only</em>. The runtime type information for this object. This is an alias for the <code>.runTimeTypeInformation</code> property.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/niRTTI">niRTTI</a>)</li>
+<li><code>result</code> (<a href="../niRTTI/">niRTTI</a>)</li>
 </ul>
 <hr />
 <h3 id="runtimetypeinformation"><code>runTimeTypeInformation</code><a class="headerlink" href="#runtimetypeinformation" title="Permanent link">⚓︎</a></h3>
@@ -15257,7 +15257,7 @@
 <p><em>Read-only</em>. The runtime type information for this object.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/niRTTI">niRTTI</a>)</li>
+<li><code>result</code> (<a href="../niRTTI/">niRTTI</a>)</li>
 </ul>
 <hr />
 <h3 id="sizes"><code>sizes</code><a class="headerlink" href="#sizes" title="Permanent link">⚓︎</a></h3>
@@ -15275,7 +15275,7 @@
 <p><em>Read-only</em>. The array of texture coordinates. The length of the array is equal to <code>vertexCount</code> times <code>textureSets</code>.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3vector2">tes3vector2</a>[])</li>
+<li><code>result</code> (<a href="../tes3vector2/">tes3vector2</a>[])</li>
 </ul>
 <hr />
 <h3 id="textures"><code>textures</code><a class="headerlink" href="#textures" title="Permanent link">⚓︎</a></h3>
@@ -15284,7 +15284,7 @@
 <p><em>Read-only</em>. The array of texture coordinates. The length of the array is equal to <code>vertexCount</code> times <code>textureSets</code>.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3vector2">tes3vector2</a>[])</li>
+<li><code>result</code> (<a href="../tes3vector2/">tes3vector2</a>[])</li>
 </ul>
 <hr />
 <h3 id="texturesets"><code>textureSets</code><a class="headerlink" href="#texturesets" title="Permanent link">⚓︎</a></h3>
@@ -15329,7 +15329,7 @@
 <p><em>Read-only</em>. The array of vertex position data. The length of the array is equal to <code>vertexCount</code>.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3vector3">tes3vector3</a>[])</li>
+<li><code>result</code> (<a href="../tes3vector3/">tes3vector3</a>[])</li>
 </ul>
 <hr />
 <h2 id="methods">Methods<a class="headerlink" href="#methods" title="Permanent link">⚓︎</a></h2>
@@ -15341,7 +15341,7 @@
 </code></pre></div>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/niObject">niObject</a>)</li>
+<li><code>result</code> (<a href="../niObject/">niObject</a>)</li>
 </ul>
 <hr />
 <h3 id="isinstanceoftype"><code>isInstanceOfType</code><a class="headerlink" href="#isinstanceoftype" title="Permanent link">⚓︎</a></h3>
@@ -15410,7 +15410,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">February 11, 2023 19:45:50</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 25, 2023 10:03:48</span>
       
         <br>
         Created:

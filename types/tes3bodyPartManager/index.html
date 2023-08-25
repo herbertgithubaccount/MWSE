@@ -15015,7 +15015,7 @@
 <p><em>Read-only</em>. Access to the reference's <a href="https://mwse.github.io/MWSE/types/tes3bodyPartManagerActiveBodyPart/"><code>tes3bodyPartManagerActiveBodyPart</code></a> objects. It's a 2-dimensional table, with first dimension index values from <a href="https://mwse.github.io/MWSE/references/active-body-part-layers/"><code>tes3.activeBodyPartLayer</code></a> namespace, while its second dimension indexes are values from <a href="https://mwse.github.io/MWSE/references/active-body-parts/"><code>tes3.activeBodyPart</code></a> namespace.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (table&lt;integer, table&lt;integer, <a href="../../types/tes3bodyPartManagerActiveBodyPart">tes3bodyPartManagerActiveBodyPart</a>&gt;&gt;)</li>
+<li><code>result</code> (table&lt;integer, table&lt;integer, <a href="../tes3bodyPartManagerActiveBodyPart/">tes3bodyPartManagerActiveBodyPart</a>&gt;&gt;)</li>
 </ul>
 <hr />
 <h3 id="animationphase"><code>animationPhase</code><a class="headerlink" href="#animationphase" title="Permanent link">⚓︎</a></h3>
@@ -15033,7 +15033,7 @@
 <p><em>Read-only</em>. The access to the reference's <a href="https://mwse.github.io/MWSE/types/tes3bodyPartManagerAttachNode/"><code>tes3bodyPartManagerAttachNode</code></a> objects. Indexes of that table are values from <a href="https://mwse.github.io/MWSE/references/body-part-attachments/"><code>tes3.bodyPartAttachment</code></a> namespace.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3bodyPartManagerAttachNode">tes3bodyPartManagerAttachNode</a>[])</li>
+<li><code>result</code> (<a href="../tes3bodyPartManagerAttachNode/">tes3bodyPartManagerAttachNode</a>[])</li>
 </ul>
 <hr />
 <h3 id="reference"><code>reference</code><a class="headerlink" href="#reference" title="Permanent link">⚓︎</a></h3>
@@ -15042,7 +15042,7 @@
 <p><em>Read-only</em>. The access to the reference this body part manager operates for.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3reference">tes3reference</a>)</li>
+<li><code>result</code> (<a href="../tes3reference/">tes3reference</a>)</li>
 </ul>
 <hr />
 <h2 id="methods">Methods<a class="headerlink" href="#methods" title="Permanent link">⚓︎</a></h2>
@@ -15059,7 +15059,7 @@
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3bodyPartManagerActiveBodyPart">tes3bodyPartManagerActiveBodyPart</a>)</li>
+<li><code>result</code> (<a href="../tes3bodyPartManagerActiveBodyPart/">tes3bodyPartManagerActiveBodyPart</a>)</li>
 </ul>
 <hr />
 <h3 id="getactivebodypartforitem"><code>getActiveBodyPartForItem</code><a class="headerlink" href="#getactivebodypartforitem" title="Permanent link">⚓︎</a></h3>
@@ -15070,11 +15070,11 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>item</code> (<a href="../../types/tes3item">tes3item</a>): The item to fetch the active body part for.</li>
+<li><code>item</code> (<a href="../tes3item/">tes3item</a>): The item to fetch the active body part for.</li>
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3bodyPartManagerActiveBodyPart">tes3bodyPartManagerActiveBodyPart</a>)</li>
+<li><code>result</code> (<a href="../tes3bodyPartManagerActiveBodyPart/">tes3bodyPartManagerActiveBodyPart</a>)</li>
 </ul>
 <hr />
 <h3 id="removeactivebodypart"><code>removeActiveBodyPart</code><a class="headerlink" href="#removeactivebodypart" title="Permanent link">⚓︎</a></h3>
@@ -15106,7 +15106,7 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>item</code> (<a href="../../types/tes3item">tes3item</a>): The item that the body part is from.</li>
+<li><code>item</code> (<a href="../tes3item/">tes3item</a>): The item that the body part is from.</li>
 <li><code>index</code> (number): A value from <a href="https://mwse.github.io/MWSE/references/active-body-parts/"><code>tes3.activeBodyPart</code></a> namespace.</li>
 <li><code>bodyPartId</code> (string): The unique ID of the <code>tes3bodyPart</code> object to set as a new body part for given object.</li>
 <li><code>isFirstPerson</code> (boolean): <em>Default</em>: <code>false</code>. A flag which must be set if the target reference is the first person player.</li>
@@ -15120,9 +15120,9 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>item</code> (<a href="../../types/tes3item">tes3item</a>): The item that the body part is from.</li>
+<li><code>item</code> (<a href="../tes3item/">tes3item</a>): The item that the body part is from.</li>
 <li><code>index</code> (number): A value from <a href="https://mwse.github.io/MWSE/references/active-body-parts/"><code>tes3.activeBodyPart</code></a> namespace.</li>
-<li><code>bodyPart</code> (<a href="../../types/tes3bodyPart">tes3bodyPart</a>): The <code>tes3bodyPart</code> object to set as a new body part for given object.</li>
+<li><code>bodyPart</code> (<a href="../tes3bodyPart/">tes3bodyPart</a>): The <code>tes3bodyPart</code> object to set as a new body part for given object.</li>
 <li><code>isFirstPerson</code> (boolean): <em>Default</em>: <code>false</code>. A flag which must be set if the target reference is the first person player.</li>
 </ul>
 <hr />
@@ -15134,7 +15134,7 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>reference</code> (<a href="../../types/tes3reference">tes3reference</a>): The reference whose body parts will be updated.</li>
+<li><code>reference</code> (<a href="../tes3reference/">tes3reference</a>): The reference whose body parts will be updated.</li>
 </ul>
 
   <hr>
@@ -15142,7 +15142,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">March 30, 2023 19:00:54</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 25, 2023 10:03:48</span>
       
         <br>
         Created:

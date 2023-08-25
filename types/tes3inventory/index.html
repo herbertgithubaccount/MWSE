@@ -15010,7 +15010,7 @@
 <p><em>Read-only</em>. Direct acces to the container that holds the inventory's items.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3itemStack">tes3itemStack</a>[])</li>
+<li><code>result</code> (<a href="../tes3itemStack/">tes3itemStack</a>[])</li>
 </ul>
 <details class="example">
 <summary>Example: An example implementation of a generic iteration function for looping over all the items in an inventory using coroutine API from the Lua standard library.</summary>
@@ -15068,9 +15068,9 @@
 <p><strong>Parameters</strong>:</p>
 <ul>
 <li><code>params</code> (table)<ul>
-<li><code>mobile</code> (<a href="../../types/tes3mobileActor">tes3mobileActor</a>, <a href="../../types/tes3reference">tes3reference</a>, string): <em>Optional</em>. The mobile actor whose stats will be updated.</li>
-<li><code>item</code> (<a href="../../types/tes3item">tes3item</a>): The item to add.</li>
-<li><code>itemData</code> (<a href="../../types/tes3itemData">tes3itemData</a>): <em>Optional</em>. Any associated item data to add.</li>
+<li><code>mobile</code> (<a href="../tes3mobileActor/">tes3mobileActor</a>, <a href="../tes3reference/">tes3reference</a>, string): <em>Optional</em>. The mobile actor whose stats will be updated.</li>
+<li><code>item</code> (<a href="../tes3item/">tes3item</a>): The item to add.</li>
+<li><code>itemData</code> (<a href="../tes3itemData/">tes3itemData</a>): <em>Optional</em>. Any associated item data to add.</li>
 <li><code>count</code> (number): <em>Default</em>: <code>1</code>. The number of items to add.</li>
 </ul>
 </li>
@@ -15095,8 +15095,8 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>item</code> (<a href="../../types/tes3item">tes3item</a>, string): The item to check for.</li>
-<li><code>itemData</code> (<a href="../../types/tes3itemData">tes3itemData</a>): <em>Optional</em>. If provided, it will check for the specific data as well.</li>
+<li><code>item</code> (<a href="../tes3item/">tes3item</a>, string): The item to check for.</li>
+<li><code>itemData</code> (<a href="../tes3itemData/">tes3itemData</a>): <em>Optional</em>. If provided, it will check for the specific data as well.</li>
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
@@ -15111,12 +15111,12 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>mobile</code> (<a href="../../types/tes3mobileActor">tes3mobileActor</a>, <a href="../../types/tes3reference">tes3reference</a>, string): The mobile actor whose stats will be updated.</li>
-<li><code>item</code> (<a href="../../types/tes3item">tes3item</a>, string): The item to drop.</li>
-<li><code>itemData</code> (<a href="../../types/tes3itemData">tes3itemData</a>): If provided, it will check for the specific data to drop it.</li>
+<li><code>mobile</code> (<a href="../tes3mobileActor/">tes3mobileActor</a>, <a href="../tes3reference/">tes3reference</a>, string): The mobile actor whose stats will be updated.</li>
+<li><code>item</code> (<a href="../tes3item/">tes3item</a>, string): The item to drop.</li>
+<li><code>itemData</code> (<a href="../tes3itemData/">tes3itemData</a>): If provided, it will check for the specific data to drop it.</li>
 <li><code>count</code> (number): The number of items to drop.</li>
-<li><code>position</code> (<a href="../../types/tes3vector3">tes3vector3</a>): A vector determining placement location.</li>
-<li><code>orientation</code> (<a href="../../types/tes3vector3">tes3vector3</a>): A vector determining placement rotation.</li>
+<li><code>position</code> (<a href="../tes3vector3/">tes3vector3</a>): A vector determining placement location.</li>
+<li><code>orientation</code> (<a href="../tes3vector3/">tes3vector3</a>): A vector determining placement rotation.</li>
 <li><code>ignoreItemData</code> (boolean)</li>
 </ul>
 <hr />
@@ -15128,12 +15128,12 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>item</code> (<a href="../../types/tes3item">tes3item</a>, string): The item to search for.</li>
-<li><code>itemData</code> (<a href="../../types/tes3itemData">tes3itemData</a>): <em>Optional</em>. If provided, it will check for the specific data as well.</li>
+<li><code>item</code> (<a href="../tes3item/">tes3item</a>, string): The item to search for.</li>
+<li><code>itemData</code> (<a href="../tes3itemData/">tes3itemData</a>): <em>Optional</em>. If provided, it will check for the specific data as well.</li>
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3itemStack">tes3itemStack</a>)</li>
+<li><code>result</code> (<a href="../tes3itemStack/">tes3itemStack</a>)</li>
 </ul>
 <hr />
 <h3 id="getitemcount"><code>getItemCount</code><a class="headerlink" href="#getitemcount" title="Permanent link">⚓︎</a></h3>
@@ -15144,7 +15144,7 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>item</code> (<a href="../../types/tes3item">tes3item</a>, string): The item to check for.</li>
+<li><code>item</code> (<a href="../tes3item/">tes3item</a>, string): The item to check for.</li>
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
@@ -15160,9 +15160,9 @@
 <p><strong>Parameters</strong>:</p>
 <ul>
 <li><code>params</code> (table)<ul>
-<li><code>mobile</code> (<a href="../../types/tes3mobileActor">tes3mobileActor</a>, <a href="../../types/tes3reference">tes3reference</a>, string): <em>Optional</em>. The mobile actor whose stats will be updated.</li>
-<li><code>item</code> (<a href="../../types/tes3item">tes3item</a>): The item to add.</li>
-<li><code>itemData</code> (<a href="../../types/tes3itemData">tes3itemData</a>): <em>Optional</em>. Any associated item data to add.</li>
+<li><code>mobile</code> (<a href="../tes3mobileActor/">tes3mobileActor</a>, <a href="../tes3reference/">tes3reference</a>, string): <em>Optional</em>. The mobile actor whose stats will be updated.</li>
+<li><code>item</code> (<a href="../tes3item/">tes3item</a>): The item to add.</li>
+<li><code>itemData</code> (<a href="../tes3itemData/">tes3itemData</a>): <em>Optional</em>. Any associated item data to add.</li>
 <li><code>count</code> (number): <em>Default</em>: <code>1</code>. The number of items to add.</li>
 <li><code>deleteItemData</code> (boolean): <em>Default</em>: <code>false</code>. If set, the itemData will be deleted after being removed.</li>
 </ul>
@@ -15177,7 +15177,7 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>mobile</code> (<a href="../../types/tes3mobileActor">tes3mobileActor</a>): <em>Optional</em>. The mobile actor whose stats will be updated.</li>
+<li><code>mobile</code> (<a href="../tes3mobileActor/">tes3mobileActor</a>): <em>Optional</em>. The mobile actor whose stats will be updated.</li>
 </ul>
 
   <hr>
@@ -15185,7 +15185,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 24, 2023 16:07:13</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 25, 2023 10:03:48</span>
       
         <br>
         Created:

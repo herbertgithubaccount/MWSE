@@ -15274,7 +15274,7 @@
 -->
 
 <p>A game structure that keeps track of a magic source and all the actors it affects. Each spell cast, alchemy or enchanted item use is a magic source. Area effect magic can hit multiple actors and have up to 8 effects. Individual magic effects are <code>tes3magicEffectInstance</code>s.</p>
-<p>This type inherits the following: <a href="../../types/tes3baseObject">tes3baseObject</a></p>
+<p>This type inherits the following: <a href="../tes3baseObject/">tes3baseObject</a></p>
 <h2 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">⚓︎</a></h2>
 <h3 id="blocked"><code>blocked</code><a class="headerlink" href="#blocked" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">blocked</div>
@@ -15300,7 +15300,7 @@
 <p><em>Read-only</em>. No description yet available.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3reference">tes3reference</a>)</li>
+<li><code>result</code> (<a href="../tes3reference/">tes3reference</a>)</li>
 </ul>
 <hr />
 <h3 id="corprushourssincelastworsen"><code>corprusHoursSinceLastWorsen</code><a class="headerlink" href="#corprushourssincelastworsen" title="Permanent link">⚓︎</a></h3>
@@ -15345,7 +15345,7 @@
 <p><em>Read-only</em>. No description yet available.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3item">tes3item</a>)</li>
+<li><code>result</code> (<a href="../tes3item/">tes3item</a>)</li>
 </ul>
 <hr />
 <h3 id="itemdata"><code>itemData</code><a class="headerlink" href="#itemdata" title="Permanent link">⚓︎</a></h3>
@@ -15354,7 +15354,7 @@
 <p><em>Read-only</em>. No description yet available.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3itemData">tes3itemData</a>)</li>
+<li><code>result</code> (<a href="../tes3itemData/">tes3itemData</a>)</li>
 </ul>
 <hr />
 <h3 id="itemid"><code>itemID</code><a class="headerlink" href="#itemid" title="Permanent link">⚓︎</a></h3>
@@ -15417,7 +15417,7 @@
 <p><em>Read-only</em>. No description yet available.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3mobileProjectile">tes3mobileProjectile</a>)</li>
+<li><code>result</code> (<a href="../tes3mobileProjectile/">tes3mobileProjectile</a>)</li>
 </ul>
 <hr />
 <h3 id="serialnumber"><code>serialNumber</code><a class="headerlink" href="#serialnumber" title="Permanent link">⚓︎</a></h3>
@@ -15435,7 +15435,7 @@
 <p><em>Read-only</em>. No description yet available.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3alchemy">tes3alchemy</a>, <a href="../../types/tes3enchantment">tes3enchantment</a>, <a href="../../types/tes3spell">tes3spell</a>)</li>
+<li><code>result</code> (<a href="../tes3alchemy/">tes3alchemy</a>, <a href="../tes3enchantment/">tes3enchantment</a>, <a href="../tes3spell/">tes3spell</a>)</li>
 </ul>
 <hr />
 <h3 id="sourceeffects"><code>sourceEffects</code><a class="headerlink" href="#sourceeffects" title="Permanent link">⚓︎</a></h3>
@@ -15444,7 +15444,7 @@
 <p><em>Read-only</em>. An array-style table holding spell effects this magic source has.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3effect">tes3effect</a>[])</li>
+<li><code>result</code> (<a href="../tes3effect/">tes3effect</a>[])</li>
 </ul>
 <hr />
 <h3 id="sourceless"><code>sourceless</code><a class="headerlink" href="#sourceless" title="Permanent link">⚓︎</a></h3>
@@ -15498,7 +15498,7 @@
 <p><em>Read-only</em>. No description yet available.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3reference">tes3reference</a>)</li>
+<li><code>result</code> (<a href="../tes3reference/">tes3reference</a>)</li>
 </ul>
 <hr />
 <h3 id="timestampcastbegin"><code>timestampCastBegin</code><a class="headerlink" href="#timestampcastbegin" title="Permanent link">⚓︎</a></h3>
@@ -15531,11 +15531,11 @@
 <p><strong>Parameters</strong>:</p>
 <ul>
 <li><code>index</code> (number): The index in the effect list to fetch, between <code>0</code> and <code>7</code>.</li>
-<li><code>target</code> (<a href="../../types/tes3reference">tes3reference</a>): The target actor for the effect.</li>
+<li><code>target</code> (<a href="../tes3reference/">tes3reference</a>): The target actor for the effect.</li>
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3magicEffectInstance">tes3magicEffectInstance</a>)</li>
+<li><code>result</code> (<a href="../tes3magicEffectInstance/">tes3magicEffectInstance</a>)</li>
 </ul>
 <hr />
 <h3 id="getmagnitudeforindex"><code>getMagnitudeForIndex</code><a class="headerlink" href="#getmagnitudeforindex" title="Permanent link">⚓︎</a></h3>
@@ -15563,10 +15563,10 @@
 <ul>
 <li><code>params</code> (table)<ul>
 <li><code>effectIndex</code> (number): The index in the effect whose visual will be played, a number in range [0, 7].</li>
-<li><code>position</code> (<a href="../../types/tes3vector3">tes3vector3</a>, table): A table or a <code>tes3vector3</code> holding <code>x</code>, <code>y</code> and <code>z</code> coordinates at which the visual effect will be played.</li>
-<li><code>visual</code> (<a href="../../types/tes3physicalObject">tes3physicalObject</a>, string): The visual effect to be played.</li>
+<li><code>position</code> (<a href="../tes3vector3/">tes3vector3</a>, table): A table or a <code>tes3vector3</code> holding <code>x</code>, <code>y</code> and <code>z</code> coordinates at which the visual effect will be played.</li>
+<li><code>visual</code> (<a href="../tes3physicalObject/">tes3physicalObject</a>, string): The visual effect to be played.</li>
 <li><code>scale</code> (number): <em>Default</em>: <code>1</code>. The scale of the effect. Only applies to effects that are designed to be scaled.</li>
-<li><code>reference</code> (<a href="../../types/tes3reference">tes3reference</a>, string): A reference on which the visual effect will be played.</li>
+<li><code>reference</code> (<a href="../tes3reference/">tes3reference</a>, string): A reference on which the visual effect will be played.</li>
 </ul>
 </li>
 </ul>
@@ -15600,7 +15600,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">July 17, 2023 02:26:10</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 25, 2023 10:03:48</span>
       
         <br>
         Created:

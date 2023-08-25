@@ -15820,7 +15820,7 @@
 -->
 
 <p>Object that represent a camera. Position and orientation is determined by parent properties. This enables the cameras to be attached to scene graph objects and follow them automatically, as they move.</p>
-<p>This type inherits the following: <a href="../../types/niAVObject">niAVObject</a>, <a href="../../types/niObjectNET">niObjectNET</a>, <a href="../../types/niObject">niObject</a></p>
+<p>This type inherits the following: <a href="../niAVObject/">niAVObject</a>, <a href="../niObjectNET/">niObjectNET</a>, <a href="../niObject/">niObject</a></p>
 <h2 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">⚓︎</a></h2>
 <h3 id="alphaproperty"><code>alphaProperty</code><a class="headerlink" href="#alphaproperty" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">alphaproperty</div>
@@ -15828,7 +15828,7 @@
 <p>Convenient access to this object's alpha property. Setting this value to be nil will erase the property, while setting it to a valid alpha property will set (or replace) it.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/niAlphaProperty">niAlphaProperty</a>, nil)</li>
+<li><code>result</code> (<a href="../niAlphaProperty/">niAlphaProperty</a>, nil)</li>
 </ul>
 <hr />
 <h3 id="appculled"><code>appCulled</code><a class="headerlink" href="#appculled" title="Permanent link">⚓︎</a></h3>
@@ -15846,7 +15846,7 @@
 <p><em>Read-only</em>. The first controller available on the object.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/niTimeController">niTimeController</a>)</li>
+<li><code>result</code> (<a href="../niTimeController/">niTimeController</a>)</li>
 </ul>
 <hr />
 <h3 id="cullingplanes"><code>cullingPlanes</code><a class="headerlink" href="#cullingplanes" title="Permanent link">⚓︎</a></h3>
@@ -15855,7 +15855,7 @@
 <p>The culling planes of the camera: near, far, left, right, top, and bottom.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3vector4">tes3vector4</a>[])</li>
+<li><code>result</code> (<a href="../tes3vector4/">tes3vector4</a>[])</li>
 </ul>
 <hr />
 <h3 id="extradata"><code>extraData</code><a class="headerlink" href="#extradata" title="Permanent link">⚓︎</a></h3>
@@ -15864,7 +15864,7 @@
 <p><em>Read-only</em>. The first extra data available on the object.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/niExtraData">niExtraData</a>)</li>
+<li><code>result</code> (<a href="../niExtraData/">niExtraData</a>)</li>
 </ul>
 <hr />
 <h3 id="flags"><code>flags</code><a class="headerlink" href="#flags" title="Permanent link">⚓︎</a></h3>
@@ -15882,7 +15882,7 @@
 <p>Convenient access to this object's fog property. Setting this value to be nil will erase the property, while setting it to a valid fog property will set (or replace) it.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/niFogProperty">niFogProperty</a>, nil)</li>
+<li><code>result</code> (<a href="../niFogProperty/">niFogProperty</a>, nil)</li>
 </ul>
 <hr />
 <h3 id="lodadjust"><code>lodAdjust</code><a class="headerlink" href="#lodadjust" title="Permanent link">⚓︎</a></h3>
@@ -15900,7 +15900,7 @@
 <p>Convenient access to this object's material property. Setting this value to be nil will erase the property, while setting it to a valid material property will set (or replace) it.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/niMaterialProperty">niMaterialProperty</a>, nil)</li>
+<li><code>result</code> (<a href="../niMaterialProperty/">niMaterialProperty</a>, nil)</li>
 </ul>
 <hr />
 <h3 id="name"><code>name</code><a class="headerlink" href="#name" title="Permanent link">⚓︎</a></h3>
@@ -15918,7 +15918,7 @@
 <p><em>Read-only</em>. The object's parent. It may not have one if it is not attached to the scene.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/niNode">niNode</a>)</li>
+<li><code>result</code> (<a href="../niNode/">niNode</a>)</li>
 </ul>
 <hr />
 <h3 id="port"><code>port</code><a class="headerlink" href="#port" title="Permanent link">⚓︎</a></h3>
@@ -15927,7 +15927,7 @@
 <p>The port on the backbuffer of the camera. Represents the rectangular portion of the rendering backbuffer to which the camera's view rectangle is drawn (purely 2D mapping). These values are called port settings. The ordering: X - left, Y - right, Z - top and W - bottom. All port settings must be in the unit interval [0, 1]. The left edge of the backbuffer is 0.0, the right edge is 1.0. The top edge of the backbuffer is 1.0, the bottom edge is 0.0.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3vector4">tes3vector4</a>)</li>
+<li><code>result</code> (<a href="../tes3vector4/">tes3vector4</a>)</li>
 </ul>
 <hr />
 <h3 id="properties_1"><code>properties</code><a class="headerlink" href="#properties_1" title="Permanent link">⚓︎</a></h3>
@@ -15936,7 +15936,7 @@
 <p><em>Read-only</em>. The list of properties attached to this <code>niAVObject</code>.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/niPropertyLinkedList">niPropertyLinkedList</a>)</li>
+<li><code>result</code> (<a href="../niPropertyLinkedList/">niPropertyLinkedList</a>)</li>
 </ul>
 <hr />
 <h3 id="refcount"><code>refCount</code><a class="headerlink" href="#refcount" title="Permanent link">⚓︎</a></h3>
@@ -15954,7 +15954,7 @@
 <p><em>Read-only</em>. The renderer of the camera.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/niRenderer">niRenderer</a>)</li>
+<li><code>result</code> (<a href="../niRenderer/">niRenderer</a>)</li>
 </ul>
 <hr />
 <h3 id="rotation"><code>rotation</code><a class="headerlink" href="#rotation" title="Permanent link">⚓︎</a></h3>
@@ -15963,7 +15963,7 @@
 <p>The object's local rotation matrix.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3matrix33">tes3matrix33</a>)</li>
+<li><code>result</code> (<a href="../tes3matrix33/">tes3matrix33</a>)</li>
 </ul>
 <hr />
 <h3 id="rtti"><code>RTTI</code><a class="headerlink" href="#rtti" title="Permanent link">⚓︎</a></h3>
@@ -15972,7 +15972,7 @@
 <p><em>Read-only</em>. The runtime type information for this object. This is an alias for the <code>.runTimeTypeInformation</code> property.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/niRTTI">niRTTI</a>)</li>
+<li><code>result</code> (<a href="../niRTTI/">niRTTI</a>)</li>
 </ul>
 <hr />
 <h3 id="runtimetypeinformation"><code>runTimeTypeInformation</code><a class="headerlink" href="#runtimetypeinformation" title="Permanent link">⚓︎</a></h3>
@@ -15981,7 +15981,7 @@
 <p><em>Read-only</em>. The runtime type information for this object.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/niRTTI">niRTTI</a>)</li>
+<li><code>result</code> (<a href="../niRTTI/">niRTTI</a>)</li>
 </ul>
 <hr />
 <h3 id="scale"><code>scale</code><a class="headerlink" href="#scale" title="Permanent link">⚓︎</a></h3>
@@ -15999,7 +15999,7 @@
 <p><em>Read-only</em>. The scene of the camera.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/niNode">niNode</a>)</li>
+<li><code>result</code> (<a href="../niNode/">niNode</a>)</li>
 </ul>
 <hr />
 <h3 id="stencilproperty"><code>stencilProperty</code><a class="headerlink" href="#stencilproperty" title="Permanent link">⚓︎</a></h3>
@@ -16008,7 +16008,7 @@
 <p>Convenient access to this object's stencil property. Setting this value to be nil will erase the property, while setting it to a valid stencil property will set (or replace) it.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/niStencilProperty">niStencilProperty</a>, nil)</li>
+<li><code>result</code> (<a href="../niStencilProperty/">niStencilProperty</a>, nil)</li>
 </ul>
 <hr />
 <h3 id="texturingproperty"><code>texturingProperty</code><a class="headerlink" href="#texturingproperty" title="Permanent link">⚓︎</a></h3>
@@ -16017,7 +16017,7 @@
 <p>Convenient access to this object's texturing property. Setting this value to be nil will erase the property, while setting it to a valid texturing property will set (or replace) it.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/niTexturingProperty">niTexturingProperty</a>, nil)</li>
+<li><code>result</code> (<a href="../niTexturingProperty/">niTexturingProperty</a>, nil)</li>
 </ul>
 <hr />
 <h3 id="translation"><code>translation</code><a class="headerlink" href="#translation" title="Permanent link">⚓︎</a></h3>
@@ -16026,7 +16026,7 @@
 <p>The object's local translation vector.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3vector3">tes3vector3</a>)</li>
+<li><code>result</code> (<a href="../tes3vector3/">tes3vector3</a>)</li>
 </ul>
 <hr />
 <h3 id="velocity"><code>velocity</code><a class="headerlink" href="#velocity" title="Permanent link">⚓︎</a></h3>
@@ -16035,7 +16035,7 @@
 <p>The object's local velocity.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3vector3">tes3vector3</a>)</li>
+<li><code>result</code> (<a href="../tes3vector3/">tes3vector3</a>)</li>
 </ul>
 <hr />
 <h3 id="vertexcolorproperty"><code>vertexColorProperty</code><a class="headerlink" href="#vertexcolorproperty" title="Permanent link">⚓︎</a></h3>
@@ -16044,7 +16044,7 @@
 <p>Convenient access to this object's vertex coloring property. Setting this value to be nil will erase the property, while setting it to a valid vertex coloring property will set (or replace) it.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/niVertexColorProperty">niVertexColorProperty</a>, nil)</li>
+<li><code>result</code> (<a href="../niVertexColorProperty/">niVertexColorProperty</a>, nil)</li>
 </ul>
 <hr />
 <h3 id="viewdistance"><code>viewDistance</code><a class="headerlink" href="#viewdistance" title="Permanent link">⚓︎</a></h3>
@@ -16062,7 +16062,7 @@
 <p>The world coordinates of the object's bounds origin.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3vector3">tes3vector3</a>)</li>
+<li><code>result</code> (<a href="../tes3vector3/">tes3vector3</a>)</li>
 </ul>
 <hr />
 <h3 id="worldboundradius"><code>worldBoundRadius</code><a class="headerlink" href="#worldboundradius" title="Permanent link">⚓︎</a></h3>
@@ -16080,7 +16080,7 @@
 <p>Defines the X-axis of the camera.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3vector3">tes3vector3</a>)</li>
+<li><code>result</code> (<a href="../tes3vector3/">tes3vector3</a>)</li>
 </ul>
 <hr />
 <h3 id="worldright"><code>worldRight</code><a class="headerlink" href="#worldright" title="Permanent link">⚓︎</a></h3>
@@ -16089,7 +16089,7 @@
 <p>Defines the Z-axis of the camera.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3vector3">tes3vector3</a>)</li>
+<li><code>result</code> (<a href="../tes3vector3/">tes3vector3</a>)</li>
 </ul>
 <hr />
 <h3 id="worldtocamera"><code>worldToCamera</code><a class="headerlink" href="#worldtocamera" title="Permanent link">⚓︎</a></h3>
@@ -16098,7 +16098,7 @@
 <p>The world-to-camera transform matrix in row-major order.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3matrix44">tes3matrix44</a>)</li>
+<li><code>result</code> (<a href="../tes3matrix44/">tes3matrix44</a>)</li>
 </ul>
 <hr />
 <h3 id="worldtransform"><code>worldTransform</code><a class="headerlink" href="#worldtransform" title="Permanent link">⚓︎</a></h3>
@@ -16107,7 +16107,7 @@
 <p>The object's transformations in the world space.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3transform">tes3transform</a>)</li>
+<li><code>result</code> (<a href="../tes3transform/">tes3transform</a>)</li>
 </ul>
 <hr />
 <h3 id="worldup"><code>worldUp</code><a class="headerlink" href="#worldup" title="Permanent link">⚓︎</a></h3>
@@ -16116,7 +16116,7 @@
 <p>Defines the Y-axis of the camera.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3vector3">tes3vector3</a>)</li>
+<li><code>result</code> (<a href="../tes3vector3/">tes3vector3</a>)</li>
 </ul>
 <hr />
 <h3 id="zbufferproperty"><code>zBufferProperty</code><a class="headerlink" href="#zbufferproperty" title="Permanent link">⚓︎</a></h3>
@@ -16125,7 +16125,7 @@
 <p>Convenient access to this object's z-buffer property. Setting this value to be nil will erase the property, while setting it to a valid z-buffer property will set (or replace) it.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/niZBufferProperty">niZBufferProperty</a>, nil)</li>
+<li><code>result</code> (<a href="../niZBufferProperty/">niZBufferProperty</a>, nil)</li>
 </ul>
 <hr />
 <h2 id="methods">Methods<a class="headerlink" href="#methods" title="Permanent link">⚓︎</a></h2>
@@ -16137,7 +16137,7 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>extraData</code> (<a href="../../types/niExtraData">niExtraData</a>)</li>
+<li><code>extraData</code> (<a href="../niExtraData/">niExtraData</a>)</li>
 </ul>
 <hr />
 <h3 id="attachproperty"><code>attachProperty</code><a class="headerlink" href="#attachproperty" title="Permanent link">⚓︎</a></h3>
@@ -16148,7 +16148,7 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>property</code> (<a href="../../types/niProperty">niProperty</a>)</li>
+<li><code>property</code> (<a href="../niProperty/">niProperty</a>)</li>
 </ul>
 <hr />
 <h3 id="clear"><code>clear</code><a class="headerlink" href="#clear" title="Permanent link">⚓︎</a></h3>
@@ -16188,7 +16188,7 @@
 </code></pre></div>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/niObject">niObject</a>)</li>
+<li><code>result</code> (<a href="../niObject/">niObject</a>)</li>
 </ul>
 <hr />
 <h3 id="copytransforms"><code>copyTransforms</code><a class="headerlink" href="#copytransforms" title="Permanent link">⚓︎</a></h3>
@@ -16199,7 +16199,7 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>source</code> (<a href="../../types/niAVObject">niAVObject</a>, <a href="../../types/tes3transform">tes3transform</a>)</li>
+<li><code>source</code> (<a href="../niAVObject/">niAVObject</a>, <a href="../tes3transform/">tes3transform</a>)</li>
 </ul>
 <hr />
 <h3 id="detachallproperties"><code>detachAllProperties</code><a class="headerlink" href="#detachallproperties" title="Permanent link">⚓︎</a></h3>
@@ -16210,7 +16210,7 @@
 </code></pre></div>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/niProperty">niProperty</a>[])</li>
+<li><code>result</code> (<a href="../niProperty/">niProperty</a>[])</li>
 </ul>
 <hr />
 <h3 id="detachproperty"><code>detachProperty</code><a class="headerlink" href="#detachproperty" title="Permanent link">⚓︎</a></h3>
@@ -16225,7 +16225,7 @@
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/niProperty">niProperty</a>)</li>
+<li><code>result</code> (<a href="../niProperty/">niProperty</a>)</li>
 </ul>
 <hr />
 <h3 id="getgamereference"><code>getGameReference</code><a class="headerlink" href="#getgamereference" title="Permanent link">⚓︎</a></h3>
@@ -16240,7 +16240,7 @@
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>reference</code> (<a href="../../types/tes3reference">tes3reference</a>)</li>
+<li><code>reference</code> (<a href="../tes3reference/">tes3reference</a>)</li>
 </ul>
 <hr />
 <h3 id="getobjectbyname"><code>getObjectByName</code><a class="headerlink" href="#getobjectbyname" title="Permanent link">⚓︎</a></h3>
@@ -16255,7 +16255,7 @@
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/niAVObject">niAVObject</a>)</li>
+<li><code>result</code> (<a href="../niAVObject/">niAVObject</a>)</li>
 </ul>
 <hr />
 <h3 id="getproperty"><code>getProperty</code><a class="headerlink" href="#getproperty" title="Permanent link">⚓︎</a></h3>
@@ -16270,7 +16270,7 @@
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/niProperty">niProperty</a>)</li>
+<li><code>result</code> (<a href="../niProperty/">niProperty</a>)</li>
 </ul>
 <hr />
 <h3 id="getstringdatastartingwith"><code>getStringDataStartingWith</code><a class="headerlink" href="#getstringdatastartingwith" title="Permanent link">⚓︎</a></h3>
@@ -16285,7 +16285,7 @@
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>extra</code> (<a href="../../types/niStringExtraData">niStringExtraData</a>)</li>
+<li><code>extra</code> (<a href="../niStringExtraData/">niStringExtraData</a>)</li>
 </ul>
 <hr />
 <h3 id="getstringdatawith"><code>getStringDataWith</code><a class="headerlink" href="#getstringdatawith" title="Permanent link">⚓︎</a></h3>
@@ -16300,7 +16300,7 @@
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>extra</code> (<a href="../../types/niStringExtraData">niStringExtraData</a>)</li>
+<li><code>extra</code> (<a href="../niStringExtraData/">niStringExtraData</a>)</li>
 </ul>
 <hr />
 <h3 id="hasstringdatastartingwith"><code>hasStringDataStartingWith</code><a class="headerlink" href="#hasstringdatastartingwith" title="Permanent link">⚓︎</a></h3>
@@ -16352,7 +16352,7 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>camera</code> (<a href="../../types/niCamera">niCamera</a>)</li>
+<li><code>camera</code> (<a href="./">niCamera</a>)</li>
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
@@ -16397,8 +16397,8 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>point</code> (<a href="../../types/tes3vector3">tes3vector3</a>)</li>
-<li><code>up</code> (<a href="../../types/tes3vector3">tes3vector3</a>)</li>
+<li><code>point</code> (<a href="../tes3vector3/">tes3vector3</a>)</li>
+<li><code>up</code> (<a href="../tes3vector3/">tes3vector3</a>)</li>
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
@@ -16413,7 +16413,7 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>controller</code> (<a href="../../types/niTimeController">niTimeController</a>)</li>
+<li><code>controller</code> (<a href="../niTimeController/">niTimeController</a>)</li>
 </ul>
 <hr />
 <h3 id="propagatepositionchange"><code>propagatePositionChange</code><a class="headerlink" href="#propagatepositionchange" title="Permanent link">⚓︎</a></h3>
@@ -16458,7 +16458,7 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>controller</code> (<a href="../../types/niTimeController">niTimeController</a>)</li>
+<li><code>controller</code> (<a href="../niTimeController/">niTimeController</a>)</li>
 </ul>
 <hr />
 <h3 id="removeextradata"><code>removeExtraData</code><a class="headerlink" href="#removeextradata" title="Permanent link">⚓︎</a></h3>
@@ -16469,7 +16469,7 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>extraData</code> (<a href="../../types/niExtraData">niExtraData</a>)</li>
+<li><code>extraData</code> (<a href="../niExtraData/">niExtraData</a>)</li>
 </ul>
 <hr />
 <h3 id="savebinary"><code>saveBinary</code><a class="headerlink" href="#savebinary" title="Permanent link">⚓︎</a></h3>
@@ -16548,12 +16548,12 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>point</code> (<a href="../../types/tes3vector2">tes3vector2</a>): The screen position to calculate a world ray for. Screen space is measured as ([-screenWidth/2, screenWidth/2], [-screenHeight/2, screenHeight/2]) with up-right being positive and an origin at the center of the screen.</li>
+<li><code>point</code> (<a href="../tes3vector2/">tes3vector2</a>): The screen position to calculate a world ray for. Screen space is measured as ([-screenWidth/2, screenWidth/2], [-screenHeight/2, screenHeight/2]) with up-right being positive and an origin at the center of the screen.</li>
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>origin</code> (<a href="../../types/tes3vector3">tes3vector3</a>): The world point that the given screen position looks out from.</li>
-<li><code>direction</code> (<a href="../../types/tes3vector3">tes3vector3</a>): The look direction of the camera from the given origin point.</li>
+<li><code>origin</code> (<a href="../tes3vector3/">tes3vector3</a>): The world point that the given screen position looks out from.</li>
+<li><code>direction</code> (<a href="../tes3vector3/">tes3vector3</a>): The look direction of the camera from the given origin point.</li>
 </ul>
 <hr />
 <h3 id="worldpointtoscreenpoint"><code>worldPointToScreenPoint</code><a class="headerlink" href="#worldpointtoscreenpoint" title="Permanent link">⚓︎</a></h3>
@@ -16564,11 +16564,11 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>point</code> (<a href="../../types/tes3vector3">tes3vector3</a>): The world position to calculate screen position for.</li>
+<li><code>point</code> (<a href="../tes3vector3/">tes3vector3</a>): The world position to calculate screen position for.</li>
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>screenPosition</code> (<a href="../../types/tes3vector2">tes3vector2</a>): The screen space position. Screen space is measured as ([-screenWidth/2, screenWidth/2], [-screenHeight/2, screenHeight/2]) with up-right being positive and an origin at the center of the screen.</li>
+<li><code>screenPosition</code> (<a href="../tes3vector2/">tes3vector2</a>): The screen space position. Screen space is measured as ([-screenWidth/2, screenWidth/2], [-screenHeight/2, screenHeight/2]) with up-right being positive and an origin at the center of the screen.</li>
 </ul>
 
   <hr>
@@ -16576,7 +16576,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">February 11, 2023 19:45:50</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 25, 2023 10:03:48</span>
       
         <br>
         Created:

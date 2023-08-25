@@ -14920,7 +14920,7 @@
 <span class="c1">-- Print &quot;foo&quot; to the MWSE log, prefixed with the function above.</span>
 <span class="n">myFunctionName</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">)</span>
 </code></pre></div>
-<p>For a broader introduction to the Lua scripting language, refer to the <a href="../introduction-to-lua">Introduction to Lua</a> guide.</p>
+<p>For a broader introduction to the Lua scripting language, refer to the <a href="../introduction-to-lua/">Introduction to Lua</a> guide.</p>
 <h2 id="morrowind-object-types">Morrowind Object Types<a class="headerlink" href="#morrowind-object-types" title="Permanent link">⚓︎</a></h2>
 <p>MWSE provides many bindings to more directly manipulate the object types that the Morrowind engine uses. In this example, we find the skooma object, and rename it <em>No-No Juice</em>.</p>
 <div class="highlight"><pre><span></span><code><span class="c1">-- Tell MWSE that we want to find the skooma object.</span>
@@ -14929,7 +14929,7 @@
 <span class="c1">-- Set the skooma object&#39;s name.</span>
 <span class="n">skooma</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;No-No Juice&quot;</span>
 </code></pre></div>
-<p>A complete list of exposed TES3 types and their associated properties/functions can be seen on the respective <code>tes3 types</code>_ page.</p>
+<p>A complete list of exposed TES3 types and their associated properties/functions can be seen on the respective <code>tes3 types</code> page.</p>
 <h2 id="events">Events<a class="headerlink" href="#events" title="Permanent link">⚓︎</a></h2>
 <p>Events are the primary way in which script modules interact with the game. There are many event hooks, covering everything from player level up to object collisions to world activations. Using an event typically looks like this:</p>
 <div class="highlight"><pre><span></span><code><span class="c1">-- Define our callback, which will get called when the event happens.</span>
@@ -14948,10 +14948,10 @@
 <div class="highlight"><pre><span></span><code><span class="c1">-- If we use this instead of the above registration, we filter to key 22 (U).</span>
 <span class="n">event</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">tes3</span><span class="p">.</span><span class="n">event</span><span class="p">.</span><span class="n">key</span><span class="p">,</span> <span class="n">myKeyEvent</span><span class="p">,</span> <span class="p">{</span> <span class="n">filter</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">scanCode</span><span class="p">.</span><span class="n">u</span> <span class="p">})</span>
 </code></pre></div>
-<p>For a broader introduction to event based programming, refer to the <a href="../introduction-to-event-based-programming">Introduction to Event Based Programming</a> guide.</p>
+<p>For a broader introduction to event based programming, refer to the <a href="../introduction-to-event-based-programming/">Introduction to Event Based Programming</a> guide.</p>
 <p>The details of which events are available and what event data is exposed to them can be found on the events page.</p>
 <h2 id="support-libraries">Support Libraries<a class="headerlink" href="#support-libraries" title="Permanent link">⚓︎</a></h2>
-<p>On top of all this are support libraries to help make modding easier. An example library is <a href="../../apis/timer">timer</a>, which helps to manage time-based operations.</p>
+<p>On top of all this are support libraries to help make modding easier. An example library is <a href="../apis/timer/">timer</a>, which helps to manage time-based operations.</p>
 <div class="highlight"><pre><span></span><code><span class="c1">-- Define the function we want to call when our timer completes.</span>
 <span class="kd">local</span> <span class="kr">function</span> <span class="nf">myTimerCallback</span><span class="p">()</span>
     <span class="n">tes3</span><span class="p">.</span><span class="n">messageBox</span><span class="p">({</span> <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;My timer completed!&quot;</span> <span class="p">})</span>
@@ -14983,14 +14983,14 @@
 </code></pre></div>
 <p>OpenMW will not be adding compatibility with MWSE mods, legacy or Lua-based. But script overrides exposes a way for modders to write mods that have extended MWSE functionality without causing issues in OpenMW. Basic functionality can be kept to mwscript, while the script can be overriden to enable advanced functionality using Lua.</p>
 <h2 id="getting-started">Getting Started<a class="headerlink" href="#getting-started" title="Permanent link">⚓︎</a></h2>
-<p>Not sure where to start? Take a look at setting up a <a href="../development-workflows">Development Workflow</a>, Then, try the <a href="../creating-a-mod">Creating a Mod</a> guide, which covers the creation of a new mod from start to finish using MWSE-Lua.</p>
+<p>Not sure where to start? Take a look at setting up a <a href="../development-workflows/">Development Workflow</a>, Then, try the <a href="../creating-a-mod/">Creating a Mod</a> guide, which covers the creation of a new mod from start to finish using MWSE-Lua.</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">July 1, 2022 07:25:26</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 25, 2023 09:54:27</span>
       
         <br>
         Created:

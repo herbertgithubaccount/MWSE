@@ -15905,7 +15905,7 @@
 
 <p>A reference is a sort of container structure for objects. It holds a base object, as well as various variables associated with that object that make it unique.</p>
 <p>For example, many doors may share the same base object. However, each door reference might have a different owner, different lock/trap statuses, etc. that make the object unique.</p>
-<p>This type inherits the following: <a href="../../types/tes3object">tes3object</a>, <a href="../../types/tes3baseObject">tes3baseObject</a></p>
+<p>This type inherits the following: <a href="../tes3object/">tes3object</a>, <a href="../tes3baseObject/">tes3baseObject</a></p>
 <h2 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">⚓︎</a></h2>
 <h3 id="activationreference"><code>activationReference</code><a class="headerlink" href="#activationreference" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">activationreference</div>
@@ -15913,7 +15913,7 @@
 <p>The current reference, if any, that this reference will activate.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3reference">tes3reference</a>)</li>
+<li><code>result</code> (<a href="./">tes3reference</a>)</li>
 </ul>
 <hr />
 <h3 id="attachments"><code>attachments</code><a class="headerlink" href="#attachments" title="Permanent link">⚓︎</a></h3>
@@ -15922,7 +15922,7 @@
 <p><em>Read-only</em>. A table with friendly named access to all supported attachments.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (table&lt;string, <a href="../../types/tes3bodyPartManager">tes3bodyPartManager</a>|<a href="../../types/tes3itemData">tes3itemData</a>|<a href="../../types/tes3lightNode">tes3lightNode</a>|<a href="../../types/tes3lockNode">tes3lockNode</a>|<a href="../../types/tes3mobileActor">tes3mobileActor</a>|<a href="../../types/tes3reference">tes3reference</a>|<a href="../../types/tes3travelDestinationNode">tes3travelDestinationNode</a>|<a href="../../types/tes3animationData">tes3animationData</a>&gt;)</li>
+<li><code>result</code> (table&lt;string, <a href="../tes3bodyPartManager/">tes3bodyPartManager</a>|<a href="../tes3itemData/">tes3itemData</a>|<a href="../tes3lightNode/">tes3lightNode</a>|<a href="../tes3lockNode/">tes3lockNode</a>|<a href="../tes3mobileActor/">tes3mobileActor</a>|<a href="./">tes3reference</a>|<a href="../tes3travelDestinationNode/">tes3travelDestinationNode</a>|<a href="../tes3animationData/">tes3animationData</a>&gt;)</li>
 </ul>
 <hr />
 <h3 id="baseobject"><code>baseObject</code><a class="headerlink" href="#baseobject" title="Permanent link">⚓︎</a></h3>
@@ -15931,7 +15931,7 @@
 <p><em>Read-only</em>. This is similar to the object field, but is guaranteed to provide the base-most object. If object is an actor clone, the base actor will be given instead.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3physicalObject">tes3physicalObject</a>)</li>
+<li><code>result</code> (<a href="../tes3physicalObject/">tes3physicalObject</a>)</li>
 </ul>
 <hr />
 <h3 id="blocked"><code>blocked</code><a class="headerlink" href="#blocked" title="Permanent link">⚓︎</a></h3>
@@ -15949,7 +15949,7 @@
 <p><em>Read-only</em>. Access to the reference's body part manager, if available. Typically this is only available on NPC references.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3bodyPartManager">tes3bodyPartManager</a>, nil)</li>
+<li><code>result</code> (<a href="../tes3bodyPartManager/">tes3bodyPartManager</a>, nil)</li>
 </ul>
 <hr />
 <h3 id="cell"><code>cell</code><a class="headerlink" href="#cell" title="Permanent link">⚓︎</a></h3>
@@ -15958,7 +15958,7 @@
 <p><em>Read-only</em>. The cell that the reference is currently in.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3cell">tes3cell</a>)</li>
+<li><code>result</code> (<a href="../tes3cell/">tes3cell</a>)</li>
 </ul>
 <hr />
 <h3 id="context"><code>context</code><a class="headerlink" href="#context" title="Permanent link">⚓︎</a></h3>
@@ -15967,7 +15967,7 @@
 <p><em>Read-only</em>. Access to the script context for this reference and its associated script.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3scriptContext">tes3scriptContext</a>)</li>
+<li><code>result</code> (<a href="../tes3scriptContext/">tes3scriptContext</a>)</li>
 </ul>
 <details class="example">
 <summary>Example: Checking reference's script variables</summary>
@@ -16061,7 +16061,7 @@
 <p><em>Read-only</em>. Returns the travel destination node for this reference, or <code>nil</code>. This can be used to determine where a given door links to.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3travelDestinationNode">tes3travelDestinationNode</a>, nil)</li>
+<li><code>result</code> (<a href="../tes3travelDestinationNode/">tes3travelDestinationNode</a>, nil)</li>
 </ul>
 <hr />
 <h3 id="disabled"><code>disabled</code><a class="headerlink" href="#disabled" title="Permanent link">⚓︎</a></h3>
@@ -16088,7 +16088,7 @@
 <p><em>Read-only</em>. The normalized forward or Y direction vector of the reference.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3vector3">tes3vector3</a>)</li>
+<li><code>result</code> (<a href="../tes3vector3/">tes3vector3</a>)</li>
 </ul>
 <hr />
 <h3 id="hasnocollision"><code>hasNoCollision</code><a class="headerlink" href="#hasnocollision" title="Permanent link">⚓︎</a></h3>
@@ -16160,7 +16160,7 @@
 <p>Gets or sets the attached <code>itemData</code> for this reference. If set to <code>nil</code>, the item data will be unhooked but not deleted.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3itemData">tes3itemData</a>)</li>
+<li><code>result</code> (<a href="../tes3itemData/">tes3itemData</a>)</li>
 </ul>
 <hr />
 <h3 id="leveledbasereference"><code>leveledBaseReference</code><a class="headerlink" href="#leveledbasereference" title="Permanent link">⚓︎</a></h3>
@@ -16169,7 +16169,7 @@
 <p><em>Read-only</em>. If this reference is a leveled spawn, this is the leveled creature spawn reference. If this reference wasn't the result of a leveled spawn, the value is <code>nil</code>.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3reference">tes3reference</a>, nil)</li>
+<li><code>result</code> (<a href="./">tes3reference</a>, nil)</li>
 </ul>
 <hr />
 <h3 id="light"><code>light</code><a class="headerlink" href="#light" title="Permanent link">⚓︎</a></h3>
@@ -16178,7 +16178,7 @@
 <p><em>Read-only</em>. Direct access to the scene graph light, if a dynamic light is set.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/niPointLight">niPointLight</a>)</li>
+<li><code>result</code> (<a href="../niPointLight/">niPointLight</a>)</li>
 </ul>
 <hr />
 <h3 id="locknode"><code>lockNode</code><a class="headerlink" href="#locknode" title="Permanent link">⚓︎</a></h3>
@@ -16187,7 +16187,7 @@
 <p><em>Read-only</em>. Quick access to the reference's lock node, if any. Doors or containers that aren't locked nor trapped have this property set to <code>nil</code>.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3lockNode">tes3lockNode</a>, nil)</li>
+<li><code>result</code> (<a href="../tes3lockNode/">tes3lockNode</a>, nil)</li>
 </ul>
 <hr />
 <h3 id="mesh"><code>mesh</code><a class="headerlink" href="#mesh" title="Permanent link">⚓︎</a></h3>
@@ -16205,7 +16205,7 @@
 <p><em>Read-only</em>. Access to the attached mobile object, if applicable.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3mobileCreature">tes3mobileCreature</a>, <a href="../../types/tes3mobileNPC">tes3mobileNPC</a>, <a href="../../types/tes3mobilePlayer">tes3mobilePlayer</a>, <a href="../../types/tes3mobileProjectile">tes3mobileProjectile</a>, <a href="../../types/tes3mobileSpellProjectile">tes3mobileSpellProjectile</a>, nil)</li>
+<li><code>result</code> (<a href="../tes3mobileCreature/">tes3mobileCreature</a>, <a href="../tes3mobileNPC/">tes3mobileNPC</a>, <a href="../tes3mobilePlayer/">tes3mobilePlayer</a>, <a href="../tes3mobileProjectile/">tes3mobileProjectile</a>, <a href="../tes3mobileSpellProjectile/">tes3mobileSpellProjectile</a>, nil)</li>
 </ul>
 <hr />
 <h3 id="modified"><code>modified</code><a class="headerlink" href="#modified" title="Permanent link">⚓︎</a></h3>
@@ -16223,7 +16223,7 @@
 <p>The next object in parent collection's list.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3object">tes3object</a>)</li>
+<li><code>result</code> (<a href="../tes3object/">tes3object</a>)</li>
 </ul>
 <hr />
 <h3 id="nextnode"><code>nextNode</code><a class="headerlink" href="#nextnode" title="Permanent link">⚓︎</a></h3>
@@ -16232,7 +16232,7 @@
 <p><em>Read-only</em>. The next reference in the parent reference list.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3reference">tes3reference</a>)</li>
+<li><code>result</code> (<a href="./">tes3reference</a>)</li>
 </ul>
 <hr />
 <h3 id="nodedata"><code>nodeData</code><a class="headerlink" href="#nodedata" title="Permanent link">⚓︎</a></h3>
@@ -16241,7 +16241,7 @@
 <p><em>Read-only</em>. Redundant access to this object, for iterating over a tes3referenceList.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3reference">tes3reference</a>)</li>
+<li><code>result</code> (<a href="./">tes3reference</a>)</li>
 </ul>
 <hr />
 <h3 id="object"><code>object</code><a class="headerlink" href="#object" title="Permanent link">⚓︎</a></h3>
@@ -16250,7 +16250,7 @@
 <p><em>Read-only</em>. The object that the reference is for, such as a weapon, armor, or actor.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3physicalObject">tes3physicalObject</a>)</li>
+<li><code>result</code> (<a href="../tes3physicalObject/">tes3physicalObject</a>)</li>
 </ul>
 <hr />
 <h3 id="objectflags"><code>objectFlags</code><a class="headerlink" href="#objectflags" title="Permanent link">⚓︎</a></h3>
@@ -16277,7 +16277,7 @@
 <p>Access to the reference's orientation, in XYZ Euler angles in Radians in [0, 2 PI]. Changing the orientation marks the reference as modified.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3vector3">tes3vector3</a>)</li>
+<li><code>result</code> (<a href="../tes3vector3/">tes3vector3</a>)</li>
 </ul>
 <hr />
 <h3 id="owningcollection"><code>owningCollection</code><a class="headerlink" href="#owningcollection" title="Permanent link">⚓︎</a></h3>
@@ -16286,7 +16286,7 @@
 <p>The collection responsible for holding this object.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3referenceList">tes3referenceList</a>)</li>
+<li><code>result</code> (<a href="../tes3referenceList/">tes3referenceList</a>)</li>
 </ul>
 <hr />
 <h3 id="persistent"><code>persistent</code><a class="headerlink" href="#persistent" title="Permanent link">⚓︎</a></h3>
@@ -16310,7 +16310,7 @@
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3vector3">tes3vector3</a>)</li>
+<li><code>result</code> (<a href="../tes3vector3/">tes3vector3</a>)</li>
 </ul>
 <hr />
 <h3 id="previousincollection"><code>previousInCollection</code><a class="headerlink" href="#previousincollection" title="Permanent link">⚓︎</a></h3>
@@ -16319,7 +16319,7 @@
 <p>The previous object in parent collection's list.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3object">tes3object</a>)</li>
+<li><code>result</code> (<a href="../tes3object/">tes3object</a>)</li>
 </ul>
 <hr />
 <h3 id="previousnode"><code>previousNode</code><a class="headerlink" href="#previousnode" title="Permanent link">⚓︎</a></h3>
@@ -16328,7 +16328,7 @@
 <p><em>Read-only</em>. The previous reference in the parent reference list.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3reference">tes3reference</a>)</li>
+<li><code>result</code> (<a href="./">tes3reference</a>)</li>
 </ul>
 <hr />
 <h3 id="rightdirection"><code>rightDirection</code><a class="headerlink" href="#rightdirection" title="Permanent link">⚓︎</a></h3>
@@ -16337,7 +16337,7 @@
 <p><em>Read-only</em>. The normalized right or X direction vector of the reference.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3vector3">tes3vector3</a>)</li>
+<li><code>result</code> (<a href="../tes3vector3/">tes3vector3</a>)</li>
 </ul>
 <hr />
 <h3 id="scale"><code>scale</code><a class="headerlink" href="#scale" title="Permanent link">⚓︎</a></h3>
@@ -16355,7 +16355,7 @@
 <p>The scene graph node for this object's physics collision, if its mesh has a root collision node.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/niNode">niNode</a>)</li>
+<li><code>result</code> (<a href="../niNode/">niNode</a>)</li>
 </ul>
 <hr />
 <h3 id="scenenode"><code>sceneNode</code><a class="headerlink" href="#scenenode" title="Permanent link">⚓︎</a></h3>
@@ -16364,7 +16364,7 @@
 <p><em>Read-only</em>. The scene graph node that the reference uses for rendering.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/niNode">niNode</a>, nil)</li>
+<li><code>result</code> (<a href="../niNode/">niNode</a>, nil)</li>
 </ul>
 <hr />
 <h3 id="sourceformid"><code>sourceFormId</code><a class="headerlink" href="#sourceformid" title="Permanent link">⚓︎</a></h3>
@@ -16418,7 +16418,7 @@
 <p><em>Read-only</em>. Access to the reference's original orientation. Note that this value is invalid for NPCs and creatures.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3vector3">tes3vector3</a>)</li>
+<li><code>result</code> (<a href="../tes3vector3/">tes3vector3</a>)</li>
 </ul>
 <hr />
 <h3 id="startingposition"><code>startingPosition</code><a class="headerlink" href="#startingposition" title="Permanent link">⚓︎</a></h3>
@@ -16427,7 +16427,7 @@
 <p><em>Read-only</em>. Access to the reference's original position. Note that this value is invalid for NPCs and creatures.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3vector3">tes3vector3</a>)</li>
+<li><code>result</code> (<a href="../tes3vector3/">tes3vector3</a>)</li>
 </ul>
 <hr />
 <h3 id="supportsluadata"><code>supportsLuaData</code><a class="headerlink" href="#supportsluadata" title="Permanent link">⚓︎</a></h3>
@@ -16473,7 +16473,7 @@
 <p><em>Read-only</em>. The normalized up or Z direction vector of the reference.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3vector3">tes3vector3</a>)</li>
+<li><code>result</code> (<a href="../tes3vector3/">tes3vector3</a>)</li>
 </ul>
 <hr />
 <h2 id="methods">Methods<a class="headerlink" href="#methods" title="Permanent link">⚓︎</a></h2>
@@ -16496,7 +16496,7 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>reference</code> (<a href="../../types/tes3reference">tes3reference</a>): The other reference to activate.</li>
+<li><code>reference</code> (<a href="./">tes3reference</a>): The other reference to activate.</li>
 </ul>
 <hr />
 <h3 id="clearactionflag"><code>clearActionFlag</code><a class="headerlink" href="#clearactionflag" title="Permanent link">⚓︎</a></h3>
@@ -16576,7 +16576,7 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>reference</code> (<a href="../../types/tes3reference">tes3reference</a>): The reference to calculate the angle to.</li>
+<li><code>reference</code> (<a href="./">tes3reference</a>): The reference to calculate the angle to.</li>
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
@@ -16591,7 +16591,7 @@
 </code></pre></div>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3lightNode">tes3lightNode</a>)</li>
+<li><code>result</code> (<a href="../tes3lightNode/">tes3lightNode</a>)</li>
 </ul>
 <hr />
 <h3 id="getorcreateattacheddynamiclight"><code>getOrCreateAttachedDynamicLight</code><a class="headerlink" href="#getorcreateattacheddynamiclight" title="Permanent link">⚓︎</a></h3>
@@ -16604,12 +16604,12 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>light</code> (<a href="../../types/niPointLight">niPointLight</a>): <em>Optional</em>.</li>
+<li><code>light</code> (<a href="../niPointLight/">niPointLight</a>): <em>Optional</em>.</li>
 <li><code>phase</code> (number): <em>Optional</em>.</li>
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/tes3lightNode">tes3lightNode</a>)</li>
+<li><code>result</code> (<a href="../tes3lightNode/">tes3lightNode</a>)</li>
 </ul>
 <hr />
 <h3 id="oncloseinventory"><code>onCloseInventory</code><a class="headerlink" href="#oncloseinventory" title="Permanent link">⚓︎</a></h3>
@@ -16694,7 +16694,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">July 26, 2023 07:13:15</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 25, 2023 10:03:48</span>
       
         <br>
         Created:

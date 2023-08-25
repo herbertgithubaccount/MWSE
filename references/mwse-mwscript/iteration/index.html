@@ -14979,7 +14979,7 @@
 <ul>
 <li><code>string</code> <strong>id</strong>: The object ID string of the item.</li>
 <li><code>long</code> <strong>count</strong>: How many items are in the item stack.</li>
-<li><code>long</code> <strong>type</strong>: The <a href="../../object-types">Object Type</a> of the item.</li>
+<li><code>long</code> <strong>type</strong>: The <a href="../../object-types/">Object Type</a> of the item.</li>
 <li><code>long</code> <strong>value</strong>: The value of the item.</li>
 <li><code>float</code> <strong>weight</strong>: The weight of the item. (Always <code>0.000001</code> for LEVI objects.)</li>
 <li><code>string</code> <strong>name</strong>: The name of the item.</li>
@@ -14998,16 +14998,16 @@
 <ul>
 <li><code>string</code> <strong>id</strong>: The id string of the item.</li>
 <li><code>long</code> <strong>count</strong>: How many items are in the item stack.</li>
-<li><code>long</code> <strong>type</strong>: The <a href="../../object-types">Object Type</a> of the item.</li>
+<li><code>long</code> <strong>type</strong>: The <a href="../../object-types/">Object Type</a> of the item.</li>
 <li><code>long</code> <strong>value</strong>: The value of the item.</li>
 <li><code>float</code> <strong>weight</strong>: The weight of the item.</li>
 <li><code>string</code> <strong>name</strong>: The name of the item.</li>
 <li><code>long</code> <strong>nextNode</strong>: The next node to provide back into this function to continue looping. When this value is 0, there are no more items.</li>
 </ul>
-<p>This function behaves similar to <code>xContentList</code>, with the added convenience of filtering for one or more <a href="../../object-types">Object Type</a>.</p>
+<p>This function behaves similar to <code>xContentList</code>, with the added convenience of filtering for one or more <a href="../../object-types/">Object Type</a>.</p>
 <p>If you are trying to specifically get the equipped items of an actor, consider using <code>xEquipmentList</code>.</p>
 <h3 id="filter-mask">Filter Mask<a class="headerlink" href="#filter-mask" title="Permanent link">⚓︎</a></h3>
-<p>The filter mask below is meant to be summed for each <a href="../../object-types">Object Type</a> desired in the filter. The exception to this rule is the ENCH filter, which restricts the results to enchanted items.</p>
+<p>The filter mask below is meant to be summed for each <a href="../../object-types/">Object Type</a> desired in the filter. The exception to this rule is the ENCH filter, which restricts the results to enchanted items.</p>
 <p>For example, if you wanted clothing (<code>128</code>) and armor (<code>16</code>) results, you would pass a value of <code>144</code> (<code>128+16</code>).</p>
 <table>
 <thead>
@@ -15223,15 +15223,15 @@ end
 <p><strong>Parameters:</strong></p>
 <ul>
 <li><code>long</code> <strong>node</strong>: For the first call, this should be 0 to get the first equipped item. In following iterations, this value will be what is returned as <strong>nextNode</strong> from the previous call.</li>
-<li><code>long</code> <strong>typeFilter</strong>: A type filter that matches the <a href="../../object-types">Object Type</a> that is desired. Only equipped items matching that type will be returned. A value of 0 will perform no type filtering.</li>
-<li><code>long</code> <strong>subTypeFilter</strong>: An optional subtype filter, allowing the loop to search for a specific <a href="../../armor-slots">Armor Type</a>, <a href="../../clothing-slots">Clothing Type</a> or <a href="../../weapon-types">Weapon Type</a>. The value passed must be one higher than the value on the linked table. A value of 0 will perform no subtype filtering.</li>
+<li><code>long</code> <strong>typeFilter</strong>: A type filter that matches the <a href="../../object-types/">Object Type</a> that is desired. Only equipped items matching that type will be returned. A value of 0 will perform no type filtering.</li>
+<li><code>long</code> <strong>subTypeFilter</strong>: An optional subtype filter, allowing the loop to search for a specific <a href="../../armor-slots/">Armor Type</a>, <a href="../../clothing-slots/">Clothing Type</a> or <a href="../../weapon-types/">Weapon Type</a>. The value passed must be one higher than the value on the linked table. A value of 0 will perform no subtype filtering.</li>
 </ul>
 <p><strong>Returned:</strong></p>
 <ul>
 <li><code>string</code> <strong>id</strong>: The id string of the equipped item.</li>
 <li><code>long</code> <strong>count</strong>: This value will always be 1. Future version of MWSE may expand this to return the actual item count for arrows, bolts, and thrown weapons.</li>
-<li><code>long</code> <strong>type</strong>: The <a href="../../object-types">Object Type</a> of the equipped item.</li>
-<li><code>long</code> <strong>subtype</strong>: The <a href="../../armor-slots">Armor Type</a>, <a href="../../clothing-slots">Clothing Type</a> or <a href="../../weapon-types">Weapon Type</a> of the equipped item, or <code>0</code> if it is not an armor, clothing, or weapon object. Note that the value returned is one higher than the value on the given table.</li>
+<li><code>long</code> <strong>type</strong>: The <a href="../../object-types/">Object Type</a> of the equipped item.</li>
+<li><code>long</code> <strong>subtype</strong>: The <a href="../../armor-slots/">Armor Type</a>, <a href="../../clothing-slots/">Clothing Type</a> or <a href="../../weapon-types/">Weapon Type</a> of the equipped item, or <code>0</code> if it is not an armor, clothing, or weapon object. Note that the value returned is one higher than the value on the given table.</li>
 <li><code>long</code> <strong>value</strong>: The value of the equipped item.</li>
 <li><code>float</code> <strong>weight</strong>: The weight of the equipped item.</li>
 <li><code>string</code> <strong>name</strong>: The name of the equipped item.</li>
@@ -15326,7 +15326,7 @@ end
 <ul>
 <li><code>long</code> <strong>reference</strong>: The first reference in the current cell's "Item" list.</li>
 </ul>
-<p><code>xFirstItem</code> returns the first reference in the current cell's "Item" list. Despite the name of this function, the associated list can contain references of any <a href="../../object-types">Object Type</a> other than those exclusive to <code>xFirstNPC</code>. Once acquired, the reference can be used with various other MWSE functions, such as <code>xRefID</code> and <code>xRefType</code>. Passing the reference as the argument to the <code>xNextRef</code> function will return the next reference in its associated list.</p>
+<p><code>xFirstItem</code> returns the first reference in the current cell's "Item" list. Despite the name of this function, the associated list can contain references of any <a href="../../object-types/">Object Type</a> other than those exclusive to <code>xFirstNPC</code>. Once acquired, the reference can be used with various other MWSE functions, such as <code>xRefID</code> and <code>xRefType</code>. Passing the reference as the argument to the <code>xNextRef</code> function will return the next reference in its associated list.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Scripts that intend to process <em>all</em> references in the loaded cells will need to independently handle the separate lists provided by <code>xFirstItem</code>, <code>xFirstStatic</code>, and <code>xFirstNPC</code>.</p>
@@ -15356,7 +15356,7 @@ end
 <ul>
 <li><code>long</code> <strong>reference</strong>: The first reference in the current cell's "Static" list.</li>
 </ul>
-<p><code>xFirstStatic</code> returns the first reference in the current cell's "Static" list. Despite the name of this function, the associated list can contain references of any <a href="../../object-types">Object Type</a> other than those exclusive to <code>xFirstNPC</code>. Once acquired, the reference can be used with various other MWSE functions, such as <code>xRefID</code> and <code>xRefType</code>. Passing the reference as the argument to the <code>xNextRef</code> function will return the next reference in its associated list.</p>
+<p><code>xFirstStatic</code> returns the first reference in the current cell's "Static" list. Despite the name of this function, the associated list can contain references of any <a href="../../object-types/">Object Type</a> other than those exclusive to <code>xFirstNPC</code>. Once acquired, the reference can be used with various other MWSE functions, such as <code>xRefID</code> and <code>xRefType</code>. Passing the reference as the argument to the <code>xNextRef</code> function will return the next reference in its associated list.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Scripts that intend to process <em>all</em> references in the loaded cells will need to independently handle the separate lists provided by <code>xFirstItem</code>, <code>xFirstStatic</code>, and <code>xFirstNPC</code>.</p>
@@ -15430,7 +15430,7 @@ end
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">September 24, 2022 23:03:57</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 25, 2023 09:54:27</span>
       
         <br>
         Created:

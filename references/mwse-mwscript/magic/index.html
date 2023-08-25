@@ -15017,10 +15017,10 @@
 <h2 id="xaddeffect"><code>xAddEffect</code><a class="headerlink" href="#xaddeffect" title="Permanent link">⚓︎</a></h2>
 <p><strong>Parameters:</strong></p>
 <ul>
-<li><code>long</code> <strong>objectType</strong>: <a href="../../object-types">Object Type</a> value for the target's type.</li>
+<li><code>long</code> <strong>objectType</strong>: <a href="../../object-types/">Object Type</a> value for the target's type.</li>
 <li><code>string</code> <strong>objectID</strong>: Object ID of target spell, enchantment, or potion.</li>
-<li><code>long</code> <strong>effectID</strong>: <a href="../../magic-effects">Magic Effect</a> ID that will be added to the target.</li>
-<li><code>long</code> <strong>skillAttributeID</strong>: <a href="../../skills">Skill</a> or <a href="../../attributes">Attribute</a> ID to be used. (Only for absorb/damage/drain/fortify/restore effects - ignored otherwise.)</li>
+<li><code>long</code> <strong>effectID</strong>: <a href="../../magic-effects/">Magic Effect</a> ID that will be added to the target.</li>
+<li><code>long</code> <strong>skillAttributeID</strong>: <a href="../../skills/">Skill</a> or <a href="../../attributes/">Attribute</a> ID to be used. (Only for absorb/damage/drain/fortify/restore effects - ignored otherwise.)</li>
 <li><code>long</code> <strong>rangeType</strong>: New range type. (0 = SELF, 1 = TOUCH, 2 = TARGET)</li>
 <li><code>long</code> <strong>area</strong>: Area of effect.</li>
 <li><code>long</code> <strong>duration</strong>: Duration in seconds.</li>
@@ -15070,7 +15070,7 @@ end
 <h2 id="xdeleteeffect"><code>xDeleteEffect</code><a class="headerlink" href="#xdeleteeffect" title="Permanent link">⚓︎</a></h2>
 <p><strong>Parameters:</strong></p>
 <ul>
-<li><code>long</code> <strong>type</strong>: The <a href="../../object-types">Object Type</a> to delete an effect from. Must be an alchemy, spell, or enchantment object.</li>
+<li><code>long</code> <strong>type</strong>: The <a href="../../object-types/">Object Type</a> to delete an effect from. Must be an alchemy, spell, or enchantment object.</li>
 <li><code>string</code> <strong>id</strong>: The object ID to remove an effect from.</li>
 <li><code>long</code> <strong>index</strong>: The index of the effect to remove. Must be between (inclusive) <code>1</code> and <code>8</code>.</li>
 </ul>
@@ -15084,7 +15084,7 @@ end
 <h2 id="xdeletespell"><code>xDeleteSpell</code><a class="headerlink" href="#xdeletespell" title="Permanent link">⚓︎</a></h2>
 <p><strong>Parameters:</strong></p>
 <ul>
-<li><code>long</code> <strong>type</strong>: The <a href="../../object-types">Object Type</a> to delete an effect from. Must be an alchemy, spell, or enchantment object.</li>
+<li><code>long</code> <strong>type</strong>: The <a href="../../object-types/">Object Type</a> to delete an effect from. Must be an alchemy, spell, or enchantment object.</li>
 <li><code>string</code> <strong>id</strong>: The object ID to remove an effect from.</li>
 <li><code>long</code> <strong>index</strong>: The index of the effect to remove. Must be between (inclusive) <code>1</code> and <code>8</code>.</li>
 </ul>
@@ -15130,11 +15130,11 @@ end
 <h2 id="xgetbaseeffectinfo"><code>xGetBaseEffectInfo</code><a class="headerlink" href="#xgetbaseeffectinfo" title="Permanent link">⚓︎</a></h2>
 <p><strong>Parameters:</strong></p>
 <ul>
-<li><code>long</code> <strong>attributeID</strong>: The <a href="../../schools">School</a> ID to get the value of.</li>
+<li><code>long</code> <strong>attributeID</strong>: The <a href="../../magic-schools/">School</a> ID to get the value of.</li>
 </ul>
 <p><strong>Returned:</strong></p>
 <ul>
-<li><code>long</code> <strong>school</strong>: The <a href="../../schools">School</a> of the effect.</li>
+<li><code>long</code> <strong>school</strong>: The <a href="../../magic-schools/">School</a> of the effect.</li>
 <li><code>float</code> <strong>baseCost</strong>: The base cost of the effect.</li>
 <li><code>long</code> <strong>flags</strong>: The flags of the effect.</li>
 </ul>
@@ -15144,14 +15144,14 @@ end
 <h2 id="xgeteffectinfo"><code>xGetEffectInfo</code><a class="headerlink" href="#xgeteffectinfo" title="Permanent link">⚓︎</a></h2>
 <p><strong>Parameters:</strong></p>
 <ul>
-<li><code>long</code> <strong>type</strong>: The <a href="../../object-types">Object Type</a> to get the effect of.</li>
+<li><code>long</code> <strong>type</strong>: The <a href="../../object-types/">Object Type</a> to get the effect of.</li>
 <li><code>string</code> <strong>objectID</strong>: The Object ID of the object to get the effect of.</li>
 <li><code>long</code> <strong>index</strong>: The effect index to get the info from, from 1 to 8.</li>
 </ul>
 <p><strong>Returned:</strong></p>
 <ul>
 <li><code>long</code> <strong>effectId</strong>: The <code>Effect ID</code>_ of the effect.</li>
-<li><code>long</code> <strong>skillAttribId</strong>: The <a href="../../attributes">Attribute</a> or <a href="../../skills">Skill</a> ID associated with the effect, if applicable.</li>
+<li><code>long</code> <strong>skillAttribId</strong>: The <a href="../../attributes/">Attribute</a> or <a href="../../skills/">Skill</a> ID associated with the effect, if applicable.</li>
 <li><code>long</code> <strong>rangeType</strong>: <code>0</code> = self, <code>1</code> = touch, <code>2</code> = target</li>
 <li><code>long</code> <strong>area</strong>: Area of effect.</li>
 <li><code>long</code> <strong>duration</strong>: Duration in seconds.</li>
@@ -15184,8 +15184,8 @@ end
 </ul>
 <p><strong>Returned:</strong></p>
 <ul>
-<li><code>long</code> <strong>effectType</strong>: The <a href="../../effect-types">Effect Type</a> that the ingredient has at the given <strong>effectIndex</strong>.</li>
-<li><code>long</code> <strong>skillAttributeType</strong>: The <a href="../../attribute-types">Attribute Type</a> or <a href="../../skill-types">Skill Type</a>, if the <strong>effectType</strong> supports one. Otherwise will always be -1.</li>
+<li><code>long</code> <strong>effectType</strong>: The <a href="../../magic-effects/">Effect Type</a> that the ingredient has at the given <strong>effectIndex</strong>.</li>
+<li><code>long</code> <strong>skillAttributeType</strong>: The <a href="../../attributes/">Attribute Type</a> or <a href="../../skill-types/">Skill Type</a>, if the <strong>effectType</strong> supports one. Otherwise will always be -1.</li>
 </ul>
 <p>This function allows scripts to determine the effects of a given ingredient programmatically. Scripts can alter these values as well using <code>xSetIngredientEffect</code>.</p>
 <details class="example">
@@ -15224,10 +15224,10 @@ end
 <h2 id="xsetbaseeffectinfo"><code>xSetBaseEffectInfo</code><a class="headerlink" href="#xsetbaseeffectinfo" title="Permanent link">⚓︎</a></h2>
 <p><strong>Parameters:</strong></p>
 <ul>
-<li><code>long</code> <strong>effectID</strong>: The <a href="../../magic-effects">Magic Effect</a> to modify.</li>
-<li><code>long</code> <strong>school</strong>: New spell <a href="../../schools">School</a>.</li>
+<li><code>long</code> <strong>effectID</strong>: The <a href="../../magic-effects/">Magic Effect</a> to modify.</li>
+<li><code>long</code> <strong>school</strong>: New spell <a href="../../magic-schools/">School</a>.</li>
 <li><code>float</code> <strong>cost</strong>: New base cost in magicka.</li>
-<li><code>long</code> <strong>flags</strong>: New <a href="../../magic-effect-flags">Magic Effect Flags</a>. Only spellmaking, enchanting, and negative lighting are valid here. All others are ignored.</li>
+<li><code>long</code> <strong>flags</strong>: New <a href="../../magic-effect-flags/">Magic Effect Flags</a>. Only spellmaking, enchanting, and negative lighting are valid here. All others are ignored.</li>
 </ul>
 <p><strong>Returned:</strong></p>
 <ul>
@@ -15239,11 +15239,11 @@ end
 <h2 id="xseteffectinfo"><code>xSetEffectInfo</code><a class="headerlink" href="#xseteffectinfo" title="Permanent link">⚓︎</a></h2>
 <p><strong>Parameters:</strong></p>
 <ul>
-<li><code>long</code> <strong>type</strong>: The <a href="../../object-types">Object Type</a> of the object to alter.</li>
+<li><code>long</code> <strong>type</strong>: The <a href="../../object-types/">Object Type</a> of the object to alter.</li>
 <li><code>string</code> <strong>id</strong>: The object ID of the object to alter.</li>
 <li><code>long</code> <strong>index</strong>: The index of the effect to alter.</li>
-<li><code>long</code> <strong>effectID</strong>: The <a href="../../effect-types">Effect Type</a> to change to.</li>
-<li><code>long</code> <strong>skillOrAttributeID</strong>: The <a href="../../attributes">Attribute</a> or <a href="../../skills">Skill</a> ID to use, if the <strong>effectID</strong> uses one.</li>
+<li><code>long</code> <strong>effectID</strong>: The <a href="../../magic-effects/">Effect Type</a> to change to.</li>
+<li><code>long</code> <strong>skillOrAttributeID</strong>: The <a href="../../attributes/">Attribute</a> or <a href="../../skills/">Skill</a> ID to use, if the <strong>effectID</strong> uses one.</li>
 <li><code>long</code> <strong>rangeType</strong>: <code>0</code> = self, <code>1</code> = touch, <code>2</code> = target.</li>
 <li><code>long</code> <strong>area</strong>: Area of effect.</li>
 <li><code>long</code> <strong>duration</strong>: Effect duration (in seconds).</li>
@@ -15276,8 +15276,8 @@ end
 <ul>
 <li><code>string</code> <strong>id</strong>: The id of the ingredient to fetch data for.</li>
 <li><code>long</code> <strong>effectIndex</strong>: A value between <code>1</code> and <code>4</code>, matching the effect index desired.</li>
-<li><code>long</code> <strong>effectType</strong>: The <a href="../../effect-types">Effect Type</a> that the ingredient has at the given <strong>effectIndex</strong>.</li>
-<li><code>long</code> <strong>skillAttributeType</strong>: The <a href="../../attribute-types">Attribute Type</a> or <a href="../../skill-types">Skill Type</a>, if the <strong>effectType</strong> supports one.</li>
+<li><code>long</code> <strong>effectType</strong>: The <a href="../../magic-effects/">Effect Type</a> that the ingredient has at the given <strong>effectIndex</strong>.</li>
+<li><code>long</code> <strong>skillAttributeType</strong>: The <a href="../../attributes/">Attribute Type</a> or <a href="../../skill-types/">Skill Type</a>, if the <strong>effectType</strong> supports one.</li>
 </ul>
 <p><strong>Returned:</strong></p>
 <ul>
@@ -15328,7 +15328,7 @@ end
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 10, 2021 07:53:23</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 25, 2023 09:54:27</span>
       
         <br>
         Created:

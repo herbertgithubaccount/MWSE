@@ -14943,7 +14943,7 @@
 <ul>
 <li><code>params</code> (table)<ul>
 <li><code>duration</code> (number): Duration of the timer. The method of time passing depends on the timer type.</li>
-<li><code>callback</code> (fun(e: <a href="../../types/mwseTimerCallbackData">mwseTimerCallbackData</a>), string): The callback function that will execute when the timer expires. If starting a registered timer, this needs to be the <code>name</code> string passed to <code>timer.register</code>.</li>
+<li><code>callback</code> (fun(e: <a href="../mwseTimerCallbackData/">mwseTimerCallbackData</a>), string): The callback function that will execute when the timer expires. If starting a registered timer, this needs to be the <code>name</code> string passed to <code>timer.register</code>.</li>
 <li><code>iterations</code> (integer): <em>Default</em>: <code>1</code>. The number of iterations to run. Use <code>-1</code> for infinite looping.</li>
 <li><code>persist</code> (boolean): <em>Default</em>: <code>true</code>. Registering a timer with persist flag set to <code>true</code> will serialize the callback string in the save to persist between sessions. Only a registered timer will persist between sessions. See <code>timer.register()</code>.</li>
 <li><code>data</code> (table, nil): <em>Default</em>: <code>nil</code>. Data to be attached to the timer. If this is a persistent timer, the data must be json-serializable, matching the same limitations as data stored on references.</li>
@@ -14952,7 +14952,7 @@
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>timer</code> (<a href="../../types/mwseTimer">mwseTimer</a>)</li>
+<li><code>timer</code> (<a href="../mwseTimer/">mwseTimer</a>)</li>
 </ul>
 <hr />
 <h2 id="functions">Functions<a class="headerlink" href="#functions" title="Permanent link">⚓︎</a></h2>
@@ -14968,7 +14968,7 @@
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/mwseTimerController">mwseTimerController</a>)</li>
+<li><code>result</code> (<a href="./">mwseTimerController</a>)</li>
 </ul>
 
   <hr>
@@ -14976,7 +14976,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">April 13, 2023 07:32:56</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 25, 2023 10:03:48</span>
       
         <br>
         Created:

@@ -15258,7 +15258,7 @@
 -->
 
 <p>A texture that is also a render target. This object can be used with niRenderer:setRenderTarget and rendered into. It can be directly used in a texturing property, or read back into system memory (at a performance cost). After using it as a render target, make sure you reset the renderer with niRenderer:setRenderTarget(nil) so that it's not bound as a source texture and a target at the same time.</p>
-<p>This type inherits the following: <a href="../../types/niTexture">niTexture</a>, <a href="../../types/niObjectNET">niObjectNET</a>, <a href="../../types/niObject">niObject</a></p>
+<p>This type inherits the following: <a href="../niTexture/">niTexture</a>, <a href="../niObjectNET/">niObjectNET</a>, <a href="../niObject/">niObject</a></p>
 <h2 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">⚓︎</a></h2>
 <h3 id="controller"><code>controller</code><a class="headerlink" href="#controller" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">controller</div>
@@ -15266,7 +15266,7 @@
 <p><em>Read-only</em>. The first controller available on the object.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/niTimeController">niTimeController</a>)</li>
+<li><code>result</code> (<a href="../niTimeController/">niTimeController</a>)</li>
 </ul>
 <hr />
 <h3 id="extradata"><code>extraData</code><a class="headerlink" href="#extradata" title="Permanent link">⚓︎</a></h3>
@@ -15275,7 +15275,7 @@
 <p><em>Read-only</em>. The first extra data available on the object.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/niExtraData">niExtraData</a>)</li>
+<li><code>result</code> (<a href="../niExtraData/">niExtraData</a>)</li>
 </ul>
 <hr />
 <h3 id="formatprefs"><code>formatPrefs</code><a class="headerlink" href="#formatprefs" title="Permanent link">⚓︎</a></h3>
@@ -15284,7 +15284,7 @@
 <p>The <code>NiFormatPrefs</code> of the texture.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/niFormatPrefs">niFormatPrefs</a>)</li>
+<li><code>result</code> (<a href="../niFormatPrefs/">niFormatPrefs</a>)</li>
 </ul>
 <hr />
 <h3 id="height"><code>height</code><a class="headerlink" href="#height" title="Permanent link">⚓︎</a></h3>
@@ -15312,7 +15312,7 @@
 <p>This function requires the GPU to finish rendering and send data to the CPU. This can impact framerates significantly, so measure and consider performance carefully when using this.</p>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>pixelData</code> (<a href="../../types/niPixelData">niPixelData</a>): The pixel data to copy the texture into.</li>
+<li><code>pixelData</code> (<a href="../niPixelData/">niPixelData</a>): The pixel data to copy the texture into.</li>
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
@@ -15334,7 +15334,7 @@
 <p><em>Read-only</em>. The runtime type information for this object. This is an alias for the <code>.runTimeTypeInformation</code> property.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/niRTTI">niRTTI</a>)</li>
+<li><code>result</code> (<a href="../niRTTI/">niRTTI</a>)</li>
 </ul>
 <hr />
 <h3 id="runtimetypeinformation"><code>runTimeTypeInformation</code><a class="headerlink" href="#runtimetypeinformation" title="Permanent link">⚓︎</a></h3>
@@ -15343,7 +15343,7 @@
 <p><em>Read-only</em>. The runtime type information for this object.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/niRTTI">niRTTI</a>)</li>
+<li><code>result</code> (<a href="../niRTTI/">niRTTI</a>)</li>
 </ul>
 <hr />
 <h3 id="width"><code>width</code><a class="headerlink" href="#width" title="Permanent link">⚓︎</a></h3>
@@ -15364,7 +15364,7 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>extraData</code> (<a href="../../types/niExtraData">niExtraData</a>)</li>
+<li><code>extraData</code> (<a href="../niExtraData/">niExtraData</a>)</li>
 </ul>
 <hr />
 <h3 id="clone"><code>clone</code><a class="headerlink" href="#clone" title="Permanent link">⚓︎</a></h3>
@@ -15375,7 +15375,7 @@
 </code></pre></div>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../../types/niObject">niObject</a>)</li>
+<li><code>result</code> (<a href="../niObject/">niObject</a>)</li>
 </ul>
 <hr />
 <h3 id="getgamereference"><code>getGameReference</code><a class="headerlink" href="#getgamereference" title="Permanent link">⚓︎</a></h3>
@@ -15390,7 +15390,7 @@
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>reference</code> (<a href="../../types/tes3reference">tes3reference</a>)</li>
+<li><code>reference</code> (<a href="../tes3reference/">tes3reference</a>)</li>
 </ul>
 <hr />
 <h3 id="getstringdatastartingwith"><code>getStringDataStartingWith</code><a class="headerlink" href="#getstringdatastartingwith" title="Permanent link">⚓︎</a></h3>
@@ -15405,7 +15405,7 @@
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>extra</code> (<a href="../../types/niStringExtraData">niStringExtraData</a>)</li>
+<li><code>extra</code> (<a href="../niStringExtraData/">niStringExtraData</a>)</li>
 </ul>
 <hr />
 <h3 id="getstringdatawith"><code>getStringDataWith</code><a class="headerlink" href="#getstringdatawith" title="Permanent link">⚓︎</a></h3>
@@ -15420,7 +15420,7 @@
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>extra</code> (<a href="../../types/niStringExtraData">niStringExtraData</a>)</li>
+<li><code>extra</code> (<a href="../niStringExtraData/">niStringExtraData</a>)</li>
 </ul>
 <hr />
 <h3 id="hasstringdatastartingwith"><code>hasStringDataStartingWith</code><a class="headerlink" href="#hasstringdatastartingwith" title="Permanent link">⚓︎</a></h3>
@@ -15491,7 +15491,7 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>controller</code> (<a href="../../types/niTimeController">niTimeController</a>)</li>
+<li><code>controller</code> (<a href="../niTimeController/">niTimeController</a>)</li>
 </ul>
 <hr />
 <h3 id="removeallcontrollers"><code>removeAllControllers</code><a class="headerlink" href="#removeallcontrollers" title="Permanent link">⚓︎</a></h3>
@@ -15516,7 +15516,7 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>controller</code> (<a href="../../types/niTimeController">niTimeController</a>)</li>
+<li><code>controller</code> (<a href="../niTimeController/">niTimeController</a>)</li>
 </ul>
 <hr />
 <h3 id="removeextradata"><code>removeExtraData</code><a class="headerlink" href="#removeextradata" title="Permanent link">⚓︎</a></h3>
@@ -15527,7 +15527,7 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>extraData</code> (<a href="../../types/niExtraData">niExtraData</a>)</li>
+<li><code>extraData</code> (<a href="../niExtraData/">niExtraData</a>)</li>
 </ul>
 <hr />
 <h3 id="savebinary"><code>saveBinary</code><a class="headerlink" href="#savebinary" title="Permanent link">⚓︎</a></h3>
@@ -15571,7 +15571,7 @@
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>texture</code> (<a href="../../types/niRenderedTexture">niRenderedTexture</a>)</li>
+<li><code>texture</code> (<a href="./">niRenderedTexture</a>)</li>
 </ul>
 
   <hr>
@@ -15579,7 +15579,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">February 11, 2023 19:45:50</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 25, 2023 10:03:48</span>
       
         <br>
         Created:
