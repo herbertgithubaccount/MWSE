@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.2.3">
+      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.2.4">
     
     
       
@@ -16006,7 +16006,11 @@
     <span class="kr">if</span> <span class="ow">not</span> <span class="n">package</span> <span class="kr">then</span>
         <span class="kr">return</span> <span class="kc">false</span>
     <span class="kr">end</span>
-    <span class="kr">if</span> <span class="n">package</span><span class="p">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">tes3</span><span class="p">.</span><span class="n">aiPackage</span><span class="p">.</span><span class="n">follow</span> <span class="kr">then</span>
+    <span class="kr">if</span> <span class="n">package</span><span class="p">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">tes3</span><span class="p">.</span><span class="n">aiPackage</span><span class="p">.</span><span class="n">follow</span>
+    <span class="c1">-- Depending on your needs, you can also include the actor&#39;s escorter.</span>
+    <span class="c1">-- In the base game, AiEscort package is quite rare. Only White Guar</span>
+    <span class="c1">-- has that package and targetActor is the player.</span>
+    <span class="ow">or</span> <span class="n">package</span><span class="p">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">tes3</span><span class="p">.</span><span class="n">aiPackage</span><span class="p">.</span><span class="n">escort</span> <span class="kr">then</span>
         <span class="kd">local</span> <span class="n">target</span> <span class="o">=</span> <span class="n">package</span><span class="p">.</span><span class="n">targetActor</span>
 
         <span class="kr">if</span> <span class="n">target</span><span class="p">.</span><span class="n">objectType</span> <span class="o">==</span> <span class="n">tes3</span><span class="p">.</span><span class="n">objectType</span><span class="p">.</span><span class="n">mobilePlayer</span> <span class="kr">then</span>
@@ -16694,7 +16698,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 25, 2023 10:03:48</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 27, 2023 09:46:31</span>
       
         <br>
         Created:

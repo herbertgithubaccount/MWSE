@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.2.3">
+      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.2.4">
     
     
       
@@ -18539,6 +18539,17 @@ end
 <ul>
 <li><code>result</code> (boolean)</li>
 </ul>
+<details class="example">
+<summary>Example: Checking if a mobile actor is moving</summary>
+<p>There are many movement flags for mobile actors. To check if a mobile actor is moving at all, we need to check if the mobile is moving in each possible direction.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">--- Returns true if the mobile is moving.</span>
+<span class="c1">---@param mobile tes3mobileCreature|tes3mobileNPC|tes3mobilePlayer</span>
+<span class="c1">---@return boolean</span>
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">isMoving</span><span class="p">(</span><span class="n">mobile</span><span class="p">)</span>
+    <span class="kr">return</span> <span class="n">mobile</span><span class="p">.</span><span class="n">isMovingForward</span> <span class="ow">or</span> <span class="n">mobile</span><span class="p">.</span><span class="n">isMovingBack</span> <span class="ow">or</span> <span class="n">mobile</span><span class="p">.</span><span class="n">isMovingLeft</span> <span class="ow">or</span> <span class="n">mobile</span><span class="p">.</span><span class="n">isMovingRight</span>
+<span class="kr">end</span>
+</code></pre></div>
+</details>
 <hr />
 <h3 id="ismovingleft"><code>isMovingLeft</code><a class="headerlink" href="#ismovingleft" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">ismovingleft, movingleft</div>
@@ -19810,7 +19821,7 @@ end
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 25, 2023 10:03:48</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 27, 2023 09:46:31</span>
       
         <br>
         Created:
