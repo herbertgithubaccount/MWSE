@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.2.4">
+      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.2.6">
     
     
       
@@ -16380,7 +16380,7 @@
 -->
 
 <p>A UI element, the main building block of the UI system. All elements are created with methods on a parent Element.  Elements are very configurable, and have many HTML-like layout features. All layout properties can be set to <code>nil</code> to reset them to the default value, which will deactivate any related layout mode.</p>
-<p>Elements can have custom data attached using their <code>Property</code>_ key-value store, and specific Elements have specific <code>element.widget</code> accessors to control behaviour.</p>
+<p>Elements can have custom data attached using their <code>Property</code> key-value store, and specific Elements have specific <code>element.widget</code> accessors to control behaviour.</p>
 <h2 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">⚓︎</a></h2>
 <h3 id="absoluteposalignx"><code>absolutePosAlignX</code><a class="headerlink" href="#absoluteposalignx" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">absoluteposalignx</div>
@@ -17345,14 +17345,14 @@
 <h3 id="destroy"><code>destroy</code><a class="headerlink" href="#destroy" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">destroy</div>
 
-<p>Deletes an element and all its child elements. If any element is bound to text input by <code>tes3ui.acquireTextInput</code>_, the input is automatically released.</p>
+<p>Deletes an element and all its child elements. If any element is bound to text input by <code>tes3ui.acquireTextInput</code>, the input is automatically released.</p>
 <div class="highlight"><pre><span></span><code><span class="n">myObject</span><span class="p">:</span><span class="n">destroy</span><span class="p">()</span>
 </code></pre></div>
 <hr />
 <h3 id="destroychildren"><code>destroyChildren</code><a class="headerlink" href="#destroychildren" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">destroychildren</div>
 
-<p>Deletes all the child elements of this element. If any element is bound to text input by <code>tes3ui.acquireTextInput</code>_, the input is automatically released.</p>
+<p>Deletes all the child elements of this element. If any element is bound to text input by <code>tes3ui.acquireTextInput</code>, the input is automatically released.</p>
 <p>Some widgets like ScrollPanes are built of multiple layers of elements. When an element is created in a complex widget, it is automatically placed as a child of a content element. When clearing a widget's children, you should use <code>element:getContentElement():destroyChildren()</code>.</p>
 <div class="highlight"><pre><span></span><code><span class="n">myObject</span><span class="p">:</span><span class="n">destroyChildren</span><span class="p">()</span>
 </code></pre></div>
@@ -17647,7 +17647,7 @@
 <h3 id="reorderchildren"><code>reorderChildren</code><a class="headerlink" href="#reorderchildren" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">reorderchildren</div>
 
-<p>Moves the layout order of the children of this element. <code>count</code> elements are taken from starting child <code>Element</code><em> or index (0-based) <code>moveFrom</code>, and moved before the child <code>Element</code></em> or index (0-based) <code>insertBefore</code>. If <code>count</code> is -1, all children after <code>moveFrom</code> are moved. If any index is a negative number, then the index represents a distance from the end of the child list.</p>
+<p>Moves the layout order of the children of this element. <code>count</code> elements are taken from starting child <code>Element</code> or index (0-based) <code>moveFrom</code>, and moved before the child <code>Element</code> or index (0-based) <code>insertBefore</code>. If <code>count</code> is -1, all children after <code>moveFrom</code> are moved. If any index is a negative number, then the index represents a distance from the end of the child list.</p>
 <p>Returns <code>true</code> if the operation succeeded, or <code>false</code> if at least one argument was invalid.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">myObject</span><span class="p">:</span><span class="n">reorderChildren</span><span class="p">(</span><span class="n">insertBefore</span><span class="p">,</span> <span class="n">moveFrom</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span>
 </code></pre></div>
@@ -17844,7 +17844,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 25, 2023 10:03:48</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 29, 2023 15:28:48</span>
       
         <br>
         Created:
