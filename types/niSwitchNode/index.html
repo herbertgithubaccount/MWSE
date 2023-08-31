@@ -4961,6 +4961,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -9608,6 +9610,26 @@
   
   <span class="md-ellipsis">
     tes3matrix44
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tes3messageBoxCallbackData/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tes3messageBoxCallbackData
   </span>
   
 
@@ -15819,6 +15841,136 @@
 
 <p>Represents groups of multiple scene graph subtrees, only one of which is visible at any given time. They are useful for showing different states of a model depending on engine / lua logic. If you detach the active subtree, the switch node will set the active subtree to none, or to an index of -1.</p>
 <p>This type inherits the following: <a href="../niNode/">niNode</a>, <a href="../niAVObject/">niAVObject</a>, <a href="../niObjectNET/">niObjectNET</a>, <a href="../niObject/">niObject</a></p>
+<details class="example">
+<summary>Example: A line along the view direction</summary>
+<div class="highlight"><pre><span></span><code><span class="c1">---@type niSwitchNode, niCamera</span>
+<span class="kd">local</span> <span class="n">line</span><span class="p">,</span> <span class="n">camera</span>
+<span class="kd">local</span> <span class="n">verticalOffset</span> <span class="o">=</span> <span class="n">tes3vector3</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">onLoaded</span><span class="p">()</span>
+    <span class="c1">-- MWSE ships with a mesh which contains a few useful widgets.</span>
+    <span class="c1">-- These can be used during debugging.</span>
+    <span class="kd">local</span> <span class="n">mesh</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">loadMesh</span><span class="p">(</span><span class="s2">&quot;mwse</span><span class="se">\\</span><span class="s2">widgets.nif&quot;</span><span class="p">)</span> <span class="cm">--[[@as niNode]]</span>
+    <span class="kd">local</span> <span class="n">widgets</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="c1">-- 3D coordinate axes</span>
+        <span class="n">arrows</span> <span class="o">=</span> <span class="n">mesh</span><span class="p">:</span><span class="n">getObjectByName</span><span class="p">(</span><span class="s2">&quot;unitArrows&quot;</span><span class="p">)</span> <span class="cm">--[[@as niTriShape]]</span><span class="p">,</span>
+        <span class="c1">-- A common switch node that has three almost infinite lines</span>
+        <span class="c1">-- along each coordinate exis</span>
+        <span class="n">axes</span> <span class="o">=</span> <span class="n">mesh</span><span class="p">:</span><span class="n">getObjectByName</span><span class="p">(</span><span class="s2">&quot;axisLines&quot;</span><span class="p">)</span> <span class="cm">--[[@as niSwitchNode]]</span><span class="p">,</span>
+        <span class="n">plane</span> <span class="o">=</span> <span class="n">mesh</span><span class="p">:</span><span class="n">getObjectByName</span><span class="p">(</span><span class="s2">&quot;unitPlane&quot;</span><span class="p">)</span> <span class="cm">--[[@as niTriShape]]</span><span class="p">,</span>
+        <span class="n">sphere</span> <span class="o">=</span> <span class="n">mesh</span><span class="p">:</span><span class="n">getObjectByName</span><span class="p">(</span><span class="s2">&quot;unitSphere&quot;</span><span class="p">)</span> <span class="cm">--[[@as niTriShape]]</span>
+    <span class="p">}</span>
+
+    <span class="kd">local</span> <span class="n">root</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">worldController</span><span class="p">.</span><span class="n">vfxManager</span><span class="p">.</span><span class="n">worldVFXRoot</span>
+    <span class="c1">---@cast root niNode</span>
+
+    <span class="n">line</span> <span class="o">=</span> <span class="n">widgets</span><span class="p">.</span><span class="n">axes</span><span class="p">:</span><span class="n">clone</span><span class="p">()</span> <span class="cm">--[[@as niSwitchNode]]</span>
+    <span class="n">root</span><span class="p">:</span><span class="n">attachChild</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+    <span class="n">root</span><span class="p">:</span><span class="n">update</span><span class="p">()</span>
+
+    <span class="c1">-- switchIndex = 0 - x axis (red)</span>
+    <span class="c1">-- switchIndex = 1 - y axis (green)</span>
+    <span class="c1">-- switchIndex = 2 - z axis (blue)</span>
+    <span class="n">line</span><span class="p">.</span><span class="n">switchIndex</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="n">camera</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">worldController</span><span class="p">.</span><span class="n">worldCamera</span><span class="p">.</span><span class="n">cameraData</span><span class="p">.</span><span class="n">camera</span>
+<span class="kr">end</span>
+<span class="n">event</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">tes3</span><span class="p">.</span><span class="n">event</span><span class="p">.</span><span class="n">loaded</span><span class="p">,</span> <span class="n">onLoaded</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">simulateCallback</span><span class="p">()</span>
+    <span class="c1">-- Let&#39;s make the line&#39;s origin at the eye position.</span>
+    <span class="c1">-- The position is offset -5 along the Z axis, so that</span>
+    <span class="c1">-- that we can actually see the line (the line isn&#39;t</span>
+    <span class="c1">-- visible if looking directly along the line).</span>
+    <span class="n">line</span><span class="p">.</span><span class="n">translation</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">getPlayerEyePosition</span><span class="p">()</span> <span class="o">+</span> <span class="n">verticalOffset</span>
+
+    <span class="kd">local</span> <span class="n">rotation</span> <span class="o">=</span> <span class="n">tes3matrix33</span><span class="p">.</span><span class="n">new</span><span class="p">()</span>
+
+    <span class="c1">-- Make the line point in the look direction.</span>
+    <span class="c1">-- We&#39;ll get the direction vector from the world camera.</span>
+    <span class="n">rotation</span><span class="p">:</span><span class="n">lookAt</span><span class="p">(</span><span class="n">camera</span><span class="p">.</span><span class="n">worldDirection</span><span class="p">,</span> <span class="n">camera</span><span class="p">.</span><span class="n">worldUp</span><span class="p">)</span>
+    <span class="n">line</span><span class="p">.</span><span class="n">rotation</span> <span class="o">=</span> <span class="n">rotation</span>
+    <span class="n">line</span><span class="p">:</span><span class="n">update</span><span class="p">()</span>
+<span class="kr">end</span>
+<span class="n">event</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">tes3</span><span class="p">.</span><span class="n">event</span><span class="p">.</span><span class="n">simulate</span><span class="p">,</span> <span class="n">simulateCallback</span><span class="p">)</span>
+</code></pre></div>
+</details>
+<details class="example">
+<summary>Example: The visualization of vector reflection using two lines</summary>
+<p>outDirection = inDirection - (normal * inDirection:dot(normal) * 2)</p>
+<div class="highlight"><pre><span></span><code><span class="c1">---@type niSwitchNode, niSwitchNode, niCamera</span>
+<span class="kd">local</span> <span class="n">lineIn</span><span class="p">,</span> <span class="n">lineOut</span><span class="p">,</span> <span class="n">camera</span>
+<span class="kd">local</span> <span class="n">verticalOffset</span> <span class="o">=</span> <span class="n">tes3vector3</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">30</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">onLoaded</span><span class="p">()</span>
+    <span class="c1">-- MWSE ships with a mesh which contains a few useful widgets.</span>
+    <span class="c1">-- These can be used during debugging.</span>
+    <span class="kd">local</span> <span class="n">mesh</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">loadMesh</span><span class="p">(</span><span class="s2">&quot;mwse</span><span class="se">\\</span><span class="s2">widgets.nif&quot;</span><span class="p">)</span> <span class="cm">--[[@as niNode]]</span>
+    <span class="kd">local</span> <span class="n">widgets</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="c1">-- 3D coordinate axes</span>
+        <span class="n">arrows</span> <span class="o">=</span> <span class="n">mesh</span><span class="p">:</span><span class="n">getObjectByName</span><span class="p">(</span><span class="s2">&quot;unitArrows&quot;</span><span class="p">)</span> <span class="cm">--[[@as niTriShape]]</span><span class="p">,</span>
+        <span class="c1">-- A common switch node that has three almost infinite lines</span>
+        <span class="c1">-- along each coordinate exis</span>
+        <span class="n">axes</span> <span class="o">=</span> <span class="n">mesh</span><span class="p">:</span><span class="n">getObjectByName</span><span class="p">(</span><span class="s2">&quot;axisLines&quot;</span><span class="p">)</span> <span class="cm">--[[@as niSwitchNode]]</span><span class="p">,</span>
+        <span class="n">plane</span> <span class="o">=</span> <span class="n">mesh</span><span class="p">:</span><span class="n">getObjectByName</span><span class="p">(</span><span class="s2">&quot;unitPlane&quot;</span><span class="p">)</span> <span class="cm">--[[@as niTriShape]]</span><span class="p">,</span>
+        <span class="n">sphere</span> <span class="o">=</span> <span class="n">mesh</span><span class="p">:</span><span class="n">getObjectByName</span><span class="p">(</span><span class="s2">&quot;unitSphere&quot;</span><span class="p">)</span> <span class="cm">--[[@as niTriShape]]</span>
+    <span class="p">}</span>
+
+    <span class="kd">local</span> <span class="n">root</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">worldController</span><span class="p">.</span><span class="n">vfxManager</span><span class="p">.</span><span class="n">worldVFXRoot</span>
+    <span class="c1">---@cast root niNode</span>
+
+    <span class="n">lineIn</span> <span class="o">=</span> <span class="n">widgets</span><span class="p">.</span><span class="n">axes</span><span class="p">:</span><span class="n">clone</span><span class="p">()</span> <span class="cm">--[[@as niSwitchNode]]</span>
+    <span class="n">lineOut</span> <span class="o">=</span> <span class="n">lineIn</span><span class="p">:</span><span class="n">clone</span><span class="p">()</span> <span class="cm">--[[@as niSwitchNode]]</span>
+
+    <span class="n">root</span><span class="p">:</span><span class="n">attachChild</span><span class="p">(</span><span class="n">lineIn</span><span class="p">)</span>
+    <span class="n">root</span><span class="p">:</span><span class="n">attachChild</span><span class="p">(</span><span class="n">lineOut</span><span class="p">)</span>
+    <span class="n">root</span><span class="p">:</span><span class="n">update</span><span class="p">()</span>
+
+    <span class="c1">-- switchIndex = 0 - x axis (red)</span>
+    <span class="c1">-- switchIndex = 1 - y axis (green)</span>
+    <span class="c1">-- switchIndex = 2 - z axis (blue)</span>
+    <span class="n">lineIn</span><span class="p">.</span><span class="n">switchIndex</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">lineOut</span><span class="p">.</span><span class="n">switchIndex</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">camera</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">worldController</span><span class="p">.</span><span class="n">worldCamera</span><span class="p">.</span><span class="n">cameraData</span><span class="p">.</span><span class="n">camera</span>
+<span class="kr">end</span>
+<span class="n">event</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">tes3</span><span class="p">.</span><span class="n">event</span><span class="p">.</span><span class="n">loaded</span><span class="p">,</span> <span class="n">onLoaded</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">simulateCallback</span><span class="p">()</span>
+    <span class="n">lineIn</span><span class="p">.</span><span class="n">translation</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">getPlayerEyePosition</span><span class="p">()</span> <span class="o">+</span> <span class="n">verticalOffset</span>
+
+    <span class="kd">local</span> <span class="n">inDirection</span> <span class="o">=</span> <span class="n">camera</span><span class="p">.</span><span class="n">worldDirection</span>
+    <span class="kd">local</span> <span class="n">rotation</span> <span class="o">=</span> <span class="n">lineIn</span><span class="p">.</span><span class="n">rotation</span><span class="p">:</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">rotation</span><span class="p">:</span><span class="n">lookAt</span><span class="p">(</span><span class="n">inDirection</span><span class="p">,</span> <span class="n">camera</span><span class="p">.</span><span class="n">worldUp</span><span class="p">)</span>
+
+    <span class="n">lineIn</span><span class="p">.</span><span class="n">rotation</span> <span class="o">=</span> <span class="n">rotation</span>
+    <span class="n">lineIn</span><span class="p">:</span><span class="n">update</span><span class="p">()</span>
+
+    <span class="c1">-- Now get the coordinates for the outLine</span>
+    <span class="c1">--local inDirection = tes3.getPlayerEyeVector()</span>
+    <span class="kd">local</span> <span class="n">hit</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">rayTest</span><span class="p">({</span>
+        <span class="n">position</span> <span class="o">=</span> <span class="n">lineIn</span><span class="p">.</span><span class="n">translation</span><span class="p">,</span>
+        <span class="n">direction</span> <span class="o">=</span> <span class="n">inDirection</span><span class="p">,</span>
+        <span class="n">returnNormal</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="n">returnSmoothNormal</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="n">ignore</span> <span class="o">=</span> <span class="p">{</span> <span class="n">tes3</span><span class="p">.</span><span class="n">player</span><span class="p">,</span> <span class="n">tes3</span><span class="p">.</span><span class="n">player1stPerson</span> <span class="p">}</span>
+    <span class="p">})</span>
+    <span class="kr">if</span> <span class="ow">not</span> <span class="n">hit</span> <span class="kr">then</span> <span class="kr">return</span> <span class="kr">end</span>
+
+    <span class="n">lineOut</span><span class="p">.</span><span class="n">translation</span> <span class="o">=</span> <span class="n">hit</span><span class="p">.</span><span class="n">intersection</span>
+
+    <span class="kd">local</span> <span class="n">normal</span> <span class="o">=</span> <span class="n">hit</span><span class="p">.</span><span class="n">normal</span>
+    <span class="kd">local</span> <span class="n">outDirection</span> <span class="o">=</span> <span class="n">inDirection</span> <span class="o">-</span> <span class="p">(</span><span class="n">normal</span> <span class="o">*</span> <span class="n">inDirection</span><span class="p">:</span><span class="n">dot</span><span class="p">(</span><span class="n">normal</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">outDirection</span><span class="p">:</span><span class="n">normalize</span><span class="p">()</span>
+    <span class="kd">local</span> <span class="n">axis</span> <span class="o">=</span> <span class="n">outDirection</span><span class="p">:</span><span class="n">cross</span><span class="p">(</span><span class="n">inDirection</span><span class="p">)</span>
+    <span class="kd">local</span> <span class="n">rotation</span> <span class="o">=</span> <span class="n">tes3matrix33</span><span class="p">.</span><span class="n">new</span><span class="p">()</span>
+    <span class="n">rotation</span><span class="p">:</span><span class="n">lookAt</span><span class="p">(</span><span class="n">outDirection</span><span class="p">,</span> <span class="n">axis</span><span class="p">:</span><span class="n">normalized</span><span class="p">())</span>
+
+    <span class="n">lineOut</span><span class="p">.</span><span class="n">rotation</span> <span class="o">=</span> <span class="n">rotation</span>
+    <span class="n">lineOut</span><span class="p">:</span><span class="n">update</span><span class="p">()</span>
+<span class="kr">end</span>
+<span class="n">event</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">tes3</span><span class="p">.</span><span class="n">event</span><span class="p">.</span><span class="n">simulate</span><span class="p">,</span> <span class="n">simulateCallback</span><span class="p">)</span>
+</code></pre></div>
+</details>
 <h2 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">⚓︎</a></h2>
 <h3 id="alphaproperty"><code>alphaProperty</code><a class="headerlink" href="#alphaproperty" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">alphaproperty</div>
@@ -16562,7 +16714,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 25, 2023 10:03:48</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 31, 2023 15:40:55</span>
       
         <br>
         Created:

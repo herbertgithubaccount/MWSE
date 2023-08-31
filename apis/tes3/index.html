@@ -6518,6 +6518,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -10617,6 +10619,26 @@
   
   <span class="md-ellipsis">
     tes3matrix44
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../types/tes3messageBoxCallbackData/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tes3messageBoxCallbackData
   </span>
   
 
@@ -19033,7 +19055,7 @@
 <p><strong>Parameters</strong>:</p>
 <ul>
 <li><code>params</code> (table): <em>Optional</em>.<ul>
-<li><code>fader</code> (<a href="../../types/tes3fader/">tes3fader</a>): <em>Optional</em>. Defaults to the transition fader.</li>
+<li><code>fader</code> (<a href="../../types/tes3fader/">tes3fader</a>): <em>Default</em>: <code>tes3.worldController.transitionFader</code>. Defaults to the transition fader.</li>
 <li><code>duration</code> (number): <em>Default</em>: <code>1.0</code>. Time, in seconds, for the fade.</li>
 </ul>
 </li>
@@ -19347,6 +19369,22 @@
 <li><code>upperBodyGroup</code> (integer)</li>
 <li><code>leftArmGroup</code> (integer)</li>
 </ul>
+<details class="example">
+<summary>Example: Getting animation timings for bow animations</summary>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="kr">function</span> <span class="nf">onSimulate</span><span class="p">()</span>
+    <span class="kd">local</span> <span class="n">reference</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">is3rdPerson</span><span class="p">()</span> <span class="ow">and</span> <span class="n">tes3</span><span class="p">.</span><span class="n">player</span> <span class="ow">or</span> <span class="n">tes3</span><span class="p">.</span><span class="n">player1stPerson</span>
+
+    <span class="kd">local</span> <span class="n">_</span><span class="p">,</span> <span class="n">upperGroup</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">getAnimationGroups</span><span class="p">({</span> <span class="n">reference</span> <span class="o">=</span> <span class="n">reference</span> <span class="p">})</span>
+    <span class="kr">if</span> <span class="n">upperGroup</span> <span class="o">~=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">animationGroup</span><span class="p">.</span><span class="n">bowAndArrow</span> <span class="kr">then</span> <span class="kr">return</span> <span class="kr">end</span>
+
+    <span class="kd">local</span> <span class="n">_</span><span class="p">,</span> <span class="n">upperTiming</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">unpack</span><span class="p">(</span>
+        <span class="n">tes3</span><span class="p">.</span><span class="n">getAnimationTiming</span><span class="p">({</span> <span class="n">reference</span> <span class="o">=</span> <span class="n">reference</span> <span class="p">})</span>
+    <span class="p">)</span>
+    <span class="n">tes3</span><span class="p">.</span><span class="n">messageBox</span><span class="p">(</span><span class="n">upperTiming</span><span class="p">)</span>
+<span class="kr">end</span>
+<span class="n">event</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">tes3</span><span class="p">.</span><span class="n">event</span><span class="p">.</span><span class="n">simulate</span><span class="p">,</span> <span class="n">onSimulate</span><span class="p">)</span>
+</code></pre></div>
+</details>
 <hr />
 <h3 id="tes3getanimationtiming"><code>tes3.getAnimationTiming</code><a class="headerlink" href="#tes3getanimationtiming" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">getanimationtiming, animationtiming</div>
@@ -19366,10 +19404,27 @@
 <li><code>result</code> (number[])</li>
 </ul>
 <details class="example">
+<summary>Example: Getting animation timings for bow animations</summary>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="kr">function</span> <span class="nf">onSimulate</span><span class="p">()</span>
+    <span class="kd">local</span> <span class="n">reference</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">is3rdPerson</span><span class="p">()</span> <span class="ow">and</span> <span class="n">tes3</span><span class="p">.</span><span class="n">player</span> <span class="ow">or</span> <span class="n">tes3</span><span class="p">.</span><span class="n">player1stPerson</span>
+
+    <span class="kd">local</span> <span class="n">_</span><span class="p">,</span> <span class="n">upperGroup</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">getAnimationGroups</span><span class="p">({</span> <span class="n">reference</span> <span class="o">=</span> <span class="n">reference</span> <span class="p">})</span>
+    <span class="kr">if</span> <span class="n">upperGroup</span> <span class="o">~=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">animationGroup</span><span class="p">.</span><span class="n">bowAndArrow</span> <span class="kr">then</span> <span class="kr">return</span> <span class="kr">end</span>
+
+    <span class="kd">local</span> <span class="n">_</span><span class="p">,</span> <span class="n">upperTiming</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">unpack</span><span class="p">(</span>
+        <span class="n">tes3</span><span class="p">.</span><span class="n">getAnimationTiming</span><span class="p">({</span> <span class="n">reference</span> <span class="o">=</span> <span class="n">reference</span> <span class="p">})</span>
+    <span class="p">)</span>
+    <span class="n">tes3</span><span class="p">.</span><span class="n">messageBox</span><span class="p">(</span><span class="n">upperTiming</span><span class="p">)</span>
+<span class="kr">end</span>
+<span class="n">event</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">tes3</span><span class="p">.</span><span class="n">event</span><span class="p">.</span><span class="n">simulate</span><span class="p">,</span> <span class="n">onSimulate</span><span class="p">)</span>
+</code></pre></div>
+</details>
+<details class="example">
 <summary>Example: An elegent usage example</summary>
 <p>The function returns animation timings for three body segments. This array can be nicely broken down into three variables using Lua's <code>unpack()</code> function.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">lowerTiming</span><span class="p">,</span> <span class="n">upperTiming</span><span class="p">,</span> <span class="n">leftArmTiming</span> <span class="o">=</span> <span class="n">unpack</span><span class="p">(</span>
-    <span class="n">tes3</span><span class="p">.</span><span class="n">getAnimationTiming</span><span class="p">({</span> <span class="n">reference</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">player</span> <span class="p">})</span>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">reference</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">is3rdPerson</span><span class="p">()</span> <span class="ow">and</span> <span class="n">tes3</span><span class="p">.</span><span class="n">player</span> <span class="ow">or</span> <span class="n">tes3</span><span class="p">.</span><span class="n">player1stPerson</span>
+<span class="kd">local</span> <span class="n">lowerTiming</span><span class="p">,</span> <span class="n">upperTiming</span><span class="p">,</span> <span class="n">leftArmTiming</span> <span class="o">=</span> <span class="n">unpack</span><span class="p">(</span>
+    <span class="n">tes3</span><span class="p">.</span><span class="n">getAnimationTiming</span><span class="p">({</span> <span class="n">reference</span> <span class="o">=</span> <span class="n">reference</span> <span class="p">})</span>
 <span class="p">)</span>
 </code></pre></div>
 </details>
@@ -20742,10 +20797,10 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>messageOrParams</code> (string, table)<ul>
+<li><code>messageOrParams</code> (boolean, number, string, table)<ul>
 <li><code>message</code> (string)</li>
-<li><code>buttons</code> (string[]): <em>Optional</em>. An array of strings to use for buttons.</li>
-<li><code>callback</code> (function): <em>Optional</em>. The callback function will be executed after a button was pressed. The callback function will be passed a table with <code>button</code> field corresponding to 0-based index of the button from passed <code>buttons</code> array.</li>
+<li><code>buttons</code> (string[]): <em>Optional</em>. An array of strings to use for buttons. Maximal text length on each button is 32 characters.</li>
+<li><code>callback</code> (fun(e: tes3messageboxCallbackData)): <em>Optional</em>. The callback function will be executed after a button was pressed. The callback function will be passed a table with <code>button</code> field corresponding to 0-based index of the button from passed <code>buttons</code> array.</li>
 <li><code>showInDialog</code> (boolean): <em>Default</em>: <code>true</code>. Specifying showInDialog = false forces the toast-style message, which is not shown in the dialog menu.</li>
 <li><code>duration</code> (number): <em>Optional</em>. Overrides how long the toast-style message remains visible.</li>
 </ul>
@@ -22123,7 +22178,7 @@ Statics, activators, containers, doors, and lights with non-zero weight.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 25, 2023 10:03:48</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 31, 2023 15:30:12</span>
       
         <br>
         Created:
