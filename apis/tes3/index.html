@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.2.7">
+      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.2.8">
     
     
       
@@ -18938,8 +18938,8 @@
 <ul>
 <li><code>params</code> (table)<ul>
 <li><code>object</code> (<a href="../../types/tes3physicalObject/">tes3physicalObject</a>, string): The object to create a reference of.</li>
-<li><code>position</code> (<a href="../../types/tes3vector3/">tes3vector3</a>, table): The location to create the reference at.</li>
-<li><code>orientation</code> (<a href="../../types/tes3vector3/">tes3vector3</a>, table): The new orientation for the created reference.</li>
+<li><code>position</code> (<a href="../../types/tes3vector3/">tes3vector3</a>, number[]): The location to create the reference at.</li>
+<li><code>orientation</code> (<a href="../../types/tes3vector3/">tes3vector3</a>, number[]): The new orientation for the created reference.</li>
 <li><code>cell</code> (<a href="../../types/tes3cell/">tes3cell</a>, string, table): <em>Optional</em>. The cell to create the reference in. This is only needed for interior cells.</li>
 <li><code>scale</code> (number): <em>Default</em>: <code>1</code>. A scale for the reference.</li>
 </ul>
@@ -18965,7 +18965,7 @@
 <li><code>lifespan</code> (number): <em>Optional</em>. The desired lifespan for the VFX. If not provided, the VFX will never die of old age.</li>
 <li><code>scale</code> (number): <em>Default</em>: <code>1</code>. The scale used to resize the given VFX. The default value will match the size used by most magical effect logic. This is not used when creating an enchantment-style VFX.</li>
 <li><code>verticalOffset</code> (number): <em>Default</em>: <code>0</code>. This offset will be used to position it above its anchor reference. This is not used when creating an enchantment-style VFX.</li>
-<li><code>position</code> (<a href="../../types/tes3vector3/">tes3vector3</a>, table): <em>Optional</em>. If provided the VFX will be attached relative to a position, and not follow a reference.</li>
+<li><code>position</code> (<a href="../../types/tes3vector3/">tes3vector3</a>, number[]): <em>Optional</em>. If provided the VFX will be attached relative to a position, and not follow a reference.</li>
 <li><code>avObject</code> (<a href="../../types/niAVObject/">niAVObject</a>): <em>Optional</em>. </li>
 <li><code>magicEffectId</code> (number): <em>Optional</em>. The magic effect ID to use to create an enchantment-style VFX. This will use most of the same VFX logic, but cannot be applied to a position or specific niAVObject.</li>
 </ul>
@@ -19513,7 +19513,7 @@
 <ul>
 <li><code>params</code> (table)<ul>
 <li><code>id</code> (string): <em>Optional</em>. The cell's ID. If not provided, position or x and y must be.</li>
-<li><code>position</code> (<a href="../../types/tes3vector3/">tes3vector3</a>, table): <em>Optional</em>. A point in an exterior cell.</li>
+<li><code>position</code> (<a href="../../types/tes3vector3/">tes3vector3</a>, number[]): <em>Optional</em>. A point in an exterior cell.</li>
 <li><code>x</code> (number): <em>Optional</em>. The X grid-position.</li>
 <li><code>y</code> (number): <em>Optional</em>. The Y grid-position.</li>
 </ul>
@@ -21026,8 +21026,8 @@
 <li><code>params</code> (table)<ul>
 <li><code>reference</code> (<a href="../../types/tes3reference/">tes3reference</a>, <a href="../../types/tes3mobileActor/">tes3mobileActor</a>, string): <em>Default</em>: <code>tes3.mobilePlayer</code>. The reference to reposition.</li>
 <li><code>cell</code> (<a href="../../types/tes3cell/">tes3cell</a>, string, table, nil): <em>Optional</em>. The cell to move the reference to. Can be a tes3cell, cell name, or a table with two values that correspond to the exterior cell's grid coordinates. If not provided, the reference will be moved to a cell in the exterior worldspace at the position provided.</li>
-<li><code>position</code> (<a href="../../types/tes3vector3/">tes3vector3</a>, table): The position to move the reference to.</li>
-<li><code>orientation</code> (<a href="../../types/tes3vector3/">tes3vector3</a>, table): <em>Optional</em>. The new orientation of the reference.</li>
+<li><code>position</code> (<a href="../../types/tes3vector3/">tes3vector3</a>, number[]): The position to move the reference to.</li>
+<li><code>orientation</code> (<a href="../../types/tes3vector3/">tes3vector3</a>, number[]): <em>Optional</em>. The new orientation of the reference.</li>
 <li><code>forceCellChange</code> (boolean): <em>Default</em>: <code>false</code>. When true, forces the game to update a reference that has moved within a single cell, as if it was moved into a new cell.</li>
 <li><code>suppressFader</code> (boolean): <em>Default</em>: <code>false</code>. When moving the player, can be used to prevent the fade in and out visual effect.</li>
 <li><code>teleportCompanions</code> (boolean): <em>Default</em>: <code>true</code>. If used on the player, determines if companions should also be teleported.</li>
@@ -21087,8 +21087,8 @@
 <p><strong>Parameters</strong>:</p>
 <ul>
 <li><code>params</code> (table)<ul>
-<li><code>position</code> (<a href="../../types/tes3vector3/">tes3vector3</a>, table): Position of the ray origin.</li>
-<li><code>direction</code> (<a href="../../types/tes3vector3/">tes3vector3</a>, table): Direction of the ray. Does not have to be unit length.</li>
+<li><code>position</code> (<a href="../../types/tes3vector3/">tes3vector3</a>, number[]): Position of the ray origin.</li>
+<li><code>direction</code> (<a href="../../types/tes3vector3/">tes3vector3</a>, number[]): Direction of the ray. Does not have to be unit length.</li>
 <li><code>findAll</code> (boolean): <em>Default</em>: <code>false</code>. If true, the ray test won't stop after the first result.</li>
 <li><code>maxDistance</code> (number): <em>Default</em>: <code>0</code>. The maximum distance that the test will run.</li>
 <li><code>sort</code> (boolean): <em>Default</em>: <code>true</code>. If true, the results will be sorted by distance from the origin position.</li>
@@ -21449,7 +21449,7 @@
 <li><code>params</code> (table)<ul>
 <li><code>reference</code> (<a href="../../types/tes3mobileActor/">tes3mobileActor</a>, <a href="../../types/tes3reference/">tes3reference</a>): The escorting actor.</li>
 <li><code>target</code> (<a href="../../types/tes3reference/">tes3reference</a>, <a href="../../types/tes3mobileActor/">tes3mobileActor</a>): The actor being escorted.</li>
-<li><code>destination</code> (<a href="../../types/tes3vector3/">tes3vector3</a>, table)</li>
+<li><code>destination</code> (<a href="../../types/tes3vector3/">tes3vector3</a>, number[])</li>
 <li><code>duration</code> (integer): <em>Default</em>: <code>0</code>. How long the escorter will do the escorting, in hours.</li>
 <li><code>cell</code> (<a href="../../types/tes3cell/">tes3cell</a>, string): <em>Optional</em>.</li>
 <li><code>reset</code> (boolean): <em>Default</em>: <code>true</code>.</li>
@@ -21468,7 +21468,7 @@
 <li><code>params</code> (table)<ul>
 <li><code>reference</code> (<a href="../../types/tes3mobileActor/">tes3mobileActor</a>, <a href="../../types/tes3reference/">tes3reference</a>): This is the actor that will follow another one.</li>
 <li><code>target</code> (<a href="../../types/tes3reference/">tes3reference</a>, <a href="../../types/tes3mobileActor/">tes3mobileActor</a>): The actor to follow.</li>
-<li><code>destination</code> (<a href="../../types/tes3vector3/">tes3vector3</a>, table): <em>Optional</em>.</li>
+<li><code>destination</code> (<a href="../../types/tes3vector3/">tes3vector3</a>, number[]): <em>Optional</em>.</li>
 <li><code>duration</code> (integer): <em>Default</em>: <code>0</code>. How long the follower will follow, in hours.</li>
 <li><code>cell</code> (<a href="../../types/tes3cell/">tes3cell</a>, string): <em>Optional</em>.</li>
 <li><code>reset</code> (boolean): <em>Default</em>: <code>true</code>.</li>
@@ -21486,7 +21486,7 @@
 <ul>
 <li><code>params</code> (table)<ul>
 <li><code>reference</code> (<a href="../../types/tes3mobileActor/">tes3mobileActor</a>, <a href="../../types/tes3reference/">tes3reference</a>)</li>
-<li><code>destination</code> (<a href="../../types/tes3vector3/">tes3vector3</a>, table)</li>
+<li><code>destination</code> (<a href="../../types/tes3vector3/">tes3vector3</a>, number[])</li>
 <li><code>reset</code> (boolean): <em>Default</em>: <code>true</code>.</li>
 </ul>
 </li>
@@ -21536,8 +21536,8 @@
 <ul>
 <li><code>params</code> (table)<ul>
 <li><code>reference</code> (<a href="../../types/tes3reference/">tes3reference</a>): The door reference that will be updated.</li>
-<li><code>position</code> (<a href="../../types/tes3vector3/">tes3vector3</a>, table): The new coordinates of the transition.</li>
-<li><code>orientation</code> (<a href="../../types/tes3vector3/">tes3vector3</a>, table): The new rotation to use after transition.</li>
+<li><code>position</code> (<a href="../../types/tes3vector3/">tes3vector3</a>, number[]): The new coordinates of the transition.</li>
+<li><code>orientation</code> (<a href="../../types/tes3vector3/">tes3vector3</a>, number[]): The new rotation to use after transition.</li>
 <li><code>cell</code> (<a href="../../types/tes3cell/">tes3cell</a>, string): <em>Optional</em>. The cell to transition to, if transitioning to an interior.</li>
 </ul>
 </li>
@@ -21992,9 +21992,9 @@ Statics, activators, containers, doors, and lights with non-zero weight.</p>
 <li><code>params</code> (table)<ul>
 <li><code>reference1</code> (<a href="../../types/tes3reference/">tes3reference</a>): <em>Optional</em>. Position of the starting point of the LoS check. For actors, this point is set to position of this reference's head. For other objects the starting point is at the top of its bounding box.</li>
 <li><code>reference2</code> (<a href="../../types/tes3reference/">tes3reference</a>): <em>Optional</em>. Position of the ending point of the LoS check. For actors, this point is set to position of this reference's head. For other objects the ending point is at the top of its bounding box.</li>
-<li><code>position1</code> (<a href="../../types/tes3vector3/">tes3vector3</a>, table): <em>Optional</em>. Position of the starting point of the LoS check. Modified by height1.</li>
+<li><code>position1</code> (<a href="../../types/tes3vector3/">tes3vector3</a>, number[]): <em>Optional</em>. Position of the starting point of the LoS check. Modified by height1.</li>
 <li><code>height1</code> (number): <em>Default</em>: <code>0</code>. Moves the starting point upwards (+Z direction) by this amount. Normally used to simulate head height from a position that is on the ground.</li>
-<li><code>position2</code> (<a href="../../types/tes3vector3/">tes3vector3</a>, table): <em>Optional</em>. Position of the ending point of the LoS check. Modified by height2.</li>
+<li><code>position2</code> (<a href="../../types/tes3vector3/">tes3vector3</a>, number[]): <em>Optional</em>. Position of the ending point of the LoS check. Modified by height2.</li>
 <li><code>height2</code> (number): <em>Default</em>: <code>0</code>. Moves the starting point upwards (+Z direction) by this amount. Normally used to simulate head height from a position that is on the ground.</li>
 </ul>
 </li>
@@ -22178,7 +22178,7 @@ Statics, activators, containers, doors, and lights with non-zero weight.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">September 2, 2023 16:18:42</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">September 9, 2023 08:05:31</span>
       
         <br>
         Created:
