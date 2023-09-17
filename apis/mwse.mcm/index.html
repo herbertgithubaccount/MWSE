@@ -4234,6 +4234,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#mwsemcmcreatekeybinder" class="md-nav__link">
+    mwse.mcm.createKeyBinder
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#mwsemcmcreatemouseoverinfo" class="md-nav__link">
     mwse.mcm.createMouseOverInfo
   </a>
@@ -5284,6 +5291,10 @@
       
         
       
+        
+      
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -5583,6 +5594,26 @@
   
   <span class="md-ellipsis">
     mgeWindTable
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../types/mwseKeyCombo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mwseKeyCombo
   </span>
   
 
@@ -6103,6 +6134,26 @@
   
   <span class="md-ellipsis">
     mwseMCMInfoElements
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../types/mwseMCMKeyBinder/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mwseMCMKeyBinder
   </span>
   
 
@@ -16099,6 +16150,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#mwsemcmcreatekeybinder" class="md-nav__link">
+    mwse.mcm.createKeyBinder
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#mwsemcmcreatemouseoverinfo" class="md-nav__link">
     mwse.mcm.createMouseOverInfo
   </a>
@@ -16524,6 +16582,44 @@
 <li><code>info</code> (<a href="../../types/mwseMCMInfo/">mwseMCMInfo</a>)</li>
 </ul>
 <hr />
+<h3 id="mwsemcmcreatekeybinder"><code>mwse.mcm.createKeyBinder</code><a class="headerlink" href="#mwsemcmcreatekeybinder" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">createkeybinder, keybinder</div>
+
+<p>Creates a new KeyBinder inside given <code>parent</code> menu.</p>
+<p>The canonical way to use this function is to pass a <code>parent</code> and <code>data</code> arguments. If passing only <code>data</code> table, KeyBinder's UI element tree won't be created. To do so, use KeyBinder's <code>create</code> method:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">myKeyBinder</span> <span class="o">=</span> <span class="n">mwse</span><span class="p">.</span><span class="n">mcm</span><span class="p">.</span><span class="n">createKeyBinder</span><span class="p">({</span> <span class="p">...</span> <span class="p">})</span>
+<span class="n">myKeyBinder</span><span class="p">:</span><span class="n">create</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+</code></pre></div>
+<p>The same is done by this function if you pass both <code>parent</code> and <code>data</code> arguments.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">button</span> <span class="o">=</span> <span class="n">mwse</span><span class="p">.</span><span class="n">mcm</span><span class="p">.</span><span class="n">createKeyBinder</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="p">{</span> <span class="n">label</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">description</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">allowCombinations</span>  <span class="o">=</span> <span class="p">...,</span> <span class="n">leftSide</span>  <span class="o">=</span> <span class="p">...,</span> <span class="n">variable</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">defaultSetting</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">callback</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">inGameOnly</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">restartRequired</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">restartRequiredMessage</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">indent</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">childIndent</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">paddingBottom</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">childSpacing</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">postCreate</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
+</code></pre></div>
+<p><strong>Parameters</strong>:</p>
+<ul>
+<li><code>parent</code> (<a href="../../types/tes3uiElement/">tes3uiElement</a>, mwse.mcm.createKeyBinder.data): The UI element inside which the new KeyBinder will be created.</li>
+<li><code>data</code> (table): <em>Optional</em>.<ul>
+<li><code>label</code> (string): <em>Optional</em>. Text shown next to the button.</li>
+<li><code>description</code> (string): <em>Optional</em>. If in a <a href="../../types/mwseMCMSideBarPage/">Sidebar Page</a>, the description will be shown on mouseover.</li>
+<li><code>allowCombinations</code> (boolean): <em>Default</em>: <code>true</code>. If true, the keybinder will let the user use modification keys: Shift, Ctrl, and Alt when rebinding.</li>
+<li><code>leftSide</code> (boolean): <em>Default</em>: <code>true</code>. If true, the button will be created on the left and label on the right.</li>
+<li><code>variable</code> (<a href="../../types/mwseMCMVariable/">mwseMCMVariable</a>, <a href="../../types/mwseMCMSettingNewVariable/">mwseMCMSettingNewVariable</a>): A variable for this KeyBinder.</li>
+<li><code>defaultSetting</code> (<a href="../../types/mwseKeyCombo/">mwseKeyCombo</a>): <em>Optional</em>. If <code>defaultSetting</code> wasn't passed in the <code>variable</code> table, can be passed here. The new variable will be initialized to this value.</li>
+<li><code>callback</code> (fun(self: <a href="../../types/mwseMCMKeyBinder/">mwseMCMKeyBinder</a>)): <em>Optional</em>. The custom function called when the player interacts with this KeyBinder.</li>
+<li><code>inGameOnly</code> (boolean): <em>Default</em>: <code>false</code>. If true, the setting is disabled while the game is on main menu.</li>
+<li><code>restartRequired</code> (boolean): <em>Default</em>: <code>false</code>. If true, updating this Setting will notify the player to restart the game.</li>
+<li><code>restartRequiredMessage</code> (string): <em>Optional</em>. The message shown if restartRequired is triggered. The default text is a localized version of: "The game must be restarted before this change will come into effect."</li>
+<li><code>indent</code> (integer): <em>Default</em>: <code>12</code>. The left padding size in pixels. Only used if the <code>childIndent</code> isn't set on the parent component.</li>
+<li><code>childIndent</code> (integer): <em>Optional</em>. The left padding size in pixels. Used on all the child components.</li>
+<li><code>paddingBottom</code> (integer): <em>Default</em>: <code>4</code>. The bottom border size in pixels. Only used if the <code>childSpacing</code> is unset on the parent component.</li>
+<li><code>childSpacing</code> (integer): <em>Optional</em>. The bottom border size in pixels. Used on all the child components.</li>
+<li><code>postCreate</code> (fun(self: <a href="../../types/mwseMCMKeyBinder/">mwseMCMKeyBinder</a>)): <em>Optional</em>. Can define a custom formatting function to make adjustments to any element saved in <code>self.elements</code>.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>button</code> (<a href="../../types/mwseMCMKeyBinder/">mwseMCMKeyBinder</a>)</li>
+</ul>
+<hr />
 <h3 id="mwsemcmcreatemouseoverinfo"><code>mwse.mcm.createMouseOverInfo</code><a class="headerlink" href="#mwsemcmcreatemouseoverinfo" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">createmouseoverinfo, mouseoverinfo</div>
 
@@ -16865,12 +16961,12 @@
 <h3 id="mwsemcmtestkeybind"><code>mwse.mcm.testKeyBind</code><a class="headerlink" href="#mwsemcmtestkeybind" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">testkeybind, keybind</div>
 
-<p>This function check whether a certain key/key combination is currently pressed.</p>
+<p>This function check whether a certain key combination is currently pressed. It will only check ctrl, shift and alt modifier keys, matching the KeyBinder.</p>
 <div class="highlight"><pre><span></span><code><span class="n">mwse</span><span class="p">.</span><span class="n">mcm</span><span class="p">.</span><span class="n">testKeyBind</span><span class="p">(</span><span class="n">keybind</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>keybind</code> (<a href="../types/mwseKeyboardKey.md">mwseKeyboardKey</a>)</li>
+<li><code>keybind</code> (<a href="../../types/mwseKeyCombo/">mwseKeyCombo</a>)</li>
 </ul>
 
   <hr>
@@ -16878,7 +16974,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">September 17, 2023 11:19:06</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">September 17, 2023 16:04:51</span>
       
         <br>
         Created:
