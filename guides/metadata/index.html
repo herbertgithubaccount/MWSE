@@ -16193,6 +16193,18 @@
 </li>
 </ul>
 </li>
+<li>
+<p><code>mcp</code></p>
+<p>A dependency on specific Morrowind Code Patch Features. Pass a list of features and the state the feature needs to be: enabled (true) or disabled (false). You can see the <a href="https://mwse.github.io/MWSE/references/code-patch-features/">list of MCP features here</a>. You only need to pass the feature name, for example `"creatureVoiceoverEnable"``.</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="k">[dependencies.mcp.features]</span>
+<span class="w">    </span><span class="c1"># The following MCP feature needs to be enabled</span>
+<span class="w">    </span><span class="n">creatureVoiceoverEnable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">    </span><span class="c1"># The mod is uncompatible with the following MCP feature,</span>
+<span class="w">    </span><span class="c1"># it needs to be disabled for the mod to work properly</span>
+<span class="w">    </span><span class="n">arrowDenocker</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
+</code></pre></div>
+</li>
 </ul>
 <h2 id="versions">Versions<a class="headerlink" href="#versions" title="Permanent link">⚓︎</a></h2>
 <p>The version strings in <code>[package]</code>, <code>[dependencies.mge-xe]</code> and <code>[dependencies.mods]</code> uses semver (Semantic Versioning) format. This consists of three numbers separated by periods, such as <code>1.2.3</code>. The first number is the <code>major</code> version, the second is the <code>minor</code> version, and the third is the <code>patch</code> version. You should increment the major version when you make a breaking change, the minor version when you add new features, and the patch version when you make bug fixes.</p>
@@ -16255,6 +16267,14 @@
 <span class="k">[dependencies.mods.&quot;My Other Mod&quot;]</span>
 <span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&gt;=7.8.9&quot;</span>
 <span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;https://www.nexusmods.com/morrowind/mods/52116&quot;</span>
+
+<span class="c1"># Check if user has specific MCP feature enabled or disabled</span>
+<span class="k">[dependencies.mcp.features]</span>
+<span class="c1"># The following MCP feature needs to be enabled</span>
+<span class="n">creatureVoiceoverEnable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<span class="c1"># The mod is uncompatible with the following MCP feature,</span>
+<span class="c1"># it needs to be disabled for the mod to work properly</span>
+<span class="n">arrowDenocker</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
 </code></pre></div>
 
   <hr>
@@ -16262,7 +16282,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 25, 2023 09:54:27</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">September 18, 2023 16:38:46</span>
       
         <br>
         Created:
