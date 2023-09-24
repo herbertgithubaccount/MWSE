@@ -6660,6 +6660,10 @@
       
         
       
+        
+      
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -6979,6 +6983,26 @@
   
   <span class="md-ellipsis">
     mwseKeyCombo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../types/mwseKeyMouseCombo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mwseKeyMouseCombo
   </span>
   
 
@@ -7519,6 +7543,26 @@
   
   <span class="md-ellipsis">
     mwseMCMKeyBinder
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../types/mwseMCMKeyMouseBinder/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mwseMCMKeyMouseBinder
   </span>
   
 
@@ -21673,20 +21717,24 @@
 <p><strong>Parameters</strong>:</p>
 <ul>
 <li><code>params</code> (table)<ul>
-<li><code>actual</code> (table, <a href="../../types/mwseKeyCombo/">mwseKeyCombo</a>, keyDownEventData, keyUpEventData, keyEventData): The key object that is being compared.<ul>
+<li><code>actual</code> (table, <a href="../../types/mwseKeyCombo/">mwseKeyCombo</a>, <a href="../../types/mwseKeyMouseCombo/">mwseKeyMouseCombo</a>, keyDownEventData, keyUpEventData, keyEventData, mouseButtonDownEventData, mouseButtonUpEventData, mouseWheelEventData): The key object that is being compared.<ul>
 <li><code>keyCode</code> (number): <em>Default</em>: <code>false</code>. Value of the actual key scan code, such as the letter <code>p</code>. Maps to <a href="https://mwse.github.io/MWSE/references/scan-codes/"><code>tes3.scanCode.*</code></a>.</li>
 <li><code>isShiftDown</code> (boolean): <em>Default</em>: <code>false</code>. Value of whether the shift key is pressed.</li>
 <li><code>isControlDown</code> (boolean): <em>Default</em>: <code>false</code>. Value of whether the control key is pressed.</li>
 <li><code>isAltDown</code> (boolean): <em>Default</em>: <code>false</code>. Value of whether the alt key is pressed.</li>
 <li><code>isSuperDown</code> (boolean): <em>Default</em>: <code>false</code>. Value of whether the super (Windows key) key is pressed.</li>
+<li><code>mouseButton</code> (number): <em>Default</em>: <code>false</code>. The mouse button index.</li>
+<li><code>mouseWheel</code> (integer): <em>Default</em>: <code>false</code>. The mouse wheel direction. <code>-1</code> is down, <code>1</code> is up.</li>
 </ul>
 </li>
-<li><code>expected</code> (table, <a href="../../types/mwseKeyCombo/">mwseKeyCombo</a>, keyDownEventData, keyUpEventData, keyEventData): The key object that is being compared against.<ul>
+<li><code>expected</code> (table, <a href="../../types/mwseKeyCombo/">mwseKeyCombo</a>, <a href="../../types/mwseKeyMouseCombo/">mwseKeyMouseCombo</a>, keyDownEventData, keyUpEventData, keyEventData, mouseButtonDownEventData, mouseButtonUpEventData, mouseWheelEventData): The key object that is being compared against.<ul>
 <li><code>keyCode</code> (number): <em>Default</em>: <code>false</code>. Value of the expected key scan code, such as the letter <code>p</code>. Maps to <a href="https://mwse.github.io/MWSE/references/scan-codes/"><code>tes3.scanCode.*</code></a>.</li>
 <li><code>isShiftDown</code> (boolean): <em>Default</em>: <code>false</code>. Value of whether the shift key is expected to be pressed.</li>
 <li><code>isControlDown</code> (boolean): <em>Default</em>: <code>false</code>. Value of whether the control key is expected to be pressed.</li>
 <li><code>isAltDown</code> (boolean): <em>Default</em>: <code>false</code>. Value of whether the alt key is expected to be pressed.</li>
 <li><code>isSuperDown</code> (boolean): <em>Default</em>: <code>false</code>. Value of whether the super (Windows key) key is pressed.</li>
+<li><code>mouseButton</code> (number): <em>Default</em>: <code>false</code>. The mouse button index.</li>
+<li><code>mouseWheel</code> (integer): <em>Default</em>: <code>false</code>. The mouse wheel direction. <code>-1</code> is down, <code>1</code> is up.</li>
 </ul>
 </li>
 </ul>
@@ -23300,7 +23348,7 @@ Statics, activators, containers, doors, and lights with non-zero weight.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">September 17, 2023 15:49:37</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">September 23, 2023 21:40:03</span>
       
         <br>
         Created:

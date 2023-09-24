@@ -4158,6 +4158,26 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    Methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mwsemcmcreatekeymousebinder" class="md-nav__link">
+    mwse.mcm.createKeyMouseBinder
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#functions" class="md-nav__link">
     Functions
   </a>
@@ -5317,6 +5337,10 @@
       
         
       
+        
+      
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -5636,6 +5660,26 @@
   
   <span class="md-ellipsis">
     mwseKeyCombo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../types/mwseKeyMouseCombo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mwseKeyMouseCombo
   </span>
   
 
@@ -6176,6 +6220,26 @@
   
   <span class="md-ellipsis">
     mwseMCMKeyBinder
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../types/mwseMCMKeyMouseBinder/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mwseMCMKeyMouseBinder
   </span>
   
 
@@ -16094,6 +16158,26 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    Methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mwsemcmcreatekeymousebinder" class="md-nav__link">
+    mwse.mcm.createKeyMouseBinder
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#functions" class="md-nav__link">
     Functions
   </a>
@@ -16295,6 +16379,39 @@
 
 <p>The MCM library provides a set of objects to make creating mod configurations as easy as possible.</p>
 <p>In addition, many MCM components implement useful UI structures that can be used outside the MCMs. These are documented here. For example, you can use <a href="./#mwsemcmcreateslider"><code>mwse.mcm.createSlider(someMenu, {...})</code></a> to use labeled sliders from the MCM in your custom menu. Be warned, however, that MCM components require the parent element to have the correct formatting to appear. They tend to work best with menus that utilize <code>widthProportional</code> and <code>autoHeight</code>.</p>
+<h2 id="methods">Methods<a class="headerlink" href="#methods" title="Permanent link">⚓︎</a></h2>
+<h3 id="mwsemcmcreatekeymousebinder"><code>mwse.mcm.createKeyMouseBinder</code><a class="headerlink" href="#mwsemcmcreatekeymousebinder" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">createkeymousebinder, keymousebinder</div>
+
+<p>Creates a new KeyMouseBinder.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">button</span> <span class="o">=</span> <span class="n">myObject</span><span class="p">:</span><span class="n">createKeyMouseBinder</span><span class="p">({</span> <span class="n">label</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">description</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">keybindName</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">leftSide</span>  <span class="o">=</span> <span class="p">...,</span> <span class="n">variable</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">defaultSetting</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">callback</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">inGameOnly</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">restartRequired</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">restartRequiredMessage</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">indent</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">childIndent</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">paddingBottom</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">childSpacing</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">postCreate</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
+</code></pre></div>
+<p><strong>Parameters</strong>:</p>
+<ul>
+<li><code>data</code> (table)<ul>
+<li><code>label</code> (string): <em>Optional</em>. Text shown next to the button.</li>
+<li><code>description</code> (string): <em>Optional</em>. If in a <a href="../../types/mwseMCMSideBarPage/">Sidebar Page</a>, the description will be shown on mouseover.</li>
+<li><code>keybindName</code> (string): The keybind name. Shown in the popup menu.</li>
+<li><code>leftSide</code> (boolean): <em>Default</em>: <code>true</code>. If true, the button will be created on the left and label on the right.</li>
+<li><code>variable</code> (<a href="../../types/mwseMCMVariable/">mwseMCMVariable</a>, <a href="../../types/mwseMCMSettingNewVariable/">mwseMCMSettingNewVariable</a>): <em>Optional</em>. A variable for this KeyMouseBinder.</li>
+<li><code>defaultSetting</code> (<a href="../../types/mwseKeyMouseCombo/">mwseKeyMouseCombo</a>): <em>Optional</em>. If <code>defaultSetting</code> wasn't passed in the <code>variable</code> table, can be passed here. The new variable will be initialized to this value.</li>
+<li><code>callback</code> (fun(self: <a href="../../types/mwseMCMKeyMouseBinder/">mwseMCMKeyMouseBinder</a>)): <em>Optional</em>. The custom function called when the player interacts with this KeyMouseBinder.</li>
+<li><code>inGameOnly</code> (boolean): <em>Default</em>: <code>false</code>. If true, the setting is disabled while the game is on main menu.</li>
+<li><code>restartRequired</code> (boolean): <em>Default</em>: <code>false</code>. If true, updating this Setting will notify the player to restart the game.</li>
+<li><code>restartRequiredMessage</code> (string): <em>Optional</em>. The message shown if restartRequired is triggered. The default text is a localized version of: "The game must be restarted before this change will come into effect."</li>
+<li><code>indent</code> (integer): <em>Default</em>: <code>12</code>. The left padding size in pixels. Only used if the <code>childIndent</code> isn't set on the parent component.</li>
+<li><code>childIndent</code> (integer): <em>Optional</em>. The left padding size in pixels. Used on all the child components.</li>
+<li><code>paddingBottom</code> (integer): <em>Default</em>: <code>4</code>. The bottom border size in pixels. Only used if the <code>childSpacing</code> is unset on the parent component.</li>
+<li><code>childSpacing</code> (integer): <em>Optional</em>. The bottom border size in pixels. Used on all the child components.</li>
+<li><code>postCreate</code> (fun(self: <a href="../../types/mwseMCMKeyMouseBinder/">mwseMCMKeyMouseBinder</a>)): <em>Optional</em>. Can define a custom formatting function to make adjustments to any element saved in <code>self.elements</code>.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>button</code> (<a href="../../types/mwseMCMKeyMouseBinder/">mwseMCMKeyMouseBinder</a>)</li>
+</ul>
+<hr />
 <h2 id="functions">Functions<a class="headerlink" href="#functions" title="Permanent link">⚓︎</a></h2>
 <h3 id="mwsemcmcreateactiveinfo"><code>mwse.mcm.createActiveInfo</code><a class="headerlink" href="#mwsemcmcreateactiveinfo" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">createactiveinfo, activeinfo</div>
@@ -16996,7 +17113,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">September 17, 2023 16:04:51</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">September 23, 2023 21:38:56</span>
       
         <br>
         Created:
