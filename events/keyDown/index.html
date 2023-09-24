@@ -16033,6 +16033,69 @@
 </ul>
 <h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">⚓︎</a></h2>
 <div class="admonition example">
+<p class="admonition-title">Example: Filtering out key presses that aren't equal to the bound key combination</p>
+<div class="highlight"><pre><span></span><code><span class="c1">-- An example of a simple configuration setup</span>
+<span class="kd">local</span> <span class="n">defaultConfig</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1">---@type mwseKeyMouseCombo</span>
+    <span class="n">combo</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="c1">-- Alt + Left mouse button</span>
+        <span class="n">mouseButton</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">isAltDown</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="n">isControlDown</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="n">isShiftDown</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">}</span>
+<span class="kd">local</span> <span class="n">config</span> <span class="o">=</span> <span class="n">mwse</span><span class="p">.</span><span class="n">loadConfig</span><span class="p">(</span><span class="s2">&quot;myModConfig&quot;</span><span class="p">,</span> <span class="n">defaultConfig</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">registerModConfig</span><span class="p">()</span>
+    <span class="kd">local</span> <span class="n">template</span> <span class="o">=</span> <span class="n">mwse</span><span class="p">.</span><span class="n">mcm</span><span class="p">.</span><span class="n">createTemplate</span><span class="p">({</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Test Mod&quot;</span> <span class="p">})</span>
+    <span class="n">template</span><span class="p">:</span><span class="n">register</span><span class="p">()</span>
+
+    <span class="kd">local</span> <span class="n">page</span> <span class="o">=</span> <span class="n">template</span><span class="p">:</span><span class="n">createSideBarPage</span><span class="p">({</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Settings&quot;</span> <span class="p">})</span>
+
+    <span class="n">page</span><span class="p">:</span><span class="n">createKeyBinder</span><span class="p">({</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;My combo&quot;</span><span class="p">,</span>
+        <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;This combo does...&quot;</span><span class="p">,</span>
+        <span class="n">allowMouse</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="n">variable</span> <span class="o">=</span> <span class="n">mwse</span><span class="p">.</span><span class="n">mcm</span><span class="p">.</span><span class="n">createTableVariable</span><span class="p">({</span>
+            <span class="n">id</span> <span class="o">=</span> <span class="s2">&quot;combo&quot;</span><span class="p">,</span>
+            <span class="n">table</span> <span class="o">=</span> <span class="n">config</span>
+        <span class="p">}),</span>
+    <span class="p">})</span>
+<span class="kr">end</span>
+<span class="n">event</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">tes3</span><span class="p">.</span><span class="n">event</span><span class="p">.</span><span class="n">modConfigReady</span><span class="p">,</span> <span class="n">registerModConfig</span><span class="p">)</span>
+
+
+<span class="c1">--- @param e keyDownEventData|mouseButtonDownEventData|mouseWheelEventData</span>
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">sayHi</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="kd">local</span> <span class="n">IC</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">worldController</span><span class="p">.</span><span class="n">inputController</span>
+
+    <span class="c1">-- Let&#39;s construct the table with the currently pressed key combination.</span>
+    <span class="c1">-- This will handle event data from keyDown, mouseButtonDown and mouseWheel events.</span>
+    <span class="c1">--- @type mwseKeyMouseCombo</span>
+    <span class="kd">local</span> <span class="n">actual</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">keyCode</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">keyCode</span><span class="p">,</span>
+        <span class="n">isAltDown</span> <span class="o">=</span> <span class="n">IC</span><span class="p">:</span><span class="n">isAltDown</span><span class="p">(),</span>
+        <span class="n">isControlDown</span> <span class="o">=</span> <span class="n">IC</span><span class="p">:</span><span class="n">isControlDown</span><span class="p">(),</span>
+        <span class="n">isShiftDown</span> <span class="o">=</span> <span class="n">IC</span><span class="p">:</span><span class="n">isShiftDown</span><span class="p">(),</span>
+        <span class="n">mouseButton</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">button</span><span class="p">,</span>
+        <span class="n">delta</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">delta</span>
+    <span class="p">}</span>
+    <span class="kr">if</span> <span class="ow">not</span> <span class="n">tes3</span><span class="p">.</span><span class="n">isKeyEqual</span><span class="p">({</span> <span class="n">expected</span> <span class="o">=</span> <span class="n">config</span><span class="p">.</span><span class="n">combo</span><span class="p">,</span> <span class="n">actual</span> <span class="o">=</span> <span class="n">actual</span> <span class="p">})</span> <span class="kr">then</span>
+        <span class="c1">-- Nothing to do if the pressed combination isn&#39;t equal to our expected combination.</span>
+        <span class="kr">return</span>
+    <span class="kr">end</span>
+
+    <span class="c1">-- Now do our logic</span>
+    <span class="n">tes3</span><span class="p">.</span><span class="n">messageBox</span><span class="p">(</span><span class="s2">&quot;Hi!&quot;</span><span class="p">)</span>
+<span class="kr">end</span>
+
+<span class="n">event</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">tes3</span><span class="p">.</span><span class="n">event</span><span class="p">.</span><span class="n">keyDown</span><span class="p">,</span> <span class="n">sayHi</span><span class="p">)</span>
+<span class="n">event</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">tes3</span><span class="p">.</span><span class="n">event</span><span class="p">.</span><span class="n">mouseButtonDown</span><span class="p">,</span> <span class="n">sayHi</span><span class="p">)</span>
+<span class="n">event</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">tes3</span><span class="p">.</span><span class="n">event</span><span class="p">.</span><span class="n">mouseWheel</span><span class="p">,</span> <span class="n">sayHi</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="admonition example">
 <p class="admonition-title">Example: Show a Message when Ctrl-Z is Pressed</p>
 <p>Displays a simple message when Z is pressed while control is held.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="kr">function</span> <span class="nf">myOnKeyCallback</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
@@ -16053,7 +16116,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 25, 2023 10:03:48</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">September 24, 2023 12:36:23</span>
       
         <br>
         Created:
