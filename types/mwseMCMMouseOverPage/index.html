@@ -5105,8 +5105,6 @@
       
         
       
-        
-      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -6001,26 +5999,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../mwseMCMKeyMouseBinder/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    mwseMCMKeyMouseBinder
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../mwseMCMMouseOverInfo/" class="md-nav__link">
         
   
@@ -6341,13 +6319,6 @@
           <li class="md-nav__item">
   <a href="#createkeybinder" class="md-nav__link">
     createKeyBinder
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#createkeymousebinder" class="md-nav__link">
-    createKeyMouseBinder
   </a>
   
 </li>
@@ -16641,13 +16612,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#createkeymousebinder" class="md-nav__link">
-    createKeyMouseBinder
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#createlabel" class="md-nav__link">
     createLabel
   </a>
@@ -17290,7 +17254,7 @@
 <div class="search_terms" style="display: none">createkeybinder, keybinder</div>
 
 <p>Creates a new nested KeyBinder.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">button</span> <span class="o">=</span> <span class="n">myObject</span><span class="p">:</span><span class="n">createKeyBinder</span><span class="p">({</span> <span class="n">label</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">description</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">allowCombinations</span>  <span class="o">=</span> <span class="p">...,</span> <span class="n">leftSide</span>  <span class="o">=</span> <span class="p">...,</span> <span class="n">variable</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">defaultSetting</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">callback</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">inGameOnly</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">restartRequired</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">restartRequiredMessage</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">indent</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">childIndent</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">paddingBottom</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">childSpacing</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">postCreate</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">button</span> <span class="o">=</span> <span class="n">myObject</span><span class="p">:</span><span class="n">createKeyBinder</span><span class="p">({</span> <span class="n">label</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">description</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">allowCombinations</span>  <span class="o">=</span> <span class="p">...,</span> <span class="n">allowMouse</span>  <span class="o">=</span> <span class="p">...,</span> <span class="n">keybindName</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">leftSide</span>  <span class="o">=</span> <span class="p">...,</span> <span class="n">variable</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">defaultSetting</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">callback</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">inGameOnly</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">restartRequired</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">restartRequiredMessage</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">indent</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">childIndent</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">paddingBottom</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">childSpacing</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">postCreate</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
@@ -17298,6 +17262,8 @@
 <li><code>label</code> (string): <em>Optional</em>. Text shown next to the button.</li>
 <li><code>description</code> (string): <em>Optional</em>. If in a <a href="../mwseMCMSideBarPage/">Sidebar Page</a>, the description will be shown on mouseover.</li>
 <li><code>allowCombinations</code> (boolean): <em>Default</em>: <code>true</code>. If true, the keybinder will let the user use modification keys: Shift, Ctrl, and Alt when rebinding.</li>
+<li><code>allowMouse</code> (boolean): <em>Default</em>: <code>false</code>. If true, the keybinder will let the user use mouse buttons and scroll wheel in this keybinder. In that case the variable will have <a href="../mwseKeyMouseCombo/">mwseKeyMouseCombo</a> layout, <a href="../mwseKeyCombo/">mwseKeyCombo</a> otherwise.</li>
+<li><code>keybindName</code> (string): <em>Optional</em>. The keybind name. Shown in the popup menu header. This string is formatted into a localized version of "SET %s KEYBIND.". If none is provided the popup has "SET NEW KEYBIND." as header text.</li>
 <li><code>leftSide</code> (boolean): <em>Default</em>: <code>true</code>. If true, the button will be created on the left and label on the right.</li>
 <li><code>variable</code> (<a href="../mwseMCMVariable/">mwseMCMVariable</a>, <a href="../mwseMCMSettingNewVariable/">mwseMCMSettingNewVariable</a>): A variable for this KeyBinder.</li>
 <li><code>defaultSetting</code> (<a href="../mwseKeyCombo/">mwseKeyCombo</a>): <em>Optional</em>. If <code>defaultSetting</code> wasn't passed in the <code>variable</code> table, can be passed here. The new variable will be initialized to this value.</li>
@@ -17316,38 +17282,6 @@
 <p><strong>Returns</strong>:</p>
 <ul>
 <li><code>button</code> (<a href="../mwseMCMKeyBinder/">mwseMCMKeyBinder</a>)</li>
-</ul>
-<hr />
-<h3 id="createkeymousebinder"><code>createKeyMouseBinder</code><a class="headerlink" href="#createkeymousebinder" title="Permanent link">⚓︎</a></h3>
-<div class="search_terms" style="display: none">createkeymousebinder, keymousebinder</div>
-
-<p>Creates a new KeyMouseBinder.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">button</span> <span class="o">=</span> <span class="n">myObject</span><span class="p">:</span><span class="n">createKeyMouseBinder</span><span class="p">({</span> <span class="n">label</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">description</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">keybindName</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">leftSide</span>  <span class="o">=</span> <span class="p">...,</span> <span class="n">variable</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">defaultSetting</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">callback</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">inGameOnly</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">restartRequired</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">restartRequiredMessage</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">indent</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">childIndent</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">paddingBottom</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">childSpacing</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">postCreate</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
-</code></pre></div>
-<p><strong>Parameters</strong>:</p>
-<ul>
-<li><code>data</code> (table)<ul>
-<li><code>label</code> (string): <em>Optional</em>. Text shown next to the button.</li>
-<li><code>description</code> (string): <em>Optional</em>. If in a <a href="../mwseMCMSideBarPage/">Sidebar Page</a>, the description will be shown on mouseover.</li>
-<li><code>keybindName</code> (string): The keybind name. Shown in the popup menu.</li>
-<li><code>leftSide</code> (boolean): <em>Default</em>: <code>true</code>. If true, the button will be created on the left and label on the right.</li>
-<li><code>variable</code> (<a href="../mwseMCMVariable/">mwseMCMVariable</a>, <a href="../mwseMCMSettingNewVariable/">mwseMCMSettingNewVariable</a>): <em>Optional</em>. A variable for this KeyMouseBinder.</li>
-<li><code>defaultSetting</code> (<a href="../mwseKeyMouseCombo/">mwseKeyMouseCombo</a>): <em>Optional</em>. If <code>defaultSetting</code> wasn't passed in the <code>variable</code> table, can be passed here. The new variable will be initialized to this value.</li>
-<li><code>callback</code> (fun(self: <a href="../mwseMCMKeyMouseBinder/">mwseMCMKeyMouseBinder</a>)): <em>Optional</em>. The custom function called when the player interacts with this KeyMouseBinder.</li>
-<li><code>inGameOnly</code> (boolean): <em>Default</em>: <code>false</code>. If true, the setting is disabled while the game is on main menu.</li>
-<li><code>restartRequired</code> (boolean): <em>Default</em>: <code>false</code>. If true, updating this Setting will notify the player to restart the game.</li>
-<li><code>restartRequiredMessage</code> (string): <em>Optional</em>. The message shown if restartRequired is triggered. The default text is a localized version of: "The game must be restarted before this change will come into effect."</li>
-<li><code>indent</code> (integer): <em>Default</em>: <code>12</code>. The left padding size in pixels. Only used if the <code>childIndent</code> isn't set on the parent component.</li>
-<li><code>childIndent</code> (integer): <em>Optional</em>. The left padding size in pixels. Used on all the child components.</li>
-<li><code>paddingBottom</code> (integer): <em>Default</em>: <code>4</code>. The bottom border size in pixels. Only used if the <code>childSpacing</code> is unset on the parent component.</li>
-<li><code>childSpacing</code> (integer): <em>Optional</em>. The bottom border size in pixels. Used on all the child components.</li>
-<li><code>postCreate</code> (fun(self: <a href="../mwseMCMKeyMouseBinder/">mwseMCMKeyMouseBinder</a>)): <em>Optional</em>. Can define a custom formatting function to make adjustments to any element saved in <code>self.elements</code>.</li>
-</ul>
-</li>
-</ul>
-<p><strong>Returns</strong>:</p>
-<ul>
-<li><code>button</code> (<a href="../mwseMCMKeyMouseBinder/">mwseMCMKeyMouseBinder</a>)</li>
 </ul>
 <hr />
 <h3 id="createlabel"><code>createLabel</code><a class="headerlink" href="#createlabel" title="Permanent link">⚓︎</a></h3>
@@ -17778,7 +17712,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">September 23, 2023 21:38:56</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">September 24, 2023 09:48:32</span>
       
         <br>
         Created:
