@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.2">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.4">
     
     
       
@@ -24,10 +24,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.d451bc0e.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.bd3936ea.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.a5377069.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.356b1318.min.css">
       
       
 
@@ -22361,21 +22361,15 @@
 
 <p>Performs a ray test and returns various information related to the result(s). If <code>findAll</code> is set, the result will be a table of results, otherwise only the first result is returned.</p>
 <div class="admonition tip improving performance of raytest">
-<p class="admonition-title">Tip<ol>
-<li>
-<p>Keep maximum size of objects reasonable, as well as triangle counts</p>
-</li>
-<li>
-<p>Whenever possible set a maxDistance in your rayTest calls</p>
-</li>
-<li>
-<p>Keep a cached table of ignored objects that you pass to rayTest</p>
-</li>
-<li>
-<p>Whenever possible call ray test on only a subset of the game's scene graph. It can be <code>worldPickRoot</code> for interactable objects, <code>worldLandscapeRoot</code>, or <code>worldObjectRoot</code> for other static, non-interactable objects. You could even pass a smaller subset of the scene graph with a different <code>NiNode</code> you aquired yourself. If your mod's logic only needs specific things you can narrow it down for big performance improvement.</p>
-</li>
-</ol>
-</p>
+<p class="admonition-title">Tip</p>
+<pre><code>1. Keep maximum size of objects reasonable, as well as triangle counts
+
+2. Whenever possible set a maxDistance in your rayTest calls
+
+3. Keep a cached table of ignored objects that you pass to rayTest
+
+4. Whenever possible call ray test on only a subset of the game's scene graph. It can be `worldPickRoot` for interactable objects, `worldLandscapeRoot`, or `worldObjectRoot` for other static, non-interactable objects. You could even pass a smaller subset of the scene graph with a different `NiNode` you aquired yourself. If your mod's logic only needs specific things you can narrow it down for big performance improvement.
+</code></pre>
 </div>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">rayTest</span><span class="p">({</span> <span class="n">position</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">direction</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">findAll</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">maxDistance</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">sort</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">useModelBounds</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">useModelCoordinates</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">useBackTriangles</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">observeAppCullFlag</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">root</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">returnColor</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">returnNormal</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">returnSmoothNormal</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">returnTexture</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">ignore</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
 </code></pre></div>
@@ -23497,10 +23491,10 @@ Statics, activators, containers, doors, and lights with non-zero weight.</p>
         </div>
         
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
-            Back to top
-          </button>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
         
       </main>
       
@@ -23527,10 +23521,11 @@ Statics, activators, containers, doors, and lights with non-zero weight.</p>
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.code.copy", "content.tabs.link", "navigation.indexes", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest"], "search": "../../assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.code.copy", "content.tabs.link", "navigation.indexes", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.726fbb30.min.js"></script>
+      <script src="../../assets/javascripts/bundle.94c44541.min.js"></script>
       
         <script src="../../assets/js/reloadMermaidPagesOnPaletteSwitch.js"></script>
       
