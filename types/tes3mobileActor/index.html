@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.4">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.5">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.bd3936ea.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6a10b989.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.356b1318.min.css">
@@ -11470,6 +11470,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#hitstun" class="md-nav__link">
+    hitStun
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#isaffectedbyobject" class="md-nav__link">
     isAffectedByObject
   </a>
@@ -18327,6 +18334,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#hitstun" class="md-nav__link">
+    hitStun
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#isaffectedbyobject" class="md-nav__link">
     isAffectedByObject
   </a>
@@ -20044,6 +20058,24 @@ end
 <li><code>result</code> (boolean)</li>
 </ul>
 <hr />
+<h3 id="hitstun"><code>hitStun</code><a class="headerlink" href="#hitstun" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">hitstun</div>
+
+<p>Induces hit stun on the actor. Without any parameters, it produces a brief stun that lasts about 1 second and prevents starting a new attack. It can produce other types of stun, see parameters. There are states where actors can't be stunned (such as already being in hit stun and paralysis). The function will return if the stun was successfuly applied.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">myObject</span><span class="p">:</span><span class="n">hitStun</span><span class="p">({</span> <span class="n">knockDown</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
+</code></pre></div>
+<p><strong>Parameters</strong>:</p>
+<ul>
+<li><code>params</code> (table): <em>Optional</em>.<ul>
+<li><code>knockDown</code> (boolean): <em>Optional</em>. Changes the stun type to knockdown. This is when the character falls to their knees and takes several seconds to recover. It will interrupt spell casting.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>result</code> (boolean)</li>
+</ul>
+<hr />
 <h3 id="isaffectedbyobject"><code>isAffectedByObject</code><a class="headerlink" href="#isaffectedbyobject" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">isaffectedbyobject, affectedbyobject</div>
 
@@ -20197,7 +20229,7 @@ end
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">September 24, 2023 02:34:31</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">October 13, 2023 01:51:01</span>
       
         <br>
         Created:
@@ -20255,7 +20287,7 @@ end
     <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.code.copy", "content.tabs.link", "navigation.indexes", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.94c44541.min.js"></script>
+      <script src="../../assets/javascripts/bundle.aecac24b.min.js"></script>
       
         <script src="../../assets/js/reloadMermaidPagesOnPaletteSwitch.js"></script>
       
