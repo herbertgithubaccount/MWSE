@@ -20315,12 +20315,13 @@ end
 <div class="search_terms" style="display: none">hitstun</div>
 
 <p>Induces hit stun on the actor. Without any parameters, it produces a brief stun that lasts about 1 second and prevents starting a new attack. It can produce other types of stun, see parameters. There are states where actors can't be stunned (such as already being in hit stun and paralysis). The function will return if the stun was successfuly applied.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">myObject</span><span class="p">:</span><span class="n">hitStun</span><span class="p">({</span> <span class="n">knockDown</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">myObject</span><span class="p">:</span><span class="n">hitStun</span><span class="p">({</span> <span class="n">knockDown</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">cancel</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
 <li><code>params</code> (table): <em>Optional</em>.<ul>
 <li><code>knockDown</code> (boolean): <em>Optional</em>. Changes the stun type to knockdown. This is when the character falls to their knees and takes several seconds to recover. It will interrupt spell casting.</li>
+<li><code>cancel</code> (boolean): <em>Optional</em>. Cancels hit stun and knockdown when used on the same frame as the hit. For regular combat, it should be used in the events <code>damaged</code> or <code>damagedHandToHand</code>.</li>
 </ul>
 </li>
 </ul>
@@ -20482,7 +20483,7 @@ end
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">October 13, 2023 01:51:01</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">October 14, 2023 23:10:32</span>
       
         <br>
         Created:
