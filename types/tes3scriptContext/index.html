@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.5">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.6">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.6a10b989.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.35e1ed30.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.356b1318.min.css">
@@ -11084,6 +11084,26 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#properties" class="md-nav__link">
+    Properties
+  </a>
+  
+    <nav class="md-nav" aria-label="Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#string" class="md-nav__link">
+    [string]
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#methods" class="md-nav__link">
     Methods
   </a>
@@ -16066,6 +16086,26 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#properties" class="md-nav__link">
+    Properties
+  </a>
+  
+    <nav class="md-nav" aria-label="Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#string" class="md-nav__link">
+    [string]
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#methods" class="md-nav__link">
     Methods
   </a>
@@ -16141,17 +16181,37 @@
 <span class="c1">---@return boolean</span>
 <span class="kd">local</span> <span class="kr">function</span> <span class="nf">hasCompanionShare</span><span class="p">(</span><span class="n">reference</span><span class="p">)</span>
 
-    <span class="c1">-- This shows that we can read any variable inside</span>
-    <span class="c1">-- `tes3scriptContext` objects as if it was normal Lua table</span>
+    <span class="c1">-- Any local script variable inside `tes3scriptContext`</span>
+    <span class="c1">-- objects can be read as if it were a normal Lua table</span>
     <span class="c1">-- (`reference.context` is of `tes3scriptContext` type)</span>
-    <span class="kd">local</span> <span class="n">companion</span> <span class="o">=</span> <span class="n">reference</span><span class="p">.</span><span class="n">context</span><span class="p">[</span><span class="s2">&quot;companion&quot;</span><span class="p">]</span>
-    <span class="kr">return</span> <span class="p">(</span><span class="n">companion</span> <span class="ow">and</span>
-            <span class="n">companion</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">or</span>
-            <span class="kc">false</span>
+    <span class="kd">local</span> <span class="n">companion</span> <span class="o">=</span> <span class="n">reference</span><span class="p">.</span><span class="n">context</span><span class="p">.</span><span class="n">companion</span>
+    <span class="c1">-- or:</span>
+    <span class="c1">-- local companion = reference.context[&quot;companion&quot;]</span>
+
+    <span class="c1">-- In addition, local script variables can be accessed from the tes3npc object:</span>
+    <span class="c1">-- myNpc.script.context.somVarName</span>
+
+    <span class="c1">-- To change the variable value, do an assignment:</span>
+    <span class="c1">-- reference.context.companion = 0</span>
+
+    <span class="kr">return</span> <span class="p">(</span>
+        <span class="n">companion</span> <span class="ow">and</span>
+        <span class="n">companion</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">or</span>
+        <span class="kc">false</span>
     <span class="p">)</span>
 <span class="kr">end</span>
 </code></pre></div>
 </details>
+<h2 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">⚓︎</a></h2>
+<h3 id="string"><code>[string]</code><a class="headerlink" href="#string" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">[string]</div>
+
+<p><em>Read-only</em>. This allows indexing a local script variable by it's name. The variable's value can be read or modified this way. There is an example at the top of the page on doing this.</p>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>result</code> (number, nil)</li>
+</ul>
+<hr />
 <h2 id="methods">Methods<a class="headerlink" href="#methods" title="Permanent link">⚓︎</a></h2>
 <h3 id="getvariabledata"><code>getVariableData</code><a class="headerlink" href="#getvariabledata" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">getvariabledata, variabledata</div>
@@ -16186,7 +16246,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 25, 2023 10:03:48</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">October 14, 2023 10:35:24</span>
       
         <br>
         Created:

@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.5">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.6">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.6a10b989.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.35e1ed30.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.356b1318.min.css">
@@ -17228,13 +17228,23 @@
 <span class="c1">---@return boolean</span>
 <span class="kd">local</span> <span class="kr">function</span> <span class="nf">hasCompanionShare</span><span class="p">(</span><span class="n">reference</span><span class="p">)</span>
 
-    <span class="c1">-- This shows that we can read any variable inside</span>
-    <span class="c1">-- `tes3scriptContext` objects as if it was normal Lua table</span>
+    <span class="c1">-- Any local script variable inside `tes3scriptContext`</span>
+    <span class="c1">-- objects can be read as if it were a normal Lua table</span>
     <span class="c1">-- (`reference.context` is of `tes3scriptContext` type)</span>
-    <span class="kd">local</span> <span class="n">companion</span> <span class="o">=</span> <span class="n">reference</span><span class="p">.</span><span class="n">context</span><span class="p">[</span><span class="s2">&quot;companion&quot;</span><span class="p">]</span>
-    <span class="kr">return</span> <span class="p">(</span><span class="n">companion</span> <span class="ow">and</span>
-            <span class="n">companion</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">or</span>
-            <span class="kc">false</span>
+    <span class="kd">local</span> <span class="n">companion</span> <span class="o">=</span> <span class="n">reference</span><span class="p">.</span><span class="n">context</span><span class="p">.</span><span class="n">companion</span>
+    <span class="c1">-- or:</span>
+    <span class="c1">-- local companion = reference.context[&quot;companion&quot;]</span>
+
+    <span class="c1">-- In addition, local script variables can be accessed from the tes3npc object:</span>
+    <span class="c1">-- myNpc.script.context.somVarName</span>
+
+    <span class="c1">-- To change the variable value, do an assignment:</span>
+    <span class="c1">-- reference.context.companion = 0</span>
+
+    <span class="kr">return</span> <span class="p">(</span>
+        <span class="n">companion</span> <span class="ow">and</span>
+        <span class="n">companion</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">or</span>
+        <span class="kc">false</span>
     <span class="p">)</span>
 <span class="kr">end</span>
 </code></pre></div>
@@ -17948,7 +17958,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 29, 2023 15:31:04</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">October 14, 2023 10:35:24</span>
       
         <br>
         Created:
