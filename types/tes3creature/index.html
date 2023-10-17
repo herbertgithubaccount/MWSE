@@ -9689,6 +9689,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#createcopy" class="md-nav__link">
+    createCopy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#getequipmentvalue" class="md-nav__link">
     getEquipmentValue
   </a>
@@ -16836,6 +16843,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#createcopy" class="md-nav__link">
+    createCopy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#getequipmentvalue" class="md-nav__link">
     getEquipmentValue
   </a>
@@ -17390,6 +17404,26 @@
 <li><code>string</code> (string)</li>
 </ul>
 <hr />
+<h3 id="createcopy"><code>createCopy</code><a class="headerlink" href="#createcopy" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">createcopy, copy</div>
+
+<p>Creates a copy of this object.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">newObject</span> <span class="o">=</span> <span class="n">myObject</span><span class="p">:</span><span class="n">createCopy</span><span class="p">({</span> <span class="n">id</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">addToObjectList</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">sourceless</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
+</code></pre></div>
+<p><strong>Parameters</strong>:</p>
+<ul>
+<li><code>params</code> (table)<ul>
+<li><code>id</code> (string): <em>Optional</em>. The new object's ID. If one is not provided, a randomly generated one will be used.</li>
+<li><code>addToObjectList</code> (boolean): <em>Default</em>: <code>true</code>. If true, the object will be added to the data handler. If this is false, the new object may not have a randomly generated ID. Do not use this without knowing the implications.</li>
+<li><code>sourceless</code> (boolean): <em>Default</em>: <code>false</code>. If true, the object will be made sourceless, and will not be serialized to the save game. If the object is copied outside of a save game, the object will <strong>always</strong> be sourceless.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>newObject</code> (<a href="./">tes3creature</a>)</li>
+</ul>
+<hr />
 <h3 id="getequipmentvalue"><code>getEquipmentValue</code><a class="headerlink" href="#getequipmentvalue" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">getequipmentvalue, equipmentvalue</div>
 
@@ -17470,7 +17504,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 25, 2023 10:03:48</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">October 17, 2023 09:52:50</span>
       
         <br>
         Created:
