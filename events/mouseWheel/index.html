@@ -1042,6 +1042,8 @@
       
         
       
+        
+      
     
     
     
@@ -2463,6 +2465,26 @@
   
   <span class="md-ellipsis">
     UI States
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/vfx-contexts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VFX Contexts
   </span>
   
 
@@ -16091,7 +16113,7 @@
 </div>
 <h2 id="event-data">Event Data<a class="headerlink" href="#event-data" title="Permanent link">⚓︎</a></h2>
 <ul>
-<li><code>delta</code> (number): <em>Read-only</em>. The direction and strength of the mouse wheel movement. This value is hardware dependent.</li>
+<li><code>delta</code> (number): <em>Read-only</em>. The direction and strength of the mouse wheel movement. The value is positive for scrolling up, negative otherwise. This magnitude is hardware dependent.</li>
 <li><code>isAltDown</code> (number): <em>Read-only</em>. True if alt is held.</li>
 <li><code>isControlDown</code> (number): <em>Read-only</em>. True if control is held.</li>
 <li><code>isShiftDown</code> (number): <em>Read-only</em>. True if either shift key is held.</li>
@@ -16134,20 +16156,7 @@
 
 <span class="c1">--- @param e keyDownEventData|mouseButtonDownEventData|mouseWheelEventData</span>
 <span class="kd">local</span> <span class="kr">function</span> <span class="nf">sayHi</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
-    <span class="kd">local</span> <span class="n">IC</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">worldController</span><span class="p">.</span><span class="n">inputController</span>
-
-    <span class="c1">-- Let&#39;s construct the table with the currently pressed key combination.</span>
-    <span class="c1">-- This will handle event data from keyDown, mouseButtonDown and mouseWheel events.</span>
-    <span class="c1">--- @type mwseKeyMouseCombo</span>
-    <span class="kd">local</span> <span class="n">actual</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="n">keyCode</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">keyCode</span><span class="p">,</span>
-        <span class="n">isAltDown</span> <span class="o">=</span> <span class="n">IC</span><span class="p">:</span><span class="n">isAltDown</span><span class="p">(),</span>
-        <span class="n">isControlDown</span> <span class="o">=</span> <span class="n">IC</span><span class="p">:</span><span class="n">isControlDown</span><span class="p">(),</span>
-        <span class="n">isShiftDown</span> <span class="o">=</span> <span class="n">IC</span><span class="p">:</span><span class="n">isShiftDown</span><span class="p">(),</span>
-        <span class="n">mouseButton</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">button</span><span class="p">,</span>
-        <span class="n">delta</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">delta</span>
-    <span class="p">}</span>
-    <span class="kr">if</span> <span class="ow">not</span> <span class="n">tes3</span><span class="p">.</span><span class="n">isKeyEqual</span><span class="p">({</span> <span class="n">expected</span> <span class="o">=</span> <span class="n">config</span><span class="p">.</span><span class="n">combo</span><span class="p">,</span> <span class="n">actual</span> <span class="o">=</span> <span class="n">actual</span> <span class="p">})</span> <span class="kr">then</span>
+    <span class="kr">if</span> <span class="ow">not</span> <span class="n">tes3</span><span class="p">.</span><span class="n">isKeyEqual</span><span class="p">({</span> <span class="n">expected</span> <span class="o">=</span> <span class="n">config</span><span class="p">.</span><span class="n">combo</span><span class="p">,</span> <span class="n">actual</span> <span class="o">=</span> <span class="n">e</span> <span class="p">})</span> <span class="kr">then</span>
         <span class="c1">-- Nothing to do if the pressed combination isn&#39;t equal to our expected combination.</span>
         <span class="kr">return</span>
     <span class="kr">end</span>
@@ -16167,7 +16176,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">September 24, 2023 12:36:23</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">October 21, 2023 21:39:49</span>
       
         <br>
         Created:
