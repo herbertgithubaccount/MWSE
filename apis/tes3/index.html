@@ -21844,20 +21844,7 @@
 
 <span class="c1">--- @param e keyDownEventData|mouseButtonDownEventData|mouseWheelEventData</span>
 <span class="kd">local</span> <span class="kr">function</span> <span class="nf">sayHi</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
-    <span class="kd">local</span> <span class="n">IC</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">worldController</span><span class="p">.</span><span class="n">inputController</span>
-
-    <span class="c1">-- Let&#39;s construct the table with the currently pressed key combination.</span>
-    <span class="c1">-- This will handle event data from keyDown, mouseButtonDown and mouseWheel events.</span>
-    <span class="c1">--- @type mwseKeyMouseCombo</span>
-    <span class="kd">local</span> <span class="n">actual</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="n">keyCode</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">keyCode</span><span class="p">,</span>
-        <span class="n">isAltDown</span> <span class="o">=</span> <span class="n">IC</span><span class="p">:</span><span class="n">isAltDown</span><span class="p">(),</span>
-        <span class="n">isControlDown</span> <span class="o">=</span> <span class="n">IC</span><span class="p">:</span><span class="n">isControlDown</span><span class="p">(),</span>
-        <span class="n">isShiftDown</span> <span class="o">=</span> <span class="n">IC</span><span class="p">:</span><span class="n">isShiftDown</span><span class="p">(),</span>
-        <span class="n">mouseButton</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">button</span><span class="p">,</span>
-        <span class="n">delta</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">delta</span>
-    <span class="p">}</span>
-    <span class="kr">if</span> <span class="ow">not</span> <span class="n">tes3</span><span class="p">.</span><span class="n">isKeyEqual</span><span class="p">({</span> <span class="n">expected</span> <span class="o">=</span> <span class="n">config</span><span class="p">.</span><span class="n">combo</span><span class="p">,</span> <span class="n">actual</span> <span class="o">=</span> <span class="n">actual</span> <span class="p">})</span> <span class="kr">then</span>
+    <span class="kr">if</span> <span class="ow">not</span> <span class="n">tes3</span><span class="p">.</span><span class="n">isKeyEqual</span><span class="p">({</span> <span class="n">expected</span> <span class="o">=</span> <span class="n">config</span><span class="p">.</span><span class="n">combo</span><span class="p">,</span> <span class="n">actual</span> <span class="o">=</span> <span class="n">e</span> <span class="p">})</span> <span class="kr">then</span>
         <span class="c1">-- Nothing to do if the pressed combination isn&#39;t equal to our expected combination.</span>
         <span class="kr">return</span>
     <span class="kr">end</span>
@@ -23469,7 +23456,7 @@ Statics, activators, containers, doors, and lights with non-zero weight.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">October 13, 2023 11:24:45</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">October 21, 2023 12:19:38</span>
       
         <br>
         Created:
