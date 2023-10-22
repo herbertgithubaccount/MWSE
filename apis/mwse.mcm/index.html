@@ -17165,12 +17165,16 @@
 <h3 id="mwsemcmtestkeybind"><code>mwse.mcm.testKeyBind</code><a class="headerlink" href="#mwsemcmtestkeybind" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">testkeybind, keybind</div>
 
-<p>This function check whether a certain key combination is currently pressed. It will only check ctrl, shift and alt modifier keys, matching the KeyBinder.</p>
-<div class="highlight"><pre><span></span><code><span class="n">mwse</span><span class="p">.</span><span class="n">mcm</span><span class="p">.</span><span class="n">testKeyBind</span><span class="p">(</span><span class="n">keybind</span><span class="p">)</span>
+<p>This function check whether a certain key combination is currently pressed. It will only check ctrl, shift and alt modifier keys, matching the KeyBinder. It doesn't check mouse.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">pressed</span> <span class="o">=</span> <span class="n">mwse</span><span class="p">.</span><span class="n">mcm</span><span class="p">.</span><span class="n">testKeyBind</span><span class="p">(</span><span class="n">keybind</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
 <li><code>keybind</code> (<a href="../../types/mwseKeyCombo/">mwseKeyCombo</a>)</li>
+</ul>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>pressed</code> (boolean)</li>
 </ul>
 
   <hr>
@@ -17178,7 +17182,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">September 24, 2023 21:30:20</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">October 22, 2023 11:27:26</span>
       
         <br>
         Created:
