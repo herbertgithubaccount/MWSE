@@ -18522,7 +18522,7 @@
 <p><em>Read-only</em>. The type of the mobile actor. Maps to values in <a href="https://mwse.github.io/MWSE/references/actor-types/"><code>tes3.actorType</code></a> namespace.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (number)</li>
+<li><code>result</code> (<a href="../../references/actor-types/">tes3.actorType</a>)</li>
 </ul>
 <hr />
 <h3 id="agility"><code>agility</code><a class="headerlink" href="#agility" title="Permanent link">⚓︎</a></h3>
@@ -19348,7 +19348,7 @@ end
 <p><em>Read-only</em>. The type of mobile object. Maps to values in <a href="https://mwse.github.io/MWSE/references/object-types/"><code>tes3.objectType</code></a> namespace.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (number)</li>
+<li><code>result</code> (<a href="../../references/object-types/">tes3.objectType</a>)</li>
 </ul>
 <hr />
 <h3 id="paralyze"><code>paralyze</code><a class="headerlink" href="#paralyze" title="Permanent link">⚓︎</a></h3>
@@ -19732,7 +19732,7 @@ end
 <li><code>params</code> (table)<ul>
 <li><code>damage</code> (number): The amount of damage to apply.</li>
 <li><code>applyArmor</code> (boolean): <em>Default</em>: <code>false</code>. If armor should mitigate the incoming damage. If the player is the target, armor experience will be gained.</li>
-<li><code>resistAttribute</code> (number): <em>Optional</em>. The resistance attribute that is applied to the damage. It can reduce damage or exploit weakness. Uses values from <a href="https://mwse.github.io/MWSE/references/effect-attributes/"><code>tes3.effectAttribute</code></a> namespace.</li>
+<li><code>resistAttribute</code> (<a href="../../references/effect-attributes/">tes3.effectAttribute</a>): <em>Optional</em>. The resistance attribute that is applied to the damage. It can reduce damage or exploit weakness. Uses values from <a href="https://mwse.github.io/MWSE/references/effect-attributes/"><code>tes3.effectAttribute</code></a> namespace.</li>
 <li><code>applyDifficulty</code> (boolean): <em>Default</em>: <code>false</code>. If the game difficulty modifier should be applied. Must be used with the <code>playerAttack</code> argument to apply the correct modifier.</li>
 <li><code>playerAttack</code> (boolean): <em>Optional</em>. If the attack came from the player. Used for difficulty calculation.</li>
 <li><code>doNotChangeHealth</code> (boolean): <em>Default</em>: <code>false</code>. If all armor effects except the health change should be applied. These include hit sounds, armor condition damage, and player experience gain from being hit.</li>
@@ -19779,7 +19779,7 @@ end
 <li><code>params</code> (table)<ul>
 <li><code>damage</code> (number): The amount of damage to apply.</li>
 <li><code>applyArmor</code> (boolean): <em>Default</em>: <code>false</code>. If armor should mitigate the incoming damage.</li>
-<li><code>resistAttribute</code> (number): <em>Optional</em>. The resistance attribute that is applied to the damage. It can reduce damage or exploit weakness. Uses values from <a href="https://mwse.github.io/MWSE/references/effect-attributes/"><code>tes3.effectAttribute</code></a> namespace.</li>
+<li><code>resistAttribute</code> (<a href="../../references/effect-attributes/">tes3.effectAttribute</a>): <em>Optional</em>. The resistance attribute that is applied to the damage. It can reduce damage or exploit weakness. Uses values from <a href="https://mwse.github.io/MWSE/references/effect-attributes/"><code>tes3.effectAttribute</code></a> namespace.</li>
 </ul>
 </li>
 </ul>
@@ -19887,7 +19887,7 @@ end
 <p><strong>Parameters</strong>:</p>
 <ul>
 <li><code>params</code> (table)<ul>
-<li><code>attackType</code> (number): <em>Optional</em>. The physical attack type to use for melee weapons (slash, chop, thrust). Maps to values in <a href="https://mwse.github.io/MWSE/references/physical-attack-types/"><code>tes3.physicalAttackType</code></a> namespace. When not specified, it uses a weighted random attack type for NPCs and creatures.</li>
+<li><code>attackType</code> (<a href="../../references/physical-attack-types/">tes3.physicalAttackType</a>): <em>Optional</em>. The physical attack type to use for melee weapons (slash, chop, thrust). Maps to values in <a href="https://mwse.github.io/MWSE/references/physical-attack-types/"><code>tes3.physicalAttackType</code></a> namespace. When not specified, it uses a weighted random attack type for NPCs and creatures.</li>
 <li><code>swing</code> (number): <em>Optional</em>. The strength of the attack swing, in the range [0 to 1]. When not specified, the attack swing is randomized. This value cannot affect the player swing, as player attacks are driven by input.</li>
 </ul>
 </li>
@@ -19906,7 +19906,7 @@ end
 <p><strong>Parameters</strong>:</p>
 <ul>
 <li><code>params</code> (table): <em>Optional</em>.<ul>
-<li><code>effect</code> (integer): <em>Optional</em>. The magic effect ID to search for, from <a href="https://mwse.github.io/MWSE/references/magic-effects/"><code>tes3.effect</code></a> table.</li>
+<li><code>effect</code> (<a href="../../references/magic-effects/">tes3.effect</a>): <em>Optional</em>. The magic effect ID to search for, from <a href="https://mwse.github.io/MWSE/references/magic-effects/"><code>tes3.effect</code></a> table.</li>
 <li><code>serial</code> (integer): <em>Optional</em>. The magic instance serial to search for.</li>
 </ul>
 </li>
@@ -19961,7 +19961,7 @@ end
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>skillId</code> (number): The index of the skill statistic to fetch. Maps to values in <a href="https://mwse.github.io/MWSE/references/skills/"><code>tes3.skill</code></a> namespace.</li>
+<li><code>skillId</code> (<a href="../../references/skills/">tes3.skill</a>): The index of the skill statistic to fetch. Maps to values in <a href="https://mwse.github.io/MWSE/references/skills/"><code>tes3.skill</code></a> namespace.</li>
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
@@ -19976,7 +19976,7 @@ end
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>skillId</code> (number): The index of the skill statistic's value to fetch. Maps to values in <a href="https://mwse.github.io/MWSE/references/skills/"><code>tes3.skill</code></a> namespace.</li>
+<li><code>skillId</code> (<a href="../../references/skills/">tes3.skill</a>): The index of the skill statistic's value to fetch. Maps to values in <a href="https://mwse.github.io/MWSE/references/skills/"><code>tes3.skill</code></a> namespace.</li>
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
@@ -20203,9 +20203,9 @@ end
 <li><code>params</code> (table)<ul>
 <li><code>item</code> (<a href="../tes3item/">tes3item</a>, string): <em>Optional</em>. The item to unequip.</li>
 <li><code>itemData</code> (<a href="../tes3itemData/">tes3itemData</a>): <em>Optional</em>. The item data of the specific item to unequip, if a specific item is required.</li>
-<li><code>type</code> (number): <em>Optional</em>. The item type to unequip. Only used if no other parameter is provided. Only values pertaining to equipment from <a href="https://mwse.github.io/MWSE/references/object-types/"><code>tes3.objectType</code></a> can be passed here.</li>
-<li><code>armorSlot</code> (number): <em>Optional</em>. The armor slot to unequip. Maps to values in <a href="https://mwse.github.io/MWSE/references/armor-slots/"><code>tes3.armorSlot</code></a> namespace.</li>
-<li><code>clothingSlot</code> (number): <em>Optional</em>. The clothing slot to unequip. Maps to values in <a href="https://mwse.github.io/MWSE/references/clothing-slots/"><code>tes3.clothingSlot</code></a> namespace</li>
+<li><code>type</code> (<a href="../../references/object-types/">tes3.objectType</a>): <em>Optional</em>. The item type to unequip. Only used if no other parameter is provided. Only values pertaining to equipment from <a href="https://mwse.github.io/MWSE/references/object-types/"><code>tes3.objectType</code></a> can be passed here.</li>
+<li><code>armorSlot</code> (<a href="../../references/armor-slots/">tes3.armorSlot</a>): <em>Optional</em>. The armor slot to unequip. Maps to values in <a href="https://mwse.github.io/MWSE/references/armor-slots/"><code>tes3.armorSlot</code></a> namespace.</li>
+<li><code>clothingSlot</code> (<a href="../../references/clothing-slots/">tes3.clothingSlot</a>): <em>Optional</em>. The clothing slot to unequip. Maps to values in <a href="https://mwse.github.io/MWSE/references/clothing-slots/"><code>tes3.clothingSlot</code></a> namespace</li>
 </ul>
 </li>
 </ul>
@@ -20252,7 +20252,7 @@ end
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">October 14, 2023 23:10:32</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">October 21, 2023 21:35:41</span>
       
         <br>
         Created:

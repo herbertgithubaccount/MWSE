@@ -17830,7 +17830,7 @@
 <p><em>Read-only</em>. The type of content this <code>tes3uiElement</code> represents. Maps to values in the <a href="https://mwse.github.io/MWSE/references/content-types/"><code>tes3.contentType</code></a> table.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (string)</li>
+<li><code>result</code> (<a href="../../references/content-types/">tes3.contentType</a>)</li>
 </ul>
 <hr />
 <h3 id="disabled"><code>disabled</code><a class="headerlink" href="#disabled" title="Permanent link">⚓︎</a></h3>
@@ -17845,10 +17845,10 @@
 <h3 id="flowdirection"><code>flowDirection</code><a class="headerlink" href="#flowdirection" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">flowdirection</div>
 
-<p>Can have values <code>"left_to_right"</code> or <code>"top_to_bottom"</code>. These values are available as <a href="https://mwse.github.io/MWSE/references/flow-directions/"><code>tes3.flowDirection</code></a> enumeration. Indicates which direction child elements are laid out.</p>
+<p>Indicates which direction child elements are laid out. These values are available as <a href="https://mwse.github.io/MWSE/references/flow-directions/"><code>tes3.flowDirection</code></a> enumeration.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (string)</li>
+<li><code>result</code> (<a href="../../references/flow-directions/">tes3.flowDirection</a>)</li>
 </ul>
 <hr />
 <h3 id="font"><code>font</code><a class="headerlink" href="#font" title="Permanent link">⚓︎</a></h3>
@@ -17936,10 +17936,10 @@
 <h3 id="justifytext"><code>justifyText</code><a class="headerlink" href="#justifytext" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">justifytext</div>
 
-<p>Can have values <code>"left"</code>, <code>"center"</code>, or <code>"right"</code>. Controls text justification. Maps to values in the <a href="https://mwse.github.io/MWSE/references/justify-text/"><code>tes3.justifyText</code></a> table. To work correctly for center/right justification, <code>wrapText</code> must be <code>true</code>.</p>
+<p>Controls text justification. To work correctly for center/right justification, <code>wrapText</code> must be <code>true</code>. Maps to values in the <a href="https://mwse.github.io/MWSE/references/justify-text/"><code>tes3.justifyText</code></a> table.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (string)</li>
+<li><code>result</code> (<a href="../../references/justify-text/">tes3.justifyText</a>)</li>
 </ul>
 <hr />
 <h3 id="maxheight"><code>maxHeight</code><a class="headerlink" href="#maxheight" title="Permanent link">⚓︎</a></h3>
@@ -18123,7 +18123,7 @@
 <p><em>Read-only</em>. The type of content this <code>tes3uiElement</code> represents. This is an expanded set of the options available from the <code>contentType</code> property. Maps to values in <a href="https://mwse.github.io/MWSE/references/tes3uiElement-types/"><code>tes3.uiElementType</code></a>.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (string)</li>
+<li><code>result</code> (<a href="../../references/tes3uiElement-types/">tes3.uiElementType</a>)</li>
 </ul>
 <hr />
 <h3 id="visible"><code>visible</code><a class="headerlink" href="#visible" title="Permanent link">⚓︎</a></h3>
@@ -18553,7 +18553,7 @@
 <li><code>params</code> (table): <em>Optional</em>.<ul>
 <li><code>id</code> (string, number): <em>Optional</em>. An identifier to help find this element later.</li>
 <li><code>text</code> (string): <em>Optional</em>. The text to display.</li>
-<li><code>state</code> (number): <em>Default</em>: <code>tes3.uiState.normal</code>. The initial interaction state.</li>
+<li><code>state</code> (<a href="../../references/ui-states/">tes3.uiState</a>): <em>Default</em>: <code>tes3.uiState.normal</code>. The initial interaction state.</li>
 </ul>
 </li>
 </ul>
@@ -18888,7 +18888,7 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>eventID</code> (string): The event id. Maps to values in <a href="https://mwse.github.io/MWSE/references/ui-events/"><code>tes3.uiEvent</code></a>.</li>
+<li><code>eventID</code> (<a href="../../references/ui-events/">tes3.uiEvent</a>): The event id. Maps to values in <a href="https://mwse.github.io/MWSE/references/ui-events/"><code>tes3.uiEvent</code></a>.</li>
 <li><code>callback</code> (fun(e: <a href="../tes3uiEventData/">tes3uiEventData</a>): boolean?): The callback function. Returning <code>false</code> from this function may cancel an interaction for certain events, such as unfocus.</li>
 </ul>
 <hr />
@@ -18900,7 +18900,7 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>eventID</code> (string): The event id. Maps to values in <a href="https://mwse.github.io/MWSE/references/ui-events/"><code>tes3.uiEvent</code></a>.</li>
+<li><code>eventID</code> (<a href="../../references/ui-events/">tes3.uiEvent</a>): The event id. Maps to values in <a href="https://mwse.github.io/MWSE/references/ui-events/"><code>tes3.uiEvent</code></a>.</li>
 <li><code>callback</code> (fun(e: <a href="../tes3uiEventData/">tes3uiEventData</a>): boolean?): The callback function.</li>
 </ul>
 <hr />
@@ -18912,7 +18912,7 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>eventID</code> (string): The event id. Maps to values in <a href="https://mwse.github.io/MWSE/references/ui-events/"><code>tes3.uiEvent</code></a>.</li>
+<li><code>eventID</code> (<a href="../../references/ui-events/">tes3.uiEvent</a>): The event id. Maps to values in <a href="https://mwse.github.io/MWSE/references/ui-events/"><code>tes3.uiEvent</code></a>.</li>
 <li><code>callback</code> (fun(e: <a href="../tes3uiEventData/">tes3uiEventData</a>): boolean?): The callback function.</li>
 </ul>
 <hr />
@@ -19116,7 +19116,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">September 16, 2023 21:09:08</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">October 21, 2023 21:35:41</span>
       
         <br>
         Created:

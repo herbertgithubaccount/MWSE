@@ -17516,10 +17516,10 @@
 <h3 id="weathers"><code>weathers</code><a class="headerlink" href="#weathers" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">weathers</div>
 
-<p><em>Read-only</em>. Array-style table for the different weather types. Each object in the table is a <a href="https://mwse.github.io/MWSE/types/tes3weather/">tes3weather</a>. The indices in the table map to the values in the <a href="https://mwse.github.io/MWSE/references/weather-types/"><code>tes3.weather</code></a> table.</p>
+<p><em>Read-only</em>. Array-style table with weather objects for each weather type. The indices in the table map to the values in the <a href="https://mwse.github.io/MWSE/references/weather-types/"><code>tes3.weather</code></a> table.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (<a href="../tes3weather/">tes3weather</a>[])</li>
+<li><code>result</code> (table&lt;<a href="../../references/weather-types/">tes3.weather</a>, <a href="../tes3weather/">tes3weather</a>&gt;)</li>
 </ul>
 <hr />
 <h3 id="windvelocitycurrweather"><code>windVelocityCurrWeather</code><a class="headerlink" href="#windvelocitycurrweather" title="Permanent link">⚓︎</a></h3>
@@ -17561,7 +17561,7 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>weatherId</code> (number): Maps to values in the <a href="https://mwse.github.io/MWSE/references/weather-types/"><code>tes3.weather</code></a> table.</li>
+<li><code>weatherId</code> (<a href="../../references/weather-types/">tes3.weather</a>): Maps to values in the <a href="https://mwse.github.io/MWSE/references/weather-types/"><code>tes3.weather</code></a> table.</li>
 </ul>
 <hr />
 <h3 id="switchtransition"><code>switchTransition</code><a class="headerlink" href="#switchtransition" title="Permanent link">⚓︎</a></h3>
@@ -17572,7 +17572,7 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>weatherId</code> (number): Maps to values in the <a href="https://mwse.github.io/MWSE/references/weather-types/"><code>tes3.weather</code></a> table.</li>
+<li><code>weatherId</code> (<a href="../../references/weather-types/">tes3.weather</a>): Maps to values in the <a href="https://mwse.github.io/MWSE/references/weather-types/"><code>tes3.weather</code></a> table.</li>
 </ul>
 <hr />
 <h3 id="updatevisuals"><code>updateVisuals</code><a class="headerlink" href="#updatevisuals" title="Permanent link">⚓︎</a></h3>
@@ -17588,7 +17588,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 25, 2023 10:03:48</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">October 21, 2023 21:35:41</span>
       
         <br>
         Created:

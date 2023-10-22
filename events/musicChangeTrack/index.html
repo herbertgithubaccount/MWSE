@@ -16120,7 +16120,7 @@
 <li><code>context</code> (string): <em>Read-only</em>. A short lowercase string that describes why the music is being played, to give more context. <code>explore</code> and <code>combat</code> values mean the game has chosen a new background music to play. <code>title</code> will play (and loop) on the main menu. <code>level</code> will play whenever the player has rested and is ready to level up. <code>mwscript</code> means a script has used the <code>StreamMusic</code> mwscript command. <code>death</code> means the player has died. <code>lua</code> means that a lua script has requested new music.</li>
 <li><code>crossfade</code> (number): The number of milliseconds of crossfade that will be used to blend the current music to the new music.</li>
 <li><code>music</code> (string): The track that will be played. This can be changed to a new path, but it must be valid. Note that unlike the <code>musicSelectTrack</code> event, this value is not relative to <code>Data Files\music</code>.</li>
-<li><code>situation</code> (number): <em>Read-only</em>. Maps to <a href="https://mwse.github.io/MWSE/references/music-situations/"><code>tes3.musicSituation</code></a>, indicating combat, non-combat, or scripted music.</li>
+<li><code>situation</code> (<a href="../../references/music-situations/">tes3.musicSituation</a>): <em>Read-only</em>. Maps to <a href="https://mwse.github.io/MWSE/references/music-situations/"><code>tes3.musicSituation</code></a>, indicating combat, non-combat, or scripted music.</li>
 <li><code>volume</code> (number): The volume of the track to be played, ranging from <code>0.0</code> to <code>1.0</code>. This can be modified.</li>
 </ul>
 <h2 id="related-events">Related events<a class="headerlink" href="#related-events" title="Permanent link">⚓︎</a></h2>
@@ -16131,7 +16131,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 25, 2023 10:53:19</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">October 21, 2023 21:35:41</span>
       
         <br>
         Created:

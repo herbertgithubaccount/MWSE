@@ -16268,7 +16268,7 @@
 <p>Maps to values in <a href="https://mwse.github.io/MWSE/references/magic-effects/"><code>tes3.effect</code></a> table.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (integer)</li>
+<li><code>result</code> (<a href="../../references/magic-effects/">tes3.effect</a>)</li>
 </ul>
 <hr />
 <h3 id="effectindex"><code>effectIndex</code><a class="headerlink" href="#effectindex" title="Permanent link">⚓︎</a></h3>
@@ -16310,8 +16310,8 @@
 <li><code>params</code> (table): <em>Optional</em>.<ul>
 <li><code>negateOnExpiry</code> (boolean): <em>Default</em>: <code>true</code>. If this flag is <code>true</code>, the effect will be negated on expiry.</li>
 <li><code>isUncapped</code> (boolean): <em>Optional</em>.</li>
-<li><code>attribute</code> (integer): <em>Default</em>: <code>tes3.effectAttribute.nonResistable</code>. The attribute used in resistance calculations agains this effect. Maps to values in <a href="https://mwse.github.io/MWSE/references/effect-attributes/"><code>tes3.effectAttribute</code></a> table.</li>
-<li><code>type</code> (integer): <em>Default</em>: <code>tes3.effectEventType.boolean</code>. This flag controls how the effect behaves. For example, <code>tes3.effectEventType.modStatistic</code> will make the effect work as calling <code>tes3.modStatistic</code>. Maps to values in <a href="https://mwse.github.io/MWSE/references/effect-event-types/"><code>tes3.effectEventType</code></a> table.</li>
+<li><code>attribute</code> (<a href="../../references/effect-attributes/">tes3.effectAttribute</a>): <em>Default</em>: <code>tes3.effectAttribute.nonResistable</code>. The attribute used in resistance calculations agains this effect. Maps to values in <a href="https://mwse.github.io/MWSE/references/effect-attributes/"><code>tes3.effectAttribute</code></a> table.</li>
+<li><code>type</code> (<a href="../../references/effect-event-types/">tes3.effectEventType</a>): <em>Default</em>: <code>tes3.effectEventType.boolean</code>. This flag controls how the effect behaves. For example, <code>tes3.effectEventType.modStatistic</code> will make the effect work as calling <code>tes3.modStatistic</code>. Maps to values in <a href="https://mwse.github.io/MWSE/references/effect-event-types/"><code>tes3.effectEventType</code></a> table.</li>
 <li><code>value</code> (boolean, integer, number, <a href="../tes3statistic/">tes3statistic</a>): <em>Default</em>: <code>0</code>. The variable this effect changes. This can be a local variable in a script or a tes3statistic property on a <code>tes3mobileActor</code>. The type of the passed variable must match the type of the <code>type</code> parameter.</li>
 <li><code>resistanceCheck</code> (fun(e: <a href="../tes3magicEffectResistenceCheckEventData/">tes3magicEffectResistenceCheckEventData</a>): boolean?): <em>Optional</em>. The function passed as <code>resistanceCheck</code> will be used on any of the game's spell resistance checks. Returning <code>true</code> from this function will set your effect to expired, and depending on your trigger code may stop processing.</li>
 </ul>
@@ -16363,7 +16363,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 25, 2023 10:03:48</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">October 21, 2023 21:35:41</span>
       
         <br>
         Created:

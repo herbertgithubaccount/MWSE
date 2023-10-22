@@ -16685,10 +16685,10 @@
 <h3 id="animationgroups"><code>animationGroups</code><a class="headerlink" href="#animationgroups" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">animationgroups</div>
 
-<p><em>Read-only</em>. The animation groups, indexed by the <a href="https://mwse.github.io/MWSE/references/animation-groups/"><code>tes3.animationGroup</code></a> namespace.</p>
+<p><em>Read-only</em>. A table of the animation group objects, indexed by the <a href="https://mwse.github.io/MWSE/references/animation-groups/"><code>tes3.animationGroup</code></a> namespace.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (tes3animationGroup[])</li>
+<li><code>result</code> (table&lt;<a href="../../references/animation-groups/">tes3.animationGroup</a>, tes3animationGroup&gt;)</li>
 </ul>
 <hr />
 <h3 id="animationgroupsoundgencounts"><code>animationGroupSoundgenCounts</code><a class="headerlink" href="#animationgroupsoundgencounts" title="Permanent link">⚓︎</a></h3>
@@ -16697,7 +16697,7 @@
 <p><em>Read-only</em>. The number of sound generators for each of the animation groups, indexed by the <a href="https://mwse.github.io/MWSE/references/animation-groups/"><code>tes3.animationGroup</code></a> namespace.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (number[])</li>
+<li><code>result</code> (table&lt;<a href="../../references/animation-groups/">tes3.animationGroup</a>, number&gt;)</li>
 </ul>
 <hr />
 <h3 id="animgrouplayerindicies"><code>animGroupLayerIndicies</code><a class="headerlink" href="#animgrouplayerindicies" title="Permanent link">⚓︎</a></h3>
@@ -16706,7 +16706,7 @@
 <p><em>Read-only</em>. The layer from which each of the actor's animation groups come, indexed by the <a href="https://mwse.github.io/MWSE/references/animation-groups/"><code>tes3.animationGroup</code></a> namespace.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (number[])</li>
+<li><code>result</code> (table&lt;<a href="../../references/animation-groups/">tes3.animationGroup</a>, <a href="../../references/active-body-part-layers/">tes3.activeBodyPartLayer</a>&gt;)</li>
 </ul>
 <hr />
 <h3 id="approxroottravelspeeds"><code>approxRootTravelSpeeds</code><a class="headerlink" href="#approxroottravelspeeds" title="Permanent link">⚓︎</a></h3>
@@ -16715,7 +16715,7 @@
 <p><em>Read-only</em>. The approximate root node travel speed for each of the animation groups, indexed by the <a href="https://mwse.github.io/MWSE/references/animation-groups/"><code>tes3.animationGroup</code></a> namespace.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (number[])</li>
+<li><code>result</code> (table&lt;<a href="../../references/animation-groups/">tes3.animationGroup</a>, number&gt;)</li>
 </ul>
 <hr />
 <h3 id="blinkmorphendtime"><code>blinkMorphEndTime</code><a class="headerlink" href="#blinkmorphendtime" title="Permanent link">⚓︎</a></h3>
@@ -16988,7 +16988,7 @@
 <p>The time in seconds indicating the current position within the animation for each individual body section, indexed by values in the <a href="https://mwse.github.io/MWSE/references/animation-body-sections/"><code>tes3.animationBodySection</code></a> table.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (number[])</li>
+<li><code>result</code> (table&lt;<a href="../../references/animation-body-sections/">tes3.animationBodySection</a>, number&gt;)</li>
 </ul>
 <hr />
 <h3 id="weaponspeed"><code>weaponSpeed</code><a class="headerlink" href="#weaponspeed" title="Permanent link">⚓︎</a></h3>
@@ -17020,8 +17020,8 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>animationGroup</code> (number): The animation group to play. A value from <a href="https://mwse.github.io/MWSE/references/animation-groups/"><code>tes3.animationGroup</code></a> namespace.</li>
-<li><code>startFlag</code> (number): A flag for starting the group with, using <a href="https://mwse.github.io/MWSE/references/animation-start-flags/"><code>tes3.animationStartFlag</code></a> constants.</li>
+<li><code>animationGroup</code> (<a href="../../references/animation-groups/">tes3.animationGroup</a>): The animation group to play. A value from <a href="https://mwse.github.io/MWSE/references/animation-groups/"><code>tes3.animationGroup</code></a> namespace.</li>
+<li><code>startFlag</code> (<a href="../../references/animation-start-flags/">tes3.animationStartFlag</a>): A flag for starting the group with, using <a href="https://mwse.github.io/MWSE/references/animation-start-flags/"><code>tes3.animationStartFlag</code></a> constants.</li>
 <li><code>loopCount</code> (number): If provided, the animation will repeat its loop section a given number of times. To make an animation play through once, set loopCount = 0, while -1 is used for infinite looping.</li>
 </ul>
 <hr />
@@ -17033,9 +17033,9 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>animationGroup</code> (number): The animation group to play. A value from <a href="https://mwse.github.io/MWSE/references/animation-groups/"><code>tes3.animationGroup</code></a> namespace.</li>
-<li><code>triIndex</code> (number): The body section on which to play the animation. A value from <a href="https://mwse.github.io/MWSE/references/animation-body-sections/"><code>tes3.animationBodySection</code></a> namespace.</li>
-<li><code>startFlag</code> (number): A flag for starting the group with, using <a href="https://mwse.github.io/MWSE/references/animation-start-flags/"><code>tes3.animationStartFlag</code></a> constants.</li>
+<li><code>animationGroup</code> (<a href="../../references/animation-groups/">tes3.animationGroup</a>): The animation group to play. A value from <a href="https://mwse.github.io/MWSE/references/animation-groups/"><code>tes3.animationGroup</code></a> namespace.</li>
+<li><code>triIndex</code> (<a href="../../references/animation-body-sections/">tes3.animationBodySection</a>): The body section on which to play the animation. A value from <a href="https://mwse.github.io/MWSE/references/animation-body-sections/"><code>tes3.animationBodySection</code></a> namespace.</li>
+<li><code>startFlag</code> (<a href="../../references/animation-start-flags/">tes3.animationStartFlag</a>): A flag for starting the group with, using <a href="https://mwse.github.io/MWSE/references/animation-start-flags/"><code>tes3.animationStartFlag</code></a> constants.</li>
 <li><code>loopCount</code> (number): If provided, the animation will repeat its loop section a given number of times. To make an animation play through once, set loopCount = 0, while -1 is used for infinite looping.</li>
 </ul>
 <hr />
@@ -17068,7 +17068,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 25, 2023 10:03:48</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">October 21, 2023 21:35:41</span>
       
         <br>
         Created:
