@@ -16149,11 +16149,13 @@
 </div>
 <h2 id="event-data">Event Data<a class="headerlink" href="#event-data" title="Permanent link">⚓︎</a></h2>
 <ul>
-<li><code>activeMagicEffect</code> (<a href="../../types/tes3magicEffect/">tes3magicEffect</a>): <em>Read-only</em>. Magic effect which caused damage. Can be <code>nil</code>.</li>
+<li><code>activeMagicEffect</code> (<a href="../../types/tes3activeMagicEffect/">tes3activeMagicEffect</a>): <em>Read-only</em>. Only valid for elemental shield reactive damage. It is the magic effect of the shield which caused damage. Can be <code>nil</code>.</li>
 <li><code>attacker</code> (<a href="../../types/tes3mobileActor/">tes3mobileActor</a>): <em>Read-only</em>. The mobile actor dealing the damage. Can be <code>nil</code>.</li>
 <li><code>attackerReference</code> (<a href="../../types/tes3reference/">tes3reference</a>): <em>Read-only</em>. The attacker mobile's associated reference. Can be <code>nil</code>.</li>
 <li><code>damage</code> (number): <em>Read-only</em>. The amount of damage done.</li>
 <li><code>killingBlow</code> (boolean): <em>Read-only</em>. If true, the damage killed the target.</li>
+<li><code>magicEffect</code> (<a href="../../types/tes3effect/">tes3effect</a>): <em>Read-only</em>. The specific effect that triggered the event. This is equal to accessing <code>e.magicSourceInstance.effects[effectIndex]</code>. Only valid if magicSourceInstance is set.</li>
+<li><code>magicEffectIndex</code> (number): <em>Read-only</em>. The index of the effect in source's effects list. Only valid if magicSourceInstance is set.</li>
 <li><code>magicEffectInstance</code> (<a href="../../types/tes3magicEffectInstance/">tes3magicEffectInstance</a>): <em>Read-only</em>. An instance of the magic effect in the spell that caused damage. Can be <code>nil</code>.</li>
 <li><code>magicSourceInstance</code> (<a href="../../types/tes3magicSourceInstance/">tes3magicSourceInstance</a>): <em>Read-only</em>. A <code>tes3magicSourceInstance</code> object of a spell that caused damage. Can be <code>nil</code>.</li>
 <li><code>mobile</code> (<a href="../../types/tes3mobileActor/">tes3mobileActor</a>): <em>Read-only</em>. The mobile actor that took damage.</li>
@@ -16216,7 +16218,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">October 21, 2023 21:35:41</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">October 29, 2023 22:16:49</span>
       
         <br>
         Created:

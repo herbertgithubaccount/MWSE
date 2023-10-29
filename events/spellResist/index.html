@@ -16140,13 +16140,13 @@
 <h2 id="event-data">Event Data<a class="headerlink" href="#event-data" title="Permanent link">⚓︎</a></h2>
 <ul>
 <li><code>caster</code> (<a href="../../types/tes3reference/">tes3reference</a>): <em>Read-only</em>. The caster of the spell.</li>
-<li><code>effect</code> (<a href="../../types/tes3effect/">tes3effect</a>): <em>Read-only</em>. The specific effect that triggered the event. This is equal as doing <code>e.source.effects[effectIndex]</code>. This field may not always be available.</li>
+<li><code>effect</code> (<a href="../../types/tes3effect/">tes3effect</a>): <em>Read-only</em>. The specific effect that triggered the event. This is equal to accessing <code>e.source.effects[effectIndex]</code>. This field may not always be available.</li>
 <li><code>effectIndex</code> (number): <em>Read-only</em>. The index of the effect in source's effects list.</li>
-<li><code>effectInstance</code> (<a href="../../types/tes3magicEffectInstance/">tes3magicEffectInstance</a>): <em>Read-only</em>. The unique instance of the magic effect.</li>
+<li><code>effectInstance</code> (<a href="../../types/tes3magicEffectInstance/">tes3magicEffectInstance</a>): <em>Read-only</em>. The unique instance data of the magic effect.</li>
 <li><code>resistAttribute</code> (number): <em>Read-only</em>. The attribute resisted. This is an index into a <code>tes3mobileActor.effectAttributes</code>. Note that the index here is 0-based, while Lua is 1-based.</li>
 <li><code>resistedPercent</code> (number): The percent of the spell that has been resisted. This can be modified, but a value outside the range of 0 to 100 does not have consistent effects. For fire damage, for example, a value over 100 causes the spell to heal the target instead of harming them.</li>
 <li><code>source</code> (<a href="../../types/tes3alchemy/">tes3alchemy</a>, <a href="../../types/tes3enchantment/">tes3enchantment</a>, <a href="../../types/tes3spell/">tes3spell</a>): <em>Read-only</em>. The magic source.</li>
-<li><code>sourceInstance</code> (<a href="../../types/tes3magicSourceInstance/">tes3magicSourceInstance</a>): <em>Read-only</em>. The unique instance of the magic source.</li>
+<li><code>sourceInstance</code> (<a href="../../types/tes3magicSourceInstance/">tes3magicSourceInstance</a>): <em>Read-only</em>. The unique instance data of the magic source.</li>
 <li><code>spellCastChance</code> (number): <em>Read-only</em>. The cast chance of the magic source. This is only available if the <code>source</code> is a spell or an enchantment.</li>
 <li><code>target</code> (<a href="../../types/tes3reference/">tes3reference</a>): <em>Read-only</em>. The target of the spell. For self-targeted spells, this matches caster.</li>
 </ul>
@@ -16158,7 +16158,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">August 25, 2023 10:03:48</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">October 29, 2023 22:16:49</span>
       
         <br>
         Created:
