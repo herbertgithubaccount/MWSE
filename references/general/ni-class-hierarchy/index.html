@@ -292,6 +292,13 @@
 </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="../../../guides/object-lifetimes/">
+<span class="md-ellipsis">
+    Object Lifetimes
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="../../../guides/storing-data/">
 <span class="md-ellipsis">
     Storing Data
@@ -5637,6 +5644,7 @@
         }
     }
 }%%
+
 graph LR
     A(niObject) --&gt; B(niAccumulator);
         B --&gt; BA(niClusterAccumulator);
@@ -5654,16 +5662,18 @@ graph LR
         D --&gt; DB(niParticlesData);
             DB --&gt; DBA(niAutoNormalParticlesData);
             DB --&gt; DBB(niRotatingParticlesData);
+    subgraph Scroll down for more info
         D --&gt; DC(niTriBasedGeomData);
-            DC --&gt; DCA(niTriShapeData);
-                DCA --&gt; DCAA(niTriShapeDynamicData);
-            DC --&gt; DCB(niTriStripsData);
+    end
 
     A --&gt; E(niObjectNET);
 
     subgraph Scroll down for more info
         E --&gt; EA(niAVObject);
+        E --&gt; ED(niTexture);
     end
+
+        E --&gt; EC(niSequenceStreamHelper);
 
         E --&gt; EB(niProperty);
             EB --&gt; EBA(niAlphaProperty);
@@ -5678,13 +5688,6 @@ graph LR
             EB --&gt; EBJ(niVertexColorProperty);
             EB --&gt; EBK(niWireframeProperty);
             EB --&gt; EBL(niZBufferProperty);
-
-        E --&gt; EC(niSequenceStreamHelper);
-
-        E --&gt; ED(niTexture);
-            ED --&gt; EDA(niRenderedTexture);
-                EDA --&gt; EDAA(niRenderedCubeMap);
-            ED --&gt; EDB(niSourceTexture);
 
     A --&gt; F(niParticleModifier);
         F --&gt; FA(niGravity);
@@ -5743,7 +5746,7 @@ graph LR
 
     %% YellowGreen
     classDef notResearched color:#000, fill: #ADFF2F, stroke: #333, stroke-width: 2px;
-    class BA,BAA,CA,CE,DBA,DCAA,DCB,EBB,EBE,EBF,EBG,EBK,EC,EDAA,GA,HB,HBA,HBB,HE,HG,HH,HHA,HIA,HL,I,K,N,O,X notResearched;
+    class BA,BAA,CA,CE,DBA,EBB,EBE,EBF,EBG,EBK,EC,GA,HB,HBA,HBB,HE,HG,HH,HHA,HIA,HL,I,K,N,O,X notResearched;
 </div>
 <div class="mermaid">%%{
     init: {
@@ -5757,6 +5760,59 @@ graph LR
         }
     }
 }%%
+
+graph LR
+    ED(niTexture);
+        ED --&gt; EDA(niRenderedTexture);
+            EDA --&gt; EDAA(niRenderedCubeMap);
+        ED --&gt; EDB(niSourceTexture);
+
+    %% Default style
+    classDef default color: #fafafa, fill:#434659, stroke:#e6e6e6, stroke-width:2px;
+
+    %% YellowGreen
+    classDef notResearched color:#000, fill: #ADFF2F, stroke: #333, stroke-width: 2px;
+    class EDAA notResearched;
+</div>
+<div class="mermaid">%%{
+    init: {
+        'er': {
+            'diagramPadding': 5,
+            'entityPadding': 5
+        },
+        'flowchart': {
+            'diagramPadding': 2,
+            'curve': 'monotoneX'
+        }
+    }
+}%%
+
+graph LR
+    DC(niTriBasedGeomData);
+        DC --&gt; DCA(niTriShapeData);
+            DCA --&gt; DCAA(niTriShapeDynamicData);
+        DC --&gt; DCB(niTriStripsData);
+
+    %% Default style
+    classDef default color: #fafafa, fill:#434659, stroke:#e6e6e6, stroke-width:2px;
+
+    %% YellowGreen
+    classDef notResearched color:#000, fill: #ADFF2F, stroke: #333, stroke-width: 2px;
+    class DCAA,DCB notResearched;
+</div>
+<div class="mermaid">%%{
+    init: {
+        'er': {
+            'diagramPadding': 5,
+            'entityPadding': 5
+        },
+        'flowchart': {
+            'diagramPadding': 2,
+            'curve': 'monotoneX'
+        }
+    }
+}%%
+
 graph LR
     EA(niAVObject);
     EA --&gt; EAA(niCamera);
@@ -5808,7 +5864,7 @@ graph LR
 <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">May 22, 2023 06:31:16</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">November 5, 2023 17:26:44</span>
 <br/>
         Created:
         <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">October 29, 2022 15:20:41</span>

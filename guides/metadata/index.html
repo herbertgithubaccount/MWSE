@@ -456,6 +456,8 @@
       
         
       
+        
+      
     
     
     
@@ -775,6 +777,26 @@
   
   <span class="md-ellipsis">
     Mod Translations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../object-lifetimes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Object Lifetimes
   </span>
   
 
@@ -16345,7 +16367,7 @@
 </li>
 <li>
 <p><code>mcp</code></p>
-<p>A dependency on specific Morrowind Code Patch Features. Pass a list of features and the state the feature needs to be: enabled (true) or disabled (false). You can see the <a href="https://mwse.github.io/MWSE/references/code-patch-features/">list of MCP features here</a>. You only need to pass the feature name, for example `"creatureVoiceoverEnable"``.</p>
+<p>A dependency on specific Morrowind Code Patch features. Pass a list of features and the needed state for each feature: enabled (true) or disabled (false). You can see the <a href="https://mwse.github.io/MWSE/references/code-patch-features/">list of MCP features here</a>. The descriptions for each MCP feature are found in the <code>mcpatch\\describe.json</code> file. Pass the feature key from the <code>tes3.codePatchFeature</code> table. For example, <code>"creatureVoiceoverEnable = true"</code>.</p>
 <p>Example:</p>
 <div class="highlight"><pre><span></span><code><span class="w">    </span><span class="k">[dependencies.mcp.features]</span>
 <span class="w">    </span><span class="c1"># The following MCP feature needs to be enabled</span>
@@ -16432,7 +16454,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">September 18, 2023 16:38:46</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">November 5, 2023 17:26:44</span>
       
         <br>
         Created:

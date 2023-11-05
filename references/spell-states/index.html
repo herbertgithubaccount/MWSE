@@ -460,6 +460,8 @@
       
         
       
+        
+      
     
     
     
@@ -684,6 +686,26 @@
   
   <span class="md-ellipsis">
     Mod Translations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/object-lifetimes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Object Lifetimes
   </span>
   
 
@@ -16098,7 +16120,7 @@
 <tr>
 <td>ending</td>
 <td><code>6</code></td>
-<td>Is ending and being cleaned up</td>
+<td>Is ending and being cleaned up. For magic effects that modify stats, during <code>ending</code> state, the corresponding stat will be restored if the effect has <code>negateOnExpiry = true</code>. For "damage over time" effects, the damage won't be applied anymore during <code>ending</code> state.</td>
 </tr>
 <tr>
 <td>retired</td>
@@ -16123,7 +16145,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">April 9, 2022 17:42:34</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">November 5, 2023 17:26:44</span>
       
         <br>
         Created:
