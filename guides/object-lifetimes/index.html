@@ -747,6 +747,33 @@
     Introduction
   </a>
   
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lua-reference-variables" class="md-nav__link">
+    Lua reference variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lifetimes-of-lua-variables" class="md-nav__link">
+    Lifetimes of Lua variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-problem" class="md-nav__link">
+    The problem
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -16137,6 +16164,33 @@
     Introduction
   </a>
   
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lua-reference-variables" class="md-nav__link">
+    Lua reference variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lifetimes-of-lua-variables" class="md-nav__link">
+    Lifetimes of Lua variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-problem" class="md-nav__link">
+    The problem
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -16193,7 +16247,10 @@
 
 <h1 id="object-lifetimes">Object Lifetimes<a class="headerlink" href="#object-lifetimes" title="Permanent link">⚓︎</a></h1>
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">⚓︎</a></h2>
-<p>Lua objects have lifetimes. An object's lifetime starts at the object's creation, while its lifetime ends when it goes out of scope.</p>
+<p>Lua objects have lifetimes. An object's lifetime starts at the object creation, while its lifetime ends when it goes out of scope. A similar concept applies to the objects in the Morrowind engine. Since objects in the Morrowind engine are constructed in the code external to Lua, those objects can be deconstructed while the Lua holds reference variables to them, rendering the Lua reference variables invalid. For example, the <a href="../../events/itemDropped/#event-data"><code>e.reference</code></a> (of <code>tes3reference</code> type) in the <a href="../../events/itemDropped/">itemDropped</a> event is only valid during the very same event. The player may pick up the item, and the <code>e.reference</code> will be gone, it's destructed in the Morrowind engine. This kind of Lua reference variables are called <em>dangling references</em>. Since <em>dangling references</em> refer to variables that no longer exist, using them leads to script errors and may crash the game. Thus, understanding how the lifetimes of Morrowind objects exposed to Lua works will help writing scripts free of these kinds of issues.</p>
+<p>As a general rule, <code>tes3reference</code>s will be valid for the lifetime of the event you can get them from. After the event, the inventory items may be gone, actors may deactivate after changing cells, and magic expires when leaving a cell.</p>
+<h3 id="lua-reference-variables">Lua reference variables<a class="headerlink" href="#lua-reference-variables" title="Permanent link">⚓︎</a></h3>
+<p>The term Lua reference variables used in this guide denotes a reference variable in programmer's sense of word: a variable that refers to the value of another variable. The concept is the same as reference variables in C or C++. Here we provide an example of Lua reference variables:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -16204,7 +16261,49 @@
 <span class="normal"> 8</span>
 <span class="normal"> 9</span>
 <span class="normal">10</span>
-<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">-- The upper-most scope. This variable&#39;s lifetime is until the end of the program (Morrowind) execution</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">-- Let&#39;s create a table and store it in the variable foo.</span>
+<span class="kd">local</span> <span class="n">foo</span> <span class="o">=</span> <span class="p">{</span> <span class="n">a</span> <span class="o">=</span> <span class="s2">&quot;apple&quot;</span> <span class="p">}</span>
+
+<span class="c1">-- Now, let&#39;s create a reference to the variable foo.</span>
+<span class="kd">local</span> <span class="n">bar</span> <span class="o">=</span> <span class="n">foo</span>
+
+<span class="c1">-- Let&#39;s see what we&#39;ve got</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">foo</span><span class="p">.</span><span class="n">a</span><span class="p">)</span> <span class="c1">--&gt; apple</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bar</span><span class="p">.</span><span class="n">a</span><span class="p">)</span> <span class="c1">--&gt; apple</span>
+
+<span class="c1">-- Modifiying foo will also change all the reference variables since they all refere to the same memory.</span>
+<span class="n">foo</span><span class="p">.</span><span class="n">b</span> <span class="o">=</span> <span class="s2">&quot;orange&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">foo</span><span class="p">.</span><span class="n">b</span><span class="p">)</span> <span class="c1">--&gt; orange</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bar</span><span class="p">.</span><span class="n">b</span><span class="p">)</span> <span class="c1">--&gt; orange</span>
+
+<span class="c1">-- The same applies when changing bar.</span>
+<span class="n">bar</span><span class="p">.</span><span class="n">a</span> <span class="o">=</span> <span class="s2">&quot;banana&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">foo</span><span class="p">.</span><span class="n">a</span><span class="p">)</span> <span class="c1">--&gt; banana</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bar</span><span class="p">.</span><span class="n">a</span><span class="p">)</span> <span class="c1">--&gt; banana</span>
+</code></pre></div></td></tr></table></div>
+<p>It's important to differentiate the concept of Lua reference variables from the <a href="../../types/tes3reference/"><code>tes3reference</code></a> objects. The <code>tes3reference</code> is a name for an object type in the Morrowind engine.</p>
+<h3 id="lifetimes-of-lua-variables">Lifetimes of Lua variables<a class="headerlink" href="#lifetimes-of-lua-variables" title="Permanent link">⚓︎</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">-- The upper-most scope. The variable lifetime is until the end of the program (Morrowind) execution</span>
 <span class="kd">local</span> <span class="n">someNum</span> <span class="o">=</span> <span class="mi">4</span>
 
 <span class="kd">local</span> <span class="kr">function</span> <span class="nf">foo</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
@@ -16216,7 +16315,8 @@
     <span class="c1">-- someStr only exists during the execution of this do-end block</span>
 <span class="kr">end</span>
 </code></pre></div></td></tr></table></div>
-<p>MWSE exposes various objects in the Morrowind engine as references. The parent code in the Morrowind engine determines when the object's lifetime ends. Any references on the Lua side to those objects may become invalid at any time. Accessing an object in the Morrowind engine through a Lua reference will often lead to crashes. Such cases are usually encountered when caching references to Morrowind objects and using timers. Consider the following example:</p>
+<h3 id="the-problem">The problem<a class="headerlink" href="#the-problem" title="Permanent link">⚓︎</a></h3>
+<p>MWSE exposes various objects in the Morrowind engine as Lua reference variables. The parent code in the Morrowind engine determines when the object lifetime ends. Any Lua reference variables refering to those objects may become invalid at any time (<em>dangling references</em>). Accessing a destructed Morrowind object through a Lua reference variable leads to crashes. Such cases are usually encountered when caching reference variables refering Morrowind objects in timer callbacks. Consider the following example:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -16250,24 +16350,22 @@
 <span class="normal">31</span>
 <span class="normal">32</span>
 <span class="normal">33</span>
-<span class="normal">34</span>
-<span class="normal">35</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">---@param e damagedEventData</span>
+<span class="normal">34</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">---@param e damagedEventData</span>
 <span class="kd">local</span> <span class="kr">function</span> <span class="nf">onDamaged</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
     <span class="c1">-- Let&#39;s implement additional damage over time for fire damage</span>
 
-    <span class="kr">if</span> <span class="n">e</span><span class="p">.</span><span class="n">source</span> <span class="o">~=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">damageSource</span><span class="p">.</span><span class="n">magic</span> <span class="kr">then</span>
-        <span class="kr">return</span>
-    <span class="kr">end</span>
-    <span class="kd">local</span> <span class="n">effect</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">activeMagicEffect</span>
+<span class="hll">    <span class="kr">if</span> <span class="n">e</span><span class="p">.</span><span class="n">source</span> <span class="o">~=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">damageSource</span><span class="p">.</span><span class="n">magic</span> <span class="kr">then</span>
+</span><span class="hll">        <span class="kr">return</span>
+</span><span class="hll">    <span class="kr">end</span>
+</span>    <span class="kd">local</span> <span class="n">effect</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">activeMagicEffect</span>
     <span class="c1">-- Early-out if the damage doesn&#39;t come from fire damage magic effect</span>
-    <span class="kr">if</span> <span class="ow">not</span> <span class="n">effect</span> <span class="ow">or</span> <span class="n">effect</span><span class="p">.</span><span class="n">id</span> <span class="o">~=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">effect</span><span class="p">.</span><span class="n">fireDamage</span> <span class="kr">then</span>
-        <span class="kr">return</span>
-    <span class="kr">end</span>
-
+<span class="hll">    <span class="kr">if</span> <span class="ow">not</span> <span class="n">effect</span> <span class="ow">or</span> <span class="n">effect</span><span class="p">.</span><span class="n">id</span> <span class="o">~=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">effect</span><span class="p">.</span><span class="n">fireDamage</span> <span class="kr">then</span>
+</span><span class="hll">        <span class="kr">return</span>
+</span><span class="hll">    <span class="kr">end</span>
+</span>
     <span class="kd">local</span> <span class="n">damage</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">damage</span> <span class="o">/</span> <span class="mi">10</span>
 
-    <span class="c1">-- Creating a reference (in the programmer&#39;s sense of the word)</span>
-    <span class="c1">-- to the object stored in the e.reference field.</span>
+    <span class="c1">-- Creating a Lua reference variable that refers to the object in the `e.reference`.</span>
     <span class="kd">local</span> <span class="n">ref</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">reference</span>
 
     <span class="c1">-- Now, let&#39;s try to apply the damage using a timer:</span>
@@ -16287,9 +16385,9 @@
 <span class="kr">end</span>
 <span class="n">event</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">tes3</span><span class="p">.</span><span class="n">event</span><span class="p">.</span><span class="n">damaged</span><span class="p">,</span> <span class="n">onDamaged</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-<p>Now, let's analyze what happens. The early-outs filter out the cases of <code>damaged</code> event that we don't want our code to execute for. During the <code>ref = e.reference</code> assignment, we created a reference to an object in the Morrowind engine. Note that the <code>e.reference</code> in itself is a reference to the same object. Using the <code>ref</code> object is perfectly fine within the <code>onDamaged</code> function. The problems arise when using asynchronous code facilities such as <code>timer</code> API. The <code>timer.start</code> function registers a <code>callback</code> function to execute after the <code>duration</code> time has passed. During that time the object our <code>ref</code> variable references may have been destroyed, and our <code>callback</code> function could be a dangling reference.</p>
+<p>Now, let's analyze what happens. The highlighted early-outs filter out the cases of <code>damaged</code> event that we don't want our code to execute for. During the <code>ref = e.reference</code> assignment, we created a Lua reference variable that refers to an object in the Morrowind engine. Note that the <code>e.reference</code> in itself is a Lua reference variable to the same Morrowind object. Using the <code>ref</code> object is perfectly fine within the <code>onDamaged</code> function. The problems arise when using asynchronous code facilities such as <code>timer</code> API. The <code>timer.start</code> function registers a <code>callback</code> function to execute after the <code>duration</code> time has passed. During that time the Morrowind object our <code>ref</code> variable refers to may have been destroyed, and we could be using a <strong>dangling reference</strong> in our <code>callback</code> function.</p>
 <h2 id="safe-object-handles">Safe object handles<a class="headerlink" href="#safe-object-handles" title="Permanent link">⚓︎</a></h2>
-<p>MWSE provides <code>mwseSafeObjectHandle</code> class to handle such cases. When you need to use an object inside a timer <code>callback</code> just construct a safe handle for it. Now, let's use it in our previous example:</p>
+<p>MWSE provides <code>mwseSafeObjectHandle</code> class to handle such cases. When you need to use a Lua reference variable that refers to a Morrowind object inside a timer <code>callback</code>, just construct a safe handle for it. Now, let's use it in our previous example:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -16351,7 +16449,7 @@
 
     <span class="kd">local</span> <span class="n">damage</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">damage</span> <span class="o">/</span> <span class="mi">10</span>
 
-    <span class="c1">-- Creating a reference (in programming sense of word) to the object stored in the e.reference field.</span>
+    <span class="c1">-- Creating a Lua reference variable that refers to the object in the `e.reference`.</span>
     <span class="kd">local</span> <span class="n">ref</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">reference</span>
 
     <span class="c1">-- Now, crate a safe handle for the object.</span>
@@ -16362,14 +16460,14 @@
         <span class="n">iterations</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
         <span class="n">callback</span> <span class="o">=</span> <span class="kr">function</span><span class="p">()</span>
             <span class="c1">-- Before using our object, check if it is still valid,</span>
-            <span class="c1">-- if not make an early-out</span>
+            <span class="c1">-- if not, make an early-out</span>
             <span class="kr">if</span> <span class="ow">not</span> <span class="n">handle</span><span class="p">:</span><span class="n">valid</span><span class="p">()</span> <span class="kr">then</span>
                 <span class="kr">return</span>
             <span class="kr">end</span>
             <span class="c1">-- To get our object back from safe handle use `getObject` method.</span>
             <span class="kd">local</span> <span class="n">ref</span> <span class="o">=</span> <span class="n">handle</span><span class="p">:</span><span class="n">getObject</span><span class="p">()</span>
             <span class="kd">local</span> <span class="n">mob</span> <span class="o">=</span> <span class="n">ref</span><span class="p">.</span><span class="n">mobile</span> <span class="cm">--[[@as tes3mobileActor|nil]]</span>
-            <span class="c1">-- The `mobile` may not exist on a tes3reference for similar reasons as described above.</span>
+            <span class="c1">-- The `mobile` may not exist on a tes3reference at all times.</span>
             <span class="kr">if</span> <span class="ow">not</span> <span class="n">mob</span> <span class="kr">then</span>
                 <span class="kr">return</span>
             <span class="kr">end</span>
@@ -16386,22 +16484,20 @@
 </code></pre></div></td></tr></table></div>
 <h2 id="lifetimes-of-individual-objects">Lifetimes of Individual Objects<a class="headerlink" href="#lifetimes-of-individual-objects" title="Permanent link">⚓︎</a></h2>
 <h3 id="definition-of-objects-references-and-mobiles">Definition of Objects, References and Mobiles<a class="headerlink" href="#definition-of-objects-references-and-mobiles" title="Permanent link">⚓︎</a></h3>
-<p>Before describing the lifetimes of objects of individual classes, it's desirable to understand the differences between objects, references, and mobiles.</p>
-<p>A base object, inheriting from tes3baseObject class (tes3armor, tes3spell, tes3static, tes3creature...), is an object of certain type usually created in the Construction Set's Object Window. When an object is dragged to the Render Window, a reference (tes3reference) is created. The reference structure holds the data for an object placed in the game world. Those are position, rotation, scale, and optionally, some additional data in the attachments field. The reference data can be inspected in the CS by double-clicking on the reference in the Render Window. One base object may have zero, one, or more references. Think of mudcrabs for example. In addition, there is a <code>tes3mobileObject</code> class for current velocity and actor's AI-related data. It exists for actors (player, NPCs, creatures) and projectiles (arrows, bolts, spell projectiles) inside the AI processing range.</p>
-<p>Another point to keep in mind: certain object types that have inventories: tes3container, tes3creature, and tes3npc have corresponding instances (tes3containerInstance, tes3creatureInstance, tes3npcInstance). The references in unvisited cells point to the base objects that have the ids defined in the CS, for example: <code>"mudcrab"</code>. Once cloned, those references point to the appropriate object instances, and the reference IDs have the ref number appended to the base object id. For example, <code>"mudcrab00000008"</code> is the reference ID of the eighth encountered mudcrab in the playthrough. Cloning ensures that the changes (inventory changes for actors and containers and stat changes for actors...) to the object instance don't affect all the other objects. During cloning, item leveled lists in the object's inventory are resolved.</p>
+<p>Before describing the lifetimes of Morrowind objects of individual classes, it's desirable to understand the differences between objects, references (<code>tes3reference</code>s this time), and mobiles in the Morroiwind engine.</p>
+<p>A base object, inheriting from the tes3baseObject class, is an object of certain type usually created in the Construction Set's Object Window. Those are: tes3armor, tes3spell, tes3static, tes3creature, etc. When an object is dragged to the Render Window, a reference (<code>tes3reference</code>) is created. The <code>tes3reference</code> structure holds the data for an object placed in certain cell in the game world. Those are position, rotation, scale, and optionally, some additional data in the <a href="../../types/tes3reference/#attachments">attachments</a> field. The reference data can be inspected in the CS by double-clicking on any placed reference in the Render Window. There may be zero, one or more <code>tes3reference</code>s of a base object placed in the game world. In addition, there is a <code>tes3mobileObject</code> class for current velocity and actor's AI-related data. It exists for actors (player, NPCs, creatures) and projectiles (arrows, bolts, spell projectiles) inside the AI processing range.</p>
+<p>Another point to keep in mind: certain object types that have inventories, such as tes3container, tes3creature, and tes3npc have corresponding instances (tes3containerInstance, tes3creatureInstance, tes3npcInstance). The <code>tes3reference</code>s in unvisited cells point to the base objects that have the IDs defined in the CS, for example: <code>"mudcrab"</code>. Once cloned, those <code>tes3reference</code>s point to the appropriate object instances, and the <code>tes3reference</code> IDs have the ref number appended to the base object ID. For example, <code>"mudcrab00000008"</code> is the reference ID of the eighth encountered mudcrab in the playthrough. Cloning ensures that the changes (inventory changes for actors and containers, and stat changes for actors) to the object instance don't affect all the other objects. During cloning, item leveled lists in the object's inventory are resolved.</p>
 <h3 id="lifetimes-of-objects-references-and-mobiles">Lifetimes of Objects, References and Mobiles<a class="headerlink" href="#lifetimes-of-objects-references-and-mobiles" title="Permanent link">⚓︎</a></h3>
-<p>Base object lifetime is during the whole execution of the program (Morrowind), meaning variables that reference base objects (tes3alchemy, tes3container, etc.) can be used at any time in Lua scripts.</p>
-<p>The references (<code>tes3reference</code> objects) are tied to the cell they were placed, e.g. in the Construction Set, or walked to in the case of actors during the current play session. The reference objects exist for 72 in-game hours after their containing cell is unloaded. When manipulating <code>tes3reference</code> objects in timer callbacks <code>mwseSafeObjectHandle</code>s should be used.</p>
-<!---
-    TODO: describe the lifetime of mobile objects/actors
--->
+<p>Base object lifetime is during the whole execution of the program (Morrowind), meaning variables that Lua reference variables refering to the base objects (tes3alchemy, tes3container, etc.) can be used at any time in Lua scripts.</p>
+<p>The <code>tes3reference</code>s are tied to the cell they were placed (in the Construction Set or by a Lua script) or walked to in the case of actors during the current play session. There are two types of <code>tes3referenece</code>s: temporary and <a href="../../types/tes3reference/#persistent">persistent</a>. The Construction Set makes each <code>tes3reference</code> temporary by default. Temporary <code>tes3reference</code>s' lifetime ends when the Morrowind engine clears the active cell cache. A <code>tes3reference</code> can be made persistent in the Construction Set by double clicking at the placed reference in the Render Window and checking the "Reference Persist" checkbox. In addition, the Construction Set always marks NPC references as persistent <code>tes3reference</code>s. Persistent <code>tes3reference</code>'s lifetime is during the whole execution of the program (Morrowind). When manipulating <code>tes3reference</code> objects in timer callbacks <code>mwseSafeObjectHandle</code>s should be used, because of temporary <code>tes3reference</code>s.</p>
+<p>The mobile actors (<code>tes3mobileCreature</code> and <code>tes3mobileNPC</code>) lifetime expires in 72 in-game hours after the cell they are in wasn't visited.</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">November 5, 2023 17:27:10</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">November 11, 2023 11:11:45</span>
       
         <br>
         Created:
