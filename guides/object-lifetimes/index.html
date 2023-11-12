@@ -2832,6 +2832,8 @@
       
         
       
+        
+      
     
     
     
@@ -3193,6 +3195,26 @@
   
   <span class="md-ellipsis">
     Property Types
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/ni/sequence-states/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sequence States
   </span>
   
 
@@ -4582,6 +4604,10 @@
   
     
     
+      
+        
+      
+        
       
         
       
@@ -7330,6 +7356,26 @@
   
   
     <li class="md-nav__item">
+      <a href="../../types/niKeyframeManager/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    niKeyframeManager
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../types/niLight/" class="md-nav__link">
         
   
@@ -7995,6 +8041,26 @@
   
   <span class="md-ellipsis">
     niRotatingParticlesData
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../types/niSequence/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    niSequence
   </span>
   
 
@@ -16247,7 +16313,7 @@
 
 <h1 id="object-lifetimes">Object Lifetimes<a class="headerlink" href="#object-lifetimes" title="Permanent link">⚓︎</a></h1>
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">⚓︎</a></h2>
-<p>Lua objects have lifetimes. An object's lifetime starts at the object creation, while its lifetime ends when it goes out of scope. A similar concept applies to the objects in the Morrowind engine. Since objects in the Morrowind engine are constructed in the code external to Lua, those objects can be deconstructed while the Lua holds reference variables to them, rendering the Lua reference variables invalid. For example, the <a href="../../events/itemDropped/#event-data"><code>e.reference</code></a> (of <code>tes3reference</code> type) in the <a href="../../events/itemDropped/">itemDropped</a> event is only valid during the very same event. The player may pick up the item, and the <code>e.reference</code> will be gone, it's destructed in the Morrowind engine. This kind of Lua reference variables are called <em>dangling references</em>. Since <em>dangling references</em> refer to variables that no longer exist, using them leads to script errors and may crash the game. Thus, understanding how the lifetimes of Morrowind objects exposed to Lua works will help writing scripts free of these kinds of issues.</p>
+<p>Lua objects have lifetimes. An object's lifetime starts at the object creation, while its lifetime ends when it goes out of scope. A similar concept applies to the objects in the Morrowind engine. Since objects in the Morrowind engine are constructed in the code external to Lua, those objects can be deconstructed while the Lua holds reference variables to them, rendering the Lua reference variables invalid. For example, the <a href="../../events/itemDropped/#event-data"><code>e.reference</code></a> (of <code>tes3reference</code> type) in the <a href="../../events/itemDropped/">itemDropped</a> event is only valid during the very same event. The player may pick up the item, and the <code>e.reference</code> will be gone, it's destructed in the Morrowind engine. This kind of Lua reference variables are called <em>dangling references</em>. Since <em>dangling references</em> refer to variables that no longer exist, using them leads to script errors and may crash the game. Thus, understanding how the lifetimes of Morrowind objects exposed to Lua work will help writing scripts free of these kinds of issues.</p>
 <p>As a general rule, <code>tes3reference</code>s will be valid for the lifetime of the event you can get them from. After the event, the inventory items may be gone, actors may deactivate after changing cells, and magic expires when leaving a cell.</p>
 <h3 id="lua-reference-variables">Lua reference variables<a class="headerlink" href="#lua-reference-variables" title="Permanent link">⚓︎</a></h3>
 <p>The term Lua reference variables used in this guide denotes a reference variable in programmer's sense of word: a variable that refers to the value of another variable. The concept is the same as reference variables in C or C++. Here we provide an example of Lua reference variables:</p>
@@ -16490,14 +16556,14 @@
 <h3 id="lifetimes-of-objects-references-and-mobiles">Lifetimes of Objects, References and Mobiles<a class="headerlink" href="#lifetimes-of-objects-references-and-mobiles" title="Permanent link">⚓︎</a></h3>
 <p>Base object lifetime is during the whole execution of the program (Morrowind), meaning variables that Lua reference variables refering to the base objects (tes3alchemy, tes3container, etc.) can be used at any time in Lua scripts.</p>
 <p>The <code>tes3reference</code>s are tied to the cell they were placed (in the Construction Set or by a Lua script) or walked to in the case of actors during the current play session. There are two types of <code>tes3referenece</code>s: temporary and <a href="../../types/tes3reference/#persistent">persistent</a>. The Construction Set makes each <code>tes3reference</code> temporary by default. Temporary <code>tes3reference</code>s' lifetime ends when the Morrowind engine clears the active cell cache. A <code>tes3reference</code> can be made persistent in the Construction Set by double clicking at the placed reference in the Render Window and checking the "Reference Persist" checkbox. In addition, the Construction Set always marks NPC references as persistent <code>tes3reference</code>s. Persistent <code>tes3reference</code>'s lifetime is during the whole execution of the program (Morrowind). When manipulating <code>tes3reference</code> objects in timer callbacks <code>mwseSafeObjectHandle</code>s should be used, because of temporary <code>tes3reference</code>s.</p>
-<p>The mobile actors (<code>tes3mobileCreature</code> and <code>tes3mobileNPC</code>) lifetime expires in 72 in-game hours after the cell they are in wasn't visited.</p>
+<p>The mobile actor (<code>tes3mobileCreature</code> and <code>tes3mobileNPC</code>) structures are created on actors when the player enters their cell, on summoned, teleported actors and on certain script commands that reset actor state such as resurrection and werewolf transformation. The lifetime of mobile actor structures expires in 72 in-game hours after the cell they are in wasn't visited. The mobile projectile structures (<code>tes3mobileProjectile</code> and <code>tes3mobileSpellProjectile</code>) expire when they collide with something or when the player leaves the cell.</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">November 11, 2023 11:11:45</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">November 12, 2023 14:36:14</span>
       
         <br>
         Created:
