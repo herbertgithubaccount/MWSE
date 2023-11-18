@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.8">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.9">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.4b4a2bd9.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.78cf6014.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.356b1318.min.css">
@@ -3562,14 +3562,18 @@
       
         <li class="md-nav__item">
   <a href="#cells-and-their-sizes" class="md-nav__link">
-    Cells and Their Sizes
+    <span class="md-ellipsis">
+      Cells and Their Sizes
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#actor-height" class="md-nav__link">
-    Actor Height
+    <span class="md-ellipsis">
+      Actor Height
+    </span>
   </a>
   
 </li>
@@ -16179,14 +16183,18 @@
       
         <li class="md-nav__item">
   <a href="#cells-and-their-sizes" class="md-nav__link">
-    Cells and Their Sizes
+    <span class="md-ellipsis">
+      Cells and Their Sizes
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#actor-height" class="md-nav__link">
-    Actor Height
+    <span class="md-ellipsis">
+      Actor Height
+    </span>
   </a>
   
 </li>
@@ -16210,20 +16218,25 @@
 
 
 <h1 id="game-units">Game Units<a class="headerlink" href="#game-units" title="Permanent link">⚓︎</a></h1>
-<p>Each exterior cell is 8192 by 8192 game units or 385 by 385 feet (117 x 117m), according to the Construction Set help. Dividing the two we get 21.3 units per foot, or 70 units per meter. The various properties (e.g. <code>.position</code>), and functions in MWSE use these units.</p>
+<p>Almost all lengths in the engine are measured in-game units. The various properties (e.g. <code>.position</code>) and functions in MWSE use these units. One exception is the spell effect radius, which is measured in feet.</p>
+<p>The conversion factor used in the engine between units to feet is 22.1 units/foot.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The numbers claimed in the Construction Set help aren't accurate. The value provided here is used in the Morrowind engine to convert spell effect radius from feet to game units.</p>
+</div>
 <h2 id="cells-and-their-sizes">Cells and Their Sizes<a class="headerlink" href="#cells-and-their-sizes" title="Permanent link">⚓︎</a></h2>
-<p>There are two types of cells: interior cells and exterior cells. The exterior cells form a grid, where each is 8192 x 8192 units. Each interior cell is a separate space without the defined dimensions.</p>
-<p>The water level in all the exterior cells is 0, while the interior cells have a custom water level, usually set in the Construction Set, or don't have water at all.</p>
-<p>The landscape consists of verticies that can only be moved on z axis (up and down). The verticies are 128 units apart, so a "landscape tile" is 128 x 128 units. Each landscape texture covers 512 x 512 units or 4 by 4 tiles.</p>
+<p>There are two types of cells: interior cells and exterior cells. The exterior cells form a grid, where each is 8192 x 8192 units big. Each interior cell is a separate space without defined dimensions.</p>
+<p>The water level in all the exterior cells is at 0 Z, while the interior cells have custom water level, usually set in the Construction Set, or don't have water at all.</p>
+<p>The landscape consists of vertices that can only be moved on the Z axis (up and down). The vertices are 128 units apart, so a "landscape tile" is 128 x 128 units. Each landscape texture covers 512 x 512 units or 4 by 4 landscape tiles.</p>
 <h2 id="actor-height">Actor Height<a class="headerlink" href="#actor-height" title="Permanent link">⚓︎</a></h2>
-<p>Base height of an actor is 128 game units. It's further changed by racial height modifier.</p>
+<p>The base height of an actor is 128 game units. It's further changed by the racial height modifier.</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">February 11, 2023 12:29:29</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">November 18, 2023 22:21:27</span>
       
         <br>
         Created:
@@ -16281,9 +16294,7 @@
     <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.annotate", "content.code.copy", "content.tabs.link", "navigation.indexes", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest"], "search": "../../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.81fa17fe.min.js"></script>
-      
-        <script src="../../../assets/js/reloadMermaidPagesOnPaletteSwitch.js"></script>
+      <script src="../../../assets/javascripts/bundle.6c14ae12.min.js"></script>
       
     
   </body>
