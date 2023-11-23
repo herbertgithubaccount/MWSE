@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.10">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.11">
     
     
       
@@ -17784,14 +17784,14 @@
 <p class="admonition-title">Update Efficiency</p>
 <p>It's best to "batch up" calls to this method. For example, when transform of an object its parent and grandparent are all changed during the same frame, it is much more efficient to call this method only on the grandparent object after all transforms have been changed. Also, consider calling this function as low as possible on a scene graph.</p>
 </div>
-<div class="highlight"><pre><span></span><code><span class="n">myObject</span><span class="p">:</span><span class="n">update</span><span class="p">({</span> <span class="n">time</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">controllers</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">bounds</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
+<div class="highlight"><pre><span></span><code><span class="n">myObject</span><span class="p">:</span><span class="n">update</span><span class="p">({</span> <span class="n">time</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">controllers</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">children</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
 <li><code>args</code> (table): <em>Optional</em>.<ul>
-<li><code>time</code> (number): <em>Default</em>: <code>0</code>. This parameter is the time-slice for transformation and bounds updates</li>
-<li><code>controllers</code> (boolean): <em>Default</em>: <code>false</code>. Update object's controllers?</li>
-<li><code>bounds</code> (boolean): <em>Default</em>: <code>true</code>. Update object's bounds?</li>
+<li><code>time</code> (number): <em>Default</em>: <code>0</code>. This parameter is passed to controllers. Only needed if controllers are being updated.</li>
+<li><code>controllers</code> (boolean): <em>Default</em>: <code>false</code>. Update controllers before updating transforms.</li>
+<li><code>children</code> (boolean): <em>Default</em>: <code>true</code>. Recursively updates the children of this node.</li>
 </ul>
 </li>
 </ul>
@@ -17815,7 +17815,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">October 21, 2023 21:35:41</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">November 23, 2023 21:36:00</span>
       
         <br>
         Created:
