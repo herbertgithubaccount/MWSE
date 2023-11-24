@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.11">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.12">
     
     
       
@@ -19423,8 +19423,8 @@
 </ul>
 </li>
 </ul>
-<h4 id="event-forwarding">Event forwarding<a class="headerlink" href="#event-forwarding" title="Permanent link">⚓︎</a></h4>
 <hr />
+<h4 id="event-forwarding">Event forwarding<a class="headerlink" href="#event-forwarding" title="Permanent link">⚓︎</a></h4>
 <p>The original Morrowind event handler is saved when you first register an event. It may be optionally invoked with the <code>forwardEvent</code> method. Note that handler may or may not destroy the event widget or the menu, so you should know how it behaves before accessing any elements after a callback.</p>
 <p><strong>Example</strong>
 <div class="highlight"><pre><span></span><code><span class="c1">---@param e tes3uiEventData</span>
@@ -19438,11 +19438,34 @@
 <span class="kd">local</span> <span class="n">button</span> <span class="o">=</span> <span class="n">menu</span><span class="p">:</span><span class="n">findChild</span><span class="p">(</span><span class="s2">&quot;MenuExample_Ok&quot;</span><span class="p">)</span>
 <span class="n">button</span><span class="p">:</span><span class="n">register</span><span class="p">(</span><span class="n">tes3</span><span class="p">.</span><span class="n">uiEvent</span><span class="p">.</span><span class="n">mouseClick</span><span class="p">,</span> <span class="n">onClick</span><span class="p">)</span>
 </code></pre></div></p>
+<hr />
+<h4 id="event-handler">Event handler<a class="headerlink" href="#event-handler" title="Permanent link">⚓︎</a></h4>
+<p>The standard type signature for the event handler function:</p>
+<p>eventHandler (fun(e: <a href="https://mwse.github.io/MWSE/types/tes3uiEventData/">tes3uiEventData</a>): boolean?) Returning <code>false</code> may cancel an interaction for certain events. e.g. unfocus.</p>
+<p>EventData:</p>
+<ul>
+<li><strong>source</strong> (<a href="https://mwse.github.io/MWSE/types/tes3uiElement/">tes3uiElement</a>)
+    The source element of the event.</li>
+<li><strong>forwardSource</strong> (<a href="https://mwse.github.io/MWSE/types/tes3uiElement/">tes3uiElement</a>)
+    No description yet available.</li>
+<li><strong>id</strong> (<code>number</code>)
+    The numeric id of the event type.</li>
+<li><strong>widget</strong> (<a href="https://mwse.github.io/MWSE/types/tes3uiElement/">tes3uiElement</a>)
+    The widget element that the source belongs to, if the element is a sub-part of a widget. May not be accurate if the element is not a sub-part.</li>
+<li><strong>data0</strong> (<code>number</code>)
+    Event-specific raw data values. For mouse events, these are the screen X and Y coordinates of the pointer. For keyboard events, data0 is the scancode.</li>
+<li><strong>data1</strong> (<code>number</code>)
+    See <em>data0</em> description.</li>
+<li><strong>relativeX</strong> (<code>number</code>)
+    For mouse events only. X and Y coordinates of the pointer relative to the top-left of the element.</li>
+<li><strong>relativeY</strong> (<code>number</code>)
+    See <em>relativeX</em> description.</li>
+</ul>
 <div class="highlight"><pre><span></span><code><span class="n">myObject</span><span class="p">:</span><span class="n">register</span><span class="p">(</span><span class="n">eventID</span><span class="p">,</span> <span class="n">callback</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>eventID</code> (<a href="../../references/ui-events/">tes3.uiEvent</a>): The event id. Maps to values in <a href="https://mwse.github.io/MWSE/references/ui-events/"><code>tes3.uiEvent</code></a>.</li>
+<li><code>eventID</code> (<a href="../../references/ui-events/">tes3.uiEvent</a>): The UI event id. Maps to values in <a href="https://mwse.github.io/MWSE/references/ui-events/"><code>tes3.uiEvent</code></a>.</li>
 <li><code>callback</code> (integer, fun(e: <a href="../tes3uiEventData/">tes3uiEventData</a>): boolean?): The callback function. Returning <code>false</code> from this function may cancel an interaction for certain events, such as unfocus.</li>
 </ul>
 <hr />
@@ -19670,7 +19693,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">October 22, 2023 11:27:26</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">November 24, 2023 18:54:15</span>
       
         <br>
         Created:

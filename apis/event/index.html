@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.11">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.12">
     
     
       
@@ -16314,7 +16314,7 @@
 <p><strong>Parameters</strong>:</p>
 <ul>
 <li><code>eventId</code> (string, <a href="../../references/events/">tes3.event</a>): <em>Optional</em>.</li>
-<li><code>filter</code> (userdata, string, number): <em>Optional</em>.</li>
+<li><code>filter</code> (userdata, string, number, <a href="../../types/tes3baseObject/">tes3baseObject</a>): <em>Optional</em>.</li>
 </ul>
 <hr />
 <h3 id="eventisregistered"><code>event.isRegistered</code><a class="headerlink" href="#eventisregistered" title="Permanent link">⚓︎</a></h3>
@@ -16328,7 +16328,7 @@
 <li><code>eventId</code> (string, <a href="../../references/events/">tes3.event</a>)</li>
 <li><code>callback</code> (function)</li>
 <li><code>options</code> (table): <em>Optional</em>.<ul>
-<li><code>filter</code> (userdata, string, number): <em>Optional</em>. Allows searching for a callback function registered with the specified filter.</li>
+<li><code>filter</code> (userdata, string, number, <a href="../../types/tes3baseObject/">tes3baseObject</a>): <em>Optional</em>. Allows searching for a callback function registered with the specified filter.</li>
 </ul>
 </li>
 </ul>
@@ -16349,7 +16349,7 @@
 <li><code>callback</code> (function)</li>
 <li><code>options</code> (table): <em>Optional</em>.<ul>
 <li><code>doOnce</code> (boolean): <em>Default</em>: <code>false</code>. If this option is set to <code>true</code>, the function registered will be executed only once, and automatically unregistered thereafter.</li>
-<li><code>filter</code> (userdata, string, number): <em>Optional</em>. This parameter allows selectively executing the callback function only when a specific condition is met. The exact behavior depends on each event.</li>
+<li><code>filter</code> (userdata, string, number, <a href="../../types/tes3baseObject/">tes3baseObject</a>): <em>Optional</em>. This parameter allows selectively executing the callback function only when a specific condition is met. The exact behavior depends on each event.</li>
 <li><code>priority</code> (number): <em>Optional</em>. Event callback with higher priority is executed before callback with lower priority. Typically used to make certain mods compatible.</li>
 </ul>
 </li>
@@ -16366,7 +16366,7 @@
 <li><code>eventId</code> (string, <a href="../../references/events/">tes3.event</a>)</li>
 <li><code>payload</code> (table): <em>Optional</em>.</li>
 <li><code>options</code> (table): <em>Optional</em>.<ul>
-<li><code>filter</code> (userdata, string, number): <em>Optional</em>. Assigning a filter will make the event callbacks with filters matching this one to be executed first. All the other unfiltered callbacks are executed after.</li>
+<li><code>filter</code> (userdata, string, number, <a href="../../types/tes3baseObject/">tes3baseObject</a>): <em>Optional</em>. Assigning a filter will make the event callbacks with filters matching this one to be executed first. All the other unfiltered callbacks are executed after.</li>
 </ul>
 </li>
 </ul>
@@ -16386,7 +16386,7 @@
 <li><code>eventId</code> (string, <a href="../../references/events/">tes3.event</a>)</li>
 <li><code>callback</code> (function)</li>
 <li><code>options</code> (table): <em>Optional</em>.<ul>
-<li><code>filter</code> (userdata, string, number): <em>Optional</em>. If a callback function was registered with a filter, the same filter needs to be passed to <code>event.unregister</code> to successfully unregister the callback function.</li>
+<li><code>filter</code> (userdata, string, number, <a href="../../types/tes3baseObject/">tes3baseObject</a>): <em>Optional</em>. If a callback function was registered with a filter, the same filter needs to be passed to <code>event.unregister</code> to successfully unregister the callback function.</li>
 </ul>
 </li>
 </ul>
@@ -16396,7 +16396,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">October 21, 2023 21:35:41</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">November 24, 2023 19:39:34</span>
       
         <br>
         Created:
