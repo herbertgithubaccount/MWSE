@@ -20304,10 +20304,10 @@
 <li>
 <p><code>params</code> (table)</p>
 <ul>
-<li><code>id</code> (<a href="../../references/magic-effects/">tes3.effect</a>): Id of the new effect. Maps to newly claimed <code>tes3.effect</code> constants with <code>tes3.claimSpellEffectId()</code>. If the effect of this id already exists, an error will be thrown.</li>
+<li><code>id</code> (<a href="../../references/magic-effects/">tes3.effect</a>, integer): Id of the new effect. Maps to newly claimed <code>tes3.effect</code> constants with <code>tes3.claimSpellEffectId()</code>. If the effect of this id already exists, an error will be thrown.</li>
 <li><code>name</code> (string): <em>Default</em>: <code>Unnamed Effect</code>. Name of the effect.</li>
 <li><code>baseCost</code> (number): <em>Default</em>: <code>1</code>. Base magicka cost for the effect.</li>
-<li><code>school</code> (<a href="../../references/magic-schools/">tes3.magicSchool</a>): <em>Default</em>: <code>tes3.magicSchool.alteration</code>. The magic school the new effect will be assigned to. Maps to <a href="https://mwse.github.io/MWSE/references/magic-schools/"><code>tes3.magicSchool</code></a> constants.</li>
+<li><code>school</code> (<a href="../../references/magic-schools/">tes3.magicSchool</a>, integer): <em>Default</em>: <code>tes3.magicSchool.alteration</code>. The magic school the new effect will be assigned to. Maps to <a href="https://mwse.github.io/MWSE/references/magic-schools/"><code>tes3.magicSchool</code></a> constants.</li>
 <li><code>size</code> (number): <em>Default</em>: <code>1</code>. Controls how much the visual effect scales with its magnitude.</li>
 <li><code>sizeCap</code> (number): <em>Default</em>: <code>1</code>. The maximum possible size of the projectile.</li>
 <li><code>speed</code> (number): <em>Default</em>: <code>1</code>.</li>
@@ -20644,7 +20644,7 @@
 <li><code>params</code> (table)<ul>
 <li><code>sound</code> (<a href="../../types/tes3sound/">tes3sound</a>, string): The sound object, or id of the sound to look for.</li>
 <li><code>reference</code> (<a href="../../types/tes3reference/">tes3reference</a>, <a href="../../types/tes3mobileActor/">tes3mobileActor</a>, string): The reference to attach the sound to.</li>
-<li><code>mixChannel</code> (<a href="../../references/sound-mix-types/">tes3.soundMix</a>): <em>Default</em>: <code>tes3.soundMix.effects</code>. The channel to base volume off of. Maps to <a href="https://mwse.github.io/MWSE/references/sound-mix-types/"><code>tes3.soundMix</code></a> constants.</li>
+<li><code>mixChannel</code> (<a href="../../references/sound-mix-types/">tes3.soundMix</a>, integer): <em>Default</em>: <code>tes3.soundMix.effects</code>. The channel to base volume off of. Maps to <a href="https://mwse.github.io/MWSE/references/sound-mix-types/"><code>tes3.soundMix</code></a> constants.</li>
 <li><code>volume</code> (number): <em>Default</em>: <code>1.0</code>. A value between 0.0 and 1.0 to scale the volume off of.</li>
 </ul>
 </li>
@@ -20689,10 +20689,10 @@
 <li><code>source</code> (<a href="../../types/tes3object/">tes3object</a>): <em>Optional</em>. A magic source to apply.</li>
 <li><code>name</code> (string): <em>Optional</em>. While optional for other uses, if applying alchemy as a source, you must specify a name for the magic source.</li>
 <li><code>effects</code> (table): <em>Optional</em>. A table of custom effects to apply as a potion. Maximal number of effects is 8.<ul>
-<li><code>id</code> (<a href="../../references/magic-effects/">tes3.effect</a>): <em>Default</em>: <code>-1</code>. ID of the effect. Maps to values in <a href="https://mwse.github.io/MWSE/references/magic-effects/"><code>tes3.effect</code></a> table.</li>
-<li><code>skill</code> (<a href="../../references/skills/">tes3.skill</a>): <em>Default</em>: <code>-1</code>. If effect parameter specified is: Absorb, Damage, Drain, Fortify or Restore Skill, a skill should be provided. This also applies to any custom spell effect which operates on a certain skill. This value maps to <a href="https://mwse.github.io/MWSE/references/skills/"><code>tes3.skill</code></a> constants.</li>
-<li><code>attribute</code> (<a href="../../references/attributes/">tes3.attribute</a>): <em>Default</em>: <code>-1</code>. If effect parameter specified is: Absorb, Damage, Drain, Fortify or Restore Attribute, an attribute should be provided. This also applies to any custom spell effect which operates on a certain attribute. This value maps to <a href="https://mwse.github.io/MWSE/references/attributes/"><code>tes3.attribute</code></a> constants.</li>
-<li><code>rangeType</code> (<a href="../../references/effect-ranges/">tes3.effectRange</a>): <em>Default</em>: <code>tes3.effectRange.self</code>. The range of the effect. This maps to <a href="https://mwse.github.io/MWSE/references/effect-ranges/"><code>tes3.effectRange</code></a> constants.</li>
+<li><code>id</code> (<a href="../../references/magic-effects/">tes3.effect</a>, integer): <em>Default</em>: <code>-1</code>. ID of the effect. Maps to values in <a href="https://mwse.github.io/MWSE/references/magic-effects/"><code>tes3.effect</code></a> table.</li>
+<li><code>skill</code> (<a href="../../references/skills/">tes3.skill</a>, integer): <em>Default</em>: <code>-1</code>. If effect parameter specified is: Absorb, Damage, Drain, Fortify or Restore Skill, a skill should be provided. This also applies to any custom spell effect which operates on a certain skill. This value maps to <a href="https://mwse.github.io/MWSE/references/skills/"><code>tes3.skill</code></a> constants.</li>
+<li><code>attribute</code> (<a href="../../references/attributes/">tes3.attribute</a>, integer): <em>Default</em>: <code>-1</code>. If effect parameter specified is: Absorb, Damage, Drain, Fortify or Restore Attribute, an attribute should be provided. This also applies to any custom spell effect which operates on a certain attribute. This value maps to <a href="https://mwse.github.io/MWSE/references/attributes/"><code>tes3.attribute</code></a> constants.</li>
+<li><code>rangeType</code> (<a href="../../references/effect-ranges/">tes3.effectRange</a>, integer): <em>Default</em>: <code>tes3.effectRange.self</code>. The range of the effect. This maps to <a href="https://mwse.github.io/MWSE/references/effect-ranges/"><code>tes3.effectRange</code></a> constants.</li>
 <li><code>radius</code> (number): <em>Default</em>: <code>0</code>. The radius of the effect.</li>
 <li><code>duration</code> (number): <em>Default</em>: <code>0</code>. Number of seconds the effect is going to be active.</li>
 <li><code>min</code> (number): <em>Default</em>: <code>0</code>. The minimal magintude of the effect per tick.</li>
@@ -20775,7 +20775,7 @@
 <li><code>training</code> (boolean): <em>Default</em>: <code>false</code>. If <code>true</code>, a <a href="https://mwse.github.io/MWSE/events/calcTrainingPrice">calcTrainingPrice</a> event will be triggered, passing the given <code>skill</code> ID.</li>
 <li><code>count</code> (number): <em>Default</em>: <code>1</code>. If <code>bartering</code>, the count passed to the <a href="https://mwse.github.io/MWSE/events/calcBarterPrice">calcBarterPrice</a> event.</li>
 <li><code>itemData</code> (<a href="../../types/tes3itemData/">tes3itemData</a>): <em>Optional</em>. If <code>bartering</code> or <code>repairing</code>, the item data passed to the <a href="https://mwse.github.io/MWSE/events/calcBarterPrice">calcBarterPrice</a> or <a href="https://mwse.github.io/MWSE/events/calcRepairPrice">calcRepairPrice</a> event.</li>
-<li><code>skill</code> (<a href="../../references/skills/">tes3.skill</a>): If <code>training</code>, the skill ID passed to the <a href="https://mwse.github.io/MWSE/events/calcTrainingPrice">calcTrainingPrice</a> event. Maps to values in <a href="https://mwse.github.io/MWSE/references/skills/"><code>tes3.skill</code></a> table.</li>
+<li><code>skill</code> (<a href="../../references/skills/">tes3.skill</a>, integer): If <code>training</code>, the skill ID passed to the <a href="https://mwse.github.io/MWSE/events/calcTrainingPrice">calcTrainingPrice</a> event. Maps to values in <a href="https://mwse.github.io/MWSE/references/skills/"><code>tes3.skill</code></a> table.</li>
 </ul>
 </li>
 </ul>
@@ -20957,8 +20957,8 @@
 <ul>
 <li><code>params</code> (table)<ul>
 <li><code>reference</code> (<a href="../../types/tes3reference/">tes3reference</a>, <a href="../../types/tes3mobileActor/">tes3mobileActor</a>, string)</li>
-<li><code>service</code> (<a href="../../references/merchant-services/">tes3.merchantService</a>): <em>Optional</em>. The specific service to check for availability. Maps to values in the <a href="https://mwse.github.io/MWSE/references/merchant-services/"><code>tes3.merchantService</code></a> table.</li>
-<li><code>context</code> (<a href="../../references/dialogue-filter-context/">tes3.dialogueFilterContext</a>): <em>Default</em>: <code>tes3.dialogueFilterContext.script</code>. An override for how this info request should be treated. Maps to values in the <a href="https://mwse.github.io/MWSE/references/dialogue-filter-context/"><code>tes3.dialogueFilterContext</code></a> table.</li>
+<li><code>service</code> (<a href="../../references/merchant-services/">tes3.merchantService</a>, integer): <em>Optional</em>. The specific service to check for availability. Maps to values in the <a href="https://mwse.github.io/MWSE/references/merchant-services/"><code>tes3.merchantService</code></a> table.</li>
+<li><code>context</code> (<a href="../../references/dialogue-filter-context/">tes3.dialogueFilterContext</a>, integer): <em>Default</em>: <code>tes3.dialogueFilterContext.script</code>. An override for how this info request should be treated. Maps to values in the <a href="https://mwse.github.io/MWSE/references/dialogue-filter-context/"><code>tes3.dialogueFilterContext</code></a> table.</li>
 </ul>
 </li>
 </ul>
@@ -21077,7 +21077,7 @@
 <ul>
 <li><code>id</code> (string): <em>Optional</em>. The id of the new object.</li>
 <li>
-<p><code>objectType</code> (<a href="../../references/object-types/">tes3.objectType</a>): The type of object to create. Maps to values in the <a href="https://mwse.github.io/MWSE/references/object-types/"><code>tes3.objectType</code></a> table. Supported object types are:</p>
+<p><code>objectType</code> (<a href="../../references/object-types/">tes3.objectType</a>, integer): The type of object to create. Maps to values in the <a href="https://mwse.github.io/MWSE/references/object-types/"><code>tes3.objectType</code></a> table. Supported object types are:</p>
 <ul>
 <li><code>tes3.objectType.activator</code></li>
 <li><code>tes3.objectType.alchemy</code></li>
@@ -21249,7 +21249,7 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>keyCode</code> (<a href="../../references/scan-codes/">tes3.scanCode</a>): Maps to values in <a href="https://mwse.github.io/MWSE/references/scan-codes/"><code>tes3.scanCode</code></a> namespace.</li>
+<li><code>keyCode</code> (<a href="../../references/scan-codes/">tes3.scanCode</a>, integer): Maps to values in <a href="https://mwse.github.io/MWSE/references/scan-codes/"><code>tes3.scanCode</code></a> namespace.</li>
 </ul>
 <hr />
 <h3 id="tes3dropitem"><code>tes3.dropItem</code><a class="headerlink" href="#tes3dropitem" title="Permanent link">⚓︎</a></h3>
@@ -21283,7 +21283,7 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>keyCode</code> (<a href="../../references/scan-codes/">tes3.scanCode</a>): Maps to values in <a href="https://mwse.github.io/MWSE/references/scan-codes/"><code>tes3.scanCode</code></a> namespace.</li>
+<li><code>keyCode</code> (<a href="../../references/scan-codes/">tes3.scanCode</a>, integer): Maps to values in <a href="https://mwse.github.io/MWSE/references/scan-codes/"><code>tes3.scanCode</code></a> namespace.</li>
 </ul>
 <hr />
 <h3 id="tes3fadein"><code>tes3.fadeIn</code><a class="headerlink" href="#tes3fadein" title="Permanent link">⚓︎</a></h3>
@@ -21412,8 +21412,8 @@
 <ul>
 <li><code>params</code> (table)<ul>
 <li><code>topic</code> (string): <em>Optional</em>. The dialogue topic to look for.</li>
-<li><code>type</code> (<a href="../../references/dialogue-types/">tes3.dialogueType</a>): <em>Optional</em>. The type of dialogue to look for. Uses <a href="https://mwse.github.io/MWSE/references/dialogue-types/"><code>tes3.dialogueType</code></a> constants.</li>
-<li><code>page</code> (tes3.dialoguePage.voice, tes3.dialoguePage.greeting, tes3.dialoguePage.service): <em>Optional</em>. The page of dialogue to fetch. Uses <a href="https://mwse.github.io/MWSE/references/dialogue-pages/"><code>tes3.dialoguePage</code></a> constants.</li>
+<li><code>type</code> (<a href="../../references/dialogue-types/">tes3.dialogueType</a>, integer): <em>Optional</em>. The type of dialogue to look for. Uses <a href="https://mwse.github.io/MWSE/references/dialogue-types/"><code>tes3.dialogueType</code></a> constants.</li>
+<li><code>page</code> (tes3.dialoguePage.voice, tes3.dialoguePage.greeting, tes3.dialoguePage.service, integer): <em>Optional</em>. The page of dialogue to fetch. Uses <a href="https://mwse.github.io/MWSE/references/dialogue-pages/"><code>tes3.dialoguePage</code></a> constants.</li>
 </ul>
 </li>
 </ul>
@@ -21445,7 +21445,7 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>id</code> (<a href="../../references/gmst/">tes3.gmst</a>, string)</li>
+<li><code>id</code> (<a href="../../references/gmst/">tes3.gmst</a>, integer, string)</li>
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
@@ -21581,7 +21581,7 @@
 <ul>
 <li><code>params</code> (table)<ul>
 <li><code>reference</code> (<a href="../../types/tes3reference/">tes3reference</a>, <a href="../../types/tes3mobileActor/">tes3mobileActor</a>, string): A reference to the which actor whose animations will be checked.</li>
-<li><code>group</code> (<a href="../../references/animation-groups/">tes3.animationGroup</a>): <em>Optional</em>. The animation group id to get the action timings for. Maps to <a href="https://mwse.github.io/MWSE/references/animation-groups/"><code>tes3.animationGroup</code></a> constants.</li>
+<li><code>group</code> (<a href="../../references/animation-groups/">tes3.animationGroup</a>, integer): <em>Optional</em>. The animation group id to get the action timings for. Maps to <a href="https://mwse.github.io/MWSE/references/animation-groups/"><code>tes3.animationGroup</code></a> constants.</li>
 </ul>
 </li>
 </ul>
@@ -21714,7 +21714,7 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>attributeId</code> (<a href="../../references/attributes/">tes3.attribute</a>): The attribute id to get the name of. Maps to values in <a href="https://mwse.github.io/MWSE/references/attributes/"><code>tes3.attribute</code></a> namespace.</li>
+<li><code>attributeId</code> (<a href="../../references/attributes/">tes3.attribute</a>, integer): The attribute id to get the name of. Maps to values in <a href="https://mwse.github.io/MWSE/references/attributes/"><code>tes3.attribute</code></a> namespace.</li>
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
@@ -21874,9 +21874,9 @@
 <ul>
 <li><code>params</code> (table)<ul>
 <li><code>reference</code> (<a href="../../types/tes3reference/">tes3reference</a>, <a href="../../types/tes3mobileActor/">tes3mobileActor</a>, string): An associated mobile should exist for this function to be able to work.</li>
-<li><code>effect</code> (<a href="../../references/magic-effects/">tes3.effect</a>): Effect ID. Can be any of the predefined spell effects, or one added by <code>tes3.claimSpellEffectId()</code>. Maps to values of <a href="https://mwse.github.io/MWSE/references/magic-effects/"><code>tes3.effect</code></a> constants</li>
-<li><code>skill</code> (<a href="../../references/skills/">tes3.skill</a>): <em>Default</em>: <code>-1</code>. If effect parameter specified is: Absorb, Damage, Drain, Fortify or Restore Skill, a skill should be provided. This also applies to any custom spell effect which operates on a certain skill. This value maps to <a href="https://mwse.github.io/MWSE/references/skills/"><code>tes3.skill</code></a> constants.</li>
-<li><code>attribute</code> (<a href="../../references/attributes/">tes3.attribute</a>): <em>Default</em>: <code>-1</code>. If effect parameter specified is: Absorb, Damage, Drain, Fortify or Restore Attribute, an attribute should be provided. This also applies to any custom spell effect which operates on a certain attribute. This value maps to <a href="https://mwse.github.io/MWSE/references/attributes/"><code>tes3.attribute</code></a> constants.</li>
+<li><code>effect</code> (<a href="../../references/magic-effects/">tes3.effect</a>, integer): Effect ID. Can be any of the predefined spell effects, or one added by <code>tes3.claimSpellEffectId()</code>. Maps to values of <a href="https://mwse.github.io/MWSE/references/magic-effects/"><code>tes3.effect</code></a> constants</li>
+<li><code>skill</code> (<a href="../../references/skills/">tes3.skill</a>, integer): <em>Default</em>: <code>-1</code>. If effect parameter specified is: Absorb, Damage, Drain, Fortify or Restore Skill, a skill should be provided. This also applies to any custom spell effect which operates on a certain skill. This value maps to <a href="https://mwse.github.io/MWSE/references/skills/"><code>tes3.skill</code></a> constants.</li>
+<li><code>attribute</code> (<a href="../../references/attributes/">tes3.attribute</a>, integer): <em>Default</em>: <code>-1</code>. If effect parameter specified is: Absorb, Damage, Drain, Fortify or Restore Attribute, an attribute should be provided. This also applies to any custom spell effect which operates on a certain attribute. This value maps to <a href="https://mwse.github.io/MWSE/references/attributes/"><code>tes3.attribute</code></a> constants.</li>
 </ul>
 </li>
 </ul>
@@ -21910,9 +21910,9 @@
 <li><code>params</code> (table)<ul>
 <li><code>actor</code> (<a href="../../types/tes3reference/">tes3reference</a>, <a href="../../types/tes3mobileActor/">tes3mobileActor</a>, <a href="../../types/tes3actor/">tes3actor</a>)</li>
 <li><code>enchanted</code> (boolean): <em>Optional</em>. If true, filters only enchanted items.</li>
-<li><code>objectType</code> (<a href="../../references/object-types/">tes3.objectType</a>): <em>Optional</em>. Maps to <a href="https://mwse.github.io/MWSE/references/object-types/"><code>tes3.objectType</code></a> constants. Used to filter equipment by type.</li>
-<li><code>slot</code> (<a href="../../references/armor-slots/">tes3.armorSlot</a>, <a href="../../references/clothing-slots/">tes3.clothingSlot</a>): <em>Optional</em>. Maps to <a href="https://mwse.github.io/MWSE/references/armor-slots/"><code>tes3.armorSlot</code></a> or <a href="https://mwse.github.io/MWSE/references/clothing-slots/"><code>tes3.clothingSlot</code></a>. Used to filter equipment by slot.</li>
-<li><code>type</code> (<a href="../../references/weapon-types/">tes3.weaponType</a>): <em>Optional</em>. Maps to <a href="https://mwse.github.io/MWSE/references/weapon-types/"><code>tes3.weaponType</code></a>. Used to filter equipment by type.</li>
+<li><code>objectType</code> (<a href="../../references/object-types/">tes3.objectType</a>, integer): <em>Optional</em>. Maps to <a href="https://mwse.github.io/MWSE/references/object-types/"><code>tes3.objectType</code></a> constants. Used to filter equipment by type.</li>
+<li><code>slot</code> (<a href="../../references/armor-slots/">tes3.armorSlot</a>, <a href="../../references/clothing-slots/">tes3.clothingSlot</a>, integer): <em>Optional</em>. Maps to <a href="https://mwse.github.io/MWSE/references/armor-slots/"><code>tes3.armorSlot</code></a> or <a href="https://mwse.github.io/MWSE/references/clothing-slots/"><code>tes3.clothingSlot</code></a>. Used to filter equipment by slot.</li>
+<li><code>type</code> (<a href="../../references/weapon-types/">tes3.weaponType</a>, integer): <em>Optional</em>. Maps to <a href="https://mwse.github.io/MWSE/references/weapon-types/"><code>tes3.weaponType</code></a>. Used to filter equipment by type.</li>
 </ul>
 </li>
 </ul>
@@ -22197,7 +22197,7 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>id</code> (<a href="../../references/magic-effects/">tes3.effect</a>): Maps to values in <a href="https://mwse.github.io/MWSE/references/magic-effects/"><code>tes3.effect</code></a> table.</li>
+<li><code>id</code> (<a href="../../references/magic-effects/">tes3.effect</a>, integer): Maps to values in <a href="https://mwse.github.io/MWSE/references/magic-effects/"><code>tes3.effect</code></a> table.</li>
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
@@ -22213,9 +22213,9 @@
 <p><strong>Parameters</strong>:</p>
 <ul>
 <li><code>params</code> (table)<ul>
-<li><code>effect</code> (<a href="../../references/magic-effects/">tes3.effect</a>): The effect ID to get the name of. Maps to values in <a href="https://mwse.github.io/MWSE/references/magic-effects/"><code>tes3.effect</code></a> table.</li>
-<li><code>attribute</code> (<a href="../../references/attributes/">tes3.attribute</a>): <em>Optional</em>. The attribute ID to use, if applicable. Maps to values in <a href="https://mwse.github.io/MWSE/references/attributes/"><code>tes3.attribute</code></a> table.</li>
-<li><code>skill</code> (<a href="../../references/skills/">tes3.skill</a>): <em>Optional</em>. The skill ID to use, if applicable. Maps to values in <a href="https://mwse.github.io/MWSE/references/skills/"><code>tes3.skill</code></a> table.</li>
+<li><code>effect</code> (<a href="../../references/magic-effects/">tes3.effect</a>, integer): The effect ID to get the name of. Maps to values in <a href="https://mwse.github.io/MWSE/references/magic-effects/"><code>tes3.effect</code></a> table.</li>
+<li><code>attribute</code> (<a href="../../references/attributes/">tes3.attribute</a>, integer): <em>Optional</em>. The attribute ID to use, if applicable. Maps to values in <a href="https://mwse.github.io/MWSE/references/attributes/"><code>tes3.attribute</code></a> table.</li>
+<li><code>skill</code> (<a href="../../references/skills/">tes3.skill</a>, integer): <em>Optional</em>. The skill ID to use, if applicable. Maps to values in <a href="https://mwse.github.io/MWSE/references/skills/"><code>tes3.skill</code></a> table.</li>
 </ul>
 </li>
 </ul>
@@ -22750,7 +22750,7 @@
 <ul>
 <li><code>params</code> (table)<ul>
 <li><code>reference</code> (<a href="../../types/tes3reference/">tes3reference</a>, <a href="../../types/tes3mobileActor/">tes3mobileActor</a>, string)</li>
-<li><code>effect</code> (<a href="../../references/magic-effects/">tes3.effect</a>): <em>Optional</em>. A numerical identifier of the magic effect to perform a check for. Maps to <a href="https://mwse.github.io/MWSE/references/magic-effects/"><code>tes3.effect</code></a> constant, including those claimed with <code>tes3.claimSpellEffectId()</code>, and then added with <code>tes3.addMagicEffect()</code>.</li>
+<li><code>effect</code> (<a href="../../references/magic-effects/">tes3.effect</a>, integer): <em>Optional</em>. A numerical identifier of the magic effect to perform a check for. Maps to <a href="https://mwse.github.io/MWSE/references/magic-effects/"><code>tes3.effect</code></a> constant, including those claimed with <code>tes3.claimSpellEffectId()</code>, and then added with <code>tes3.addMagicEffect()</code>.</li>
 <li><code>object</code> (<a href="../../types/tes3alchemy/">tes3alchemy</a>, <a href="../../types/tes3enchantment/">tes3enchantment</a>, <a href="../../types/tes3spell/">tes3spell</a>, <a href="../../types/tes3magicEffect/">tes3magicEffect</a>, string): <em>Optional</em>. An object to perform a check for.</li>
 </ul>
 </li>
@@ -23319,7 +23319,7 @@
 <ul>
 <li><code>params</code> (table)<ul>
 <li><code>actor</code> (<a href="../../types/tes3mobileActor/">tes3mobileActor</a>, <a href="../../types/tes3reference/">tes3reference</a>, string): The actor to play a voiceover.</li>
-<li><code>voiceover</code> (<a href="../../references/voiceovers/">tes3.voiceover</a>, string): Maps to <a href="https://mwse.github.io/MWSE/references/voiceovers/"><code>tes3.voiceover</code></a> constants.</li>
+<li><code>voiceover</code> (<a href="../../references/voiceovers/">tes3.voiceover</a>, integer, string): Maps to <a href="https://mwse.github.io/MWSE/references/voiceovers/"><code>tes3.voiceover</code></a> constants.</li>
 </ul>
 </li>
 </ul>
@@ -23507,7 +23507,7 @@
 <ul>
 <li><code>params</code> (table)<ul>
 <li><code>reference</code> (<a href="../../types/tes3reference/">tes3reference</a>): Target reference to remove effects from.</li>
-<li><code>effect</code> (<a href="../../references/magic-effects/">tes3.effect</a>): <em>Optional</em>. Maps to <a href="https://mwse.github.io/MWSE/references/magic-effects/"><code>tes3.effect</code></a> constants.</li>
+<li><code>effect</code> (<a href="../../references/magic-effects/">tes3.effect</a>, integer): <em>Optional</em>. Maps to <a href="https://mwse.github.io/MWSE/references/magic-effects/"><code>tes3.effect</code></a> constants.</li>
 <li><code>castType</code> (<a href="../../references/spell-types/">tes3.spellType</a>): <em>Optional</em>. Maps to <a href="https://mwse.github.io/MWSE/references/spell-types/"><code>tes3.spellType</code></a> constants.</li>
 <li><code>chance</code> (number): <em>Default</em>: <code>100</code>. The chance for the effect to be removed.</li>
 <li><code>removeSpell</code> (boolean): <em>Optional</em>. If removing by cast type, determines if the spell should be removed from the target's spell list. Defaults to true if <code>castType</code> is not <code>tes3.spellType.spell.</code> This causes diseases and curses to be removed when dispelled.</li>
@@ -24043,8 +24043,8 @@
 <ul>
 <li><code>params</code> (table)<ul>
 <li><code>reference</code> (<a href="../../types/tes3mobileActor/">tes3mobileActor</a>, <a href="../../types/tes3reference/">tes3reference</a>, string)</li>
-<li><code>attribute</code> (<a href="../../references/attributes/">tes3.attribute</a>): <em>Optional</em>. The attribute to set. Uses a value from <a href="https://mwse.github.io/MWSE/references/attributes/"><code>tes3.attribute</code></a></li>
-<li><code>skill</code> (<a href="../../references/skills/">tes3.skill</a>): <em>Optional</em>. The skill to set. Uses a value from <a href="https://mwse.github.io/MWSE/references/skills/"><code>tes3.skill</code></a></li>
+<li><code>attribute</code> (<a href="../../references/attributes/">tes3.attribute</a>, integer): <em>Optional</em>. The attribute to set. Uses a value from <a href="https://mwse.github.io/MWSE/references/attributes/"><code>tes3.attribute</code></a></li>
+<li><code>skill</code> (<a href="../../references/skills/">tes3.skill</a>, integer): <em>Optional</em>. The skill to set. Uses a value from <a href="https://mwse.github.io/MWSE/references/skills/"><code>tes3.skill</code></a></li>
 <li><code>name</code> (string): <em>Optional</em>. The property name of the statistic to set. The names can be taken from the properties of <code>tes3mobileNPC</code> or <code>tes3mobileCreature</code>. Useful for specifying health, magicka or fatigue.</li>
 <li><code>base</code> (number): <em>Optional</em>. If set, the base value will be set.</li>
 <li><code>current</code> (number): <em>Optional</em>. If set, the current value will be set.</li>
@@ -24493,7 +24493,7 @@ Statics, activators, containers, doors, and lights with non-zero weight.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">November 12, 2023 14:28:38</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">November 24, 2023 20:32:38</span>
       
         <br>
         Created:
