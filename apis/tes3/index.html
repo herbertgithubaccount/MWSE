@@ -23389,7 +23389,7 @@
 4. Whenever possible call ray test on only a subset of the game's scene graph. It can be `worldPickRoot` for interactable objects, `worldLandscapeRoot`, or `worldObjectRoot` for other static, non-interactable objects. You could even pass a smaller subset of the scene graph with a different `NiNode` you aquired yourself. If your mod's logic only needs specific things you can narrow it down for big performance improvement.
 </code></pre>
 </div>
-<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">rayTest</span><span class="p">({</span> <span class="n">position</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">direction</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">findAll</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">maxDistance</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">sort</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">useModelBounds</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">useModelCoordinates</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">useBackTriangles</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">observeAppCullFlag</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">root</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">returnColor</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">returnNormal</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">returnSmoothNormal</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">returnTexture</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">ignore</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">rayTest</span><span class="p">({</span> <span class="n">position</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">direction</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">findAll</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">maxDistance</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">sort</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">useModelBounds</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">useModelCoordinates</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">useBackTriangles</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">observeAppCullFlag</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">root</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">returnColor</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">returnNormal</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">returnSmoothNormal</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">returnTexture</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">ignore</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">accurateSkinned</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
@@ -23409,6 +23409,7 @@
 <li><code>returnSmoothNormal</code> (boolean): <em>Default</em>: <code>false</code>. Use normal interpolation for calculating vertex normals.</li>
 <li><code>returnTexture</code> (boolean): <em>Default</em>: <code>false</code>. Calculate and return the texture coordinate at intersections.</li>
 <li><code>ignore</code> (table&lt;integer, <a href="../../types/niNode/">niNode</a>|<a href="../../types/tes3reference/">tes3reference</a>&gt;): <em>Optional</em>. An array of references and/or scene graph nodes to cull from the result(s).</li>
+<li><code>accurateSkinned</code> (boolean): <em>Default</em>: <code>false</code>. If true, the raytest will deform skinned objects to accurately raytest against them. This significantly slows down the operation.</li>
 </ul>
 </li>
 </ul>
@@ -24493,7 +24494,7 @@ Statics, activators, containers, doors, and lights with non-zero weight.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">November 24, 2023 20:32:38</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">November 25, 2023 04:26:28</span>
       
         <br>
         Created:
