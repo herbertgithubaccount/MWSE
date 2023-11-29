@@ -20173,24 +20173,26 @@
 <div class="search_terms" style="display: none">registerafter</div>
 
 <p>Sets an <code>event</code> handler to run after any existing event handler on the element. Can be any event usable with <code>register</code>. The callback receives an argument with the event data. See <code>register</code> for details.</p>
-<div class="highlight"><pre><span></span><code><span class="n">myObject</span><span class="p">:</span><span class="n">registerAfter</span><span class="p">(</span><span class="n">eventID</span><span class="p">,</span> <span class="n">callback</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">myObject</span><span class="p">:</span><span class="n">registerAfter</span><span class="p">(</span><span class="n">eventID</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="n">priority</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
 <li><code>eventID</code> (<a href="../../references/ui-events/">tes3.uiEvent</a>): The event id. Maps to values in <a href="https://mwse.github.io/MWSE/references/ui-events/"><code>tes3.uiEvent</code></a>.</li>
 <li><code>callback</code> (integer, fun(e: <a href="../tes3uiEventData/">tes3uiEventData</a>): boolean?): The callback function.</li>
+<li><code>priority</code> (integer): <em>Default</em>: <code>0</code>. The priority of the event, relative to other register-aftered events.</li>
 </ul>
 <hr />
 <h3 id="registerbefore"><code>registerBefore</code><a class="headerlink" href="#registerbefore" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">registerbefore</div>
 
 <p>Sets an <code>event</code> handler to run before any existing event handler on the element. Can be any event usable with <code>register</code>. The callback receives an argument with the event data. See <code>register</code> for details.</p>
-<div class="highlight"><pre><span></span><code><span class="n">myObject</span><span class="p">:</span><span class="n">registerBefore</span><span class="p">(</span><span class="n">eventID</span><span class="p">,</span> <span class="n">callback</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">myObject</span><span class="p">:</span><span class="n">registerBefore</span><span class="p">(</span><span class="n">eventID</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="n">priority</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
 <li><code>eventID</code> (<a href="../../references/ui-events/">tes3.uiEvent</a>): The event id. Maps to values in <a href="https://mwse.github.io/MWSE/references/ui-events/"><code>tes3.uiEvent</code></a>.</li>
 <li><code>callback</code> (integer, fun(e: <a href="../tes3uiEventData/">tes3uiEventData</a>): boolean?): The callback function.</li>
+<li><code>priority</code> (integer): <em>Default</em>: <code>0</code>. The priority of the event, relative to other register-befored events.</li>
 </ul>
 <hr />
 <h3 id="reorderchildren"><code>reorderChildren</code><a class="headerlink" href="#reorderchildren" title="Permanent link">⚓︎</a></h3>
@@ -20393,7 +20395,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">November 24, 2023 18:54:15</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">November 29, 2023 04:21:37</span>
       
         <br>
         Created:
