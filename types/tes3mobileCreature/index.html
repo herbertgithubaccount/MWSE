@@ -21616,7 +21616,11 @@ end
 <h3 id="equip"><code>equip</code><a class="headerlink" href="#equip" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">equip</div>
 
-<p>Equips an item, optionally adding the item if needed. If the best match is already equipped, it does not perform an unequip-equip cycle, but does return <code>true</code>.</p>
+<p>Equips an item, optionally adding the item if needed. If the best match is already equipped, it does not perform an unequip-equip cycle, but does return <code>true</code>. If the item cannot be equipped, it will return <code>false</code>.</p>
+<p>Equip may fail for the following reasons:
+- The item cannot be found in the inventory.
+- The exact match cannot be found when itemData is provided.
+- When a weapon is being used to attack, it cannot be replaced.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">itemEquipped</span> <span class="o">=</span> <span class="n">myObject</span><span class="p">:</span><span class="n">equip</span><span class="p">({</span> <span class="n">item</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">itemData</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">addItem</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">selectBestCondition</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">selectWorstCondition</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
@@ -22039,7 +22043,7 @@ end
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">November 24, 2023 20:32:38</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">November 29, 2023 02:03:43</span>
       
         <br>
         Created:
