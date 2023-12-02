@@ -11511,9 +11511,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#togglepov" class="md-nav__link">
+  <a href="#switchpovmode" class="md-nav__link">
     <span class="md-ellipsis">
-      togglePOV
+      switchPOVMode
     </span>
   </a>
   
@@ -11532,6 +11532,15 @@
   <a href="#vanitycamera" class="md-nav__link">
     <span class="md-ellipsis">
       vanityCamera
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vanitycameraangle" class="md-nav__link">
+    <span class="md-ellipsis">
+      vanityCameraAngle
     </span>
   </a>
   
@@ -17456,9 +17465,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#togglepov" class="md-nav__link">
+  <a href="#switchpovmode" class="md-nav__link">
     <span class="md-ellipsis">
-      togglePOV
+      switchPOVMode
     </span>
   </a>
   
@@ -17477,6 +17486,15 @@
   <a href="#vanitycamera" class="md-nav__link">
     <span class="md-ellipsis">
       vanityCamera
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vanitycameraangle" class="md-nav__link">
+    <span class="md-ellipsis">
+      vanityCameraAngle
     </span>
   </a>
   
@@ -17597,7 +17615,7 @@
 <h3 id="allowverticalaircontrol"><code>allowVerticalAirControl</code><a class="headerlink" href="#allowverticalaircontrol" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">allowverticalaircontrol</div>
 
-<p><em>Read-only</em>. </p>
+<p>Controls if additional vertical movement is possible while jumping or falling, by looking up and down and moving forward in the air. It is unphysical and not used by any normal gameplay mechanic. It is independent of flying movement.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
 <li><code>result</code> (boolean)</li>
@@ -17666,7 +17684,7 @@
 <h3 id="cameraoffset"><code>cameraOffset</code><a class="headerlink" href="#cameraoffset" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">cameraoffset</div>
 
-<p><em>Read-only</em>. Additional offset applied to the camera's position during the third person.</p>
+<p>Additional offset applied to the camera's position in the third person view. It may be overridden by MGE.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
 <li><code>result</code> (<a href="../tes3vector3/">tes3vector3</a>)</li>
@@ -17822,19 +17840,19 @@
 <li><code>result</code> (number)</li>
 </ul>
 <hr />
-<h3 id="togglepov"><code>togglePOV</code><a class="headerlink" href="#togglepov" title="Permanent link">⚓︎</a></h3>
-<div class="search_terms" style="display: none">togglepov, pov</div>
+<h3 id="switchpovmode"><code>switchPOVMode</code><a class="headerlink" href="#switchpovmode" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">switchpovmode</div>
 
-<p><em>Read-only</em>. This property is set to <code>true</code> for one frame to change the point of view. Since this property is read-only, you can use <a href="https://mwse.github.io/MWSE/apis/tes3/#tes3force1stperson">tes3.force1stPerson</a> and <a href="https://mwse.github.io/MWSE/apis/tes3/#tes3force3rdperson">tes3.force3rdPerson</a>.</p>
+<p>This property is briefly set to <code>1</code> (doesn't switch when incapacitated) or <code>2</code> (always switch) for one frame to change the point of view. You should prefer to use <a href="https://mwse.github.io/MWSE/apis/tes3/#tes3force1stperson">tes3.force1stPerson</a> and <a href="https://mwse.github.io/MWSE/apis/tes3/#tes3force3rdperson">tes3.force3rdPerson</a>.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (boolean)</li>
+<li><code>result</code> (integer)</li>
 </ul>
 <hr />
 <h3 id="usethirdpersonaftervanitycameradone"><code>useThirdPersonAfterVanityCameraDone</code><a class="headerlink" href="#usethirdpersonaftervanitycameradone" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">usethirdpersonaftervanitycameradone</div>
 
-<p><em>Read-only</em>. This flag is set to <code>true</code> if vanity mode was entered from third person view. If vanity mode was entered from first person view, this flag is set to <code>false</code>.</p>
+<p>This flag is set to <code>true</code> if vanity mode was entered from third person view. If vanity mode was entered from first person view, this flag is set to <code>false</code>.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
 <li><code>result</code> (boolean)</li>
@@ -17843,16 +17861,25 @@
 <h3 id="vanitycamera"><code>vanityCamera</code><a class="headerlink" href="#vanitycamera" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">vanitycamera</div>
 
-<p><em>Read-only</em>. </p>
+<p><em>Read-only</em>. The vanity camera scene node.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
 <li><code>result</code> (<a href="../niCamera/">niCamera</a>)</li>
 </ul>
 <hr />
+<h3 id="vanitycameraangle"><code>vanityCameraAngle</code><a class="headerlink" href="#vanitycameraangle" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">vanitycameraangle</div>
+
+<p>The current heading of the orbiting vanity camera, in radians. An angle of 0 places the camera to the north of the player.</p>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>result</code> (number)</li>
+</ul>
+<hr />
 <h3 id="vanitycameradistance"><code>vanityCameraDistance</code><a class="headerlink" href="#vanitycameradistance" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">vanitycameradistance</div>
 
-<p><em>Read-only</em>. The orbiting radius of the camera during vanity mode in <a href="https://mwse.github.io/MWSE/references/general/game-units/">game units</a>. Measured from the center of the player's head.</p>
+<p>The orbiting radius of the camera during vanity mode in <a href="https://mwse.github.io/MWSE/references/general/game-units/">game units</a>. Measured from the center of the player's head.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
 <li><code>result</code> (integer)</li>
@@ -17861,7 +17888,7 @@
 <h3 id="vanitycameraenabled"><code>vanityCameraEnabled</code><a class="headerlink" href="#vanitycameraenabled" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">vanitycameraenabled</div>
 
-<p><em>Read-only</em>. The value of this property is <code>1</code> during vanity camera mode, and <code>0</code> otherwise.</p>
+<p>The value of this property is <code>1</code> during vanity camera mode, and <code>0</code> otherwise.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
 <li><code>result</code> (integer)</li>
@@ -17870,7 +17897,7 @@
 <h3 id="vanitycameraz"><code>vanityCameraZ</code><a class="headerlink" href="#vanitycameraz" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">vanitycameraz</div>
 
-<p><em>Read-only</em>. The offset on up-down (world z) axis of the camera in third person or during vanity mode from the player's head height in <a href="https://mwse.github.io/MWSE/references/general/game-units/">game units</a>.</p>
+<p>The offset on up-down (world z) axis of the camera in third person or during vanity mode from the player's head height in <a href="https://mwse.github.io/MWSE/references/general/game-units/">game units</a>.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
 <li><code>result</code> (number)</li>
@@ -17921,7 +17948,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">October 21, 2023 21:35:41</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">December 2, 2023 03:05:13</span>
       
         <br>
         Created:
