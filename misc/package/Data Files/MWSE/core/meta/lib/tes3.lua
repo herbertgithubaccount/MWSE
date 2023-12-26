@@ -1772,7 +1772,7 @@ function tes3.newGame() end
 --- @return boolean onMainMenu No description yet available.
 function tes3.onMainMenu() end
 
---- Pays a merchant gold. The money is transferred to their barter gold (non-inventory trading gold), and also updates the last barter timer, so that it works the same way a transaction affeects the barter gold reset cycle. This is useful for simulating paying for services. The function will return true if there was enough gold to complete the payment.
+--- Pays a merchant gold. The money is transferred to their barter gold (non-inventory trading gold), and also updates the last barter timer, so that it works the same way a transaction affects the barter gold reset cycle. This is useful for simulating paying for services. The function will return true if there was enough gold to complete the payment.
 --- 
 --- A negative cost will allow payment from the merchant's barter gold to the player. You may also want to play a trade-related sound of your choice upon successful completion.
 --- @param params tes3.payMerchant.params This table accepts the following values:
