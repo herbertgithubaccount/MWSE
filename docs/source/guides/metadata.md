@@ -104,13 +104,13 @@ The following dependencies are available:
 
 -  `mwse`
 
-    A dependency on a minimum version of MWSE. This is especially useful if you are using any recently added MWSE features.
+    A dependency on a minimum version of MWSE. This is especially useful if you are using recently added MWSE features.
 
     The version is checked using the build number, which is the number that comes after "v2.1.0" in the first line of `MWSE.log`. E.g, the `2907` in the following line:
 
         Morrowind Script Extender v2.1.0-2907 (built Feb 18 2023) hooked.
 
-    The buildnumber can also be checked using `mwse.buildNumber` in the lua console.
+    The buildnumber can also be checked using `mwse.buildNumber` in the lua console. Buildnumbers of previous MWSE builds can be found [here](https://ci.appveyor.com/project/NullCascade/mwse/history).
 
     Example:
 
@@ -170,7 +170,7 @@ The following dependencies are available:
 
         The key must match the metadata file name. For example, in the below example, the key `"My Other Mod"` must match the metadata file `"Data Files\My Other Mod-metadata.toml"`.
 
-        See the `Versions` section below for more information about versioning.
+        See the [versions][##versions] section below for more information about versioning.
 
         Example:
 
@@ -210,7 +210,7 @@ The following dependencies are available:
 
 ## Versions
 
-The version strings in `[package]`, `[dependencies.mge-xe]` and `[dependencies.mods]` uses semver (Semantic Versioning) format. This consists of three numbers separated by periods, such as `1.2.3`. The first number is the `major` version, the second is the `minor` version, and the third is the `patch` version. You should increment the major version when you make a breaking change, the minor version when you add new features, and the patch version when you make bug fixes.
+The version strings in `[package]`, `[dependencies.mge-xe]` and `[dependencies.mods]` use the semver (Semantic Versioning) format. This consists of three numbers separated by periods, such as `1.2.3`. The first number is the `major` version, the second is the `minor` version, and the third is the `patch` version. You should increment the major version when you make a breaking change, the minor version when you add new features, and the patch version when you make bug fixes.
 
 For more information on semver, see the [semver website](https://semver.org/).
 
