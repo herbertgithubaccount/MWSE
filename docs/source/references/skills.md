@@ -4,9 +4,13 @@ hide:
 ---
 
 # Skills
+This table provides numeric identifiers to all skills in the vanilla game.
 
 !!! tip
-	These values are available in Lua by their index in the `tes3.skill` table. For example, `tes3.skill.alchemy` has a value of `16`.
+	These values are available in Lua by their index in the `tes3.skill` table. For example, `tes3.skill.alchemy` has a value of `16`. It's recommended you utilize this table when invoking methods that require a skill ID (such as [exerciseSkill](https://mwse.github.io/MWSE/types/tes3mobilePlayer/?h=exercise#exerciseskill)).
+
+!!! note
+  The `tes3.skill` table should not be confused with `tes3skill` objects, which store information about skills.
 
 Index       | Value
 ----------- | -----

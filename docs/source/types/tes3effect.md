@@ -6,7 +6,7 @@
 	More information: https://github.com/MWSE/MWSE/tree/master/docs
 -->
 
-A structure that defines information for an effect and its associated variables, typically found on spells, alchemy, and enchantments.
+A structure that defines information for a magic effect and its associated variables, typically found on spells, alchemy, and enchantments.
 
 ## Properties
 

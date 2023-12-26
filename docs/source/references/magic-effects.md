@@ -5,11 +5,17 @@ hide:
 
 # Magic Effects
 
+This table provides numeric identifiers to the different magic effects in the vanilla game.
+
 !!! tip
 	These values are available in Lua by their index in the `tes3.effect` table. For example, `tes3.effect.fortifySkill` has a value of `83`.
 
 !!! note
 	Custom effects can be added, expanding the `tes3.effect` table. See the [Magic Effects, Modded](./magic-effects-modded.md) reference page for more information.
+
+!!! note
+	The `tes3.effect` table should not be confused with `tes3effect` objects, which store information about effects.
+
 
 Index                    | Value
 ------------------------ | -----
