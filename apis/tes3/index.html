@@ -6277,6 +6277,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#tes3setexpelled" class="md-nav__link">
+    <span class="md-ellipsis">
+      tes3.setExpelled
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#tes3setglobal" class="md-nav__link">
     <span class="md-ellipsis">
       tes3.setGlobal
@@ -6487,6 +6496,15 @@
   <a href="#tes3togglepov" class="md-nav__link">
     <span class="md-ellipsis">
       tes3.togglePOV
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tes3transferinventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      tes3.transferInventory
     </span>
   </a>
   
@@ -20596,6 +20614,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#tes3setexpelled" class="md-nav__link">
+    <span class="md-ellipsis">
+      tes3.setExpelled
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#tes3setglobal" class="md-nav__link">
     <span class="md-ellipsis">
       tes3.setGlobal
@@ -20806,6 +20833,15 @@
   <a href="#tes3togglepov" class="md-nav__link">
     <span class="md-ellipsis">
       tes3.togglePOV
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tes3transferinventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      tes3.transferInventory
     </span>
   </a>
   
@@ -24738,6 +24774,21 @@
 <li><code>success</code> (boolean)</li>
 </ul>
 <hr />
+<h3 id="tes3setexpelled"><code>tes3.setExpelled</code><a class="headerlink" href="#tes3setexpelled" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">setexpelled, expelled</div>
+
+<p>This function can expel and undo expelled state for the player in the given faction.</p>
+<div class="highlight"><pre><span></span><code><span class="n">tes3</span><span class="p">.</span><span class="n">setExpelled</span><span class="p">({</span> <span class="n">faction</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">expelled</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
+</code></pre></div>
+<p><strong>Parameters</strong>:</p>
+<ul>
+<li><code>params</code> (table)<ul>
+<li><code>faction</code> (<a href="../../types/tes3faction">tes3faction</a>): The faction the player will be expelled from.</li>
+<li><code>expelled</code> (boolean): <em>Default</em>: <code>true</code>. Passing <code>false</code> will make the player regain membership.</li>
+</ul>
+</li>
+</ul>
+<hr />
 <h3 id="tes3setglobal"><code>tes3.setGlobal</code><a class="headerlink" href="#tes3setglobal" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">setglobal, global</div>
 
@@ -25190,6 +25241,64 @@ Statics, activators, containers, doors, and lights with non-zero weight.</p>
 <li><code>was3rdPerson</code> (boolean)</li>
 </ul>
 <hr />
+<h3 id="tes3transferinventory"><code>tes3.transferInventory</code><a class="headerlink" href="#tes3transferinventory" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">transferinventory</div>
+
+<p>Moves all the items in one reference's inventory to another. Both <code>to</code> and <code>from</code> objects will be cloned. The function will update the GUI for the <code>to</code> and <code>from</code> references. This function preserves the <code>tes3itemData</code> of the transferred items and handles leveled lists. The function can do either partial or complete transfer. Limiting transfer by capacity only works for containers, other actors can get over-encumbered after this operation.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">transferred</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">transferInventory</span><span class="p">({</span> <span class="n">from</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">to</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">filter</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">playSound</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">limitCapacity</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">completeTransfer</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">reevaluateEquipment</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">equipProjectiles</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">checkCrime</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
+</code></pre></div>
+<p><strong>Parameters</strong>:</p>
+<ul>
+<li><code>params</code> (table)<ul>
+<li><code>from</code> (<a href="../../types/tes3reference/">tes3reference</a>, <a href="../../types/tes3mobileActor/">tes3mobileActor</a>, string): Who to take items from.</li>
+<li><code>to</code> (<a href="../../types/tes3reference/">tes3reference</a>, <a href="../../types/tes3mobileActor/">tes3mobileActor</a>, string): Who to give items to.</li>
+<li><code>filter</code> (fun(item: <a href="../../types/tes3item/">tes3item</a>, itemData: <a href="../../types/tes3itemData/">tes3itemData</a>): boolean): <em>Optional</em>. You can pass a filter function to only transfer certain type of items. The <code>filter</code> function is called for each item in the <code>from</code>'s inventory. Note that not all the items may have itemData.</li>
+<li><code>playSound</code> (boolean): <em>Default</em>: <code>true</code>. If false, the up/down sound won't be played.</li>
+<li><code>limitCapacity</code> (boolean): <em>Default</em>: <code>true</code>. If false, items can be placed into containers that shouldn't normally be allowed. This includes organic containers and containers that are full. If this argument is set to <code>true</code> the whole <code>from</code>'s inventory might not fit into the destination inventory. In that case, partial transfer is made.</li>
+<li><code>completeTransfer</code> (boolean): <em>Default</em>: <code>false</code>. Use this to disable partial transfers. If <code>limitCapacity</code> is set to true, passing <code>completeTransfer = true</code> will only transfer the items from one inventory to the other if and only if all the items can fit inside the destination inventory. This argument only works if <code>limitCapacity</code> is <code>true</code>.</li>
+<li><code>reevaluateEquipment</code> (boolean): <em>Default</em>: <code>true</code>. If true, and the if in the transferred items are armor, clothing, or weapon items, the actors will reevaluate their equipment choices to see if the new items are worth equipping. This does not affect the player.</li>
+<li><code>equipProjectiles</code> (boolean): <em>Default</em>: <code>true</code>. If true, and the <code>to</code> reference has the same projectile already equipped, the stacks will be merged.</li>
+<li><code>checkCrime</code> (boolean): <em>Default</em>: <code>false</code>. If true, and the <code>to</code> reference is the player, the function will check if the player has access to the <code>from</code> reference's inventory. If not, appropriate crime reactions will be triggered.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>transferred</code> (boolean): Returns <code>true</code> if at least one item was transferred. If both <code>limitCapacity</code> and <code>completeTransfer</code> were passed as <code>true</code> the function returns <code>true</code> if the whole inventory was successfully transferred.</li>
+</ul>
+<details class="example">
+<summary>Example: Transfering target's weapons to the player's inventory</summary>
+<div class="highlight"><pre><span></span><code><span class="c1">-- Pressing i key while looking at a container, NPC or creature</span>
+<span class="c1">-- will transfer the target&#39;s weapons to the player.</span>
+
+<span class="c1">---@param e keyDownEventData</span>
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">onKeyDown</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="kd">local</span> <span class="n">target</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">getPlayerTarget</span><span class="p">()</span>
+    <span class="kr">if</span> <span class="ow">not</span> <span class="n">target</span> <span class="kr">then</span>
+        <span class="n">tes3</span><span class="p">.</span><span class="n">messageBox</span><span class="p">(</span><span class="s2">&quot;No target!&quot;</span><span class="p">)</span>
+        <span class="kr">return</span>
+    <span class="kr">end</span>
+
+    <span class="n">tes3</span><span class="p">.</span><span class="n">transferInventory</span><span class="p">({</span>
+        <span class="n">from</span> <span class="o">=</span> <span class="n">target</span><span class="p">,</span>
+        <span class="n">to</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">player</span><span class="p">,</span>
+        <span class="c1">---@param item tes3item</span>
+        <span class="c1">---@param itemData tes3itemData?</span>
+        <span class="c1">---@return boolean</span>
+        <span class="n">filter</span> <span class="o">=</span> <span class="kr">function</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">itemData</span><span class="p">)</span>
+            <span class="c1">-- You can use the itemData to filter more specifically</span>
+            <span class="kr">if</span> <span class="n">item</span><span class="p">.</span><span class="n">objectType</span> <span class="o">==</span> <span class="n">tes3</span><span class="p">.</span><span class="n">objectType</span><span class="p">.</span><span class="n">weapon</span> <span class="kr">then</span>
+                <span class="kr">return</span> <span class="kc">true</span>
+            <span class="kr">end</span>
+            <span class="kr">return</span> <span class="kc">false</span>
+        <span class="kr">end</span><span class="p">,</span>
+        <span class="n">limitCapacity</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="p">})</span>
+<span class="kr">end</span>
+<span class="n">event</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">tes3</span><span class="p">.</span><span class="n">event</span><span class="p">.</span><span class="n">keyDown</span><span class="p">,</span> <span class="n">onKeyDown</span><span class="p">,</span> <span class="p">{</span> <span class="n">filter</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">scanCode</span><span class="p">.</span><span class="n">i</span> <span class="p">})</span>
+</code></pre></div>
+</details>
+<hr />
 <h3 id="tes3transferitem"><code>tes3.transferItem</code><a class="headerlink" href="#tes3transferitem" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">transferitem</div>
 
@@ -25369,7 +25478,7 @@ Statics, activators, containers, doors, and lights with non-zero weight.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">December 28, 2023 10:19:53</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">December 28, 2023 15:40:13</span>
   </span>
 
     
