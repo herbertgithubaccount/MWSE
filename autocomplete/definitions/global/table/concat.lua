@@ -14,7 +14,7 @@ You can additionally specify a `sep`arator to use between successive elements.
     The string `a b c d` can be obtained via `table.concat({"a", "b", "c", "d"}, " ")`
 
     If you merely want to combine strings together, you can write
-    ```
+    ```lua
     table.concat{"string1", "string2", "string3"} --> "string1string2string3"
     ```
     Calling `table.concat({"printing strings:", "string1", "string2", "string3"}, "\n\t")` will return:
