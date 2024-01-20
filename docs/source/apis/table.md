@@ -100,6 +100,53 @@ table.clear(table)
 
 ***
 
+### `table.concat`
+<div class="search_terms" style="display: none">concat</div>
+
+Creates a `string` by concatenating all the elements of a given array-style `table`.
+
+You should use this function to build up strings, as it is *much* more efficient than repeatedly concatenating strings.
+
+You can additionally specify a `sep`arator to use between successive elements.
+
+
+!!! note
+    Everything in `t` should be either a `string` or a `number`. If you would like to include something that is not a `string` or `number`, you must call `tostring` on it before adding it to `t`.
+
+??? example "Examples of basic usage"
+    The string `a b c d` can be obtained via `table.concat({"a", "b", "c", "d"}, " ")`
+
+    If you merely want to combine strings together, you can write
+    ```
+    table.concat{"string1", "string2", "string3"} --> "string1string2string3"
+    ```
+    Calling `table.concat({"printing strings:", "string1", "string2", "string3"}, "\n\t")` will return:
+    ```
+    printing strings:
+        string1
+        string2
+        string3
+    ```
+
+
+
+```lua
+local result = table.concat(t, sep, startindex, endindex)
+```
+
+**Parameters**:
+
+* `t` ((string, number)[]): A array-style `table` of strings (and/or numbers) to concatenate.
+* `sep` (string): *Default*: `""`. The separator to use when concatenating successive elements of `t`.
+* `startindex` (integer): *Default*: ``1``. The index of the first element of `t` to concatenate.
+* `endindex` (integer): *Default*: ``#t``. The index of the last element of `t` to concatenate.
+
+**Returns**:
+
+* `result` (string): The string obtained from concatenating all the elements of `t`.
+
+***
+
 ### `table.copy`
 <div class="search_terms" style="display: none">copy</div>
 
