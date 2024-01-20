@@ -17370,20 +17370,23 @@
     More information: https://github.com/MWSE/MWSE/tree/master/docs
 -->
 
-<p>This library provides generic functions for table manipulation. It provides all its functions inside the table table.</p>
+<p>This library provides generic functions for table manipulation. It provides all its functions inside the <code>table</code> table.</p>
 <h2 id="functions">Functions<a class="headerlink" href="#functions" title="Permanent link">⚓︎</a></h2>
 <h3 id="tablebininsert"><code>table.bininsert</code><a class="headerlink" href="#tablebininsert" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">bininsert</div>
 
-<p>Inserts a given value through BinaryInsert into the table sorted by [, comp].</p>
-<p>If 'comp' is given, then it must be a function that receives two table elements, and returns true when the first is less than the second, e.g. comp = function(a, b) return a &gt; b end, will give a sorted table, with the biggest value on position 1. [, comp] behaves as in table.sort(table, value [, comp]) returns the index where 'value' was inserted</p>
+<p>Inserts a given value through BinaryInsert into an array-style <code>table</code> <code>t</code>, assuming <code>t</code> was sorted by <code>comp</code>.</p>
+<p>If 'comp' is given, then it must be a function that receives two values in <code>t</code> and returns <code>true</code> when the first is less than the second.
+i.e., <code>comp(a,b) == true</code> would mean <code>a</code> is less than <code>b</code>.</p>
+<p>If you want to sort in reverse order, you may set <code>comp = function(a, b) return a &gt; b end</code>.</p>
+<p>This function will return the index where <code>value</code> was inserted into <code>t</code>.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">table</span><span class="p">.</span><span class="n">bininsert</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">comp</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
 <li><code>t</code> (table)</li>
 <li><code>value</code> (unknown)</li>
-<li><code>comp</code> (unknown): <em>Optional</em>.</li>
+<li><code>comp</code> (fun(a: , b: ): boolean): <em>Optional</em>.</li>
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
@@ -17393,19 +17396,24 @@
 <h3 id="tablebinsearch"><code>table.binsearch</code><a class="headerlink" href="#tablebinsearch" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">binsearch</div>
 
-<p>Performs a binary search for a given value.</p>
-<p>If the value is found: It returns a table holding all the mathing indices (e.g. { startindice,endindice } ) endindice may be the same as startindice if only one matching indice was found</p>
-<p>If compval is given: then it must be a function that takes one value and returns a second value2, to be compared with the input value, e.g.: compvalue = function( value ) return value[1] end</p>
-<p>If reversed is set to true: then the search assumes that the table is sorted in reverse order (largest value at position 1) note when reversed is given compval must be given as well, it can be nil/_ in this case</p>
-<p>Return value: on success: a table holding matching indices (e.g. { startindice,endindice } ) on failure: nil</p>
+<p>Performs a binary search for a given <code>value</code> inside a specified <code>table</code> <code>t</code>.</p>
+<p>If the <code>value</code> is found in <code>t</code>, then a <code>table</code> providing the range of all matching indices is returned. (e.g. <code>{ startindice, endindice }</code>.) 
+If only one matching index was found, then <code>startindice</code> will be the same as <code>endindice</code>.</p>
+<p>If <code>value</code> is not found in <code>t</code>, then <code>nil</code> is returned.</p>
+<p>If <code>compval</code> is given, then it must be a function that takes in an element of <code>t</code> and returns a value to use for comparisons.
+For example, to compare arrays based on their first entry, you can write <code>compvalue = function(value) return value[1] end</code>.</p>
+<p>Note that <code>compval</code> is different from the <code>comp</code> that is specified in the <code>bininsert</code> function.</p>
+<p>If <code>reversed == true</code>, then the search assumes that <code>t</code> is sorted in reverse order (i.e., largest value at position 1).
+Note that specifying <code>reversed</code> requires specifying <code>compval</code>. 
+You can circumvent this by passing <code>nil</code> for <code>compval</code>. e.g., <code>binsearch(tbl, value, nil, true)</code>.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">table</span><span class="p">.</span><span class="n">binsearch</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">compval</span><span class="p">,</span> <span class="n">reversed</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
 <li><code>t</code> (table)</li>
-<li><code>value</code> (unknown)</li>
-<li><code>compval</code> (unknown): <em>Optional</em>.</li>
-<li><code>reversed</code> (unknown): <em>Optional</em>.</li>
+<li><code>value</code> (unknown): The value to search for.</li>
+<li><code>compval</code> (function): <em>Optional</em>. A function that returns the value to use in comparisons.</li>
+<li><code>reversed</code> (boolean): <em>Optional</em>. If true, then <code>binsearch</code> will assume <code>t</code> is sorted in reverse order.</li>
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
@@ -17486,13 +17494,15 @@
 <h3 id="tableempty"><code>table.empty</code><a class="headerlink" href="#tableempty" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">empty</div>
 
-<p>Returns true if the table is empty, otherwise, it returns false.</p>
+<p>Checks if a table is empty. </p>
+<pre><code>If `deepCheck == true`, then tables are allowed to have nested subtables, so long as those subtables are empty. e.g., `table.empty({ {}, {} }, true) == true`, while `table.empty({ {}, {} }) == false`.
+</code></pre>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">table</span><span class="p">.</span><span class="n">empty</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">deepCheck</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
 <li><code>t</code> (table)</li>
-<li><code>deepCheck</code> (boolean): <em>Default</em>: <code>false</code>. If true, subtables will also be checked to see if they are empty.</li>
+<li><code>deepCheck</code> (boolean): <em>Default</em>: <code>false</code>. If <code>true</code>, subtables will also be checked to see if they are empty.</li>
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
@@ -17502,7 +17512,7 @@
 <h3 id="tablefind"><code>table.find</code><a class="headerlink" href="#tablefind" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">find</div>
 
-<p>Returns the key for a given value, or nil if the table does not contain the value.</p>
+<p>Returns the key for a given value, or <code>nil</code> if the table does not contain the value.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">table</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
@@ -17711,7 +17721,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">December 28, 2023 10:19:53</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">January 20, 2024 15:17:43</span>
   </span>
 
     
