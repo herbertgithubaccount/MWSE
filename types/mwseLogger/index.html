@@ -17308,25 +17308,25 @@
 <div class="search_terms" style="display: none">assert</div>
 
 <p>Assert a condition and log an error if it fails.</p>
-<div class="highlight"><pre><span></span><code><span class="n">myObject</span><span class="p">:</span><span class="nb">assert</span><span class="p">(</span><span class="n">condition</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">formatValues</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">myObject</span><span class="p">:</span><span class="nb">assert</span><span class="p">(</span><span class="n">condition</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="p">...)</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
 <li><code>condition</code> (boolean)</li>
 <li><code>message</code> (string)</li>
-<li><code>formatValues</code> (variadic): <em>Optional</em>. Formatting and additional parameters matching string.format's usage.</li>
+<li><code>...</code> (any): <em>Optional</em>. Formatting arguments. These are passed to <code>string.format</code>.</li>
 </ul>
 <hr />
 <h3 id="debug"><code>debug</code><a class="headerlink" href="#debug" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">debug</div>
 
 <p>Log debug message.</p>
-<div class="highlight"><pre><span></span><code><span class="n">myObject</span><span class="p">:</span><span class="n">debug</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">formatValues</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">myObject</span><span class="p">:</span><span class="n">debug</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="p">...)</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
 <li><code>message</code> (string)</li>
-<li><code>formatValues</code> (variadic): <em>Optional</em>. Formatting and additional parameters matching string.format's usage.</li>
+<li><code>...</code> (any): <em>Optional</em>. Formatting arguments. These are passed to <code>string.format</code>.</li>
 </ul>
 <hr />
 <h3 id="dolog"><code>doLog</code><a class="headerlink" href="#dolog" title="Permanent link">⚓︎</a></h3>
@@ -17348,24 +17348,24 @@
 <div class="search_terms" style="display: none">error</div>
 
 <p>Log error message.</p>
-<div class="highlight"><pre><span></span><code><span class="n">myObject</span><span class="p">:</span><span class="nb">error</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">formatValues</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">myObject</span><span class="p">:</span><span class="nb">error</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="p">...)</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
 <li><code>message</code> (string)</li>
-<li><code>formatValues</code> (variadic): <em>Optional</em>. Formatting and additional parameters matching string.format's usage.</li>
+<li><code>...</code> (any): <em>Optional</em>. Formatting arguments. These are passed to <code>string.format</code>.</li>
 </ul>
 <hr />
 <h3 id="info"><code>info</code><a class="headerlink" href="#info" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">info</div>
 
 <p>Log info message.</p>
-<div class="highlight"><pre><span></span><code><span class="n">myObject</span><span class="p">:</span><span class="n">info</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">formatValues</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">myObject</span><span class="p">:</span><span class="n">info</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="p">...)</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
 <li><code>message</code> (string)</li>
-<li><code>formatValues</code> (variadic): <em>Optional</em>. Formatting and additional parameters matching string.format's usage.</li>
+<li><code>...</code> (any): <em>Optional</em>. Formatting arguments. These are passed to <code>string.format</code>.</li>
 </ul>
 <hr />
 <h3 id="setloglevel"><code>setLogLevel</code><a class="headerlink" href="#setloglevel" title="Permanent link">⚓︎</a></h3>
@@ -17394,24 +17394,24 @@
 <div class="search_terms" style="display: none">trace</div>
 
 <p>Log trace message.</p>
-<div class="highlight"><pre><span></span><code><span class="n">myObject</span><span class="p">:</span><span class="n">trace</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">formatValues</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">myObject</span><span class="p">:</span><span class="n">trace</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="p">...)</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
 <li><code>message</code> (string)</li>
-<li><code>formatValues</code> (variadic): <em>Optional</em>. Formatting and additional parameters matching string.format's usage.</li>
+<li><code>...</code> (any): <em>Optional</em>. Formatting arguments. These are passed to <code>string.format</code>.</li>
 </ul>
 <hr />
 <h3 id="warn"><code>warn</code><a class="headerlink" href="#warn" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">warn</div>
 
 <p>Log warn message.</p>
-<div class="highlight"><pre><span></span><code><span class="n">myObject</span><span class="p">:</span><span class="nb">warn</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">formatValues</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">myObject</span><span class="p">:</span><span class="nb">warn</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="p">...)</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
 <li><code>message</code> (string)</li>
-<li><code>formatValues</code> (variadic): <em>Optional</em>. Formatting and additional parameters matching string.format's usage.</li>
+<li><code>...</code> (any): <em>Optional</em>. Formatting arguments. These are passed to <code>string.format</code>.</li>
 </ul>
 
 
@@ -17435,7 +17435,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">February 18, 2023 19:29:59</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">January 20, 2024 10:58:25</span>
   </span>
 
     
