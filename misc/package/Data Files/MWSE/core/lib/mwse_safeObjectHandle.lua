@@ -15,13 +15,14 @@ end
 
 event.register("objectInvalidated", onObjectInvalidated)
 
+-- metatable to be used by `mwseSafeObjectHandle`s
 local mwseSafeObjectHandleMetatable = {
 	-- safe handles look up missing values in the `this` table
 	__index = this,
 	
 	-- Don't compare against this table. Compare against the reference instead.
 	__eq = function(self, value) return self.object == value end,
-
+	-- call tostring method of the `object`
 	__tostring = function(self) return tostring(self.object) end,
 
 	-- calls the object's `tojson` method, if appropriate
@@ -44,9 +45,7 @@ function this.new(object)
 	-- Return a previous handle if applicable.
 	if handles[object] then return handles[object] end
 
-	
 	local instance = {object = object}
-
 	setmetatable(instance, mwseSafeObjectHandleMetatable)
 
 	handles[object] = instance
@@ -59,6 +58,9 @@ function this:valid()
 	local obj = rawget(self, "object")
 	return obj and not obj.deleted
 end
+
+
+this.isValid = this.valid
 
 function this:getObject() return self.object end
 
