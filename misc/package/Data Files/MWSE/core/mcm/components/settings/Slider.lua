@@ -31,6 +31,25 @@ Slider.max = 100
 Slider.step = 1
 Slider.jump = 5
 
+function Slider:new(data)
+	-- initialize metatable, make variable, etc
+	local t = Parent.new(self, data)
+	
+	-- range of values (as requested by the user, not taking slider behavior into account)
+	local dist = t.max - t.min
+
+	if rawget(t, "jump") == nil then
+		t.jump = math.min(dist, 5 * t.step)
+	end
+	
+	assert(dist > 0, "Invalid 'max' and 'min' parameters provided. 'max' must be greater than 'min'.")
+	assert(data.step > 0, "Invalid 'step' parameter provided. It must be greater than 0.")
+	assert(data.step <= dist + math.epsilon, "Invalid 'step' parameter provided. It cannot be greater than 'max' - 'min'")
+	assert(data.jump > 0, "Invalid 'jump' parameter provided. It must be greater than 0.")
+	assert(data.jump <= dist + math.epsilon, "Invalid 'jump' parameter provided. It cannot be greater than 'max' - 'min'")
+
+end
+
 function Slider:scaleToSliderRange(value)
 	return value
 end
