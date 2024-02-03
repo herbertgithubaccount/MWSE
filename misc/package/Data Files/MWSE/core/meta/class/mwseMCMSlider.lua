@@ -112,6 +112,10 @@ function mwseMCMSlider:new(data) end
 --- @param element tes3uiElement No description yet available.
 function mwseMCMSlider:registerSliderElement(element) end
 
+--- Sets the new value of this slider to the given value. You should use this method to change the value stored in the slider, as it will also update the displayed text and the slider widget. This method will also call the `callback` method and display the "restart required" message, if appropriate.
+--- @param newVariableValue number No description yet available.
+function mwseMCMSlider:setValue(newVariableValue) end
+
 --- Calls `updateVariableValue`, then calls the Slider's `callback` method (if it exists). Then notifies the player to restart the game if `restartRequired == true`.
 function mwseMCMSlider:update() end
 

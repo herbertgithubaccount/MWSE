@@ -685,6 +685,21 @@ myObject:registerSliderElement(element)
 
 ***
 
+### `setValue`
+<div class="search_terms" style="display: none">setvalue, value</div>
+
+Sets the new value of this slider to the given value. You should use this method to change the value stored in the slider, as it will also update the displayed text and the slider widget. This method will also call the `callback` method and display the "restart required" message, if appropriate.
+
+```lua
+myObject:setValue(newVariableValue)
+```
+
+**Parameters**:
+
+* `newVariableValue` (number)
+
+***
+
 ### `update`
 <div class="search_terms" style="display: none">update</div>
 

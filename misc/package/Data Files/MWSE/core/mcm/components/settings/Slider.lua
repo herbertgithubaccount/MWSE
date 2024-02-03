@@ -100,6 +100,13 @@ function Slider:updateVariableValue()
 	end
 end
 
+function Slider:setValue(newVariableValue)
+	self.variable.value = math.clamp(newVariableValue, self.min, self.max)
+	self:updateWidgetValue()
+	self:updateValueLabel()
+	Parent.update(self)
+end
+
 -- update the value stored in the slider to the value stored in the variable
 function Slider:updateWidgetValue()
 	if self.elements.slider then
