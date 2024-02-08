@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.7">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.8">
     
     
       
@@ -4945,6 +4945,15 @@
   <a href="#tes3uishowjournal" class="md-nav__link">
     <span class="md-ellipsis">
       tes3ui.showJournal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tes3uishowmagicselectmenu" class="md-nav__link">
+    <span class="md-ellipsis">
+      tes3ui.showMagicSelectMenu
     </span>
   </a>
   
@@ -17777,6 +17786,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#tes3uishowmagicselectmenu" class="md-nav__link">
+    <span class="md-ellipsis">
+      tes3ui.showMagicSelectMenu
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#tes3uishowmessagemenu" class="md-nav__link">
     <span class="md-ellipsis">
       tes3ui.showMessageMenu
@@ -18664,6 +18682,32 @@
 <li><code>wasShown</code> (boolean)</li>
 </ul>
 <hr />
+<h3 id="tes3uishowmagicselectmenu"><code>tes3ui.showMagicSelectMenu</code><a class="headerlink" href="#tes3uishowmagicselectmenu" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">showmagicselectmenu, magicselectmenu</div>
+
+<p>This function opens the magic select menu, which lets the player select a spell or enchanted item. This is originally used by the quick key menu. The spells or enchanted items are taken from the player's spell list and inventory. The selected spell or item can be retrieved in the function assigned to <code>callback</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">tes3ui</span><span class="p">.</span><span class="n">showMagicSelectMenu</span><span class="p">({</span> <span class="n">title</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">selectSpells</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">selectPowers</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">selectEnchanted</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">callback</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
+</code></pre></div>
+<p><strong>Parameters</strong>:</p>
+<ul>
+<li><code>params</code> (table)<ul>
+<li><code>title</code> (string): The text used for the title of the magic select menu.</li>
+<li><code>selectSpells</code> (boolean): <em>Default</em>: <code>true</code>. If spells are included in the selection list.</li>
+<li><code>selectPowers</code> (boolean): <em>Default</em>: <code>true</code>. If powers are included in the selection list.</li>
+<li><code>selectEnchanted</code> (boolean): <em>Default</em>: <code>true</code>. If enchanted items are included in the selection list.</li>
+<li><code>callback</code> (function): <em>Optional</em>. A function which will be called once the magic select menu has been closed, including when no item has been selected. A table <code>callbackParams</code> will be passed to this function.<ul>
+<li><code>callbackParams</code> (table)<ul>
+<li><code>spell</code> (<a href="https://mwse.github.io/MWSE/types/tes3spell/">tes3spell</a>): The spell or power that has been selected. Can be <code>nil</code>.</li>
+<li><code>item</code> (<a href="https://mwse.github.io/MWSE/types/tes3item/">tes3item</a>): The enchanted item that has been selected. The actual magic will be <code>item.enchantment</code>. Can be <code>nil</code>.</li>
+<li><code>itemData</code> (<a href="https://mwse.github.io/MWSE/types/tes3itemData/">tes3itemData</a>): The item data of the enchanted item that has been selected. Fully recharged items may not have itemData. Can be <code>nil</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
 <h3 id="tes3uishowmessagemenu"><code>tes3ui.showMessageMenu</code><a class="headerlink" href="#tes3uishowmessagemenu" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">showmessagemenu, messagemenu</div>
 
@@ -18816,7 +18860,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">January 20, 2024 11:04:01</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">February 8, 2024 13:06:54</span>
   </span>
 
     
@@ -18883,7 +18927,7 @@
     <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.code.copy", "content.tabs.link", "navigation.indexes", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.caa56a14.min.js"></script>
+      <script src="../../assets/javascripts/bundle.8fd75fb4.min.js"></script>
       
     
   </body>
