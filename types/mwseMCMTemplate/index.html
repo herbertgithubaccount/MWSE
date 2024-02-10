@@ -5400,6 +5400,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
       
@@ -6984,6 +6990,24 @@
   <a href="#scancel" class="md-nav__link">
     <span class="md-ellipsis">
       sCancel
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#searchchilddescriptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      searchChildDescriptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#searchchildlabels" class="md-nav__link">
+    <span class="md-ellipsis">
+      searchChildLabels
     </span>
   </a>
   
@@ -12587,6 +12611,69 @@
   
   
     <li class="md-nav__item">
+      <a href="../tes3ui.showInventorySelectMenu.callbackParams/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tes3ui.showInventorySelectMenu.callbackParams
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tes3ui.showInventorySelectMenu.filterParams/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tes3ui.showInventorySelectMenu.filterParams
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tes3ui.showMagicSelectMenu.callbackParams/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tes3ui.showMagicSelectMenu.callbackParams
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../tes3ui.showMessageMenu.params.button/" class="md-nav__link">
         
   
@@ -17696,6 +17783,24 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#searchchilddescriptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      searchChildDescriptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#searchchildlabels" class="md-nav__link">
+    <span class="md-ellipsis">
+      searchChildLabels
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#sno" class="md-nav__link">
     <span class="md-ellipsis">
       sNo
@@ -18203,6 +18308,24 @@
 <li><code>result</code> (string)</li>
 </ul>
 <hr />
+<h3 id="searchchilddescriptions"><code>searchChildDescriptions</code><a class="headerlink" href="#searchchilddescriptions" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">searchchilddescriptions</div>
+
+<p>If true, when the user searches the MCM list, all the pages and settings in this MCM template will be searched over. The matching will be performed on setting <code>description</code> fields.</p>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>result</code> (boolean)</li>
+</ul>
+<hr />
+<h3 id="searchchildlabels"><code>searchChildLabels</code><a class="headerlink" href="#searchchildlabels" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">searchchildlabels</div>
+
+<p>If true, when the user searches the MCM list, all the pages and settings in this MCM template will be searched over. The matching will be performed on setting <code>label</code> and <code>text</code> fields.</p>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>result</code> (boolean)</li>
+</ul>
+<hr />
 <h3 id="sno"><code>sNo</code><a class="headerlink" href="#sno" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">sno</div>
 
@@ -18572,7 +18695,7 @@
 <div class="search_terms" style="display: none">new</div>
 
 <p>Creates a new Template.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">template</span> <span class="o">=</span> <span class="n">myObject</span><span class="p">:</span><span class="n">new</span><span class="p">({</span> <span class="n">name</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">label</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">headerImagePath</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">onClose</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">onSearch</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">pages</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">indent</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">childIndent</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">paddingBottom</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">childSpacing</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">inGameOnly</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">postCreate</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">class</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">parentComponent</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">template</span> <span class="o">=</span> <span class="n">myObject</span><span class="p">:</span><span class="n">new</span><span class="p">({</span> <span class="n">name</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">label</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">headerImagePath</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">onClose</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">searchChildLabels</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">searchChildDescriptions</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">onSearch</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">pages</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">indent</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">childIndent</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">paddingBottom</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">childSpacing</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">inGameOnly</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">postCreate</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">class</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">parentComponent</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
@@ -18581,6 +18704,8 @@
 <li><code>label</code> (string): <em>Optional</em>. Used in place of <code>name</code> if that argument isn't passed. You need to pass at least one of the <code>name</code> and <code>label</code> arguments. If <code>headerImagePath</code> is not passed, a UI element will be created with <code>label</code> as text.</li>
 <li><code>headerImagePath</code> (string): <em>Optional</em>. Set it to display an image at the top of your menu. Path is relative to <code>Data Files/</code>. The image must have power-of-2 dimensions (i.e. 16, 32, 64, 128, 256, 512, 1024, etc.).</li>
 <li><code>onClose</code> (fun(modConfigContainer: <a href="../tes3uiElement/">tes3uiElement</a>)): <em>Optional</em>. Set this to a function which will be called when the menu is closed. Useful for saving variables, such as TableVariable.</li>
+<li><code>searchChildLabels</code> (boolean): <em>Default</em>: <code>true</code>. If true, default search handler will search through all the page and setting <code>label</code> and <code>text</code> fields in this MCM template.</li>
+<li><code>searchChildDescriptions</code> (boolean): <em>Default</em>: <code>true</code>. If true, default search handler will search through all the page and setting <code>description</code> fields in this MCM template.</li>
 <li><code>onSearch</code> (fun(searchText: string): boolean): <em>Optional</em>. A custom search handler function. This function should return true if this mod Template should show up in search results for given <code>searchText</code>.</li>
 <li><code>pages</code> (mwseMCMPage.new.data[]): <em>Optional</em>. You can create pages for the template directly here. The entries in the array must specify the class of the page.</li>
 <li><code>indent</code> (integer): <em>Default</em>: <code>12</code>. The left padding size in pixels. Only used if the <code>childIndent</code> isn't set on the parent component.</li>
@@ -18602,7 +18727,7 @@
 <h3 id="onsearchinternal"><code>onSearchInternal</code><a class="headerlink" href="#onsearchinternal" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">onsearchinternal</div>
 
-<p>This method calls the <code>onSearch</code> handler if it exists.</p>
+<p>Performs searching routine for given <code>searchText</code>.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">myObject</span><span class="p">:</span><span class="n">onSearchInternal</span><span class="p">(</span><span class="n">searchText</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
@@ -18611,7 +18736,7 @@
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (boolean)</li>
+<li><code>result</code> (boolean): True if given <code>searchText</code> matches this MCM template.</li>
 </ul>
 <hr />
 <h3 id="preparedata"><code>prepareData</code><a class="headerlink" href="#preparedata" title="Permanent link">⚓︎</a></h3>
@@ -18643,7 +18768,7 @@
 <h3 id="register"><code>register</code><a class="headerlink" href="#register" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">register</div>
 
-<p>A convenience function that registers the mod's configuration menu using its Template.</p>
+<p>A convenience function that registers the mod's configuration menu using its Template. In addition, sets <code>self:onSearchInternal</code> as the <code>onSearch</code> handler.</p>
 <p>You don't need to call <code>mwse.registerModConfig</code> or <code>mwse.mcm.register</code> if calling this function.</p>
 <div class="highlight"><pre><span></span><code><span class="n">myObject</span><span class="p">:</span><span class="n">register</span><span class="p">()</span>
 </code></pre></div>
@@ -18703,7 +18828,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">February 10, 2024 09:53:48</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">February 10, 2024 15:50:39</span>
   </span>
 
     

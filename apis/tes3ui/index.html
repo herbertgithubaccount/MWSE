@@ -5908,6 +5908,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
       
@@ -12563,6 +12569,69 @@
   
   
     <li class="md-nav__item">
+      <a href="../../types/tes3ui.showInventorySelectMenu.callbackParams/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tes3ui.showInventorySelectMenu.callbackParams
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../types/tes3ui.showInventorySelectMenu.filterParams/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tes3ui.showInventorySelectMenu.filterParams
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../types/tes3ui.showMagicSelectMenu.callbackParams/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tes3ui.showMagicSelectMenu.callbackParams
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../types/tes3ui.showMessageMenu.params.button/" class="md-nav__link">
         
   
@@ -17968,7 +18037,7 @@
 <h3 id="tes3uiacquiretextinput"><code>tes3ui.acquireTextInput</code><a class="headerlink" href="#tes3uiacquiretextinput" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">acquiretextinput</div>
 
-<p>Sends all text input to the specified element.  Calling this function with a nil argument will release text input and allow keybinds to work. Suppresses most keybinds while active, except the Journal open/close keybind (it's up to the individual menu implementation).</p>
+<p>Sends all text input to the specified element. Calling this function with a nil argument will release text input and allow keybinds to work. Suppresses most keybinds while active, except the Journal open/close keybind (it's up to the individual menu implementation).</p>
 <p>Only one element can have control of input, and there is no automatic restoration of control if one element takes control from another. Be careful of conflicts with other users of this function.</p>
 <div class="highlight"><pre><span></span><code><span class="n">tes3ui</span><span class="p">.</span><span class="n">acquireTextInput</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
 </code></pre></div>
@@ -18009,7 +18078,7 @@
 <h3 id="tes3uichoice"><code>tes3ui.choice</code><a class="headerlink" href="#tes3uichoice" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">choice</div>
 
-<p>Creates a simple dialogue choice, as per the <code>Choice</code> mwscript function.</p>
+<p>Creates a simple dialogue choice, as per the <code>Choice</code> mwscript function. To add more options call this function multiple times.</p>
 <div class="highlight"><pre><span></span><code><span class="n">tes3ui</span><span class="p">.</span><span class="n">choice</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
@@ -18534,16 +18603,14 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li>
-<p><code>params</code> (table)</p>
-<ul>
+<li><code>params</code> (table)<ul>
 <li><code>reference</code> (<a href="../../types/tes3reference/">tes3reference</a>): <em>Default</em>: <code>tes3player</code>. The reference of a <code>tes3actor</code> whose inventory will be used.</li>
 <li><code>title</code> (string): The text used for the title of the inventory select menu.</li>
 <li><code>leaveMenuMode</code> (boolean): <em>Optional</em>. Determines if menu mode should be exited after closing the inventory select menu. By default, it will be in the state it was in before this function was called.</li>
 <li><code>noResultsText</code> (string): <em>Optional</em>. The text used for the message that gets shown to the player if no items have been found in the inventory. The default text is equivalent to the <code>sInventorySelectNoItems</code> GMST value, unless <code>"ingredients"</code> or <code>"soulgemFilled"</code> has been assigned to <code>filter</code>, in which case the default text is equivalent to either the <code>sInventorySelectNoIngredients</code> or <code>sInventorySelectNoSoul</code> GMST value respectively.</li>
 <li><code>noResultsCallback</code> (function): <em>Optional</em>. A function which is called when no items have been found in the inventory, right before the message containing <code>noResultsText</code> is shown.</li>
 <li>
-<p><code>filter</code> (function, string): <em>Optional</em>. This determines which items should be shown in the inventory select menu. Accepts either a string or a function.</p>
+<p><code>filter</code> (string, fun(params: <a href="../../types/tes3ui.showInventorySelectMenu.filterParams/">tes3ui.showInventorySelectMenu.filterParams</a>): boolean): <em>Optional</em>. This determines which items should be shown in the inventory select menu. Accepts either a string or a function.</p>
 <p>If assigning a string, the available values are present in <a href="https://mwse.github.io/MWSE/references/inventory-select-filters/"><code>tes3.inventorySelectFilter</code></a> namespace. The available filters are:</p>
 <ul>
 <li><code>alembic</code>: Only <a href="https://mwse.github.io/MWSE/types/tes3apparatus/">tes3apparatus</a> items of type <code>tes3.apparatusType.alembic</code> will be shown.</li>
@@ -18555,27 +18622,8 @@
 <li><code>retort</code>: Only <a href="https://mwse.github.io/MWSE/types/tes3apparatus/">tes3apparatus</a> items of type <code>tes3.apparatusType.retort</code> will be shown.</li>
 <li><code>soulgemFilled</code>: Only filled soulgems will be shown.</li>
 </ul>
-<p>If assigning a function it will be called when determining if an item should be added to the inventory select menu. A table <code>filterParams</code> will be passed to this function. Returning <code>true</code> from this function will add the item to the inventory select menu, whereas returning <code>false</code> will prevent it from being added.</p>
-<ul>
-<li><code>filterParams</code> (table)<ul>
-<li><code>item</code> (<a href="https://mwse.github.io/MWSE/types/tes3item/">tes3item</a>): The item that is being filtered.</li>
-<li><code>itemData</code> (<a href="https://mwse.github.io/MWSE/types/tes3itemData/">tes3itemData</a>): The item data of the item that is being filtered. Can be <code>nil</code>.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p><code>callback</code> (function): <em>Optional</em>. A function which will be called once the inventory select menu has been closed, including when no item has been selected. A table <code>callbackParams</code> will be passed to this function.</p>
-<ul>
-<li><code>callbackParams</code> (table)<ul>
-<li><code>item</code> (<a href="https://mwse.github.io/MWSE/types/tes3item/">tes3item</a>): The item that has been selected. Can be <code>nil</code>.</li>
-<li><code>itemData</code> (<a href="https://mwse.github.io/MWSE/types/tes3itemData/">tes3itemData</a>): The item data of the item that has been selected. Can be <code>nil</code>.</li>
-<li><code>count</code> (number): The number of items that have been selected. Only valid if <code>item</code> is not <code>nil</code>.</li>
-<li><code>inventory</code> (<a href="https://mwse.github.io/MWSE/types/tes3inventory/">tes3inventory</a>): The inventory containing the items.</li>
-<li><code>actor</code> (<a href="https://mwse.github.io/MWSE/types/tes3actor/">tes3actor</a>): The actor containing the inventory.</li>
-</ul>
-</li>
-</ul>
+<p>If assigning a custom function it will be called when determining if an item should be added to the inventory select menu. Returning <code>true</code> from this function will add the item to the inventory select menu, whereas returning <code>false</code> will prevent it from being added.
+    * <code>callback</code> (fun(params: <a href="../../types/tes3ui.showInventorySelectMenu.callbackParams/">tes3ui.showInventorySelectMenu.callbackParams</a>)): <em>Optional</em>. A function which will be called once the inventory select menu has been closed, including when no item has been selected.</p>
 </li>
 </ul>
 </li>
@@ -18707,7 +18755,7 @@
 <li><code>selectSpells</code> (boolean): <em>Default</em>: <code>true</code>. If spells are included in the selection list.</li>
 <li><code>selectPowers</code> (boolean): <em>Default</em>: <code>true</code>. If powers are included in the selection list.</li>
 <li><code>selectEnchanted</code> (boolean): <em>Default</em>: <code>true</code>. If enchanted items are included in the selection list.</li>
-<li><code>callback</code> (function): <em>Optional</em>. A function which will be called once the magic select menu has been closed, including when no item has been selected. A table <code>callbackParams</code> will be passed to this function.<ul>
+<li><code>callback</code> (fun(params: <a href="../../types/tes3ui.showMagicSelectMenu.callbackParams/">tes3ui.showMagicSelectMenu.callbackParams</a>)): <em>Optional</em>. A function which will be called once the magic select menu has been closed, including when no item or spell has been selected. A table <code>callbackParams</code> will be passed to this function.<ul>
 <li><code>callbackParams</code> (table)<ul>
 <li><code>spell</code> (<a href="https://mwse.github.io/MWSE/types/tes3spell/">tes3spell</a>): The spell or power that has been selected. Can be <code>nil</code>.</li>
 <li><code>item</code> (<a href="https://mwse.github.io/MWSE/types/tes3item/">tes3item</a>): The enchanted item that has been selected. The actual magic will be <code>item.enchantment</code>. Can be <code>nil</code>.</li>
@@ -18872,7 +18920,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">February 8, 2024 13:06:54</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">February 10, 2024 12:35:30</span>
   </span>
 
     

@@ -7435,6 +7435,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
       
@@ -14074,6 +14080,69 @@
   
   <span class="md-ellipsis">
     tes3travelDestinationNode
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../types/tes3ui.showInventorySelectMenu.callbackParams/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tes3ui.showInventorySelectMenu.callbackParams
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../types/tes3ui.showInventorySelectMenu.filterParams/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tes3ui.showInventorySelectMenu.filterParams
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../types/tes3ui.showMagicSelectMenu.callbackParams/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tes3ui.showMagicSelectMenu.callbackParams
   </span>
   
 
@@ -21224,9 +21293,7 @@
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li>
-<p><code>params</code> (table)</p>
-<ul>
+<li><code>params</code> (table)<ul>
 <li><code>id</code> (<a href="../../references/magic-effects/">tes3.effect</a>, integer): Id of the new effect. Maps to newly claimed <code>tes3.effect</code> constants with <code>tes3.claimSpellEffectId()</code>. If the effect of this id already exists, an error will be thrown.</li>
 <li><code>name</code> (string): <em>Default</em>: <code>Unnamed Effect</code>. Name of the effect.</li>
 <li><code>baseCost</code> (number): <em>Default</em>: <code>1</code>. Base magicka cost for the effect.</li>
@@ -21268,71 +21335,8 @@
 <li><code>targetsSkills</code> (boolean): <em>Default</em>: <code>true</code>. A flag which controls whether this effect targets a certain skill or skills.</li>
 <li><code>unreflectable</code> (boolean): <em>Default</em>: <code>true</code>. A flag which controls whether this effect can be reflected.</li>
 <li><code>usesNegativeLighting</code> (boolean): <em>Default</em>: <code>true</code>. A flag which controls whether this effect uses negative lighting.</li>
-<li>
-<p><code>onTick</code> (fun(e: <a href="../../types/tes3magicEffectTickEventData/">tes3magicEffectTickEventData</a>)): <em>Optional</em>. A function which will be called on each tick of a spell containing this effect. A table <code>tickParams</code> will be passed to the callback function. Note: <code>dt</code>(frame time) scaling is handled automatically.</p>
-<ul>
-<li><code>tickParams</code> (table)<ul>
-<li><code>effectId</code> (number)</li>
-<li><code>sourceInstance</code> (<a href="https://mwse.github.io/MWSE/types/tes3magicSourceInstance/">tes3magicSourceInstance</a>): Access to the magic source of the effect instance.</li>
-<li><code>deltaTime</code> (number): The time passed since the last tick of the spell.</li>
-<li><code>effectInstance</code> (<a href="https://mwse.github.io/MWSE/types/tes3magicEffectInstance/">tes3magicEffectInstance</a>): Access to the magic effect instance.</li>
-<li><code>effectIndex</code> (number): The index of the effect in the spell.</li>
-</ul>
-</li>
-</ul>
-<p>In addition, a function registered as <code>onTick</code> can also call the following methods:</p>
-<ul>
-<li>
-<p>trigger(<code>triggerParams</code>): Allows the effect to run through the normal spell event system.
-    <strong>Parameters:</strong></p>
-<ul>
-<li><code>triggerParams</code> (table)<ul>
-<li><code>negateOnExpiry</code> (boolean): <em>Optional. Default:</em> <code>true</code> If this flag is <code>true</code>, the effect will be negated on expiry.</li>
-<li><code>isUncapped</code> (boolean): <em>Optional.</em></li>
-<li><code>attribute</code> (<a href="https://mwse.github.io/MWSE/references/effect-attributes/">tes3.effectAttribute</a>): <em>Optional. Default:</em> <code>tes3.effectAttribute.nonResistable</code> The attribute used in resistance calculations agains this effect. Maps to values in <a href="https://mwse.github.io/MWSE/references/effect-attributes/"><code>tes3.effectAttribute</code></a> namespace.</li>
-<li><code>type</code> (<a href="https://mwse.github.io/MWSE/references/effect-event-types/">tes3.effectEventType</a>): <em>Optional. Default:</em> <code>tes3.effectEventType.boolean</code>. This flag controls how the effect behaves. For example, <code>tes3.effectEventType.modStatistic</code> will make the effect work as calling <code>tes3.modStatistic</code>. Maps to values in <a href="https://mwse.github.io/MWSE/references/effect-event-types/"><code>tes3.effectEventType</code></a> namespace.</li>
-<li><code>value</code> (number): <em>Optional. Default:</em> <code>0</code>. The variable this effect changes.</li>
-<li><code>resistanceCheck(resistParams)</code> (function): <em>Optional.</em> The function passed as <code>resistanceCheck</code> will be used on any of the game's spell resistance checks. For example, the only effect in vanilla Morrowind that implements this function is Water Walking. It disallows using a spell with Water Walking when the player is deep underwater, by setting it as expired. So, returning <code>true</code> from this function will set your effect to expired, and depending on your trigger code may stop processing. The function passed here must return boolean values.
-    <strong>Parameters</strong><ul>
-<li><code>resistParams</code> (table)<ul>
-<li><code>sourceInstance</code> (<a href="https://mwse.github.io/MWSE/types/tes3magicSourceInstance/">tes3magicSourceInstance</a>): Access to the magic source of the effect instance.</li>
-<li><code>effectInstance</code> (<a href="https://mwse.github.io/MWSE/types/tes3magicEffectInstance/">tes3magicEffectInstance</a>): Access to the magic effect instance.</li>
-<li><code>effectIndex</code> (number): The index of the effect in the spell.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>triggerBoundWeapon(<code>id</code>): Performs vanilla weapon summoning logic. It will create a summoned version of the weapon with provided ID.
-    <strong>Parameters:</strong></p>
-<ul>
-<li><code>id</code> (string): The ID of the weapon object to summon.</li>
-</ul>
-</li>
-<li>
-<p>triggerBoundArmor(<code>id</code>, <code>id2</code>): Performs vanilla armor summoning logic. It summons one armor object with the provided ID. To summon gauntlets, provide two IDs.
-    <strong>Parameters:</strong></p>
-<ul>
-<li><code>id</code> (string): The ID of the armor object to summon.</li>
-<li><code>id2</code> (string): <em>Optional.</em> The ID of the additional gauntlet object to summon. The second item ID can only be a gauntlet object.</li>
-</ul>
-</li>
-<li>
-<p>triggerSummon(<code>id</code>): Performs vanilla creature summoning logic. It will create a summoned version of a creature with provided ID.
-    <strong>Parameters:</strong></p>
-<ul>
-<li><code>id</code> (string): The ID of the creature object to summon.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p><code>onCollision</code> (fun(e: <a href="../../types/tes3magicEffectCollisionEventData/">tes3magicEffectCollisionEventData</a>)): <em>Optional</em>. A function which will be called when a spell containing this spell effect collides with something.</p>
-</li>
+<li><code>onTick</code> (fun(e: <a href="../../types/tes3magicEffectTickEventData/">tes3magicEffectTickEventData</a>)): <em>Optional</em>. A function which will be called on each tick of a spell containing this effect. Note: <code>dt</code> (frame time) scaling is handled automatically. This function typically calls <code>e:trigger()</code> to run the effect through the normal spell event system.</li>
+<li><code>onCollision</code> (fun(e: <a href="../../types/tes3magicEffectCollisionEventData/">tes3magicEffectCollisionEventData</a>)): <em>Optional</em>. A function which will be called when a spell containing this spell effect collides with something.</li>
 </ul>
 </li>
 </ul>
@@ -23871,7 +23875,7 @@
 <h3 id="tes3iterateobjects"><code>tes3.iterateObjects</code><a class="headerlink" href="#tes3iterateobjects" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">iterateobjects</div>
 
-<p>Iteration function used for looping over game options.</p>
+<p>Iteration function used for looping over game objects.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">objectIterator</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">iterateObjects</span><span class="p">(</span><span class="n">filter</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
@@ -25537,7 +25541,7 @@ Statics, activators, containers, doors, and lights with non-zero weight.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">February 8, 2024 13:15:21</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">February 10, 2024 12:35:30</span>
   </span>
 
     
