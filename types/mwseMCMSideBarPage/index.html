@@ -6861,9 +6861,27 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#soff" class="md-nav__link">
+    <span class="md-ellipsis">
+      sOff
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#sok" class="md-nav__link">
     <span class="md-ellipsis">
       sOK
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#son" class="md-nav__link">
+    <span class="md-ellipsis">
+      sOn
     </span>
   </a>
   
@@ -17855,9 +17873,27 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#soff" class="md-nav__link">
+    <span class="md-ellipsis">
+      sOff
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#sok" class="md-nav__link">
     <span class="md-ellipsis">
       sOK
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#son" class="md-nav__link">
+    <span class="md-ellipsis">
+      sOn
     </span>
   </a>
   
@@ -18461,10 +18497,28 @@
 <li><code>result</code> (string)</li>
 </ul>
 <hr />
+<h3 id="soff"><code>sOff</code><a class="headerlink" href="#soff" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">soff</div>
+
+<p>Set to the value of <code>sOff</code> GMST.</p>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>result</code> (string)</li>
+</ul>
+<hr />
 <h3 id="sok"><code>sOK</code><a class="headerlink" href="#sok" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">sok</div>
 
 <p>Set to the value of <code>sOK</code> GMST.</p>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>result</code> (string)</li>
+</ul>
+<hr />
+<h3 id="son"><code>sOn</code><a class="headerlink" href="#son" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">son</div>
+
+<p>Set to the value of <code>sOn</code> GMST.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
 <li><code>result</code> (string)</li>
@@ -18670,7 +18724,7 @@
 <div class="search_terms" style="display: none">createdecimalslider, decimalslider</div>
 
 <p>Creates a new nested DecimalSlider.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">slider</span> <span class="o">=</span> <span class="n">myObject</span><span class="p">:</span><span class="n">createDecimalSlider</span><span class="p">({</span> <span class="n">label</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">variable</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">defaultSetting</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">min</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">max</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">step</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">jump</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">decimalPlaces</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">description</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">callback</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">inGameOnly</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">restartRequired</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">restartRequiredMessage</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">indent</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">childIndent</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">paddingBottom</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">childSpacing</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">postCreate</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">slider</span> <span class="o">=</span> <span class="n">myObject</span><span class="p">:</span><span class="n">createDecimalSlider</span><span class="p">({</span> <span class="n">label</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">variable</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">defaultSetting</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">min</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">max</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">step</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">jump</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">decimalPlaces</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">description</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">callback</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">inGameOnly</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">restartRequired</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">restartRequiredMessage</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">indent</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">childIndent</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">paddingBottom</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">childSpacing</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">convertToLabelValue</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">postCreate</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
@@ -18692,6 +18746,7 @@
 <li><code>childIndent</code> (integer): <em>Optional</em>. The left padding size in pixels. Used on all the child components.</li>
 <li><code>paddingBottom</code> (integer): <em>Default</em>: <code>4</code>. The bottom border size in pixels. Only used if the <code>childSpacing</code> is unset on the parent component.</li>
 <li><code>childSpacing</code> (integer): <em>Optional</em>. The bottom border size in pixels. Used on all the child components.</li>
+<li><code>convertToLabelValue</code> (fun(self: <a href="../mwseMCMDecimalSlider/">mwseMCMDecimalSlider</a>, variableValue: number): number, string): <em>Optional</em>. Define a custom formatting function for displaying variable values.</li>
 <li><code>postCreate</code> (fun(self: <a href="../mwseMCMDecimalSlider/">mwseMCMDecimalSlider</a>)): <em>Optional</em>. Can define a custom formatting function to make adjustments to any element saved in <code>self.elements</code>.</li>
 </ul>
 </li>
@@ -18976,7 +19031,7 @@
 <div class="search_terms" style="display: none">createpercentageslider, percentageslider</div>
 
 <p>Creates a new nested <code>PercentageSlider</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">slider</span> <span class="o">=</span> <span class="n">myObject</span><span class="p">:</span><span class="n">createPercentageSlider</span><span class="p">({</span> <span class="n">label</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">variable</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">defaultSetting</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">min</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">max</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">step</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">jump</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">decimalPlaces</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">description</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">callback</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">inGameOnly</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">restartRequired</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">restartRequiredMessage</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">indent</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">childIndent</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">paddingBottom</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">childSpacing</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">postCreate</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">slider</span> <span class="o">=</span> <span class="n">myObject</span><span class="p">:</span><span class="n">createPercentageSlider</span><span class="p">({</span> <span class="n">label</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">variable</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">defaultSetting</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">min</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">max</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">step</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">jump</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">decimalPlaces</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">description</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">callback</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">inGameOnly</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">restartRequired</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">restartRequiredMessage</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">indent</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">childIndent</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">paddingBottom</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">childSpacing</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">convertToLabelValue</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">postCreate</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
@@ -18998,6 +19053,7 @@
 <li><code>childIndent</code> (integer): <em>Optional</em>. The left padding size in pixels. Used on all the child components.</li>
 <li><code>paddingBottom</code> (integer): <em>Default</em>: <code>4</code>. The bottom border size in pixels. Only used if the <code>childSpacing</code> is unset on the parent component.</li>
 <li><code>childSpacing</code> (integer): <em>Optional</em>. The bottom border size in pixels. Used on all the child components.</li>
+<li><code>convertToLabelValue</code> (fun(self: <a href="../mwseMCMPercentageSlider/">mwseMCMPercentageSlider</a>, variableValue: number): number, string): <em>Optional</em>. Define a custom formatting function for displaying variable values.</li>
 <li><code>postCreate</code> (fun(self: <a href="../mwseMCMPercentageSlider/">mwseMCMPercentageSlider</a>)): <em>Optional</em>. Can define a custom formatting function to make adjustments to any element saved in <code>self.elements</code>.</li>
 </ul>
 </li>
@@ -19059,7 +19115,7 @@
 <div class="search_terms" style="display: none">createslider, slider</div>
 
 <p>Creates a new nested Slider.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">slider</span> <span class="o">=</span> <span class="n">myObject</span><span class="p">:</span><span class="n">createSlider</span><span class="p">({</span> <span class="n">label</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">variable</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">defaultSetting</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">min</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">max</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">step</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">jump</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">decimalPlaces</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">description</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">callback</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">inGameOnly</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">restartRequired</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">restartRequiredMessage</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">indent</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">childIndent</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">paddingBottom</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">childSpacing</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">postCreate</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">slider</span> <span class="o">=</span> <span class="n">myObject</span><span class="p">:</span><span class="n">createSlider</span><span class="p">({</span> <span class="n">label</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">variable</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">defaultSetting</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">min</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">max</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">step</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">jump</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">decimalPlaces</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">description</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">callback</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">inGameOnly</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">restartRequired</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">restartRequiredMessage</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">indent</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">childIndent</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">paddingBottom</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">childSpacing</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">convertToLabelValue</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">postCreate</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
@@ -19081,6 +19137,7 @@
 <li><code>childIndent</code> (integer): <em>Optional</em>. The left padding size in pixels. Used on all the child components.</li>
 <li><code>paddingBottom</code> (integer): <em>Default</em>: <code>4</code>. The bottom border size in pixels. Only used if the <code>childSpacing</code> is unset on the parent component.</li>
 <li><code>childSpacing</code> (integer): <em>Optional</em>. The bottom border size in pixels. Used on all the child components.</li>
+<li><code>convertToLabelValue</code> (fun(self: <a href="../mwseMCMSlider/">mwseMCMSlider</a>, variableValue: number): number, string): <em>Optional</em>. Define a custom formatting function for displaying variable values.</li>
 <li><code>postCreate</code> (fun(self: <a href="../mwseMCMSlider/">mwseMCMSlider</a>)): <em>Optional</em>. Can define a custom formatting function to make adjustments to any element saved in <code>self.elements</code>.</li>
 </ul>
 </li>
@@ -19089,6 +19146,52 @@
 <ul>
 <li><code>slider</code> (<a href="../mwseMCMSlider/">mwseMCMSlider</a>)</li>
 </ul>
+<details class="example">
+<summary>Example: DistanceSlider</summary>
+<p>The following example shows how the <code>convertToLabelValue</code> parameter can be used to create a slider for a config setting that handles distances. The config setting will be stored using game units, but the displayed value will be in real-world units. Recall that 1 game unit corresponds to 22.1 feet, and 1 foot is 0.3048 meters.</p>
+<div class="highlight"><pre><span></span><code><span class="n">mwse</span><span class="p">.</span><span class="n">mcm</span><span class="p">.</span><span class="n">createSlider</span><span class="p">{</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">myPage</span><span class="p">,</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;My distance slider&quot;</span><span class="p">,</span>
+    <span class="n">variable</span> <span class="o">=</span> <span class="n">mwse</span><span class="p">.</span><span class="n">mcm</span><span class="p">.</span><span class="n">createTableVariable</span><span class="p">{</span><span class="n">id</span> <span class="o">=</span> <span class="s2">&quot;distance&quot;</span><span class="p">,</span> <span class="n">config</span> <span class="o">=</span> <span class="n">myConfig</span><span class="p">},</span>
+    <span class="n">convertToValueLabel</span> <span class="o">=</span> <span class="kr">function</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">variableValue</span><span class="p">)</span>
+        <span class="kd">local</span> <span class="n">feet</span> <span class="o">=</span> <span class="n">variableValue</span> <span class="o">/</span> <span class="mf">22.1</span>
+        <span class="kd">local</span> <span class="n">meters</span> <span class="o">=</span> <span class="mf">0.3048</span> <span class="o">*</span> <span class="n">feet</span>
+        <span class="kr">if</span> <span class="n">self</span><span class="p">.</span><span class="n">decimalPlaces</span> <span class="o">==</span> <span class="mi">0</span> <span class="kr">then</span>
+            <span class="kr">return</span> <span class="nb">string.format</span><span class="p">(</span><span class="s2">&quot;%i ft (%.2f m)&quot;</span><span class="p">,</span> <span class="n">feet</span><span class="p">,</span> <span class="n">meters</span><span class="p">)</span>
+        <span class="kr">end</span>
+        <span class="kr">return</span> <span class="nb">string.format</span><span class="p">(</span>
+            <span class="c1">-- if `decimalPlaces == 1, then this string will simplify to </span>
+            <span class="c1">-- &quot;%.1f ft (%.3f m)&quot;</span>
+            <span class="nb">string.format</span><span class="p">(</span><span class="s2">&quot;%%.%uf ft (%%.%uf m)&quot;</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">decimalPlaces</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">decimalPlaces</span> <span class="o">+</span> <span class="mi">2</span><span class="p">),</span>
+            <span class="n">feet</span><span class="p">,</span> <span class="n">meters</span>
+        <span class="p">)</span>
+    <span class="kr">end</span><span class="p">,</span>
+
+    <span class="n">max</span> <span class="o">=</span> <span class="mf">22.1</span> <span class="o">*</span> <span class="mi">10</span><span class="p">,</span>    <span class="c1">-- max is 10 feet</span>
+    <span class="n">step</span> <span class="o">=</span> <span class="mf">22.1</span><span class="p">,</span>        <span class="c1">-- increment by 1 foot </span>
+    <span class="n">jump</span> <span class="o">=</span> <span class="mf">22.1</span> <span class="o">*</span> <span class="mi">5</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
+<details class="example">
+<summary>Example: SkillSlider</summary>
+<p>Here is an (admittedly less practical) example to help highlight the different ways <code>convertToLabelValue</code> can be used. In this example, it will be used to create a slider that stores a <code>tes3.skill</code> constant in the config, and then displays the name of the corresponding skill.</p>
+<div class="highlight"><pre><span></span><code><span class="n">mwse</span><span class="p">.</span><span class="n">mcm</span><span class="p">.</span><span class="n">createSlider</span><span class="p">{</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">myPage</span><span class="p">,</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;My skill slider&quot;</span><span class="p">,</span>
+    <span class="n">variable</span> <span class="o">=</span> <span class="n">mwse</span><span class="p">.</span><span class="n">mcm</span><span class="p">.</span><span class="n">createTableVariable</span><span class="p">{</span><span class="n">id</span> <span class="o">=</span> <span class="s2">&quot;skillId&quot;</span><span class="p">,</span> <span class="n">config</span> <span class="o">=</span> <span class="n">myConfig</span><span class="p">},</span>
+    <span class="n">convertToValueLabel</span> <span class="o">=</span> <span class="kr">function</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">variableValue</span><span class="p">)</span>
+        <span class="kd">local</span> <span class="n">skillName</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">getSkillName</span><span class="p">(</span><span class="n">math</span><span class="p">.</span><span class="n">round</span><span class="p">(</span><span class="n">variableValue</span><span class="p">))</span>
+        <span class="kr">if</span> <span class="n">skillName</span> <span class="kr">then</span> 
+            <span class="kr">return</span> <span class="n">skillName</span>
+        <span class="kr">end</span>
+        <span class="kr">return</span> <span class="s2">&quot;N/A&quot;</span>
+    <span class="kr">end</span><span class="p">,</span>
+
+    <span class="n">max</span> <span class="o">=</span> <span class="mi">26</span> <span class="c1">-- there are 27 skills and indexing starts at 0</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
 <hr />
 <h3 id="createsubcomponents"><code>createSubcomponents</code><a class="headerlink" href="#createsubcomponents" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">createsubcomponents, subcomponents</div>
@@ -19340,7 +19443,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">February 10, 2024 09:53:48</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">February 11, 2024 17:36:42</span>
   </span>
 
     
