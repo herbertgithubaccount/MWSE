@@ -335,15 +335,10 @@ function table.removevalue(t, value)
 	return false
 end
 
-function table.copy(from, to, comp)
+function table.copy(from, to)
 	to = to or {}
-	
 	for k, v in pairs(from) do
 		to[k] = v
-	end
-
-	if comp then
-		table.sort(to, comp)
 	end
 	return to
 end
