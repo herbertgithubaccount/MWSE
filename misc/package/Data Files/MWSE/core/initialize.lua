@@ -335,17 +335,16 @@ function table.removevalue(t, value)
 	return false
 end
 
-function table.copy(from, to)
-	if (to == nil) then
-		to = {}
-	elseif (type(from) ~= "table" or type(to) ~= "table") then
-		error("Arguments for table.copy must be tables.")
-	end
-
+function table.copy(from, to, comp)
+	to = to or {}
+	
 	for k, v in pairs(from) do
 		to[k] = v
 	end
 
+	if comp then
+		table.sort(to, comp)
+	end
 	return to
 end
 
