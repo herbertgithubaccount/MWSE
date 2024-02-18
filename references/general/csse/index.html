@@ -3762,9 +3762,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#object-window" class="md-nav__link">
+  <a href="#main-window" class="md-nav__link">
     <span class="md-ellipsis">
-      Object Window
+      Main Window
     </span>
   </a>
   
@@ -3780,9 +3780,27 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#cell-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cell View
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#dialogue-window" class="md-nav__link">
     <span class="md-ellipsis">
       Dialogue Window
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#object-window" class="md-nav__link">
+    <span class="md-ellipsis">
+      Object Window
     </span>
   </a>
   
@@ -3816,9 +3834,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#cell-view" class="md-nav__link">
+  <a href="#use-report" class="md-nav__link">
     <span class="md-ellipsis">
-      Cell View
+      Use Report
     </span>
   </a>
   
@@ -17300,9 +17318,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#object-window" class="md-nav__link">
+  <a href="#main-window" class="md-nav__link">
     <span class="md-ellipsis">
-      Object Window
+      Main Window
     </span>
   </a>
   
@@ -17318,9 +17336,27 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#cell-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cell View
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#dialogue-window" class="md-nav__link">
     <span class="md-ellipsis">
       Dialogue Window
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#object-window" class="md-nav__link">
+    <span class="md-ellipsis">
+      Object Window
     </span>
   </a>
   
@@ -17354,9 +17390,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#cell-view" class="md-nav__link">
+  <a href="#use-report" class="md-nav__link">
     <span class="md-ellipsis">
-      Cell View
+      Use Report
     </span>
   </a>
   
@@ -17457,28 +17493,18 @@
 <span class="k">[test_environment.globals]</span>
 <span class="n">chargenstate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">-1.0</span>
 </code></pre></div>
-<h3 id="object-window">Object Window<a class="headerlink" href="#object-window" title="Permanent link">⚓︎</a></h3>
+<h3 id="main-window">Main Window<a class="headerlink" href="#main-window" title="Permanent link">⚓︎</a></h3>
 <ul>
-<li>Significantly improved UI responsiveness.</li>
-<li>The tab style has been changed to be more button-like. This prevents tabs from moving around.</li>
-<li>Added a footer to the window, with a new filter input. This input can be focused by using CTRL+F while the Object Window is active. This can be used to filter objects by a matching id, name, icon, model, enchantment, script, or book text fragments.<ul>
-<li>Regex search options and case-sensitive search options can be enabled in the config file.</li>
-</ul>
-</li>
-<li>The footer also supports a toggle button to only show modified objects.</li>
-<li>The data rendering and behavior has been completely rewritten. Strings and alignment is more consistent. New columns can be added.<ul>
-<li>A new modified column is displayed, showing if the object is modified. This can be sorted on.</li>
-</ul>
-</li>
-<li>Fixed issue where box selection in the object window would cause the mouse to snap to the edge of the screen.</li>
-<li>Modified objects are highlighted with a light green background.</li>
-<li>Deleted objects are highlighted with a light red background.</li>
-<li>The spell list lists the range of the spell.</li>
+<li>The status bars at the bottom of the construction set have been widened. They should always have enough room to show the relevent information.</li>
 </ul>
 <h3 id="actor-editing-windows">Actor Editing Windows<a class="headerlink" href="#actor-editing-windows" title="Permanent link">⚓︎</a></h3>
 <ul>
 <li>The AI window opens more quickly.</li>
 <li>Clicking on the return button in the AI window when no cell has been loaded no longer crashes the CS.</li>
+</ul>
+<h3 id="cell-view">Cell View<a class="headerlink" href="#cell-view" title="Permanent link">⚓︎</a></h3>
+<ul>
+<li>Significantly improved UI responsiveness.</li>
 </ul>
 <h3 id="dialogue-window">Dialogue Window<a class="headerlink" href="#dialogue-window" title="Permanent link">⚓︎</a></h3>
 <ul>
@@ -17496,6 +17522,33 @@
 <li>Select all control (Ctrl+A) now functions in the edit boxes.</li>
 <li>The window will remember the user preferences for column widths, as well as the overall window size.</li>
 <li>Conditional columns display the value being compared against to make it easier at a glance what the INFO requires.</li>
+<li>The cell filtering behavior can be changed using a new dropdown under the actor filter dropdown.<ul>
+<li>Filter with first reference's cell: The first reference of an actor's cell will be used when parsing Cell Fun/Var checks. This is the vanilla and default construction set behavior.</li>
+<li>Filter with render window cell: The currently open cell in the render window will be used instead of the reference's current cell when filtering dialogue.</li>
+<li>Ignore cell filter: Cell filtering will be ignored completely; any cell will assume to pass.</li>
+</ul>
+</li>
+<li>When filtering by an actor and choosing local variables to filter by, only locals already defined on that actor's script will show in the dropdown list.</li>
+</ul>
+<h3 id="object-window">Object Window<a class="headerlink" href="#object-window" title="Permanent link">⚓︎</a></h3>
+<ul>
+<li>Significantly improved UI responsiveness.</li>
+<li>The tab style has been changed to be more button-like. This prevents tabs from moving around.</li>
+<li>Added a footer to the window, with a new filter input. This input can be focused by using CTRL+F while the Object Window is active. This can be used to filter objects by a matching id, name, icon, model, enchantment, script, or book text fragments.<ul>
+<li>Regex search options and case-sensitive search options can be enabled in the config file.</li>
+</ul>
+</li>
+<li>The footer also supports a toggle button to only show modified objects.</li>
+<li>The data rendering and behavior has been completely rewritten. Strings and alignment is more consistent. New columns can be added.<ul>
+<li>A new modified column is displayed, showing if the object is modified. This can be sorted on.</li>
+</ul>
+</li>
+<li>Fixed issue where box selection in the object window would cause the mouse to snap to the edge of the screen.</li>
+<li>Modified objects are highlighted with a light green background.</li>
+<li>Deleted objects are highlighted with a light red background.</li>
+<li>The spell list lists the range of the spell.</li>
+<li>The creature list now shows the soul value of creatures.</li>
+<li>Objects can be marked as deprecated in a content file's metadata file. An array of IDs can be provided under <code>tools.csse.deprecated</code>. Objects matching these IDs will not be displayed in the Object Window.</li>
 </ul>
 <h3 id="render-window">Render Window<a class="headerlink" href="#render-window" title="Permanent link">⚓︎</a></h3>
 <ul>
@@ -17520,6 +17573,10 @@
 <li>The field of view (FOV) and antialiasing (multisamples) can be overwritten in the config file.</li>
 <li>The update rate of the render window can be changed from the default of 25 FPS. By default it now runs at (up to) 60 FPS.</li>
 <li>Fixed an issue with bound calculations. Any bound-related functions, such as focusing the camera (C or T keys) on a light will never send the camera into the stratosphere.</li>
+<li>New widgets exist when moving or rotating a reference. Axis lines are shown when snapping. Holding control while moving or rotating a reference will force on grid/angel snapping, and show markers to show where the reference will snap to. Using the mouse wheel while doing this will adjust the grid/angel snap values.</li>
+<li>Using F2 with a reference selected will bring up the window to edit that reference. Holding shift will bring up the window to edit the base object instead.</li>
+<li>Ctrl+H now opens the Search &amp; Replace window.</li>
+<li>Ctrl+F2 with a door selected will focus the associated door marker. The same can be done on a door marker, to select the door that leads to it.</li>
 </ul>
 <p>The following changes to the rendering window apply when landscape editing:</p>
 <ul>
@@ -17537,10 +17594,11 @@
 <li>Elements may now be double clicked to open the relevant edit window. The right context will be shown, if applicable. For example, a faction will be automatically selected, or a particular INFO record will be displayed.</li>
 <li>Full searches work correctly on long text, such as script or book text.</li>
 <li>Searches can be performed with regex, or made case-sensitive through the settings window.</li>
+<li>The search input box responds to basic keyboard shortcuts.</li>
 </ul>
-<h3 id="cell-view">Cell View<a class="headerlink" href="#cell-view" title="Permanent link">⚓︎</a></h3>
+<h3 id="use-report">Use Report<a class="headerlink" href="#use-report" title="Permanent link">⚓︎</a></h3>
 <ul>
-<li>Significantly improved UI responsiveness.</li>
+<li>Rows in the first list can now be double-clicked. Doing so will bring up a window to edit the related object.</li>
 </ul>
 
 
@@ -17564,7 +17622,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">December 2, 2023 03:18:47</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">February 18, 2024 08:29:55</span>
   </span>
 
     
