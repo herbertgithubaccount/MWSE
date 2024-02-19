@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.9">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.10">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.f2e4d321.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e359304.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -21491,7 +21491,7 @@
 <li><code>wasAdded</code> (boolean)</li>
 </ul>
 <details class="example">
-<summary>Example: Make the Dwemer Tube a Soul gem. Also, make sure Fargoth's soul alway ends up in it if the player has one avilable.</summary>
+<summary>Example: Make Dwemer Tubes be treated as Soul gems. Also, make sure Fargoth's soul always ends up in one if the player has one avilable.</summary>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="kr">function</span> <span class="nf">onInitialized</span><span class="p">()</span>
     <span class="n">tes3</span><span class="p">.</span><span class="n">addSoulGem</span><span class="p">({</span> <span class="n">item</span> <span class="o">=</span> <span class="s2">&quot;misc_dwrv_artifact60&quot;</span> <span class="p">})</span>
 <span class="kr">end</span>
@@ -23104,7 +23104,8 @@
 <h3 id="tes3getluamodmetadata"><code>tes3.getLuaModMetadata</code><a class="headerlink" href="#tes3getluamodmetadata" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">getluamodmetadata, luamodmetadata</div>
 
-<p>Fetches the contents of the <a href="https://mwse.github.io/MWSE/guides/metadata/">metadata file</a> associated with a given lua mod key.</p>
+<p>Fetches the contents of the <a href="https://mwse.github.io/MWSE/guides/metadata/">metadata file</a> associated with a given lua mod key.
+The mod key should match the value of <code>lua-mod</code> specified in the <code>[tools.mwse]</code> section of the relevant metadata file.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">metadata</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">getLuaModMetadata</span><span class="p">(</span><span class="n">modKey</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
@@ -23113,7 +23114,7 @@
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>metadata</code> (table, nil)</li>
+<li><code>metadata</code> (MWSE.Metadata, nil)</li>
 </ul>
 <hr />
 <h3 id="tes3getmagiceffect"><code>tes3.getMagicEffect</code><a class="headerlink" href="#tes3getmagiceffect" title="Permanent link">⚓︎</a></h3>
@@ -24162,21 +24163,22 @@
 <h3 id="tes3paymerchant"><code>tes3.payMerchant</code><a class="headerlink" href="#tes3paymerchant" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">paymerchant</div>
 
-<p>Pays a merchant gold. The money is transferred to their barter gold (non-inventory trading gold), and also updates the last barter timer, so that it works the same way a transaction affeects the barter gold reset cycle. This is useful for simulating paying for services. The function will return true if there was enough gold to complete the payment.</p>
-<p>A negative cost will allow payment from the merchant's barter gold to the player. You may also want to play a trade-related sound of your choice upon successful completion.</p>
+<p>Pays a merchant a specified amount of gold and updates the merchant's "last barter timer". This should be used to simulate paying for services. You may also want to play a trade-related sound of your choice upon successful completion.</p>
+<p>If <code>cost</code> is positive, then that amount of gold will be removed from the player's inventory and added to the merchant's available barter gold.</p>
+<p>If <code>cost</code> is negative, then that amount of gold will be added to the player's inventory and removed from the merchant's available barter gold.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">success</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">payMerchant</span><span class="p">({</span> <span class="n">merchant</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">cost</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
 <li><code>params</code> (table)<ul>
 <li><code>merchant</code> (<a href="../../types/tes3mobileActor/">tes3mobileActor</a>): The merchant to pay.</li>
-<li><code>cost</code> (number): The amount of gold to transfer to the merchant. May be negative to transfer gold to the player.</li>
+<li><code>cost</code> (number): The amount of gold to pay the merchant. If negative, the merchant will pay the player.</li>
 </ul>
 </li>
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>success</code> (boolean): True if the transaction completed. False if there was not enough gold.</li>
+<li><code>success</code> (boolean): <code>true</code> if the transaction completed. <code>false</code> if there was not enough gold.</li>
 </ul>
 <hr />
 <h3 id="tes3persuade"><code>tes3.persuade</code><a class="headerlink" href="#tes3persuade" title="Permanent link">⚓︎</a></h3>
@@ -25541,7 +25543,7 @@ Statics, activators, containers, doors, and lights with non-zero weight.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">February 10, 2024 12:35:30</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">February 19, 2024 20:35:37</span>
   </span>
 
     
