@@ -5017,6 +5017,33 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#tes3uitextlayoutgetfontheight" class="md-nav__link">
+    <span class="md-ellipsis">
+      tes3ui.textLayout.getFontHeight
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tes3uitextlayoutgettextextent" class="md-nav__link">
+    <span class="md-ellipsis">
+      tes3ui.textLayout.getTextExtent
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tes3uitextlayoutwraptext" class="md-nav__link">
+    <span class="md-ellipsis">
+      tes3ui.textLayout.wrapText
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#tes3uiupdatebartermenutiles" class="md-nav__link">
     <span class="md-ellipsis">
       tes3ui.updateBarterMenuTiles
@@ -17898,6 +17925,33 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#tes3uitextlayoutgetfontheight" class="md-nav__link">
+    <span class="md-ellipsis">
+      tes3ui.textLayout.getFontHeight
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tes3uitextlayoutgettextextent" class="md-nav__link">
+    <span class="md-ellipsis">
+      tes3ui.textLayout.getTextExtent
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tes3uitextlayoutwraptext" class="md-nav__link">
+    <span class="md-ellipsis">
+      tes3ui.textLayout.wrapText
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#tes3uiupdatebartermenutiles" class="md-nav__link">
     <span class="md-ellipsis">
       tes3ui.updateBarterMenuTiles
@@ -18814,6 +18868,59 @@
 <li><code>suppress</code> (boolean): Turns on suppression if true, immediately hiding any active tooltip and further world object tooltips. Turns off suppression if false.</li>
 </ul>
 <hr />
+<h3 id="tes3uitextlayoutgetfontheight"><code>tes3ui.textLayout.getFontHeight</code><a class="headerlink" href="#tes3uitextlayoutgetfontheight" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">textlayout.getfontheight</div>
+
+<p>Gets font height metrics for a font.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">maxGlyphHeight</span><span class="p">,</span> <span class="n">lineHeight</span> <span class="o">=</span> <span class="n">tes3ui</span><span class="p">.</span><span class="n">textLayout</span><span class="p">.</span><span class="n">getFontHeight</span><span class="p">(</span><span class="n">font</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Parameters</strong>:</p>
+<ul>
+<li><code>font</code> (number): <em>Default</em>: <code>0</code>. The index of the font.</li>
+</ul>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>maxGlyphHeight</code> (number): Maximum pixel height of a single line of text.</li>
+<li><code>lineHeight</code> (number): Pixel spacing between lines in a paragraph.</li>
+</ul>
+<hr />
+<h3 id="tes3uitextlayoutgettextextent"><code>tes3ui.textLayout.getTextExtent</code><a class="headerlink" href="#tes3uitextlayoutgettextextent" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">textlayout.gettextextent</div>
+
+<p>Calculates expected size information for text content.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">verticalAdvance</span> <span class="o">=</span> <span class="n">tes3ui</span><span class="p">.</span><span class="n">textLayout</span><span class="p">.</span><span class="n">getTextExtent</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">font</span><span class="p">,</span> <span class="n">firstLineOnly</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Parameters</strong>:</p>
+<ul>
+<li><code>text</code> (string): The text to use.</li>
+<li><code>font</code> (number): <em>Default</em>: <code>0</code>. The index of the font.</li>
+<li><code>firstLineOnly</code> (boolean): <em>Default</em>: <code>false</code>. Only process the first line of the text.</li>
+</ul>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>width</code> (number): Pixel width of the widest line of the text.</li>
+<li><code>height</code> (number): Pixel height of a label containing this text. Includes the extra space and rounding added by the label layout.</li>
+<li><code>verticalAdvance</code> (number): The vertical displacement that a following text element would use. It is zero for text without newlines, and increases with each newline.</li>
+</ul>
+<hr />
+<h3 id="tes3uitextlayoutwraptext"><code>tes3ui.textLayout.wrapText</code><a class="headerlink" href="#tes3uitextlayoutwraptext" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">textlayout.wraptext</div>
+
+<p>Performs word wrapping of text.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">wrappedText</span><span class="p">,</span> <span class="n">lineCount</span> <span class="o">=</span> <span class="n">tes3ui</span><span class="p">.</span><span class="n">textLayout</span><span class="p">.</span><span class="n">wrapText</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">font</span><span class="p">,</span> <span class="n">maxWidth</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Parameters</strong>:</p>
+<ul>
+<li><code>text</code> (string): The text to wrap.</li>
+<li><code>font</code> (number): <em>Default</em>: <code>0</code>. The index of the font.</li>
+<li><code>maxWidth</code> (number): <em>Default</em>: <code>-1</code>. The wrapping width in pixels.</li>
+</ul>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>wrappedText</code> (string): The wrapped text, with <code>\n</code> as line breaks.</li>
+<li><code>lineCount</code> (number): The number of lines in the output wrapped text.</li>
+</ul>
+<hr />
 <h3 id="tes3uiupdatebartermenutiles"><code>tes3ui.updateBarterMenuTiles</code><a class="headerlink" href="#tes3uiupdatebartermenutiles" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">updatebartermenutiles, bartermenutiles</div>
 
@@ -18898,7 +19005,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">February 13, 2024 21:37:28</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">February 25, 2024 05:01:33</span>
   </span>
 
     
