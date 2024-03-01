@@ -6,12 +6,12 @@ local Logger = require("logging.logger")
 --- @field logger mwseLogger
 local LogOptions = Parent:new()
 LogOptions.options = {
-	{ label = "Trace", value = "TRACE" },
-	{ label = "Debug", value = "DEBUG" },
-	{ label = "Info",  value = "INFO" },
-	{ label = "Warn",  value = "WARN" },
-	{ label = "Error", value = "ERROR" },
-	{ label = "None",  value = "NONE" },
+	{ label = mwse.mcm.i18n("Trace"), value = "TRACE" },
+	{ label = mwse.mcm.i18n("Debug"), value = "DEBUG" },
+	{ label = mwse.mcm.i18n("Info"),  value = "INFO" },
+	{ label = mwse.mcm.i18n("Warn"),  value = "WARN" },
+	{ label = mwse.mcm.i18n("Error"), value = "ERROR" },
+	{ label = mwse.mcm.i18n("None"),  value = "NONE" },
 }
 LogOptions.description = mwse.mcm.i18n("Log options description")
 
