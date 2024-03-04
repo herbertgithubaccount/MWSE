@@ -46,7 +46,7 @@ return {
 	\z
 	Info: error, warning and info messages will be logged.\n\n\t\z
 	\z
-	Debug: error, warning, info and debug messages will be logger. You may notice a decrease in performance.\n\n\t\z
+	Debug: error, warning, info and debug messages will be logged. You may notice a decrease in performance.\n\n\t\z
 	\z
 	TRACE: messages of all severity levels will be logged. The log file may be hard to read, unless you have a specific thing you're looking for.\z
 	\z
