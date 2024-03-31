@@ -6,8 +6,6 @@ local handleMetatable = {}
 local function getStoredObject(handle)
 	return rawget(handle, "_object")
 end
-SafeHandle.getObject = getStoredObject
-
 
 do -- fill out the metatable
 
@@ -98,6 +96,7 @@ function SafeHandle:valid()
 	local object = rawget(self, "_object")
 	return object ~= nil and not object.deleted
 end
+SafeHandle.getObject = getStoredObject
 
 
 
