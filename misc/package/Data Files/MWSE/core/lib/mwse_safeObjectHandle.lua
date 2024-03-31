@@ -1,86 +1,104 @@
-local this = {}
+local SafeHandle = {}
+
+-- used by instances of the SafeHandle class
+local handleMetatable = {}
+
+local function getStoredObject(handle)
+	return rawget(handle, "_object")
+end
+SafeHandle.getObject = getStoredObject
+
+
+do -- fill out the metatable
+
+	function handleMetatable.__index(handle, key)
+		-- try to look things up in the `SafeHandle` class
+		local val = rawget(SafeHandle, key)
+		if val ~= nil then return val end
+
+		-- try to look things up in the stored object, if it still exists
+
+		local storedObject = getStoredObject(handle)
+		assert(storedObject, "unsafe_object: This object has been invalidated.")
+
+		val = storedObject[key]
+		if type(val) == "function" then
+			return function(_, ...) val(storedObject, ...) end
+		end
+		return val
+	end
+
+	-- Allow this handle to set values of the reference, with some checking.
+	function handleMetatable.__newindex(handle, key, value)
+		local object = assert(getStoredObject(handle), "unsafe_object: This object has been invalidated.")
+		object[key] = value
+	end
+
+	-- Don't compare against this table. Compare against the reference instead.
+	-- there is no guarantee as to whether the handle will be the left parameter, the right paraemeter, or both
+	function handleMetatable.__eq(left, right)
+		local leftMeta, rightMeta = getmetatable(left), getmetatable(right)
+		if leftMeta == handleMetatable then
+			if rightMeta == handleMetatable then
+				return getStoredObject(left) == getStoredObject(right)
+			else
+				return getStoredObject(left) == right
+			end
+		elseif rightMeta == handleMetatable then
+			return left == rawget(right, "_object")
+		else 
+			-- this will never be reached
+		end
+	end
+
+	-- Add tostring() support.
+	function handleMetatable.__tostring(handle)
+		return tostring(getStoredObject(handle))
+	end
+
+	-- Add json support.
+	function handleMetatable.__tojson(handle)
+		local object = getStoredObject(handle)
+		-- try to call the `__tojson` metamethod, if it exists
+		if object ~= nil then
+			local objectMetatable = getmetatable(object)
+			if objectMetatable and objectMetatable.__tojson then
+				return objectMetatable.__tojson(object)
+			end
+		end
+		return "null"
+	end
+end
 
 -- A map of tes3objects to their unsafe handle.
-local handles = {}
+local handles = {} ---@type table<tes3object, table> stores one safe handle per object
 
 --- Remove handles on object invalidated.
 --- @param e objectInvalidatedEventData
-local function onObjectInvalidated(e)
+event.register("objectInvalidated", function(e)
 	local handle = handles[e.object]
-	if (handle) then
+	if handle ~= nil then
 		rawset(handle, "_object", nil)
 		handles[e.object] = nil
 	end
-end
-event.register("objectInvalidated", onObjectInvalidated)
+end)
 
 -- Create a new unsafe reference.
-function this.new(object)
-	if (object == nil) then
-		return nil
+function SafeHandle.new(object)
+	if (object == nil) then return end
+
+	if handles[object] == nil then 
+		handles[object] = setmetatable({ _object = object }, handleMetatable)
 	end
 
-	-- Return a previous handle if applicable.
-	if (handles[object]) then
-		return handles[object]
-	end
-
-	local raw = { _object = object }
-	function raw:valid()
-		local object = rawget(self, "_object")
-		return object ~= nil and not object.deleted
-	end
-	function raw:getObject() return rawget(self, "_object") end
-
-	-- Create a metatable redirect.
-	local handle = setmetatable(raw, this)
-	handles[object] = handle
-
-	return handle
+	return handles[object]
 end
 
--- Allow this handle to index into the reference, with some checking.
-function this:__index(key)
-	local valueRaw = rawget(self, key)
-	if (valueRaw) then
-		return valueRaw
-	end
-
-	local reference = assert(rawget(self, "_object"), "unsafe_object: This object has been invalidated.")
-	local result = reference[key]
-	if (type(result) == "function") then
-		return function(self, ...)
-			return result(reference, ...)
-		end
-	end
-	return result
+function SafeHandle:valid()
+	local object = rawget(self, "_object")
+	return object ~= nil and not object.deleted
 end
 
--- Allow this handle to set values of the reference, with some checking.
-function this:__newindex(key, value)
-	local reference = assert(rawget(self, "_object"), "unsafe_object: This object has been invalidated.")
-	reference[key] = value
-end
 
--- Don't compare against this table. Compare against the reference instead.
-function this:__eq(value)
-	return rawget(self, "_object") == value
-end
 
--- Add tostring() support.
-function this:__tostring()
-	return tostring(rawget(self, "_object"))
-end
-
--- Add json support.
-function this:__tojson()
-	local reference = rawget(self, "_object")
-	if (reference) then
-		return reference:__tojson()
-	else
-		return "null"
-	end
-	return rawget(self, "_object"):__tojson()
-end
-
-return this
+return SafeHandle
