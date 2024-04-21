@@ -17554,28 +17554,23 @@ i.e., <code>comp(a,b) == true</code> would mean <code>a</code> is less than <cod
 <h3 id="tablebinsearch"><code>table.binsearch</code><a class="headerlink" href="#tablebinsearch" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">binsearch</div>
 
-<p>Performs a binary search for a given <code>value</code> inside a specified <code>table</code> <code>t</code>.</p>
-<p>If the <code>value</code> is found in <code>t</code>, then a <code>table</code> providing the range of all matching indices is returned. (e.g. <code>{ startindice, endindice }</code>.) 
-If only one matching index was found, then <code>startindice</code> will be the same as <code>endindice</code>.</p>
-<p>If <code>value</code> is not found in <code>t</code>, then <code>nil</code> is returned.</p>
-<p>If <code>compval</code> is given, then it must be a function that takes in an element of <code>t</code> and returns a value to use for comparisons.
-For example, to compare arrays based on their first entry, you can write <code>compvalue = function(value) return value[1] end</code>.</p>
-<p>Note that <code>compval</code> is different from the <code>comp</code> that is specified in the <code>bininsert</code> function.</p>
-<p>If <code>reversed == true</code>, then the search assumes that <code>t</code> is sorted in reverse order (i.e., largest value at position 1).
-Note that specifying <code>reversed</code> requires specifying <code>compval</code>. 
-You can circumvent this by passing <code>nil</code> for <code>compval</code>. e.g., <code>binsearch(tbl, value, nil, true)</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">table</span><span class="p">.</span><span class="n">binsearch</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">compval</span><span class="p">,</span> <span class="n">reversed</span><span class="p">)</span>
+<p>Performs a binary search for a given <code>value</code> inside a specified array-style <code>table</code> <code>tbl</code>.</p>
+<p>If the <code>value</code> is in <code>tbl</code>, then its corresponding <code>index</code> will be returned. Otherwise, this function will return <code>nil</code>.
+If <code>findAll == true</code>, then this <code>binsearch</code> will return the lowest and highest indices that store <code>value</code>. (These indices will be equal if there is only one copy of <code>value</code> in <code>tbl</code>.)</p>
+<p>You can optionally provide a <code>comp</code> function. If provided, <code>binsearch</code> will treat <code>tbl</code> as if it had been sorted by <code>table.sort(tbl, comp)</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">index</span><span class="p">,</span> <span class="n">highestMatch</span> <span class="o">=</span> <span class="n">table</span><span class="p">.</span><span class="n">binsearch</span><span class="p">(</span><span class="n">tbl</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">comp</span><span class="p">,</span> <span class="n">findAll</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>t</code> (table)</li>
+<li><code>tbl</code> (table)</li>
 <li><code>value</code> (unknown): The value to search for.</li>
-<li><code>compval</code> (function): <em>Optional</em>. A function that returns the value to use in comparisons.</li>
-<li><code>reversed</code> (boolean): <em>Optional</em>. If true, then <code>binsearch</code> will assume <code>t</code> is sorted in reverse order.</li>
+<li><code>comp</code> (fun(a, b): boolean): <em>Optional</em>. The function used to sort <code>tbl</code>. If not provided, then the standard <code>&lt;</code> operator will be used.</li>
+<li><code>findAll</code> (boolean): <em>Default</em>: <code>false</code>. If true,</li>
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (table)</li>
+<li><code>index</code> (integer, nil): An <code>index</code> such that <code>tbl[index] == value</code>, if such an index exists. <code>nil</code> otherwise. If <code>findAll == true</code>, this will be the smallest index such that <code>tbl[index] == value</code>.</li>
+<li><code>highestMatch</code> (integer, nil): If a match was found, and if <code>findAll == true</code>, then this will be the largest <code>index</code> such that <code>tbl[index] == vale</code>. <code>nil</code> otherwise.</li>
 </ul>
 <hr />
 <h3 id="tablechoice"><code>table.choice</code><a class="headerlink" href="#tablechoice" title="Permanent link">⚓︎</a></h3>
@@ -17938,7 +17933,7 @@ Any additional arguments will be passed to <code>f</code>. For example, <code>ta
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">April 20, 2024 10:03:31</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">April 19, 2024 09:04:18</span>
   </span>
 
     
