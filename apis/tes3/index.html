@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.18">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.19">
     
     
       
@@ -24337,17 +24337,26 @@ The mod key should match the value of <code>lua-mod</code> specified in the <cod
 <h3 id="tes3raytest"><code>tes3.rayTest</code><a class="headerlink" href="#tes3raytest" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">raytest</div>
 
-<p>Performs a ray test and returns various information related to the result(s). If <code>findAll</code> is set, the result will be a table of results, otherwise only the first result is returned.</p>
+<p>Performs a ray test and returns various information related to the result(s). The ray test works by effectively shooting out a line, starting at <code>position</code> and pointing towards <code>direction</code>, and then checking to see which objects intersect that line.</p>
+<p>Here is an overview of how some commonly used parameters will alter how <code>tes3.rayTest</code> checks for collisions:</p>
+<ol>
+<li><code>root</code>: Things that aren't a <code>child</code> of the specified <code>root</code> will be skipped. If <code>root</code> is not provided, then nothing will be skipped by this process.</li>
+<li><code>ignore</code>: Objects in this array will be skipped.</li>
+<li><code>maxDistance</code>: If specified, only objects within the specified distance will be checked.</li>
+<li><code>findAll</code>: If <code>true</code>, then all intersections will be returned. Otherwise, only the first intersection will be returned.</li>
+</ol>
 <div class="admonition tip improving performance of raytest">
 <p class="admonition-title">Tip</p>
+<p>The performance of <code>tes3.rayTest</code> depends quite a bit on the parameters the function is called with.
+The following suggestions will help to minimize the performance impact of calls to <code>tes3.rayTest</code>.</p>
 <ol>
-<li>Keep maximum size of objects reasonable, as well as triangle counts</li>
-<li>Whenever possible set a maxDistance in your rayTest calls</li>
-<li>Keep a cached table of ignored objects that you pass to rayTest</li>
-<li>Whenever possible call ray test on only a subset of the game's scene graph. It can be <code>worldPickRoot</code> for interactable objects, <code>worldLandscapeRoot</code>, or <code>worldObjectRoot</code> for other static, non-interactable objects. You could even pass a smaller subset of the scene graph with a different <code>NiNode</code> you aquired yourself. If your mod's logic only needs specific things you can narrow it down for big performance improvement.</li>
+<li>Set a <code>maxDistance</code>.</li>
+<li>Filter objects by using the <code>root</code> parameter. This will make the algorithm <strong>much</strong> faster, and can make it behave more predictably as well. If you're only checking for interactable objects (containers/actors/plants/etc), use <code>worldPickRoot</code>. If you're looing for static, non-interable objects, use <code>worldObjectRoot</code>. You could even pass a smaller subset of the scene graph with a different <code>NiNode</code> you aquired yourself.</li>
+<li>Try to keep a cached copy of the array used for the <code>ignore</code> parameter (if possible).</li>
+<li>Keep maximum size of objects reasonable, and try to limit triangle counts.</li>
 </ol>
 </div>
-<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">rayTest</span><span class="p">({</span> <span class="n">position</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">direction</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">findAll</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">maxDistance</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">sort</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">useModelBounds</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">useModelCoordinates</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">useBackTriangles</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">observeAppCullFlag</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">root</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">returnColor</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">returnNormal</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">returnSmoothNormal</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">returnTexture</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">ignore</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">accurateSkinned</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">rayTest</span><span class="p">({</span> <span class="n">position</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">direction</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">findAll</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">maxDistance</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">ignore</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">root</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">useModelBounds</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">useModelCoordinates</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">useBackTriangles</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">observeAppCullFlag</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">accurateSkinned</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">sort</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">returnColor</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">returnNormal</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">returnSmoothNormal</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">returnTexture</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
@@ -24355,19 +24364,19 @@ The mod key should match the value of <code>lua-mod</code> specified in the <cod
 <li><code>position</code> (<a href="../../types/tes3vector3/">tes3vector3</a>, number[]): Position of the ray origin.</li>
 <li><code>direction</code> (<a href="../../types/tes3vector3/">tes3vector3</a>, number[]): Direction of the ray. Does not have to be unit length.</li>
 <li><code>findAll</code> (boolean): <em>Default</em>: <code>false</code>. If true, the ray test won't stop after the first result.</li>
-<li><code>maxDistance</code> (number): <em>Default</em>: <code>0</code>. The maximum distance that the test will run.</li>
-<li><code>sort</code> (boolean): <em>Default</em>: <code>true</code>. If true, the results will be sorted by distance from the origin position.</li>
-<li><code>useModelBounds</code> (boolean): <em>Default</em>: <code>false</code>. If true, model bounds will be tested for intersection. Otherwise triangles will be used.</li>
-<li><code>useModelCoordinates</code> (boolean): <em>Default</em>: <code>false</code>. If true, model coordinates will be used instead of world coordinates.</li>
-<li><code>useBackTriangles</code> (boolean): <em>Default</em>: <code>false</code>. Include intersections with back-facing triangles.</li>
+<li><code>maxDistance</code> (number): <em>Default</em>: <code>0</code>. The maximum distance that the test will run. If set to <code>0</code>, no maximum distance will be used.</li>
+<li><code>ignore</code> (table&lt;integer, <a href="../../types/niNode/">niNode</a>|<a href="../../types/tes3reference/">tes3reference</a>&gt;): <em>Optional</em>. An array of references and/or scene graph nodes to cull from the result(s).</li>
+<li><code>root</code> (<a href="../../types/niNode/">niNode</a>): <em>Default</em>: <code>tes3.game.worldRoot</code>. Node pointer to node scene. Only nodes that are a child of this root will be checked by this function. This option can considerably increase performance if used properly. Common choices for the root node are: <a href="https://mwse.github.io/MWSE/types/tes3game/#worldLandscapeRoot"><code>tes3.game.worldLandscapeRoot</code></a>, <a href="https://mwse.github.io/MWSE/types/tes3game/#worldObjectRoot"><code>worldObjectRoot</code></a> (for most static objects), and <a href="https://mwse.github.io/MWSE/types/tes3game/#worldPickRoot"><code>worldPickRoot</code></a> (for containers, NPCs, plants, doors, etc).</li>
+<li><code>useModelBounds</code> (boolean): <em>Default</em>: <code>false</code>. If <code>true</code>, model bounds will be tested for intersection. Otherwise triangles will be used. This will result in more accurate collision testing, but will be more computationally expensive. This is rarely needed.</li>
+<li><code>useModelCoordinates</code> (boolean): <em>Default</em>: <code>false</code>. If true, model coordinates will be used instead of world coordinates. Typically not needed.</li>
+<li><code>useBackTriangles</code> (boolean): <em>Default</em>: <code>false</code>. Include intersections with back-facing triangles. This essentially makes it possible to intersect with the "back-side" of an object, which could make it possible to return a hit on an object if the <code>position</code> parameter is "inside" the object in question.This will result in more accurate collision testing, but will be more computationally expensive. This is rarely needed.</li>
 <li><code>observeAppCullFlag</code> (boolean): <em>Default</em>: <code>true</code>. Ignore intersections with culled (hidden) models.</li>
-<li><code>root</code> (<a href="../../types/niNode/">niNode</a>): <em>Default</em>: <code>tes3.game.worldRoot</code>. Node pointer to node scene. To reduce the computational work, consider passing only a smaller subset of the <code>worldRoot</code> to improve performance. The typical nodes you can pass here are: <a href="https://mwse.github.io/MWSE/types/tes3game/#worldLandscapeRoot"><code>tes3.game.worldLandscapeRoot</code></a>, <a href="https://mwse.github.io/MWSE/types/tes3game/#worldObjectRoot"><code>worldObjectRoot</code></a>, and <a href="https://mwse.github.io/MWSE/types/tes3game/#worldPickRoot"><code>worldPickRoot</code></a>.</li>
-<li><code>returnColor</code> (boolean): <em>Default</em>: <code>false</code>. Calculate and return the vertex color at intersections.</li>
-<li><code>returnNormal</code> (boolean): <em>Default</em>: <code>false</code>. Calculate and return the vertex normal at intersections.</li>
-<li><code>returnSmoothNormal</code> (boolean): <em>Default</em>: <code>false</code>. Use normal interpolation for calculating vertex normals.</li>
-<li><code>returnTexture</code> (boolean): <em>Default</em>: <code>false</code>. Calculate and return the texture coordinate at intersections.</li>
-<li><code>ignore</code> (table&lt;integer, <a href="../../types/niNode/">niNode</a>|<a href="../../types/tes3reference/">tes3reference</a>&gt;): <em>Optional</em>. An array of references and/or scene graph nodes to cull from the result(s). In most cases when testing from the camera position, it's desirable to pass <code>ignore = { tes3.player }</code>.</li>
-<li><code>accurateSkinned</code> (boolean): <em>Default</em>: <code>false</code>. If true, the raytest will deform skinned objects to accurately raytest against them. This significantly slows down the operation.</li>
+<li><code>accurateSkinned</code> (boolean): <em>Default</em>: <code>false</code>. If <code>true</code>, skinned objects will be deformed, allowing for more accurate collision checking. This <strong>significantly</strong> slows down the operation, and is rarely needed.</li>
+<li><code>sort</code> (boolean): <em>Default</em>: <code>true</code>. Sort results by distance from the specified <code>position</code>? Only applicable if <code>findAll == true</code>.</li>
+<li><code>returnColor</code> (boolean): <em>Default</em>: <code>false</code>. Calculate and return the vertex color at intersections?</li>
+<li><code>returnNormal</code> (boolean): <em>Default</em>: <code>false</code>. Calculate and return the vertex normal at intersections?</li>
+<li><code>returnSmoothNormal</code> (boolean): <em>Default</em>: <code>false</code>. Use normal interpolation for calculating vertex normals?</li>
+<li><code>returnTexture</code> (boolean): <em>Default</em>: <code>false</code>. Calculate and return the texture coordinate at intersections?</li>
 </ul>
 </li>
 </ul>
@@ -24377,7 +24386,7 @@ The mod key should match the value of <code>lua-mod</code> specified in the <cod
 </ul>
 <details class="example">
 <summary>Example: Get Activation Target</summary>
-<p>This example performs a ray test to match the normal activation target test. Unlike <code>tes3.getPlayerTarget()</code> this will return objects not normally available for activation.</p>
+<p>This example performs a <code>tes3.rayTest</code> to match the normal activation target test. Unlike <code>tes3.getPlayerTarget()</code> this will return objects not normally available for activation.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">hitResult</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">rayTest</span><span class="p">({</span> <span class="n">position</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">getPlayerEyePosition</span><span class="p">(),</span> <span class="n">direction</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">getPlayerEyeVector</span><span class="p">()</span> <span class="p">})</span>
 <span class="kd">local</span> <span class="n">hitReference</span> <span class="o">=</span> <span class="n">hitResult</span> <span class="ow">and</span> <span class="n">hitResult</span><span class="p">.</span><span class="n">reference</span>
 <span class="kr">if</span> <span class="p">(</span><span class="n">hitReference</span> <span class="o">==</span> <span class="kc">nil</span><span class="p">)</span> <span class="kr">then</span>
@@ -24389,7 +24398,7 @@ The mod key should match the value of <code>lua-mod</code> specified in the <cod
 </details>
 <details class="example">
 <summary>Example: Get Camera Target</summary>
-<p>This example performs a ray test to see what the camera is currently looking at.</p>
+<p>See what the player's camera is looking at.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">hitResult</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">rayTest</span><span class="p">({</span> <span class="n">position</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">getCameraPosition</span><span class="p">(),</span> <span class="n">direction</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">getCameraVector</span><span class="p">()</span> <span class="p">})</span>
 <span class="kd">local</span> <span class="n">hitReference</span> <span class="o">=</span> <span class="n">hitResult</span> <span class="ow">and</span> <span class="n">hitResult</span><span class="p">.</span><span class="n">reference</span>
 <span class="kr">if</span> <span class="p">(</span><span class="n">hitReference</span> <span class="o">==</span> <span class="kc">nil</span><span class="p">)</span> <span class="kr">then</span>
@@ -24401,7 +24410,7 @@ The mod key should match the value of <code>lua-mod</code> specified in the <cod
 </details>
 <details class="example">
 <summary>Example: Multiple Results</summary>
-<p>This example performs a ray test and displays all results in the entire ray test, rather than ending at the first object hit.</p>
+<p>This example performs a <code>tes3.rayTest</code> and displays all results in the entire ray test, rather than ending at the first object hit.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">results</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">rayTest</span><span class="p">{</span> <span class="n">position</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">getCameraPosition</span><span class="p">(),</span> <span class="n">direction</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">getCameraVector</span><span class="p">(),</span> <span class="n">findAll</span> <span class="o">=</span> <span class="kc">true</span> <span class="p">}</span>
 <span class="kr">if</span> <span class="n">results</span> <span class="kr">then</span>
     <span class="kr">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">hit</span> <span class="kr">in</span> <span class="nb">pairs</span><span class="p">(</span><span class="n">results</span><span class="p">)</span> <span class="kr">do</span>
@@ -24411,7 +24420,7 @@ The mod key should match the value of <code>lua-mod</code> specified in the <cod
 </code></pre></div>
 </details>
 <details class="example">
-<summary>Example: Save rayTest result for use at a later point</summary>
+<summary>Example: Save <code>tes3.rayTest</code> result for use at a later point</summary>
 <p>If you plan to use the results of rayTest, you should make sure it still exists. For example, an object which was in a list of results of rayTest can get unloaded when the player changes cells and become invalid, so it shouldn't be accessed.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="kr">function</span> <span class="nf">doMyRayTest</span><span class="p">()</span>
     <span class="c1">-- the result can get invalidated</span>
@@ -25541,7 +25550,7 @@ Statics, activators, containers, doors, and lights with non-zero weight.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">April 20, 2024 10:03:31</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">April 25, 2024 17:43:15</span>
   </span>
 
     
@@ -25608,7 +25617,7 @@ Statics, activators, containers, doors, and lights with non-zero weight.</p>
     <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.code.copy", "content.tabs.link", "navigation.indexes", "navigation.instant", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.3220b9d7.min.js"></script>
+      <script src="../../assets/javascripts/bundle.dd8806f2.min.js"></script>
       
     
   </body>
