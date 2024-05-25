@@ -5427,6 +5427,10 @@
       
         
       
+        
+      
+        
+      
     
     
       
@@ -5874,6 +5878,27 @@
   
   <span class="md-ellipsis">
     mwseMCMActiveInfo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mwseMCMBinder/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mwseMCMBinder
   </span>
   
 
@@ -6394,6 +6419,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../mwseMCMMouseBinder/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mwseMCMMouseBinder
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../mwseMCMMouseOverInfo/" class="md-nav__link">
         
   
@@ -6822,6 +6868,15 @@
   <a href="#createlabelblock" class="md-nav__link">
     <span class="md-ellipsis">
       createLabelBlock
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#createmousebinder" class="md-nav__link">
+    <span class="md-ellipsis">
+      createMouseBinder
     </span>
   </a>
   
@@ -17996,6 +18051,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#createmousebinder" class="md-nav__link">
+    <span class="md-ellipsis">
+      createMouseBinder
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#createmouseoverblock" class="md-nav__link">
     <span class="md-ellipsis">
       createMouseOverBlock
@@ -18695,12 +18759,12 @@ If <code>false</code> or <code>nil</code>, then this component will be hidden if
 <li><code>data</code> (table)<ul>
 <li><code>label</code> (string): <em>Optional</em>. Text shown next to the button.</li>
 <li><code>description</code> (string): <em>Optional</em>. If in a <a href="../mwseMCMSideBarPage/">Sidebar Page</a>, the description will be shown on mouseover.</li>
-<li><code>allowCombinations</code> (boolean): <em>Default</em>: <code>true</code>. If true, the keybinder will let the user use modification keys: Shift, Ctrl, and Alt when rebinding.</li>
-<li><code>allowMouse</code> (boolean): <em>Default</em>: <code>false</code>. If true, the keybinder will let the user use mouse buttons and scroll wheel in this keybinder. In that case the variable will have <a href="../mwseKeyMouseCombo/">mwseKeyMouseCombo</a> layout, <a href="../mwseKeyCombo/">mwseKeyCombo</a> otherwise.</li>
+<li><code>allowCombinations</code> (boolean): <em>Default</em>: <code>true</code>. If true, the KeyBinder will let the user use modification keys: Shift, Ctrl, and Alt when rebinding.</li>
+<li><code>allowMouse</code> (boolean): <em>Default</em>: <code>false</code>. If true, the KeyBinder will let the user use mouse buttons and scroll wheel in this keybinder. In that case the variable will have <a href="../mwseKeyMouseCombo/">mwseKeyMouseCombo</a> layout, <a href="../mwseKeyCombo/">mwseKeyCombo</a> otherwise.</li>
 <li><code>keybindName</code> (string): <em>Optional</em>. The keybind name. Shown in the popup menu header. This string is formatted into a localized version of "SET %s KEYBIND.". If none is provided the popup has "SET NEW KEYBIND." as header text.</li>
 <li><code>leftSide</code> (boolean): <em>Default</em>: <code>true</code>. If true, the button will be created on the left and label on the right.</li>
 <li><code>variable</code> (<a href="../mwseMCMVariable/">mwseMCMVariable</a>, <a href="../mwseMCMSettingNewVariable/">mwseMCMSettingNewVariable</a>): A variable for this KeyBinder.</li>
-<li><code>defaultSetting</code> (<a href="../mwseKeyCombo/">mwseKeyCombo</a>): <em>Optional</em>. If <code>defaultSetting</code> wasn't passed in the <code>variable</code> table, can be passed here. The new variable will be initialized to this value.</li>
+<li><code>defaultSetting</code> (<a href="../mwseKeyCombo/">mwseKeyCombo</a>, <a href="../mwseKeyMouseCombo/">mwseKeyMouseCombo</a>): <em>Optional</em>. If <code>defaultSetting</code> wasn't passed in the <code>variable</code> table, can be passed here. The new variable will be initialized to this value.</li>
 <li><code>callback</code> (fun(self: <a href="../mwseMCMKeyBinder/">mwseMCMKeyBinder</a>)): <em>Optional</em>. The custom function called when the player interacts with this KeyBinder.</li>
 <li><code>inGameOnly</code> (boolean): <em>Default</em>: <code>false</code>. If true, the setting is disabled while the game is on main menu.</li>
 <li><code>restartRequired</code> (boolean): <em>Default</em>: <code>false</code>. If true, updating this Setting will notify the player to restart the game.</li>
@@ -18739,6 +18803,41 @@ If <code>false</code> or <code>nil</code>, then this component will be hidden if
 <p><strong>Parameters</strong>:</p>
 <ul>
 <li><code>parentBlock</code> (<a href="../tes3uiElement/">tes3uiElement</a>)</li>
+</ul>
+<hr />
+<h3 id="createmousebinder"><code>createMouseBinder</code><a class="headerlink" href="#createmousebinder" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">createmousebinder, mousebinder</div>
+
+<p>Creates a new nested MouseBinder.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">button</span> <span class="o">=</span> <span class="n">myObject</span><span class="p">:</span><span class="n">createMouseBinder</span><span class="p">({</span> <span class="n">label</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">description</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">allowCombinations</span>  <span class="o">=</span> <span class="p">...,</span> <span class="n">allowButtons</span>  <span class="o">=</span> <span class="p">...,</span> <span class="n">allowWheel</span>  <span class="o">=</span> <span class="p">...,</span> <span class="n">keybindName</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">leftSide</span>  <span class="o">=</span> <span class="p">...,</span> <span class="n">variable</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">defaultSetting</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">callback</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">inGameOnly</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">restartRequired</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">restartRequiredMessage</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">indent</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">childIndent</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">paddingBottom</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">childSpacing</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">postCreate</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
+</code></pre></div>
+<p><strong>Parameters</strong>:</p>
+<ul>
+<li><code>data</code> (table)<ul>
+<li><code>label</code> (string): <em>Optional</em>. Text shown next to the button.</li>
+<li><code>description</code> (string): <em>Optional</em>. If in a <a href="../mwseMCMSideBarPage/">Sidebar Page</a>, the description will be shown on mouseover.</li>
+<li><code>allowCombinations</code> (boolean): <em>Default</em>: <code>true</code>. If true, the MouseBinder will let the user use modification keys: Shift, Ctrl, and Alt when rebinding.</li>
+<li><code>allowButtons</code> (boolean): <em>Default</em>: <code>true</code>. If true, the MouseBinder will let the user bind mouse buttons.</li>
+<li><code>allowWheel</code> (boolean): <em>Default</em>: <code>false</code>. If true, the MouseBinder will let the user bind mouse wheel scroll up or down.</li>
+<li><code>keybindName</code> (string): <em>Optional</em>. The keybind name. Shown in the popup menu header. This string is formatted into a localized version of "SET %s KEYBIND.". If none is provided the popup has "SET NEW KEYBIND." as header text.</li>
+<li><code>leftSide</code> (boolean): <em>Default</em>: <code>true</code>. If true, the button will be created on the left and label on the right.</li>
+<li><code>variable</code> (<a href="../mwseMCMVariable/">mwseMCMVariable</a>, <a href="../mwseMCMSettingNewVariable/">mwseMCMSettingNewVariable</a>): A variable for this MouseBinder.</li>
+<li><code>defaultSetting</code> (<a href="../mwseKeyMouseCombo/">mwseKeyMouseCombo</a>): <em>Optional</em>. If <code>defaultSetting</code> wasn't passed in the <code>variable</code> table, can be passed here. The new variable will be initialized to this value.</li>
+<li><code>callback</code> (fun(self: <a href="../mwseMCMMouseBinder/">mwseMCMMouseBinder</a>)): <em>Optional</em>. The custom function called when the player interacts with this MouseBinder.</li>
+<li><code>inGameOnly</code> (boolean): <em>Default</em>: <code>false</code>. If true, the setting is disabled while the game is on main menu.</li>
+<li><code>restartRequired</code> (boolean): <em>Default</em>: <code>false</code>. If true, updating this Setting will notify the player to restart the game.</li>
+<li><code>restartRequiredMessage</code> (string): <em>Optional</em>. The message shown if restartRequired is triggered. The default text is a localized version of: "The game must be restarted before this change will come into effect."</li>
+<li><code>indent</code> (integer): <em>Default</em>: <code>12</code>. The left padding size in pixels. Only used if the <code>childIndent</code> isn't set on the parent component.</li>
+<li><code>childIndent</code> (integer): <em>Optional</em>. The left padding size in pixels. Used on all the child components.</li>
+<li><code>paddingBottom</code> (integer): <em>Default</em>: <code>4</code>. The bottom border size in pixels. Only used if the <code>childSpacing</code> is unset on the parent component.</li>
+<li><code>childSpacing</code> (integer): <em>Optional</em>. The bottom border size in pixels. Used on all the child components.</li>
+<li><code>postCreate</code> (fun(self: <a href="../mwseMCMMouseBinder/">mwseMCMMouseBinder</a>)): <em>Optional</em>. Can define a custom formatting function to make adjustments to any element saved in <code>self.elements</code>.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>button</code> (<a href="../mwseMCMMouseBinder/">mwseMCMMouseBinder</a>)</li>
 </ul>
 <hr />
 <h3 id="createmouseoverblock"><code>createMouseOverBlock</code><a class="headerlink" href="#createmouseoverblock" title="Permanent link">⚓︎</a></h3>
@@ -19269,7 +19368,7 @@ If <code>false</code> or <code>nil</code>, then this component will be hidden if
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">May 18, 2024 07:01:04</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">May 25, 2024 09:31:12</span>
   </span>
 
     
