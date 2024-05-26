@@ -18,6 +18,21 @@ local Parent = require("mcm.components.settings.Binder")
 
 --- @class mwseMCMKeyBinder
 local KeyBinder = Parent:new()
+
+function KeyBinder.new(cls, obj)
+	obj = Parent.new(cls, obj) -- also creates object if not provided, and sets metatables
+
+	if obj.allowCombinations and obj.variable then
+		table.copymissing(obj.variable.value, {
+			isAltDown = false,
+			isControlDown = false,
+			isShiftDown = false,
+			isSuperDown = false,
+		})
+	end
+
+	return obj
+end
 KeyBinder.allowMouse = false
 KeyBinder.popupId = tes3ui.registerID("KeyBinderPopup")
 
@@ -26,13 +41,13 @@ KeyBinder.popupId = tes3ui.registerID("KeyBinderPopup")
 --- @param e keyDownEventData|keyUpEventData|mouseButtonDownEventData|mouseWheelEventData
 function KeyBinder:getKeyComboFromEventData(e)
 	local result = {
-		keyCode = e.keyCode or false
+		keyCode = e.keyCode or nil
 	}
 
 	if self.allowMouse then
 		local wheel = e.delta and math.clamp(e.delta, -1, 1)
-		result.mouseWheel = wheel or false
-		result.mouseButton = e.button or false
+		result.mouseWheel = wheel or nil
+		result.mouseButton = e.button or nil
 	end
 
 	if self.allowCombinations then

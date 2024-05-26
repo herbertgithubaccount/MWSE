@@ -152,30 +152,22 @@ function tes3.getAttachment(reference, attachment)
 	return reference and reference.attachments and reference.attachments[attachment]
 end
 
+
 -- Function to compare two keybind objects for equality. Useful in key events.
 function tes3.isKeyEqual(params)
 	local actual = params.actual
 	local expected = params.expected
 
-	-- Handle mouseWheelEventData
-	local actualMouseWheel = actual.mouseWheel or actual.delta and math.clamp(actual.delta, -1, 1)
-	local expectedMouseWheel = expected.mouseWheel or expected.delta and math.clamp(expected.delta, -1, 1)
+	return  actual.keyCode == expected.keyCode
+		and actual.isShiftDown == expected.isShiftDown
+		and actual.isControlDown == expected.isControlDown
+		and actual.isAltDown == expected.isAltDown
+		and actual.isSuperDown == expected.isSuperDown
+		-- handle mouseWheelEventData
+		and math.sign(actual.mouseWheel or actual.delta or 0) == math.sign(expected.mouseWheel or expected.delta or 0)
+		-- Handle mouseDownEventData
+		and (actual.mouseButton or actual.button) == (expected.mouseButton or expected.button)
 
-	-- Handle mouseDownEventData
-	local actualMouseButton = actual.mouseButton or actual.button
-	local expectedMouseButton = expected.mouseButton or expected.button
-
-	if ((actual.keyCode or false)  ~= (expected.keyCode or false)
-		or (actual.isShiftDown or false) ~= (expected.isShiftDown or false)
-		or (actual.isControlDown or false) ~= (expected.isControlDown or false)
-		or (actual.isAltDown or false) ~= (expected.isAltDown or false)
-		or (actual.isSuperDown or false) ~= (expected.isSuperDown or false)
-		or (actualMouseButton or false) ~= (expectedMouseButton or false)
-		or (actualMouseWheel or false) ~= (expectedMouseWheel or false)) then
-		return false
-	end
-
-	return true
 end
 
 -- Iterator to use TES3::Iterator in a for loop.
