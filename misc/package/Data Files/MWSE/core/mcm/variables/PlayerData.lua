@@ -16,46 +16,31 @@ local Parent = require("mcm.variables.Variable")
 
 --- Class object
 --- @class mwseMCMPlayerData
-local PlayerDataVar = Parent:new()
+local PlayerDataVar = Herbert_Class.new{parents={Parent}}
 PlayerDataVar.inGameOnly = true
 
 --- @return unknown value
 function PlayerDataVar:get()
-	if tes3.player then
-		local current = tes3.player.data
-		local previous
-		for v in string.gmatch(self.path, "[^%.]+") do
-			if not current[v] then
-				current[v] = {}
-			end
-			current = current[v]
-		end
-		if current[self.id] == nil then
-			current[self.id] = self.defaultSetting
-		end
-		return current[self.id]
+	if not tes3.player then 
+		return self.defaultSetting
 	end
-
-	return self.defaultSetting
+	local current = tes3.player.data
+	for key in self.path:gmatch("[^%.]+") do
+		current = table.getset(current, key, {})
+	end
+	return table.getset(current, self.id, self.defaultSetting)
 end
 
 --- @param newValue unknown
 function PlayerDataVar:set(newValue)
-	if not tes3.player then
-		return
-	end
-
-	local converter = self.converter
-	if (converter) then
-		newValue = converter(newValue)
-	end
+	if not tes3.player then return end
 
 	local table = tes3.player.data
 	for v in string.gmatch(self.path, "[^%.]+") do
 		table = table[v]
 	end
 
-	table[self.id] = newValue
+	table[self.id] = self:handleConverter(newValue)
 end
 
 return PlayerDataVar

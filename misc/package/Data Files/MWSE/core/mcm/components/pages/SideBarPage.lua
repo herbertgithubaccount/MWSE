@@ -8,24 +8,20 @@
 --- @diagnostic disable: duplicate-set-field
 
 local Parent = require("mcm.components.pages.Page")
+local MouseOverPage = require("mcm.components.pages.MouseOverPage")
+local Info = require("mcm.components.infos.Info")
+local MouseOverInfo = require("mcm.components.infos.MouseOverInfo")
 
 --- @class mwseMCMSideBarPage
 --- @field sidebarComponents mwseMCMComponent[] *Deprecated*
-local SideBarPage = Parent:new()
+local SideBarPage = Herbert_Class.new{parents={Parent},
+	fields={
+		{"sidebar", factory=function() return MouseOverPage.new() end}
+	}}
+
+
 SideBarPage.triggerOn = "MCM:MouseOver"
 SideBarPage.triggerOff = "MCM:MouseLeave"
-
---- @param data mwseMCMSideBarPage.new.data|nil
---- @return mwseMCMSideBarPage page
-function SideBarPage:new(data)
-	local t = Parent:new(data) --[[@as mwseMCMSideBarPage]]
-	t.sidebar = self:getComponent({ class = "MouseOverPage" }) --[[@as mwseMCMMouseOverPage]]
-
-	setmetatable(t, self)
-	self.__index = self
-	return t
-
-end
 
 --- @param parentBlock tes3uiElement
 function SideBarPage:createSidetoSideBlock(parentBlock)
@@ -56,20 +52,17 @@ function SideBarPage:createRightColumn(parentBlock)
 		-- or description
 	elseif self.description then
 		-- By default, sidebar is a mouseOver description pane
-		local sidebarInfo = self:getComponent({
-			-- label = self.label,
-			text = self.description,
-			class = "Info",
-		}) --[[@as mwseMCMInfo]]
+		local sidebarInfo = Info.new{text=self.description}
 		sidebarInfo:create(defaultView)
 	end
 
 	-- mouseover shows descriptions of settings
-	local mouseOver = self:getComponent({
-		-- label = self.label,
-		text = self.description or "",
-		class = "MouseOverInfo",
-	}) --[[@as mwseMCMMouseOverInfo]]
+	-- local mouseOver = self:getComponent({
+	-- 	-- label = self.label,
+	-- 	text = self.description or "",
+	-- 	class = "MouseOverInfo",
+	-- }) --[[@as mwseMCMMouseOverInfo]]
+	local mouseOver = MouseOverInfo.new{text = self.description or ""}
 	mouseOver:create(mouseoverView)
 	mouseOver.elements.outerContainer.visible = false
 	self.elements.mouseOver = mouseOver

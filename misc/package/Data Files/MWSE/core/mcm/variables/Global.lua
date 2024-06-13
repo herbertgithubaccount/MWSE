@@ -7,7 +7,7 @@ local Parent = require("mcm.variables.Variable")
 
 --- Class object
 --- @class mwseMCMGlobal
-local GlobalVar = Parent:new()
+local GlobalVar = Herbert_Class.new{parents={Parent}}
 GlobalVar.inGameOnly = true
 
 --- @return number value
@@ -17,12 +17,7 @@ end
 
 --- @param newValue unknown
 function GlobalVar:set(newValue)
-	local converter = self.converter
-	if (converter) then
-		newValue = converter(newValue)
-	end
-
-	tes3.findGlobal(self.id).value = newValue
+	tes3.findGlobal(self.id).value = self:handleConverter(newValue)
 end
 
 return GlobalVar

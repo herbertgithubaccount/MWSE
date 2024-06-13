@@ -5,7 +5,7 @@
 local Parent = require("mcm.components.settings.TextField")
 
 --- @class mwseMCMParagraphField
-local ParagraphField = Parent:new()
+local ParagraphField = Herbert_Class.new{parents={Parent}}
 
 function ParagraphField:enable()
 	self.elements.inputField.text = self:convertToLabelValue(self.variable.value)

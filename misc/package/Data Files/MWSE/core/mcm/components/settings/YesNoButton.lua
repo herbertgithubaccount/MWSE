@@ -14,7 +14,7 @@ local Parent = require("mcm.components.settings.Button")
 
 
 --- @class mwseMCMYesNoButton
-local YesNoButton = Parent:new()
+local YesNoButton = Herbert_Class.new{parents={Parent}}
 
 function YesNoButton:convertToLabelValue(variableValue)
 	return variableValue and self.sYes or self.sNo

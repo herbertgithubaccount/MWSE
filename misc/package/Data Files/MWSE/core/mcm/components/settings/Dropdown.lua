@@ -5,7 +5,7 @@
 local Parent = require("mcm.components.settings.Setting")
 
 --- @class mwseMCMDropdown
-local Dropdown = Parent:new()
+local Dropdown = Herbert_Class.new{parents={Parent}}
 Dropdown.idleColor = tes3ui.getPalette("normal_color")
 Dropdown.overColor = tes3ui.getPalette("normal_over_color")
 Dropdown.pressedColor = tes3ui.getPalette("normal_pressed_color")

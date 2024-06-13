@@ -8,9 +8,11 @@
 
 local Parent = require("mcm.components.settings.Button")
 
---- @class mwseMCMBinder
-local Binder = Parent:new()
-Binder.allowCombinations = true
+--- @class mwseMCMBinder : herbert.Class
+local Binder = Herbert_Class.new{parents={Parent},
+    fields={
+        {"allowCombinations", default= true}
+    }}
 
 local popupId = tes3ui.registerID("KeyMouseBinderPopup")
 local labelId = tes3ui.registerID("KeyMouseBinderLabel")

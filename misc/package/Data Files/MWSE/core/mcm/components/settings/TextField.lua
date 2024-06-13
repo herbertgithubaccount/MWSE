@@ -7,10 +7,13 @@ local Parent = require("mcm.components.settings.Setting")
 
 --- Class Object
 --- @class mwseMCMTextField
-local TextField = Parent:new()
-TextField.buttonText = mwse.mcm.i18n("Submit")
-TextField.sNewValue = mwse.mcm.i18n("New value: '%s'")
-TextField.defaultSetting = ""
+local TextField = Herbert_Class.new{parents={Parent},
+	fields={
+		{"buttonText", default = mwse.mcm.i18n("Submit")},
+		{"sNewValue", default = mwse.mcm.i18n("New value: '%s'")},
+		{"defaultSetting", default = ""},
+	}
+}
 
 function TextField:enable()
 	self.elements.inputField.text = self.variable.value and self:convertToLabelValue(self.variable.value) or ""

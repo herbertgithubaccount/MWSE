@@ -17,29 +17,20 @@
 local Parent = require("mcm.components.settings.Binder")
 
 --- @class mwseMCMKeyBinder
-local KeyBinder = Parent:new()
-KeyBinder.allowMouse = false
+local KeyBinder = Herbert_Class.new{parents={Parent},
+	fields={
+		{"allowMouse", default=false},
+		{"observeEvents", factory=function (self)
+			local observeEvents = { [tes3.event.keyDown] = true }
+			if self.allowMouse then
+				observeEvents[tes3.event.mouseButtonDown] = true
+				observeEvents[tes3.event.mouseWheel] = true
+			end
+			return observeEvents
+		end}
+	}
+}
 
 -- TODO: Implement flags for enabling the binding of mouse wheel or mouse buttons separately
-
---- @param data mwseMCMKeyBinder.new.data|nil
---- @return mwseMCMKeyBinder
-function KeyBinder:new(data)
-	local t = Parent:new(data)
-
-	setmetatable(t, self)
-	self.__index = self
-	--- @cast t mwseMCMKeyBinder
-
-	-- All KeyBinders observe keyboard input.
-	t.observeEvents = { [tes3.event.keyDown] = true }
-
-	-- Check if we also observe input from mouse.
-	if t.allowMouse then
-		t.observeEvents[tes3.event.mouseButtonDown] = true
-		t.observeEvents[tes3.event.mouseWheel] = true
-	end
-	return t
-end
 
 return KeyBinder

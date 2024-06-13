@@ -8,32 +8,22 @@
 
 local Parent = require("mcm.components.categories.Category")
 
---- @class mwseMCMPage
-local Page = Parent:new()
-Page.componentType = "Page"
-Page.indent = 6
+--- @class mwseMCMPage : mwseMCMCategory
+---@field indent integer
+local Page = Herbert_Class.new{parents={Parent},
+	fields={
+		{"componentType", default="Page"},
+		{"indent", default=6},
+		{"label", factory=function (self)
+			local parentPages = self.parentComponent and self.parentComponent.pages
+			return parentPages and ("Page " .. (1 + #parentPages))
+				or "Page"
+		end},
+		{"tabUID", factory=function (self)
+			return tes3ui.registerID("Page_" .. self.label)
+		end}
+	}}
 
---- @param data mwseMCMPage.new.data|nil
---- @return mwseMCMPage page
-function Page:new(data)
-	local t = Parent:new(data)
-
-	if data then
-		if data.parentComponent.pages then
-			data.label = data.label or ("Page " .. (#(data.parentComponent.pages) + 1))
-		else
-			-- child of page, must be sidebar
-			data.label = data.label or "Page"
-		end
-		-- register ID for the page tab
-		local tabUID = ("Page_" .. t.label)
-		t.tabUID = tes3ui.registerID(tabUID)
-	end
-	setmetatable(t, self)
-	self.__index = self
-	return t --[[@as mwseMCMPage]]
-
-end
 
 --- @param parentBlock tes3uiElement
 function Page:createLabel(parentBlock)

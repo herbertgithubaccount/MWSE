@@ -11,7 +11,7 @@ local Parent = require("mcm.variables.Variable")
 
 --- Class object
 --- @class mwseMCMGlobalBoolean
-local GlobalVar = Parent:new()
+local GlobalVar = Herbert_Class.new{parents={Parent}}
 GlobalVar.inGameOnly = true
 
 --- @return boolean|nil value

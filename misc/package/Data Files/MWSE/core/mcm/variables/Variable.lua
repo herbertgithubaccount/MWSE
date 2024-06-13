@@ -19,25 +19,43 @@
 --- The warnings arise because each field set here is also 'set' in the annotations in the core\meta\ folder.
 --- @diagnostic disable: duplicate-set-field
 
---- @class mwseMCMVariable
-local Variable = {}
-Variable.componentType = "Variable"
-Variable.inGameOnly = false
-Variable.restartRequiredMessage = mwse.mcm.i18n("The game must be restarted before this change will come into effect.")
+local base = {}
 
---- @param variable string|mwseMCMVariable.new.variable|nil
---- @return mwseMCMVariable variable
-function Variable:new(variable)
-	local t = variable or {}
-	if type(t) == "string" then
-		t = { id = t }
+--- @class mwseMCMVariable : herbert.Class
+local Variable = Herbert_Class.new({
+	fields={
+		{"componentType", default="Variable"},
+		{"inGameOnly", default=false},
+		{"restartRequiredMessage", default=mwse.mcm.i18n("The game must be restarted before this change will come into effect.")},
+	},
+	obj_index=function (self, key)
+		if key == "value" then
+			return self:get()
+		end
+	end,
+	obj_metatable={
+		__newindex=function (obj, key, value)
+			if key ~= "value" then
+				rawset(obj, key, value)
+				return
+			end
+			if obj.restartRequired then
+				local sOk = tes3.findGMST(tes3.gmst.sOK).value --[[@as string]]
+				tes3.messageBox { message = obj.restartRequiredMessage, buttons = { sOk } }
+			end
+			obj:set(value)
+		end
+	},
+	new_obj_func=function(p1, p2)
+		if p1 == base then
+			return p2
+		else
+			return p1
+		end
 	end
-	setmetatable(t, self)
-	self.__index = Variable.__index
-	self.__newindex = Variable.__newindex
-	--- @cast t mwseMCMVariable
-	return t
-end
+}, base)
+
+
 
 --- @return unknown value
 function Variable:get()
@@ -46,31 +64,16 @@ end
 
 --- @param newValue unknown
 function Variable:set(newValue)
-	if (self.converter) then
-		newValue = self.converter(newValue)
-	end
-
-	rawset(self, "value", newValue)
+	rawset(self, "value", self:handleConverter(newValue))
 end
 
-function Variable.__index(tbl, key)
-	local meta = getmetatable(tbl)
-	if key == "value" then
-		return tbl:get()
-	end
-	return meta[key]
-end
-
-function Variable:__newindex(key, value)
-	local meta = getmetatable(self)
-	if key == "value" then
-		if self.restartRequired then
-			local sOk = tes3.findGMST(tes3.gmst.sOK).value --[[@as string]]
-			tes3.messageBox { message = self.restartRequiredMessage, buttons = { sOk } }
-		end
-		self:set(value)
+---@protected
+function Variable:handleConverter(val)
+	local converter = self.converter
+	if converter then
+		return converter(val)
 	else
-		rawset(self, key, value)
+		return val
 	end
 end
 

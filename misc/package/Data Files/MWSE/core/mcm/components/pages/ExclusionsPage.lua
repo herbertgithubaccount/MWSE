@@ -11,7 +11,19 @@
 local Parent = require("mcm.components.pages.Page")
 
 --- @class mwseMCMExclusionsPage
-local ExclusionsPage = Parent:new()
+local ExclusionsPage = Herbert_Class.new{parents={Parent},
+	fields={
+		{"variable", converter=function (v)
+			if v.__index then return v end
+
+			v = mwse.mcm.variables[v.class].new(v)
+			if v.value == nil then
+				v.value = {}
+			end
+			return v
+		end}
+	}
+}
 -- public fields
 ExclusionsPage.label = mwse.mcm.i18n("Exclusions")
 ExclusionsPage.rightListLabel = mwse.mcm.i18n("Allowed")
@@ -22,28 +34,6 @@ ExclusionsPage.toggleText = mwse.mcm.i18n("Toggle Filtered")
 local itemID = tes3ui.registerID("ExclusionListItem")
 local placeholderText = mwse.mcm.i18n("Search...")
 
---- Constructor
---- @param data mwseMCMExclusionsPage.new.data?
---- @return mwseMCMExclusionsPage page
-function ExclusionsPage:new(data)
-	local t = {}
-	if data then
-		t = data --[[@as mwseMCMExclusionsPage]]
-		local tabUID = ("Page_" .. t.label)
-		t.tabUID = tes3ui.registerID(tabUID)
-		-- create variable
-		local typePath = ("mcm.variables." .. t.variable.class)
-		if not t.variable.__index then
-			t.variable = require(typePath):new(t.variable)
-			if t.variable.value == nil then
-				t.variable.value = {}
-			end
-		end
-	end
-	setmetatable(t, self)
-	self.__index = self
-	return t
-end
 
 local function getSortedModList()
 	local list = tes3.getModList()

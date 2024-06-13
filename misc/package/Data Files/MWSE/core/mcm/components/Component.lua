@@ -6,6 +6,8 @@
 --- The warnings arise because each field set here is also 'set' in the annotations in the core\meta\ folder.
 --- @diagnostic disable: duplicate-set-field
 
+
+
 -- MCM Components can't be used before "initialized" event as they read GMST values.
 if not tes3.isInitialized() then
 	error(debug.traceback(
@@ -13,11 +15,34 @@ if not tes3.isInitialized() then
 	))
 end
 
---- @class mwseMCMComponent
-local Component = {}
-Component.componentType = "Component"
-Component.paddingBottom = 4
-Component.indent = 12
+local base = {}
+--- @class mwseMCMComponent : herbert.Class
+local Component = Herbert_Class.new({
+	fields={
+		{"componentType", default="Component"},
+		{"parentComponent"},
+		{"indent", default=12, factory=function (self)
+			return self.parentComponent
+			   and self.parentComponent.childIndent
+		end},
+		{"paddingBottom", default=4, factory=function (self)
+			return self.parentComponent
+			   and self.parentComponent.childSpacing
+		end},
+	},
+	new_obj_func=function(p1, p2)
+		local obj
+		if p1 == base then
+			obj = p2
+		else
+			obj = p1
+		end
+		if type(obj) == "string" then
+			obj = { label = obj}
+		end
+		return obj or {}
+	end
+}, base)
 Component.sOK = tes3.findGMST(tes3.gmst.sOK).value --[[@as string]]
 Component.sCancel = tes3.findGMST(tes3.gmst.sCancel).value --[[@as string]]
 Component.sYes = tes3.findGMST(tes3.gmst.sYes).value --[[@as string]]
@@ -27,25 +52,7 @@ Component.sOff = tes3.findGMST(tes3.gmst.sOff).value --[[@as string]]
 
 -- CONTROL METHODS
 
---- @param data mwseMCMComponent.new.data?
---- @return mwseMCMComponent component
-function Component:new(data)
-	local t = data or {}
 
-	if t.parentComponent then
-		t.indent = t.parentComponent.childIndent or t.indent
-		t.paddingBottom = t.parentComponent.childSpacing or t.paddingBottom
-	end
-
-	setmetatable(t, self)
-	self.__index = self
-	--- @cast t mwseMCMComponent
-	return t
-end
-
-function Component:__index(key)
-	return self[key]
-end
 
 -- Prints the component table to the log
 --- @param component table?
@@ -64,11 +71,6 @@ end
 --- @param data string|mwseMCMComponent.new.data|nil
 --- @return mwseMCMComponent.new.data data
 function Component:prepareData(data)
-	data = data or {}
-	if type(data) == "string" then
-		data = { label = data }
-	end
-	data.parentComponent = self
 	return data
 end
 
@@ -99,39 +101,6 @@ end
 --- @class mwseMCMComponent.getComponent.componentData
 --- @field class mwseMCMComponentClass
 
---- @param componentData mwseMCMComponent|mwseMCMComponent.getComponent.componentData
---- @return mwseMCMComponent|mwseMCMTemplate|nil component
-function Component:getComponent(componentData)
-
-	-- if componentType field is set then we've already built it
-	if componentData.componentType then
-		return componentData --[[@as mwseMCMComponent]]
-	end
-
-	if not componentData.class then
-		mwse.log("ERROR: No class found for component:")
-		self:printComponent(componentData)
-	end
-	local component
-	local classPaths = require("mcm.classPaths")
-	for _, path in pairs(classPaths.components) do
-		local classPath = (path .. componentData.class)
-		local fullPath = lfs.currentdir() .. classPaths.basePath .. classPath .. ".lua"
-		local fileExists = lfs.fileexists(fullPath)
-
-		if fileExists then
-			component = require(classPath)
-			break
-		end
-	end
-	if component then
-		--- @cast component mwseMCMComponent
-		self:prepareData(componentData)
-		return component:new(componentData)
-	else
-		mwse.log("Error: class %s not found", componentData.class)
-	end
-end
 
 --- @param mouseOverList tes3uiElement[]?
 function Component:registerMouseOverElements(mouseOverList)
@@ -244,7 +213,7 @@ function Component:create(parentBlock)
 	self.mouseOvers = {}
 
 	self:createOuterContainer(parentBlock)
-
+	
 	self:createContentsContainer(self.elements.outerContainer)
 
 	if self:checkDisabled() then
@@ -263,4 +232,27 @@ function Component:create(parentBlock)
 	end
 end
 
+
+function Component:getComponent(componentData)
+    -- if componentType field is set then we've already built it
+	if Herbert_Class.is_instance_of(componentData, Component) then
+		return componentData --[[@as mwseMCMComponent]]
+	end
+
+    local component
+    if componentData.class then
+        component = mwse.mcm.components[componentData.class]
+    else
+        mwse.log("ERROR: No class found for component:")
+		self:printComponent(componentData)
+    end
+
+	if component then
+        local obj = component.new(componentData)
+        obj.parentComponent = self
+        return obj
+	else
+		mwse.log("Error: class %s not found", componentData.class)
+	end
+end
 return Component

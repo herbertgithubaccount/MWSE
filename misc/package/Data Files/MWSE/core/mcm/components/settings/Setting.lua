@@ -10,28 +10,23 @@
 local Parent = require("mcm.components.Component")
 
 --- @class mwseMCMSetting
-local Setting = Parent:new()
-Setting.componentType = "Setting"
-Setting.restartRequired = false
-Setting.restartRequiredMessage = mwse.mcm.i18n("The game must be restarted before this change will come into effect.")
+local Setting = Herbert_Class.new{parents={Parent},
+	fields={
+		{"variable"},
+		{"componentType", default = "Setting"},
+		{"restartRequired", default = false},
+		{"restartRequiredMessage", default = mwse.mcm.i18n("The game must be restarted before this change will come into effect.")},
 
---- @param data mwseMCMSetting.new.data|nil
---- @return mwseMCMSetting
-function Setting:new(data)
-	local t = Parent:new(data)
 
-	if data and data.variable then
-		-- create setting variable
-		t.variable.defaultSetting = t.variable.defaultSetting or t.defaultSetting
-		local typePath = ("mcm.variables." .. t.variable.class)
-		t.variable = require(typePath):new(t.variable)
+	},
+	post_init=function (self)
+		local v = self.variable
+		if not v then return end
+		v.defaultSetting = v.defaultSetting or self.defaultSetting
+		self.variable = mwse.mcm.variables[v.class].new(v)
 	end
+}
 
-	setmetatable(t, self)
-	self.__index = self
-	--- @cast t mwseMCMSetting
-	return t
-end
 
 function Setting:insertMouseovers(element)
 	table.insert(self.mouseOvers, element)

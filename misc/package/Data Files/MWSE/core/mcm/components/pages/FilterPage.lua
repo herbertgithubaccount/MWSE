@@ -5,7 +5,7 @@
 local Parent = require("mcm.components.pages.SideBarPage")
 
 --- @class mwseMCMFilterPage
-local FilterPage = Parent:new()
+local FilterPage = Herbert_Class.new{parents={Parent}}
 FilterPage.placeholderSearchText = mwse.mcm.i18n("Search...")
 
 function FilterPage:filterComponents()

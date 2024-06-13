@@ -1,13 +1,6 @@
 local mcm = {}
-mcm.noParent = true
 mcm.version = 1.5
 
-function mcm:new()
-	local t = {}
-	setmetatable(t, self)
-	t.__index = mcm.__index
-	return t
-end
 
 --- @param template mwseMCMTemplate
 function mcm.register(template)
@@ -107,7 +100,7 @@ function mcm.registerModData(mcmData)
 	function modConfig.onCreate(container)
 		local templateClass = mcmData.template or "Template"
 		local templatePath = ("mcm.components.templates." .. templateClass)
-		local template = require(templatePath):new(mcmData) --[[@as mwseMCMTemplate]]
+		local template = require(templatePath).new(mcmData) --[[@as mwseMCMTemplate]]
 		template:create(container)
 		modConfig.onClose = template.onClose
 	end
@@ -133,61 +126,5 @@ end
 
 ]]--
 
-local strLengthCreate = string.len("create")
 
-function mcm.__index(tbl, key)
-
-	local meta = getmetatable(tbl)
-	if string.sub(key, 1, strLengthCreate) == "create" then
-
-		local class = string.sub(key, strLengthCreate + 1)
-		local component
-
-		local classPaths = require("mcm.classPaths")
-		for _, path in pairs(classPaths.all) do
-
-			local classPath = path .. class
-			local fullPath = lfs.currentdir() .. classPaths.basePath .. classPath .. ".lua"
-			local fileExists = lfs.fileexists(fullPath)
-			if fileExists then
-				component = require(classPath)
-			end
-
-			if component then
-				--- @cast component mwseMCMComponent
-				return function(param1, param2)
-					local parent = nil
-					local data = nil
-					if param2 then
-						parent = param1
-						data = param2
-					else
-						data = param1
-					end
-					if not data then
-						data = "---"
-					end
-					if type(data) == "string" then
-						if component.componentType == "Template" then
-							data = { name = data }
-						else
-							data = { label = data }
-						end
-					end
-					data.class = class
-
-					component = component:new(data)
-					-- Add check for mcm field to deal with using `:` instead of `.`
-					if parent and parent.noParent ~= true then
-						component:create(parent)
-					end
-					return component
-				end
-			end
-		end
-	end
-
-	return meta[key]
-end
-
-return mcm:new()
+return mcm

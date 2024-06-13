@@ -9,7 +9,12 @@
 local Parent = require("mcm.components.infos.Info")
 
 --- @class mwseMCMMouseOverInfo
-local MouseOverInfo = Parent:new()
+local MouseOverInfo = Herbert_Class.new{parents={Parent},
+	fields={
+		{"triggerOn", default="MCM:MouseOver"},
+		{"triggerOff", default="MCM:MouseLeave"},
+	}}
+
 MouseOverInfo.triggerOn = "MCM:MouseOver"
 MouseOverInfo.triggerOff = "MCM:MouseLeave"
 

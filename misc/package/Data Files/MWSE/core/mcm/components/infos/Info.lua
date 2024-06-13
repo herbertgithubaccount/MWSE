@@ -16,9 +16,11 @@
 local Parent = require("mcm.components.settings.Setting")
 
 --- @class mwseMCMInfo
-local Info = Parent:new()
-Info.componentType = "Info"
-Info.text = ""
+local Info = Herbert_Class.new{parents={Parent},
+	fields={
+		{"componentType", default="Info"},
+		{"text", default=""}
+	}}
 -- CONTROL METHODS
 
 function Info:disable()

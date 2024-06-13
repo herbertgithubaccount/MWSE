@@ -13,7 +13,7 @@ local Parent = require("mcm.components.settings.Button")
 
 
 --- @class mwseMCMOnOffButton
-local OnOffButton = Parent:new()
+local OnOffButton = Herbert_Class.new{parents={Parent}}
 
 function OnOffButton:convertToLabelValue(variableValue)
 	return variableValue and self.sOn or self.sOff

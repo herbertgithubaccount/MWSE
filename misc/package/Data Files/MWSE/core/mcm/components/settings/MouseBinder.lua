@@ -16,31 +16,28 @@
 local Parent = require("mcm.components.settings.Binder")
 
 --- @class mwseMCMMouseBinder
-local MouseBinder = Parent:new()
-MouseBinder.allowButtons = true
-
---- @param data mwseMCMMouseBinder.new.data|nil
---- @return mwseMCMMouseBinder
-function MouseBinder:new(data)
-	local t = Parent:new(data)
-
-	setmetatable(t, self)
-	self.__index = self
-	--- @cast t mwseMCMMouseBinder
-
-	local bothDisabled = (not t.allowButtons) and (not t.allowWheel)
-	assert(bothDisabled ~= true, "[MouseBinder]: Both allowButtons and allowWheel options are false. \z
-		At least one needs to be enabled to use MouseBinder.")
-
-	-- Set up where we are getting input from.
-	t.observeEvents = {}
-	if t.allowButtons then
-		t.observeEvents[tes3.event.mouseButtonDown] = true
-	end
-	if t.allowWheel then
-		t.observeEvents[tes3.event.mouseWheel] = true
-	end
-	return t
-end
+local MouseBinder = Herbert_Class.new{parents={Parent},
+    fields={
+        {"allowButtons", default=true},
+        {"observeEvents", factory=function (self)
+            local observeEvents = {}
+            observeEvents = {}
+            if self.allowButtons then
+                observeEvents[tes3.event.mouseButtonDown] = true
+            end
+            if self.allowWheel then
+                observeEvents[tes3.event.mouseWheel] = true
+            end
+            return observeEvents
+        end}
+    },
+    post_init=function (self)
+        Parent.__secrets.post_init(self)
+        assert(self.allowButtons or self.allowWheel, 
+            "[MouseBinder]: Both allowButtons and allowWheel options are false. \z
+            At least one needs to be enabled to use MouseBinder."
+        )
+    end
+}
 
 return MouseBinder

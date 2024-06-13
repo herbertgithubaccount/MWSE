@@ -56,6 +56,7 @@ end
 mwse.mcm = require("mcm.mcm")
 mwse.mcm.i18n = mwse.loadTranslations("mcm")
 
+
 -- credit to Pherim for the default icons
 local favoriteIcons = {
 	idle = "textures/mwse/menu_modconfig_favorite_idle.dds",
@@ -541,6 +542,10 @@ end
 ---
 --- Set this up to run before most other initialized callbacks.
 local function onInitialized()
+	require("mcm.index")
 	event.trigger("modConfigReady")
 end
 event.register("initialized", onInitialized, { priority = 100 })
+-- event.register("initialized", function (e)
+-- 	require("mcm.index")
+-- end, {priority=math.huge/2})

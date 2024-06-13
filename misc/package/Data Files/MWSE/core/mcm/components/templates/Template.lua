@@ -3,33 +3,26 @@
 --- @diagnostic disable: duplicate-set-field
 
 local Parent = require("mcm.components.Component")
-
 --- Class object
 --- @class mwseMCMTemplate
-local Template = Parent:new()
-
-Template.componentType = "Template"
-
---- @param data mwseMCMTemplate.new.data
---- @return mwseMCMTemplate template
-function Template:new(data)
-	data.name = data.name or data.label
-	local t = Parent:new(data)
-	setmetatable(t, self)
-
-	-- Create Pages
-	local pages = {}
-	t.pages = t.pages or {}
-	for _, page in ipairs(t.pages) do
-		page.class = page.class or "Page"
-		local newPage = self:getComponent(page)
-		table.insert(pages, newPage)
+local Template = Herbert_Class.new{parents={Parent},
+	fields={
+		{"name", factory=function(self) return rawget(self, "label") end},
+		{"pages",
+			factory=function (self)
+				return {}
+			end
+		},
+		{"componentType", default="Template"}
+	},
+	post_init=function (self)
+		local pages = self.pages
+		self.pages = {}
+		for _, page in ipairs(pages) do
+			self["create" .. (page.class or "Page")](self, page)
+		end
 	end
-	t.pages = pages
-
-	self.__index = Template.__index
-	return t --[[@as mwseMCMTemplate]]
-end
+}
 
 --- @param fileName string
 --- @param config unknown
@@ -330,35 +323,5 @@ function Template:register()
 	mwse.log("%s mod config registered", self.name)
 end
 
-function Template.__index(tbl, key)
-	local meta = getmetatable(tbl)
-	local prefixLen = string.len("create")
-	if string.sub(key, 1, prefixLen) == "create" then
-		local component
-
-		local class = string.sub(key, prefixLen + 1)
-		local classPaths = require("mcm.classPaths")
-		local classPath = classPaths.all.pages .. class
-		local fullPath = lfs.currentdir() .. classPaths.basePath .. classPath .. ".lua"
-		local fileExists = lfs.fileexists(fullPath)
-		if fileExists then
-			component = require(classPath)
-		end
-
-		if component then
-			--- @cast component mwseMCMPage
-			--- @param self mwseMCMTemplate
-			return function(self, data)
-				data = self:prepareData(data) --[[@as mwseMCMPage.new.data]]
-				data.class = class
-				component = component:new(data)
-				table.insert(self.pages, component)
-				return component
-			end
-		end
-
-	end
-	return meta[key]
-end
 
 return Template

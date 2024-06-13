@@ -10,7 +10,7 @@ local Parent = require("mcm.components.infos.Info")
 
 --- @class mwseMCMHyperlink
 --- @field exec string *Deprecated*
-local Hyperlink = Parent:new()
+local Hyperlink = Herbert_Class.new{parents={Parent}}
 
 --- @param parentBlock tes3uiElement
 function Hyperlink:makeComponent(parentBlock)
@@ -20,8 +20,7 @@ function Hyperlink:makeComponent(parentBlock)
 	end
 
 	if not self.text or not self.url then
-		mwse.log("ERROR: Text field missing for the following setting: ")
-		self:printComponent()
+		mwse.log("ERROR: Text field missing for the following setting: %s", self)
 	end
 
 	local link = parentBlock:createHyperlink({

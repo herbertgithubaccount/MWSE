@@ -22,25 +22,18 @@
 --- @diagnostic disable: duplicate-set-field
 
 local Parent = require("mcm.components.Component")
---- @class mwseMCMCategory
-local Category = Parent:new()
-Category.componentType = "Category"
+local Component = Parent
+--- @class mwseMCMCategory : mwseMCMComponent
+local Category = Herbert_Class.new{parents={Parent},
+	fields={
+		{"components", factory=function() return {} end},
+		{"componentType", default="Category"},
+	}
+}
+
 -- Category.childSpacing = 20
 -- Category.childIndent = 40
 -- CONTROL METHODS
-
---- @param data mwseMCMCategory.new.data|nil
---- @return mwseMCMCategory
-function Category:new(data)
-	local t = Parent:new(data)
-	t.components = t.components or {}
-
-	setmetatable(t, self)
-	t.__index = self.__index
-	--- @cast t mwseMCMCategory
-
-	return t
-end
 
 function Category:disable()
 	Parent.disable(self)
@@ -102,9 +95,16 @@ end
 function Category:createSubcomponents(parentBlock, components)
 	for _, component in pairs(components or {}) do
 		component.parentComponent = self
-		local newComponent = self:getComponent(component)
+		local newComponent
 
-		newComponent:create(parentBlock)
+		if Herbert_Class.is_instance_of(component, Component) then
+			newComponent = component
+		elseif component.class then
+			newComponent = self["create" .. component.class](self, component)
+		end
+		if newComponent then
+			newComponent:create(parentBlock)
+		end
 	end
 end
 
@@ -115,42 +115,6 @@ function Category:createContentsContainer(parentBlock)
 	self:createSubcomponentsContainer(self.elements.innerContainer)
 	self:createSubcomponents(self.elements.subcomponentsContainer, self.components)
 	parentBlock:getTopLevelMenu():updateLayout()
-end
-
-function Category.__index(tbl, key)
-	local meta = getmetatable(tbl)
-	local prefixLen = string.len("create")
-	if string.sub(key, 1, prefixLen) == "create" then
-		local class = string.sub(key, prefixLen + 1)
-		local component
-		local classPaths = require("mcm.classPaths")
-
-		for _, path in pairs(classPaths.components) do
-
-			local classPath = (path .. class)
-			local fullPath = lfs.currentdir() .. classPaths.basePath .. classPath .. ".lua"
-			local fileExists = lfs.fileexists(fullPath)
-
-			if fileExists then
-				component = require(classPath)
-				break
-			end
-		end
-
-		if component then
-			--- @cast component mwseMCMComponent
-			--- @param self mwseMCMCategory
-			return function(self, data)
-				data = self:prepareData(data)
-				data.class = class
-				component = component:new(data)
-				table.insert(self.components, component)
-				return component
-			end
-		end
-	end
-
-	return meta[key]
 end
 
 return Category

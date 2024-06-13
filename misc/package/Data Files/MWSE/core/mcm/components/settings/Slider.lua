@@ -26,49 +26,60 @@
 local Parent = require("mcm.components.settings.Setting")
 
 --- @class mwseMCMSlider
-local Slider = Parent:new()
-Slider.min = 0
-Slider.decimalPlaces = 0
-Slider.max = 100
-Slider.step = 1
-Slider.jump = 5
+local Slider = Herbert_Class.new{parents={Parent},
+	fields={
+		{"min", default = 0},
+		{"decimalPlaces", default = 0},
+		{"max", default = 100},
+		{"step", default = 1},
+		{"jump", default = 5},
+	},
+	post_init=function(self) ---@param self mwseMCMSlider
+		Parent.__secrets.post_init(self)
+		-- range of values (as requested by the user, not taking slider behavior into account)
+		local obj = self
+		local dist = obj.max - obj.min
 
+		if rawget(obj, "jump") == nil then
+			obj.jump = math.min(dist, 5 * obj.step)
+		end
+		if dist < 0 then
+			mwse.log("[Slider: WARN] Invalid 'max' (%s) and 'min' (%s) parameters provided: 'max' must be greated than 'min'!", obj.max, obj.min)
+			obj.min = obj.max
+		end
+		-- assert(dist > 0, "mcm.Slider: Invalid 'max' and 'min' parameters provided. 'max' must be greater than 'min'.")
+		-- assert(obj.step > 0, "mcm.Slider: Invalid 'step' parameter provided. It must be greater than 0.")
+		if obj.step <= 0 then
+			mwse.log("[Slider: WARN] Invalid 'step' (%s) parameter provided: It must be greater than 0!", obj.step)
+			obj.min = obj.max
+		end
+		if obj.jump <= 0 then
+			mwse.log("[Slider: WARN] Invalid 'jump' (%s) parameter provided: It must be greater than 0!", obj.jump)
+			obj.min = obj.max
+		end
+		-- assert(obj.jump > 0, "mcm.Slider: Invalid 'jump' parameter provided. It must be greater than 0.")
 
-function Slider:new(data)
-	-- initialize metatable, make variable, etc
-	local t = Parent.new(self, data)
+		assert(
+			obj.decimalPlaces % 1 == 0 and obj.decimalPlaces >= 0,
+			"mcm.Slider: Invalid 'decimalPlaces' parameter provided. It must be a nonnegative whole number."
+		)
 
-	-- range of values (as requested by the user, not taking slider behavior into account)
-	local dist = t.max - t.min
+		-- Avoid breaking existing mods that have variable min or max but a fixed step/jump.
+		-- Clamp instead of asserting.
+		if obj.step > dist + math.epsilon then
+			mwse.log("mcm.Slider: 'step' (%s) parameter is greater than 'max' - 'min'", obj.step)
+			mwse.log(debug.traceback())
+			obj.step = dist
+		end
+		if obj.jump > dist + math.epsilon then
+			mwse.log("mcm.Slider: 'jump' parameter is greater than 'max' - 'min'")
+			mwse.log(debug.traceback())
+			obj.jump = dist
+		end
 
-	if rawget(t, "jump") == nil then
-		t.jump = math.min(dist, 5 * t.step)
 	end
+}
 
-	assert(dist > 0, "mcm.Slider: Invalid 'max' and 'min' parameters provided. 'max' must be greater than 'min'.")
-	assert(t.step > 0, "mcm.Slider: Invalid 'step' parameter provided. It must be greater than 0.")
-	assert(t.jump > 0, "mcm.Slider: Invalid 'jump' parameter provided. It must be greater than 0.")
-
-	assert(
-		t.decimalPlaces % 1 == 0 and t.decimalPlaces >= 0,
-		"mcm.Slider: Invalid 'decimalPlaces' parameter provided. It must be a nonnegative whole number."
-	)
-
-	-- Avoid breaking existing mods that have variable min or max but a fixed step/jump.
-	-- Clamp instead of asserting.
-	if t.step > dist + math.epsilon then
-		mwse.log("mcm.Slider: 'step' parameter is greater than 'max' - 'min'")
-		mwse.log(debug.traceback())
-		t.step = dist
-	end
-	if t.jump > dist + math.epsilon then
-		mwse.log("mcm.Slider: 'jump' parameter is greater than 'max' - 'min'")
-		mwse.log(debug.traceback())
-		t.jump = dist
-	end
-
-	return t
-end
 
 
 function Slider:convertToWidgetValue(variableValue)

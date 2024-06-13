@@ -13,7 +13,7 @@ local Parent = require("mcm.components.settings.Button")
 
 --- Class object
 --- @class mwseMCMCycleButton
-local CycleButton = Parent:new()
+local CycleButton = Herbert_Class.new{parents={Parent}}
 
 --- @param parentBlock tes3uiElement
 function CycleButton:makeComponent(parentBlock)

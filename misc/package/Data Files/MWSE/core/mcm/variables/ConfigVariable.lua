@@ -5,7 +5,7 @@
 local Parent = require("mcm.variables.Variable")
 
 --- @class mwseMCMConfigVariable
-local ConfigVariable = Parent:new()
+local ConfigVariable = Herbert_Class.new{parents={Parent}}
 ConfigVariable.inGameOnly = false
 
 --- @return unknown value
@@ -28,12 +28,8 @@ end
 
 --- @param newValue unknown
 function ConfigVariable:set(newValue)
-	if (self.converter) then
-		newValue = self.converter(newValue)
-	end
-
 	local config = mwse.loadConfig(self.path)
-	config[self.id] = newValue
+	config[self.id] = self:handleConverter(newValue)
 	mwse.saveConfig(self.path, config)
 
 end

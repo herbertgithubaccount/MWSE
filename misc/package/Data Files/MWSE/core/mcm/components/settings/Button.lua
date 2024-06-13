@@ -4,11 +4,14 @@
 
 local Parent = require("mcm.components.settings.Setting")
 
---- @class mwseMCMButton
-local Button = Parent:new()
-Button.disabledText = "---"
-Button.leftSide = true
-Button.buttonText = "---"
+---@class mwseMCMButton : mwseMCMSetting
+local Button = Herbert_Class.new{parents={Parent},
+	fields={
+		{"disabledText", default="---"},
+		{"leftSide", default=true},
+		{"buttonText", default="---"},
+	}
+}
 
 --- Determines what text is displayed on the button
 --- @return string buttonText
