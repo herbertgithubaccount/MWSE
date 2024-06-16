@@ -20,8 +20,7 @@ function Hyperlink:makeComponent(parentBlock)
 	end
 
 	if not self.text or not self.url then
-		mwse.log("ERROR: Text field missing for the following setting: ")
-		self:printComponent()
+		mwse.log("ERROR: Text field missing for the following \"%s\": \"%s\" (%s)", self.class, self.label)
 	end
 
 	local link = parentBlock:createHyperlink({

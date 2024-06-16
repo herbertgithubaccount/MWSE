@@ -45,20 +45,6 @@ function Component:new(data)
 	return t
 end
 
--- Prints the component table to the log
---- @param component table?
-function Component:printComponent(component)
-	mwse.log("{")
-	for key, val in pairs(component or self) do
-		if type(val) ~= "table" and type(val) ~= "function" then
-			local maxLength = 50
-			local shortenedValue = (string.len(val) < maxLength) and val or (string.sub(val, 1, maxLength) .. "...")
-			mwse.log("	%s: %s", key, shortenedValue)
-		end
-	end
-	mwse.log("}")
-end
-
 
 --- @alias mwseMCMComponentClass
 ---| "Category" # Categories
@@ -97,8 +83,7 @@ function Component:getComponent(componentData)
 	end
 
 	if not componentData.class then
-		mwse.log("ERROR: No class found for component:")
-		self:printComponent(componentData)
+		mwse.log("ERROR: No class found for component: \"%s\"", self.label)
 	end
 	local componentClass = fileUtils.getComponentClass(componentData.class)
 	if componentClass then
