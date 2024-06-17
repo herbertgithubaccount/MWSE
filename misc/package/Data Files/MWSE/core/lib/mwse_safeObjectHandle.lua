@@ -27,10 +27,13 @@ function SafeHandle.new(object)
 	return handles[object]
 end
 
-function SafeHandle:valid()
+function SafeHandle:isValid()
 	local object = rawget(self, "_object")
 	return object ~= nil and not object.deleted
 end
+
+-- Backwards compatibility
+SafeHandle.valid = SafeHandle.isValid
 
 function SafeHandle:getObject()
 	return rawget(self, "_object")
@@ -48,7 +51,10 @@ do -- fill out the metatable
 		local storedObject = SafeHandle.getObject(handle)
 		assert(storedObject, "unsafe_object: This object has been invalidated.")
 
+		-- Look up the key in the `storedObject`
 		val = storedObject[key]
+
+		-- If `val` is a method, send `storedObject` in as the first parameter, rather than `hanadle`
 		if type(val) == "function" then
 			return function(_, ...) val(storedObject, ...) end
 		end
@@ -57,43 +63,38 @@ do -- fill out the metatable
 
 	-- Allow this handle to set values of the reference, with some checking.
 	function handleMetatable.__newindex(handle, key, value)
-		local object = assert(SafeHandle.getObject(handle), "unsafe_object: This object has been invalidated.")
+		local object = assert(SafeHandle.getObject(handle), "Unsafe Object: This object has been invalidated.")
 		object[key] = value
 	end
 
-	-- Don't compare against this table. Compare against the reference instead.
-	-- there is no guarantee as to whether the handle will be the left parameter, the right paraemeter, or both
-	function handleMetatable.__eq(left, right)
-		local leftMeta, rightMeta = getmetatable(left), getmetatable(right)
-		if leftMeta == handleMetatable then
-			if rightMeta == handleMetatable then
-				return SafeHandle.getObject(left) == SafeHandle.getObject(right)
-			else
-				return SafeHandle.getObject(left) == right
-			end
-		elseif rightMeta == handleMetatable then
-			return left == rawget(right, "_object")
-		else 
-			-- this will never be reached
-		end
-	end
 
 	-- Add tostring() support.
 	function handleMetatable.__tostring(handle)
-		return tostring(SafeHandle.getObject(handle))
+		return tostring(handle:getObject())
 	end
 
 	-- Add json support.
 	function handleMetatable.__tojson(handle)
-		local object = SafeHandle.getObject(handle)
+		local object = handle:getObject()
 		-- try to call the `__tojson` metamethod, if it exists
-		if object ~= nil then
-			local objectMetatable = getmetatable(object)
-			if objectMetatable and objectMetatable.__tojson then
-				return objectMetatable.__tojson(object)
-			end
+		if object == nil then
+			return "null"
 		end
-		return "null"
+
+		local objectMetatable = getmetatable(object)
+		
+		-- Check if it has a `__tojson` metamethod.
+		if objectMetatable and objectMetatable.__tojson then
+			return objectMetatable.__tojson(object)
+		end
+
+		-- Check if it inherited a `__tojson` metamethod.
+		if object.__tojson then 
+			return object:__tojson()
+		end
+		
+		-- Otherwise, use `tostring`.
+		return tostring(object)
 	end
 end
 
