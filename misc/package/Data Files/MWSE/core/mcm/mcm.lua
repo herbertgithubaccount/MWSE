@@ -190,7 +190,7 @@ setmetatable(mcm, {__index = function(_, key)
 			-- Some mods call this function as if it were a method using colon.
 			-- Log a warning, but provide backwards compatibility.
 			if param2 then
-				mwse.log("[mwse.mcm Error]: Calling mwse.mcm API function with a colon (:) instead of a dot (.).\n%s",
+				mwse.log("[mwse.mcm Warning]: Calling mwse.mcm API function with a colon (:) instead of a dot (.).\n%s",
 					debug.traceback())
 			end
 			return variableClass:new(param2 or param1)
