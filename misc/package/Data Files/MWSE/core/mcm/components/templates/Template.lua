@@ -2,6 +2,8 @@
 --- The warnings arise because each field set here is also 'set' in the annotations in the core\meta\ folder.
 --- @diagnostic disable: duplicate-set-field
 
+local fileUtils = require("mcm.fileUtils")
+
 local Parent = require("mcm.components.Component")
 
 --- Class object
@@ -21,9 +23,16 @@ function Template:new(data)
 	local pages = {}
 	t.pages = t.pages or {}
 	for _, page in ipairs(t.pages) do
-		page.class = page.class or "Page"
-		local newPage = self:getComponent(page)
-		table.insert(pages, newPage)
+		-- Make sure it's actually a `Page`.
+		if not page.componentType then
+			local componentClass = fileUtils.getComponentClass(page.class or "Page")
+			if not componentClass then
+				error(string.format("Could not intialize page %q", page.label))
+			end
+			page.parentComponent = self
+			page = componentClass:new(page)
+		end
+		table.insert(pages, page)
 	end
 	t.pages = pages
 
@@ -352,6 +361,16 @@ function Template.__index(tbl, key)
 	end
 
 	return Template[key]
+end
+
+
+--- This will recursively go through your MCM and append the text "Default = ___" to the description of each setting.
+---@param defaultConfig table? the default config of your mod. if not provided, it will try to be retrieved, 
+-- using the path "config.default"
+function Template:addDefaultsToDescriptions(defaultConfig)
+	for _, subComp in ipairs(self.pages) do
+		subComp:addDefaultsToDescriptions(defaultConfig)
+	end
 end
 
 return Template
