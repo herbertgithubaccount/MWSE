@@ -17248,9 +17248,11 @@
 <ul>
 <li><code>angleXY</code> (number): The maximum allowable angle offset (in degrees) in the horizontal direction that will hit. This is related to game setting fCombatAngleXY but using different units. May be adjusted. The highest effective angle is 90 degrees, and larger angles will behave like 90 degrees.</li>
 <li><code>angleZ</code> (number): The maximum allowable angle offset (in degrees) in the vertical direction that will hit. This is related to game setting fCombatAngleZ but using different units. May be adjusted. The highest effective angle is 90 degrees, and larger angles will behave like 90 degrees.</li>
-<li><code>attacker</code> (<a href="../../types/tes3reference/">tes3reference</a>): <em>Read-only</em>. The reference of the attacker.</li>
-<li><code>attackerMobile</code> (<a href="../../types/tes3mobileActor/">tes3mobileActor</a>): <em>Read-only</em>. The mobile which is making the attack.</li>
-<li><code>reach</code> (number): The touch spell search range in world units.</li>
+<li><code>caster</code> (<a href="../../types/tes3reference/">tes3reference</a>): <em>Read-only</em>. The reference of the caster.</li>
+<li><code>casterMobile</code> (<a href="../../types/tes3mobileActor/">tes3mobileActor</a>): <em>Read-only</em>. The mobile which is casting the magic.</li>
+<li><code>reach</code> (number): The touch spell search range in world units. Currently, changes to this value do not have an effect without further engine modifications.</li>
+<li><code>source</code> (<a href="../../types/tes3alchemy/">tes3alchemy</a>, <a href="../../types/tes3enchantment/">tes3enchantment</a>, <a href="../../types/tes3spell/">tes3spell</a>): <em>Read-only</em>. The magic source.</li>
+<li><code>sourceInstance</code> (<a href="../../types/tes3magicSourceInstance/">tes3magicSourceInstance</a>): <em>Read-only</em>. The unique instance of the magic source.</li>
 </ul>
 <h2 id="related-events">Related events<a class="headerlink" href="#related-events" title="Permanent link">⚓︎</a></h2>
 <p><a class="md-button" href="../calcHitDetectionCone/">calcHitDetectionCone</a></p>
@@ -17276,7 +17278,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">June 26, 2024 11:18:58</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">June 27, 2024 20:11:21</span>
   </span>
 
     
