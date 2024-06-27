@@ -36,7 +36,7 @@ The same is done by this function if you pass both `parent` and `data` arguments
 				{ name = "configKey", type = "string|number", optional = true, 
 					description = "The `configKey` used to create a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md). \z
 						If this is provided, along with a `config` (which may be inherited from the `parentComponent`), then a new \z
-							[`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md) variable will be created for this setting."
+						[`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md) variable will be created for this setting."
 				},
 				{ name = "converter", type = "fun(newValue: unknown): unknown", optional = true, 
 					description = "A converter to use for this component's `variable`."

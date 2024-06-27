@@ -69,7 +69,7 @@ The same is done by this function if you pass both `parent` and `data` arguments
 
 
 ```lua
-local button = mwse.mcm.createButton(parent, { label = ..., buttonText  = ..., description = ..., leftSide = ..., variable = ..., config = ..., defaultConfig = ..., configKey = ..., converter = ..., defaultSetting = ..., showDefaultSetting = ..., callback = ..., inGameOnly = ..., restartRequired = ..., restartRequiredMessage = ..., indent = ..., childIndent = ..., paddingBottom = ..., childSpacing = ..., postCreate = ... })
+local button = mwse.mcm.createButton(parent, { label = ..., buttonText  = ..., description = ..., leftSide = ..., variable = ..., config = ..., defaultConfig = ..., configKey = ..., converter = ..., defaultSetting = ..., callback = ..., inGameOnly = ..., restartRequired = ..., restartRequiredMessage = ..., indent = ..., childIndent = ..., paddingBottom = ..., childSpacing = ..., postCreate = ... })
 ```
 
 **Parameters**:
@@ -86,7 +86,6 @@ local button = mwse.mcm.createButton(parent, { label = ..., buttonText  = ..., d
 	* `configKey` (string, number): *Optional*. The `configKey` used to create a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md). If this is provided, along with a `config` (which may be inherited from the `parentComponent`), then a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md) variable will be created for this setting.
 	* `converter` (fun(newValue: unknown): unknown): *Optional*. A converter to use for this component's `variable`.
 	* `defaultSetting` (unknown): *Optional*. If `defaultSetting` wasn't passed in the `variable` table, can be passed here. The new variable will be initialized to this value. If not provided, then the value in `defaultConfig` will be used, if possible.
-	* `showDefaultSetting` (boolean): *Default*: ``parentComponent.showDefaultSetting``. If `true`, and in a [Sidebar Page](../types/mwseMCMSideBarPage.md), then the `defaultSetting` of this setting's `variable` will be shown below its `description`. The `defaultSetting` will be formatted in accordance with the `convertToLabelValue` function. **Note:** This parameter does not update the `description` field.
 	* `callback` (fun(self: [mwseMCMButton](../types/mwseMCMButton.md))): *Optional*. The custom function called when the player interacts with this Button.
 	* `inGameOnly` (boolean): *Default*: `false`. If true, the setting is disabled while the game is on main menu.
 	* `restartRequired` (boolean): *Default*: `false`. If true, updating this Setting will notify the player to restart the game.
@@ -173,7 +172,7 @@ The same is done by this function if you pass both `parent` and `data` arguments
 
 
 ```lua
-local button = mwse.mcm.createCycleButton(parent, { label = ..., description = ..., options = ..., leftSide = ..., variable = ..., config = ..., defaultConfig = ..., configKey = ..., converter = ..., defaultSetting = ..., showDefaultSetting = ..., callback = ..., inGameOnly = ..., restartRequired = ..., restartRequiredMessage = ..., indent = ..., childIndent = ..., paddingBottom = ..., childSpacing = ..., postCreate = ... })
+local button = mwse.mcm.createCycleButton(parent, { label = ..., description = ..., options = ..., leftSide = ..., variable = ..., config = ..., defaultConfig = ..., configKey = ..., converter = ..., defaultSetting = ..., callback = ..., inGameOnly = ..., restartRequired = ..., restartRequiredMessage = ..., indent = ..., childIndent = ..., paddingBottom = ..., childSpacing = ..., postCreate = ... })
 ```
 
 **Parameters**:
@@ -190,7 +189,6 @@ local button = mwse.mcm.createCycleButton(parent, { label = ..., description = .
 	* `configKey` (string, number): *Optional*. The `configKey` used to create a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md). If this is provided, along with a `config` (which may be inherited from the `parentComponent`), then a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md) variable will be created for this setting.
 	* `converter` (fun(newValue: unknown): unknown): *Optional*. A converter to use for this component's `variable`.
 	* `defaultSetting` (unknown): *Optional*. If `defaultSetting` wasn't passed in the `variable` table, can be passed here. The new variable will be initialized to this value. If not provided, then the value in `defaultConfig` will be used, if possible.
-	* `showDefaultSetting` (boolean): *Default*: ``parentComponent.showDefaultSetting``. If `true`, and in a [Sidebar Page](../types/mwseMCMSideBarPage.md), then the `defaultSetting` of this setting's `variable` will be shown below its `description`. The `defaultSetting` will be formatted in accordance with the `convertToLabelValue` function. **Note:** This parameter does not update the `description` field.
 	* `callback` (fun(self: [mwseMCMCycleButton](../types/mwseMCMCycleButton.md))): *Optional*. The custom function called when the player interacts with this cycle button.
 	* `inGameOnly` (boolean): *Default*: `false`. If true, the setting is disabled while the game is on main menu.
 	* `restartRequired` (boolean): *Default*: `false`. If true, updating this Setting will notify the player to restart the game.
@@ -223,7 +221,7 @@ The same is done by this function if you pass both `parent` and `data` arguments
 
 
 ```lua
-local dropdown = mwse.mcm.createDropdown(parent, { label = ..., description = ..., options = ..., variable = ..., config = ..., defaultConfig = ..., configKey = ..., converter = ..., defaultSetting = ..., showDefaultSetting = ..., idleColor = ..., overColor = ..., pressedColor = ..., callback = ..., inGameOnly = ..., restartRequired = ..., restartRequiredMessage = ..., indent = ..., childIndent = ..., paddingBottom = ..., childSpacing = ..., postCreate = ... })
+local dropdown = mwse.mcm.createDropdown(parent, { label = ..., description = ..., options = ..., variable = ..., config = ..., defaultConfig = ..., configKey = ..., converter = ..., defaultSetting = ..., idleColor = ..., overColor = ..., pressedColor = ..., callback = ..., inGameOnly = ..., restartRequired = ..., restartRequiredMessage = ..., indent = ..., childIndent = ..., paddingBottom = ..., childSpacing = ..., postCreate = ... })
 ```
 
 **Parameters**:
@@ -239,7 +237,6 @@ local dropdown = mwse.mcm.createDropdown(parent, { label = ..., description = ..
 	* `configKey` (string, number): *Optional*. The `configKey` used to create a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md). If this is provided, along with a `config` (which may be inherited from the `parentComponent`), then a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md) variable will be created for this setting.
 	* `converter` (fun(newValue: unknown): unknown): *Optional*. A converter to use for this component's `variable`.
 	* `defaultSetting` (unknown): *Optional*. If `defaultSetting` wasn't passed in the `variable` table, can be passed here. The new variable will be initialized to this value. If not provided, then the value in `defaultConfig` will be used, if possible.
-	* `showDefaultSetting` (boolean): *Default*: ``parentComponent.showDefaultSetting``. If `true`, and in a [Sidebar Page](../types/mwseMCMSideBarPage.md), then the `defaultSetting` of this setting's `variable` will be shown below its `description`. The `defaultSetting` will be formatted in accordance with the `convertToLabelValue` function. **Note:** This parameter does not update the `description` field.
 	* `idleColor` (number[]): *Default*: `tes3ui.getPalette(tes3.palette.normalColor)`. The idle color for dropdown. Needs to be an RGB trio in the range [0.0, 1.0].
 	* `overColor` (number[]): *Default*: `tes3ui.getPalette(tes3.palette.normalOverColor)`. The color used when the mouse if hovering over the dropdown. Needs to be an RGB trio in the range [0.0, 1.0].
 	* `pressedColor` (number[]): *Default*: `tes3ui.getPalette(tes3.palette.normalPressedColor)`. The color used when the dropdown is being pressed. Needs to be an RGB trio in the range [0.0, 1.0].
@@ -398,7 +395,7 @@ The same is done by this function if you pass both `parent` and `data` arguments
 
 
 ```lua
-local button = mwse.mcm.createKeyBinder(parent, { label = ..., description = ..., allowCombinations  = ..., allowMouse  = ..., keybindName = ..., leftSide = ..., variable = ..., config = ..., defaultConfig = ..., configKey = ..., converter = ..., defaultSetting = ..., showDefaultSetting = ..., callback = ..., inGameOnly = ..., restartRequired = ..., restartRequiredMessage = ..., indent = ..., childIndent = ..., paddingBottom = ..., childSpacing = ..., postCreate = ... })
+local button = mwse.mcm.createKeyBinder(parent, { label = ..., description = ..., allowCombinations  = ..., allowMouse  = ..., keybindName = ..., leftSide = ..., variable = ..., config = ..., defaultConfig = ..., configKey = ..., converter = ..., defaultSetting = ..., callback = ..., inGameOnly = ..., restartRequired = ..., restartRequiredMessage = ..., indent = ..., childIndent = ..., paddingBottom = ..., childSpacing = ..., postCreate = ... })
 ```
 
 **Parameters**:
@@ -417,7 +414,6 @@ local button = mwse.mcm.createKeyBinder(parent, { label = ..., description = ...
 	* `configKey` (string, number): *Optional*. The `configKey` used to create a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md). If this is provided, along with a `config` (which may be inherited from the `parentComponent`), then a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md) variable will be created for this setting.
 	* `converter` (fun(newValue: unknown): unknown): *Optional*. A converter to use for this component's `variable`.
 	* `defaultSetting` (unknown): *Optional*. If `defaultSetting` wasn't passed in the `variable` table, can be passed here. The new variable will be initialized to this value. If not provided, then the value in `defaultConfig` will be used, if possible.
-	* `showDefaultSetting` (boolean): *Default*: ``parentComponent.showDefaultSetting``. If `true`, and in a [Sidebar Page](../types/mwseMCMSideBarPage.md), then the `defaultSetting` of this setting's `variable` will be shown below its `description`. The `defaultSetting` will be formatted in accordance with the `convertToLabelValue` function. **Note:** This parameter does not update the `description` field.
 	* `callback` (fun(self: [mwseMCMKeyBinder](../types/mwseMCMKeyBinder.md))): *Optional*. The custom function called when the player interacts with this KeyBinder.
 	* `inGameOnly` (boolean): *Default*: `false`. If true, the setting is disabled while the game is on main menu.
 	* `restartRequired` (boolean): *Default*: `false`. If true, updating this Setting will notify the player to restart the game.
@@ -450,7 +446,7 @@ The same is done by this function if you pass both `parent` and `data` arguments
 
 
 ```lua
-local button = mwse.mcm.createMouseBinder(parent, { label = ..., description = ..., allowCombinations  = ..., allowButtons  = ..., allowWheel  = ..., keybindName = ..., leftSide = ..., variable = ..., config = ..., defaultConfig = ..., configKey = ..., converter = ..., defaultSetting = ..., showDefaultSetting = ..., callback = ..., inGameOnly = ..., restartRequired = ..., restartRequiredMessage = ..., indent = ..., childIndent = ..., paddingBottom = ..., childSpacing = ..., postCreate = ... })
+local button = mwse.mcm.createMouseBinder(parent, { label = ..., description = ..., allowCombinations  = ..., allowButtons  = ..., allowWheel  = ..., keybindName = ..., leftSide = ..., variable = ..., config = ..., defaultConfig = ..., configKey = ..., converter = ..., defaultSetting = ..., callback = ..., inGameOnly = ..., restartRequired = ..., restartRequiredMessage = ..., indent = ..., childIndent = ..., paddingBottom = ..., childSpacing = ..., postCreate = ... })
 ```
 
 **Parameters**:
@@ -470,7 +466,6 @@ local button = mwse.mcm.createMouseBinder(parent, { label = ..., description = .
 	* `configKey` (string, number): *Optional*. The `configKey` used to create a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md). If this is provided, along with a `config` (which may be inherited from the `parentComponent`), then a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md) variable will be created for this setting.
 	* `converter` (fun(newValue: unknown): unknown): *Optional*. A converter to use for this component's `variable`.
 	* `defaultSetting` (unknown): *Optional*. If `defaultSetting` wasn't passed in the `variable` table, can be passed here. The new variable will be initialized to this value. If not provided, then the value in `defaultConfig` will be used, if possible.
-	* `showDefaultSetting` (boolean): *Default*: ``parentComponent.showDefaultSetting``. If `true`, and in a [Sidebar Page](../types/mwseMCMSideBarPage.md), then the `defaultSetting` of this setting's `variable` will be shown below its `description`. The `defaultSetting` will be formatted in accordance with the `convertToLabelValue` function. **Note:** This parameter does not update the `description` field.
 	* `callback` (fun(self: [mwseMCMMouseBinder](../types/mwseMCMMouseBinder.md))): *Optional*. The custom function called when the player interacts with this MouseBinder.
 	* `inGameOnly` (boolean): *Default*: `false`. If true, the setting is disabled while the game is on main menu.
 	* `restartRequired` (boolean): *Default*: `false`. If true, updating this Setting will notify the player to restart the game.
@@ -544,7 +539,7 @@ The same is done by this function if you pass both `parent` and `data` arguments
 
 
 ```lua
-local button = mwse.mcm.createOnOffButton(parent, { label = ..., description = ..., leftSide = ..., variable = ..., config = ..., defaultConfig = ..., configKey = ..., converter = ..., defaultSetting = ..., showDefaultSetting = ..., callback = ..., inGameOnly = ..., restartRequired = ..., restartRequiredMessage = ..., indent = ..., childIndent = ..., paddingBottom = ..., childSpacing = ..., postCreate = ... })
+local button = mwse.mcm.createOnOffButton(parent, { label = ..., description = ..., leftSide = ..., variable = ..., config = ..., defaultConfig = ..., configKey = ..., converter = ..., defaultSetting = ..., callback = ..., inGameOnly = ..., restartRequired = ..., restartRequiredMessage = ..., indent = ..., childIndent = ..., paddingBottom = ..., childSpacing = ..., postCreate = ... })
 ```
 
 **Parameters**:
@@ -560,7 +555,6 @@ local button = mwse.mcm.createOnOffButton(parent, { label = ..., description = .
 	* `configKey` (string, number): *Optional*. The `configKey` used to create a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md). If this is provided, along with a `config` (which may be inherited from the `parentComponent`), then a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md) variable will be created for this setting.
 	* `converter` (fun(newValue: unknown): unknown): *Optional*. A converter to use for this component's `variable`.
 	* `defaultSetting` (unknown): *Optional*. If `defaultSetting` wasn't passed in the `variable` table, can be passed here. The new variable will be initialized to this value. If not provided, then the value in `defaultConfig` will be used, if possible.
-	* `showDefaultSetting` (boolean): *Default*: ``parentComponent.showDefaultSetting``. If `true`, and in a [Sidebar Page](../types/mwseMCMSideBarPage.md), then the `defaultSetting` of this setting's `variable` will be shown below its `description`. The `defaultSetting` will be formatted in accordance with the `convertToLabelValue` function. **Note:** This parameter does not update the `description` field.
 	* `callback` (fun(self: [mwseMCMOnOffButton](../types/mwseMCMOnOffButton.md))): *Optional*. The custom function called when the player interacts with this Button.
 	* `inGameOnly` (boolean): *Default*: `false`. If true, the setting is disabled while the game is on main menu.
 	* `restartRequired` (boolean): *Default*: `false`. If true, updating this Setting will notify the player to restart the game.
@@ -593,7 +587,7 @@ The same is done by this function if you pass both `parent` and `data` arguments
 
 
 ```lua
-local paragraphField = mwse.mcm.createParagraphField(parent, { label = ..., buttonText = ..., variable = ..., config = ..., defaultConfig = ..., configKey = ..., converter = ..., defaultSetting = ..., showDefaultSetting = ..., numbersOnly = ..., description = ..., height = ..., sNewValue = ..., callback = ..., inGameOnly = ..., restartRequired = ..., restartRequiredMessage = ..., indent = ..., childIndent = ..., paddingBottom = ..., childSpacing = ..., postCreate = ... })
+local paragraphField = mwse.mcm.createParagraphField(parent, { label = ..., buttonText = ..., variable = ..., config = ..., defaultConfig = ..., configKey = ..., converter = ..., defaultSetting = ..., numbersOnly = ..., description = ..., height = ..., sNewValue = ..., callback = ..., inGameOnly = ..., restartRequired = ..., restartRequiredMessage = ..., indent = ..., childIndent = ..., paddingBottom = ..., childSpacing = ..., postCreate = ... })
 ```
 
 **Parameters**:
@@ -608,7 +602,6 @@ local paragraphField = mwse.mcm.createParagraphField(parent, { label = ..., butt
 	* `configKey` (string, number): *Optional*. The `configKey` used to create a new [`mwseMCMTableVariable`](../types/mwseMCMTableVariable.md). If this is provided, along with a `config` (which may be inherited from the `parentComponent`), then a new [`mwseMCMTableVariable`](../types/mwseMCMTableVariable.md) variable will be created for this setting.
 	* `converter` (fun(newValue: unknown): unknown): *Optional*. A converter to use for this component's `variable`.
 	* `defaultSetting` (unknown): *Optional*. If `defaultSetting` wasn't passed in the `variable` table, can be passed here. The new variable will be initialized to this value. If not provided, then the value in `defaultConfig` will be used, if possible.
-	* `showDefaultSetting` (boolean): *Default*: ``parentComponent.showDefaultSetting``. If `true`, and in a [Sidebar Page](../types/mwseMCMSideBarPage.md), then the `defaultSetting` of this setting's `variable` will be shown below its `description`. The `defaultSetting` will be formatted in accordance with the `convertToLabelValue` function. **Note:** This parameter does not update the `description` field.
 	* `numbersOnly` (boolean): *Default*: `false`. If true, only numbers will be allowed in this TextField.
 	* `description` (string): *Optional*. If in a [Sidebar Page](../types/mwseMCMSideBarPage.md), the description will be shown on mouseover.
 	* `height` (integer): *Optional*. Fixes the height of the paragraph field to a custom value.
@@ -645,7 +638,7 @@ The same is done by this function if you pass both `parent` and `data` arguments
 
 
 ```lua
-local slider = mwse.mcm.createPercentageSlider(parent, { label = ..., variable = ..., config = ..., defaultConfig = ..., configKey = ..., converter = ..., defaultSetting = ..., showDefaultSetting = ..., min = ..., max = ..., step = ..., jump = ..., decimalPlaces = ..., description = ..., callback = ..., inGameOnly = ..., restartRequired = ..., restartRequiredMessage = ..., indent = ..., childIndent = ..., paddingBottom = ..., childSpacing = ..., convertToLabelValue = ..., postCreate = ... })
+local slider = mwse.mcm.createPercentageSlider(parent, { label = ..., variable = ..., config = ..., defaultConfig = ..., configKey = ..., converter = ..., defaultSetting = ..., min = ..., max = ..., step = ..., jump = ..., decimalPlaces = ..., description = ..., callback = ..., inGameOnly = ..., restartRequired = ..., restartRequiredMessage = ..., indent = ..., childIndent = ..., paddingBottom = ..., childSpacing = ..., convertToLabelValue = ..., postCreate = ... })
 ```
 
 **Parameters**:
@@ -659,7 +652,6 @@ local slider = mwse.mcm.createPercentageSlider(parent, { label = ..., variable =
 	* `configKey` (string, number): *Optional*. The `configKey` used to create a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md). If this is provided, along with a `config` (which may be inherited from the `parentComponent`), then a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md) variable will be created for this setting.
 	* `converter` (fun(newValue: unknown): unknown): *Optional*. A converter to use for this component's `variable`.
 	* `defaultSetting` (unknown): *Optional*. If `defaultSetting` wasn't passed in the `variable` table, can be passed here. The new variable will be initialized to this value. If not provided, then the value in `defaultConfig` will be used, if possible.
-	* `showDefaultSetting` (boolean): *Default*: ``parentComponent.showDefaultSetting``. If `true`, and in a [Sidebar Page](../types/mwseMCMSideBarPage.md), then the `defaultSetting` of this setting's `variable` will be shown below its `description`. The `defaultSetting` will be formatted in accordance with the `convertToLabelValue` function. **Note:** This parameter does not update the `description` field.
 	* `min` (number): *Default*: `0`. Minimum value of slider.
 	* `max` (number): *Default*: `1`. Maximum value of slider.
 	* `step` (number): *Default*: `0.01`. How far the slider moves when you press the arrows.
@@ -724,7 +716,7 @@ The same is done by this function if you pass both `parent` and `data` arguments
 
 
 ```lua
-local slider = mwse.mcm.createSlider(parent, { label = ..., variable = ..., config = ..., defaultConfig = ..., configKey = ..., converter = ..., defaultSetting = ..., showDefaultSetting = ..., min = ..., max = ..., step = ..., jump = ..., decimalPlaces = ..., description = ..., callback = ..., inGameOnly = ..., restartRequired = ..., restartRequiredMessage = ..., indent = ..., childIndent = ..., paddingBottom = ..., childSpacing = ..., convertToLabelValue = ..., postCreate = ... })
+local slider = mwse.mcm.createSlider(parent, { label = ..., variable = ..., config = ..., defaultConfig = ..., configKey = ..., converter = ..., defaultSetting = ..., min = ..., max = ..., step = ..., jump = ..., decimalPlaces = ..., description = ..., callback = ..., inGameOnly = ..., restartRequired = ..., restartRequiredMessage = ..., indent = ..., childIndent = ..., paddingBottom = ..., childSpacing = ..., convertToLabelValue = ..., postCreate = ... })
 ```
 
 **Parameters**:
@@ -738,7 +730,6 @@ local slider = mwse.mcm.createSlider(parent, { label = ..., variable = ..., conf
 	* `configKey` (string, number): *Optional*. The `configKey` used to create a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md). If this is provided, along with a `config` (which may be inherited from the `parentComponent`), then a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md) variable will be created for this setting.
 	* `converter` (fun(newValue: unknown): unknown): *Optional*. A converter to use for this component's `variable`.
 	* `defaultSetting` (unknown): *Optional*. If `defaultSetting` wasn't passed in the `variable` table, can be passed here. The new variable will be initialized to this value. If not provided, then the value in `defaultConfig` will be used, if possible.
-	* `showDefaultSetting` (boolean): *Default*: ``parentComponent.showDefaultSetting``. If `true`, and in a [Sidebar Page](../types/mwseMCMSideBarPage.md), then the `defaultSetting` of this setting's `variable` will be shown below its `description`. The `defaultSetting` will be formatted in accordance with the `convertToLabelValue` function. **Note:** This parameter does not update the `description` field.
 	* `min` (number): *Default*: `0`. Minimum value of slider.
 	* `max` (number): *Default*: `100`. Maximum value of slider.
 	* `step` (number): *Default*: `1`. How far the slider moves when you press the arrows.
@@ -870,7 +861,7 @@ local variable = mwse.mcm.createTableVariable({ id = ..., table = ..., defaultSe
 Creates a new Template.
 
 ```lua
-local template = mwse.mcm.createTemplate({ name = ..., label = ..., headerImagePath = ..., onClose = ..., searchChildLabels = ..., searchChildDescriptions = ..., onSearch = ..., pages = ..., indent = ..., childIndent = ..., paddingBottom = ..., childSpacing = ..., inGameOnly = ..., postCreate = ... })
+local template = mwse.mcm.createTemplate({ name = ..., label = ..., config = ..., defaultConfig = ..., headerImagePath = ..., onClose = ..., searchChildLabels = ..., searchChildDescriptions = ..., onSearch = ..., pages = ..., indent = ..., childIndent = ..., paddingBottom = ..., childSpacing = ..., inGameOnly = ..., postCreate = ... })
 ```
 
 **Parameters**:
@@ -878,6 +869,8 @@ local template = mwse.mcm.createTemplate({ name = ..., label = ..., headerImageP
 * `data` (table, string): If passing only a string, it will be used as the Template's name.
 	* `name` (string): *Optional*. The name field is the mod name, used to register the MCM, and is displayed in the mod list on the lefthand pane.
 	* `label` (string): *Optional*. Used in place of `name` if that argument isn't passed. You need to pass at least one of the `name` and `label` arguments. If `headerImagePath` is not passed, a UI element will be created with `label` as text.
+	* `config` (table): *Optional*. Stores a config that should be used by this mods `Setting`s. Sub-configs can be accessed by passing a `configKey` to any `Page`s nested inside this template. If provided, this config will be used to generate [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md) for the  any [`mwseMCMSetting`s](../types/mwseMCMSetting.md) made inside this template.
+	* `defaultConfig` (table): *Optional*. Stores a default config that should be used by this mods `Setting`s. This will initialize the `defaultSetting` field of any [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md) created for this mod.
 	* `headerImagePath` (string): *Optional*. Set it to display an image at the top of your menu. Path is relative to `Data Files/`. The image must have power-of-2 dimensions (i.e. 16, 32, 64, 128, 256, 512, 1024, etc.).
 	* `onClose` (fun(modConfigContainer: [tes3uiElement](../types/tes3uiElement.md))): *Optional*. Set this to a function which will be called when the menu is closed. Useful for saving variables, such as TableVariable.
 	* `searchChildLabels` (boolean): *Default*: `true`. If true, default search handler will search through all the page and setting `label` and `text` fields in this MCM template.
@@ -913,7 +906,7 @@ The same is done by this function if you pass both `parent` and `data` arguments
 
 
 ```lua
-local textField = mwse.mcm.createTextField(parent, { label = ..., buttonText = ..., variable = ..., config = ..., defaultConfig = ..., configKey = ..., converter = ..., defaultSetting = ..., showDefaultSetting = ..., numbersOnly = ..., description = ..., press = ..., sNewValue = ..., minHeight = ..., callback = ..., inGameOnly = ..., restartRequired = ..., restartRequiredMessage = ..., indent = ..., childIndent = ..., paddingBottom = ..., childSpacing = ..., postCreate = ... })
+local textField = mwse.mcm.createTextField(parent, { label = ..., buttonText = ..., variable = ..., config = ..., defaultConfig = ..., configKey = ..., converter = ..., defaultSetting = ..., numbersOnly = ..., description = ..., press = ..., sNewValue = ..., minHeight = ..., callback = ..., inGameOnly = ..., restartRequired = ..., restartRequiredMessage = ..., indent = ..., childIndent = ..., paddingBottom = ..., childSpacing = ..., postCreate = ... })
 ```
 
 **Parameters**:
@@ -928,7 +921,6 @@ local textField = mwse.mcm.createTextField(parent, { label = ..., buttonText = .
 	* `configKey` (string, number): *Optional*. The `configKey` used to create a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md). If this is provided, along with a `config` (which may be inherited from the `parentComponent`), then a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md) variable will be created for this setting.
 	* `converter` (fun(newValue: unknown): unknown): *Optional*. A converter to use for this component's `variable`.
 	* `defaultSetting` (unknown): *Optional*. If `defaultSetting` wasn't passed in the `variable` table, can be passed here. The new variable will be initialized to this value. If not provided, then the value in `defaultConfig` will be used, if possible.
-	* `showDefaultSetting` (boolean): *Default*: ``parentComponent.showDefaultSetting``. If `true`, and in a [Sidebar Page](../types/mwseMCMSideBarPage.md), then the `defaultSetting` of this setting's `variable` will be shown below its `description`. The `defaultSetting` will be formatted in accordance with the `convertToLabelValue` function. **Note:** This parameter does not update the `description` field.
 	* `numbersOnly` (boolean): *Default*: `false`. If true, only numbers will be allowed in this TextField.
 	* `description` (string): *Optional*. If in a [Sidebar Page](../types/mwseMCMSideBarPage.md), the description will be shown on mouseover.
 	* `press` (fun(self: [mwseMCMTextField](../types/mwseMCMTextField.md))): *Optional*. This allows overriding the default implementation of this method. Can be overriden to add a confirmation message before updating. This function should call `self:update()` at the end.
