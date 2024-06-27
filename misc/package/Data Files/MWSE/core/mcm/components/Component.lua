@@ -213,4 +213,10 @@ function Component:create(parentBlock)
 	end
 end
 
+-- Returns the string that should be shown in the MouseOverInfo
+---@return string?
+function Component:getMouseOverText()
+	return self.description
+end
+
 return Component
