@@ -45,6 +45,11 @@ function Category:new(data)
 	local parent = t.parentComponent
 	if not parent then return t end
 
+	if t.showDefaultSetting == nil then
+		-- Using `rawget` so we don't inherit a default value
+		t.showDefaultSetting = rawget(parent, "showDefaultSetting")
+	end
+	
 	local configKey = t.configKey
 	if not t.config and parent.config then
 		t.config = parent.config[configKey] or parent.config
@@ -53,7 +58,7 @@ function Category:new(data)
 	if not t.defaultConfig and parent.defaultConfig then
 		t.defaultConfig = parent.defaultConfig[configKey] or parent.defaultConfig
 	end
-
+	
 	return t
 end
 
@@ -163,14 +168,6 @@ function Category.__index(tbl, key)
 	end
 
 	return Category[key]
-end
-
---- This will recursively go through your MCM and append the text "Default = ___" to the description of each setting.
--- The default value will be pulled from `self.variable.defaultSetting`
-function Category:addDefaultsToDescriptions()
-	for _, subComp in ipairs(self.components) do
-		subComp:addDefaultsToDescriptions()
-	end
 end
 
 return Category

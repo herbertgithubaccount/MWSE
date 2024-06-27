@@ -363,12 +363,4 @@ function Template.__index(tbl, key)
 	return Template[key]
 end
 
---- This will recursively go through your MCM and append the text "Default = ___" to the description of each setting.
--- The default value will be pulled from `self.variable.defaultSetting`
-function Template:addDefaultsToDescriptions()
-	for _, subComp in ipairs(self.pages) do
-		subComp:addDefaultsToDescriptions()
-	end
-end
-
 return Template

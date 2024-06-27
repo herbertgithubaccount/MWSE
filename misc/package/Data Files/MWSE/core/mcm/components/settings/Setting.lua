@@ -23,10 +23,18 @@ Setting.restartRequiredMessage = mwse.mcm.i18n("The game must be restarted befor
 function Setting:new(data)
 	local t = Parent:new(data)
 
-	
+	-- Update the new object so that:
+	-- 1) it inherits `config`, `defaultConfig`, and `showDefaultSetting` values from parent component.
+	-- 2) its `variable` is properly initialized (or created from `config` and `configKey` parameters, if applicable).
 	if data then
 		local configKey = data.configKey
 		local parent = data.parentComponent
+
+		if parent and data.showDefaultSetting == nil then
+			-- Using `rawget` so we don't inherit a default value
+			t.showDefaultSetting = rawget(parent, "showDefaultSetting")
+		end
+
 		local config = data.config or parent and parent.config
 		local defaultConfig = data.defaultConfig or parent and parent.defaultConfig
 
@@ -102,34 +110,6 @@ end
 
 function Setting:convertToLabelValue(variableValue)
 	return variableValue
-end
-
-
---- This will recursively go through your MCM and append the text "Default = ___" to the description of each setting.
--- The default value will be pulled from `self.variable.defaultSetting`
-function Setting:addDefaultsToDescriptions()
-
-	local var = self.variable
-	if not var or var.class ~= "TableVariable" then return end
-	---@cast var mwseMCMTableVariable
-
-	local defaultVal = var.defaultSetting
-	if defaultVal == nil then return end
-
-	-- String representation of the default value, according to this setting.
-	local defaultStr = self:convertToLabelValue(defaultVal)
-
-	if self.description == nil then
-		self.description = string.format(
-			"%s: %s", 
-			mwse.mcm.i18n("Default"), defaultStr
-		)
-	else
-		self.description = string.format(
-			"%s\n\n%s: %s", 
-			self.description, mwse.mcm.i18n("Default"), defaultStr
-		)
-	end
 end
 
 return Setting
