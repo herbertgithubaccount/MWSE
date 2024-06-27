@@ -94,6 +94,8 @@ function mwse.mcm.createActiveInfo(parent, data) end
 --- 
 --- `defaultSetting`: unknown? — *Optional*. If `defaultSetting` wasn't passed in the `variable` table, can be passed here. The new variable will be initialized to this value. If not provided, then the value in `defaultConfig` will be used, if possible.
 --- 
+--- `showDefaultSetting`: boolean? — *Default*: ``parentComponent.showDefaultSetting``. If `true`, and in a [Sidebar Page](../types/mwseMCMSideBarPage.md), then the `defaultSetting` of this setting's `variable` will be shown below its `description`. The `defaultSetting` will be formatted in accordance with the `convertToLabelValue` function. **Note:** This parameter does not update the `description` field.
+--- 
 --- `callback`: nil|fun(self: mwseMCMButton) — *Optional*. The custom function called when the player interacts with this Button.
 --- 
 --- `inGameOnly`: boolean? — *Default*: `false`. If true, the setting is disabled while the game is on main menu.
@@ -126,6 +128,7 @@ function mwse.mcm.createButton(parent, data) end
 --- @field configKey string|number|nil *Optional*. The `configKey` used to create a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md). If this is provided, along with a `config` (which may be inherited from the `parentComponent`), then a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md) variable will be created for this setting.
 --- @field converter nil|fun(newValue: unknown): unknown *Optional*. A converter to use for this component's `variable`.
 --- @field defaultSetting unknown? *Optional*. If `defaultSetting` wasn't passed in the `variable` table, can be passed here. The new variable will be initialized to this value. If not provided, then the value in `defaultConfig` will be used, if possible.
+--- @field showDefaultSetting boolean? *Default*: ``parentComponent.showDefaultSetting``. If `true`, and in a [Sidebar Page](../types/mwseMCMSideBarPage.md), then the `defaultSetting` of this setting's `variable` will be shown below its `description`. The `defaultSetting` will be formatted in accordance with the `convertToLabelValue` function. **Note:** This parameter does not update the `description` field.
 --- @field callback nil|fun(self: mwseMCMButton) *Optional*. The custom function called when the player interacts with this Button.
 --- @field inGameOnly boolean? *Default*: `false`. If true, the setting is disabled while the game is on main menu.
 --- @field restartRequired boolean? *Default*: `false`. If true, updating this Setting will notify the player to restart the game.
@@ -234,6 +237,8 @@ function mwse.mcm.createCustom(variable) end
 --- 
 --- `defaultSetting`: unknown? — *Optional*. If `defaultSetting` wasn't passed in the `variable` table, can be passed here. The new variable will be initialized to this value. If not provided, then the value in `defaultConfig` will be used, if possible.
 --- 
+--- `showDefaultSetting`: boolean? — *Default*: ``parentComponent.showDefaultSetting``. If `true`, and in a [Sidebar Page](../types/mwseMCMSideBarPage.md), then the `defaultSetting` of this setting's `variable` will be shown below its `description`. The `defaultSetting` will be formatted in accordance with the `convertToLabelValue` function. **Note:** This parameter does not update the `description` field.
+--- 
 --- `callback`: nil|fun(self: mwseMCMCycleButton) — *Optional*. The custom function called when the player interacts with this cycle button.
 --- 
 --- `inGameOnly`: boolean? — *Default*: `false`. If true, the setting is disabled while the game is on main menu.
@@ -266,6 +271,7 @@ function mwse.mcm.createCycleButton(parent, data) end
 --- @field configKey string|number|nil *Optional*. The `configKey` used to create a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md). If this is provided, along with a `config` (which may be inherited from the `parentComponent`), then a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md) variable will be created for this setting.
 --- @field converter nil|fun(newValue: unknown): unknown *Optional*. A converter to use for this component's `variable`.
 --- @field defaultSetting unknown? *Optional*. If `defaultSetting` wasn't passed in the `variable` table, can be passed here. The new variable will be initialized to this value. If not provided, then the value in `defaultConfig` will be used, if possible.
+--- @field showDefaultSetting boolean? *Default*: ``parentComponent.showDefaultSetting``. If `true`, and in a [Sidebar Page](../types/mwseMCMSideBarPage.md), then the `defaultSetting` of this setting's `variable` will be shown below its `description`. The `defaultSetting` will be formatted in accordance with the `convertToLabelValue` function. **Note:** This parameter does not update the `description` field.
 --- @field callback nil|fun(self: mwseMCMCycleButton) *Optional*. The custom function called when the player interacts with this cycle button.
 --- @field inGameOnly boolean? *Default*: `false`. If true, the setting is disabled while the game is on main menu.
 --- @field restartRequired boolean? *Default*: `false`. If true, updating this Setting will notify the player to restart the game.
@@ -304,6 +310,8 @@ function mwse.mcm.createCycleButton(parent, data) end
 --- `converter`: nil|fun(newValue: unknown): unknown — *Optional*. A converter to use for this component's `variable`.
 --- 
 --- `defaultSetting`: unknown? — *Optional*. If `defaultSetting` wasn't passed in the `variable` table, can be passed here. The new variable will be initialized to this value. If not provided, then the value in `defaultConfig` will be used, if possible.
+--- 
+--- `showDefaultSetting`: boolean? — *Default*: ``parentComponent.showDefaultSetting``. If `true`, and in a [Sidebar Page](../types/mwseMCMSideBarPage.md), then the `defaultSetting` of this setting's `variable` will be shown below its `description`. The `defaultSetting` will be formatted in accordance with the `convertToLabelValue` function. **Note:** This parameter does not update the `description` field.
 --- 
 --- `min`: number? — *Default*: `0`. Minimum value of slider.
 --- 
@@ -348,6 +356,7 @@ function mwse.mcm.createDecimalSlider(parent, data) end
 --- @field configKey string|number|nil *Optional*. The `configKey` used to create a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md). If this is provided, along with a `config` (which may be inherited from the `parentComponent`), then a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md) variable will be created for this setting.
 --- @field converter nil|fun(newValue: unknown): unknown *Optional*. A converter to use for this component's `variable`.
 --- @field defaultSetting unknown? *Optional*. If `defaultSetting` wasn't passed in the `variable` table, can be passed here. The new variable will be initialized to this value. If not provided, then the value in `defaultConfig` will be used, if possible.
+--- @field showDefaultSetting boolean? *Default*: ``parentComponent.showDefaultSetting``. If `true`, and in a [Sidebar Page](../types/mwseMCMSideBarPage.md), then the `defaultSetting` of this setting's `variable` will be shown below its `description`. The `defaultSetting` will be formatted in accordance with the `convertToLabelValue` function. **Note:** This parameter does not update the `description` field.
 --- @field min number? *Default*: `0`. Minimum value of slider.
 --- @field max number? *Default*: `1`. Maximum value of slider.
 --- @field step number? *Default*: `0.01`. How far the slider moves when you press the arrows.
@@ -397,6 +406,8 @@ function mwse.mcm.createDecimalSlider(parent, data) end
 --- 
 --- `defaultSetting`: unknown? — *Optional*. If `defaultSetting` wasn't passed in the `variable` table, can be passed here. The new variable will be initialized to this value. If not provided, then the value in `defaultConfig` will be used, if possible.
 --- 
+--- `showDefaultSetting`: boolean? — *Default*: ``parentComponent.showDefaultSetting``. If `true`, and in a [Sidebar Page](../types/mwseMCMSideBarPage.md), then the `defaultSetting` of this setting's `variable` will be shown below its `description`. The `defaultSetting` will be formatted in accordance with the `convertToLabelValue` function. **Note:** This parameter does not update the `description` field.
+--- 
 --- `idleColor`: number[]? — *Default*: `tes3ui.getPalette(tes3.palette.normalColor)`. The idle color for dropdown. Needs to be an RGB trio in the range [0.0, 1.0].
 --- 
 --- `overColor`: number[]? — *Default*: `tes3ui.getPalette(tes3.palette.normalOverColor)`. The color used when the mouse if hovering over the dropdown. Needs to be an RGB trio in the range [0.0, 1.0].
@@ -434,6 +445,7 @@ function mwse.mcm.createDropdown(parent, data) end
 --- @field configKey string|number|nil *Optional*. The `configKey` used to create a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md). If this is provided, along with a `config` (which may be inherited from the `parentComponent`), then a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md) variable will be created for this setting.
 --- @field converter nil|fun(newValue: unknown): unknown *Optional*. A converter to use for this component's `variable`.
 --- @field defaultSetting unknown? *Optional*. If `defaultSetting` wasn't passed in the `variable` table, can be passed here. The new variable will be initialized to this value. If not provided, then the value in `defaultConfig` will be used, if possible.
+--- @field showDefaultSetting boolean? *Default*: ``parentComponent.showDefaultSetting``. If `true`, and in a [Sidebar Page](../types/mwseMCMSideBarPage.md), then the `defaultSetting` of this setting's `variable` will be shown below its `description`. The `defaultSetting` will be formatted in accordance with the `convertToLabelValue` function. **Note:** This parameter does not update the `description` field.
 --- @field idleColor number[]? *Default*: `tes3ui.getPalette(tes3.palette.normalColor)`. The idle color for dropdown. Needs to be an RGB trio in the range [0.0, 1.0].
 --- @field overColor number[]? *Default*: `tes3ui.getPalette(tes3.palette.normalOverColor)`. The color used when the mouse if hovering over the dropdown. Needs to be an RGB trio in the range [0.0, 1.0].
 --- @field pressedColor number[]? *Default*: `tes3ui.getPalette(tes3.palette.normalPressedColor)`. The color used when the dropdown is being pressed. Needs to be an RGB trio in the range [0.0, 1.0].
@@ -614,6 +626,8 @@ function mwse.mcm.createInfo(parent, data) end
 --- 
 --- `defaultSetting`: unknown? — *Optional*. If `defaultSetting` wasn't passed in the `variable` table, can be passed here. The new variable will be initialized to this value. If not provided, then the value in `defaultConfig` will be used, if possible.
 --- 
+--- `showDefaultSetting`: boolean? — *Default*: ``parentComponent.showDefaultSetting``. If `true`, and in a [Sidebar Page](../types/mwseMCMSideBarPage.md), then the `defaultSetting` of this setting's `variable` will be shown below its `description`. The `defaultSetting` will be formatted in accordance with the `convertToLabelValue` function. **Note:** This parameter does not update the `description` field.
+--- 
 --- `callback`: nil|fun(self: mwseMCMKeyBinder) — *Optional*. The custom function called when the player interacts with this KeyBinder.
 --- 
 --- `inGameOnly`: boolean? — *Default*: `false`. If true, the setting is disabled while the game is on main menu.
@@ -648,6 +662,7 @@ function mwse.mcm.createKeyBinder(parent, data) end
 --- @field configKey string|number|nil *Optional*. The `configKey` used to create a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md). If this is provided, along with a `config` (which may be inherited from the `parentComponent`), then a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md) variable will be created for this setting.
 --- @field converter nil|fun(newValue: unknown): unknown *Optional*. A converter to use for this component's `variable`.
 --- @field defaultSetting unknown? *Optional*. If `defaultSetting` wasn't passed in the `variable` table, can be passed here. The new variable will be initialized to this value. If not provided, then the value in `defaultConfig` will be used, if possible.
+--- @field showDefaultSetting boolean? *Default*: ``parentComponent.showDefaultSetting``. If `true`, and in a [Sidebar Page](../types/mwseMCMSideBarPage.md), then the `defaultSetting` of this setting's `variable` will be shown below its `description`. The `defaultSetting` will be formatted in accordance with the `convertToLabelValue` function. **Note:** This parameter does not update the `description` field.
 --- @field callback nil|fun(self: mwseMCMKeyBinder) *Optional*. The custom function called when the player interacts with this KeyBinder.
 --- @field inGameOnly boolean? *Default*: `false`. If true, the setting is disabled while the game is on main menu.
 --- @field restartRequired boolean? *Default*: `false`. If true, updating this Setting will notify the player to restart the game.
@@ -698,6 +713,8 @@ function mwse.mcm.createKeyBinder(parent, data) end
 --- 
 --- `defaultSetting`: unknown? — *Optional*. If `defaultSetting` wasn't passed in the `variable` table, can be passed here. The new variable will be initialized to this value. If not provided, then the value in `defaultConfig` will be used, if possible.
 --- 
+--- `showDefaultSetting`: boolean? — *Default*: ``parentComponent.showDefaultSetting``. If `true`, and in a [Sidebar Page](../types/mwseMCMSideBarPage.md), then the `defaultSetting` of this setting's `variable` will be shown below its `description`. The `defaultSetting` will be formatted in accordance with the `convertToLabelValue` function. **Note:** This parameter does not update the `description` field.
+--- 
 --- `callback`: nil|fun(self: mwseMCMMouseBinder) — *Optional*. The custom function called when the player interacts with this MouseBinder.
 --- 
 --- `inGameOnly`: boolean? — *Default*: `false`. If true, the setting is disabled while the game is on main menu.
@@ -733,6 +750,7 @@ function mwse.mcm.createMouseBinder(parent, data) end
 --- @field configKey string|number|nil *Optional*. The `configKey` used to create a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md). If this is provided, along with a `config` (which may be inherited from the `parentComponent`), then a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md) variable will be created for this setting.
 --- @field converter nil|fun(newValue: unknown): unknown *Optional*. A converter to use for this component's `variable`.
 --- @field defaultSetting unknown? *Optional*. If `defaultSetting` wasn't passed in the `variable` table, can be passed here. The new variable will be initialized to this value. If not provided, then the value in `defaultConfig` will be used, if possible.
+--- @field showDefaultSetting boolean? *Default*: ``parentComponent.showDefaultSetting``. If `true`, and in a [Sidebar Page](../types/mwseMCMSideBarPage.md), then the `defaultSetting` of this setting's `variable` will be shown below its `description`. The `defaultSetting` will be formatted in accordance with the `convertToLabelValue` function. **Note:** This parameter does not update the `description` field.
 --- @field callback nil|fun(self: mwseMCMMouseBinder) *Optional*. The custom function called when the player interacts with this MouseBinder.
 --- @field inGameOnly boolean? *Default*: `false`. If true, the setting is disabled while the game is on main menu.
 --- @field restartRequired boolean? *Default*: `false`. If true, updating this Setting will notify the player to restart the game.
@@ -827,6 +845,8 @@ function mwse.mcm.createMouseOverInfo(parent, data) end
 --- 
 --- `defaultSetting`: unknown? — *Optional*. If `defaultSetting` wasn't passed in the `variable` table, can be passed here. The new variable will be initialized to this value. If not provided, then the value in `defaultConfig` will be used, if possible.
 --- 
+--- `showDefaultSetting`: boolean? — *Default*: ``parentComponent.showDefaultSetting``. If `true`, and in a [Sidebar Page](../types/mwseMCMSideBarPage.md), then the `defaultSetting` of this setting's `variable` will be shown below its `description`. The `defaultSetting` will be formatted in accordance with the `convertToLabelValue` function. **Note:** This parameter does not update the `description` field.
+--- 
 --- `callback`: nil|fun(self: mwseMCMOnOffButton) — *Optional*. The custom function called when the player interacts with this Button.
 --- 
 --- `inGameOnly`: boolean? — *Default*: `false`. If true, the setting is disabled while the game is on main menu.
@@ -858,6 +878,7 @@ function mwse.mcm.createOnOffButton(parent, data) end
 --- @field configKey string|number|nil *Optional*. The `configKey` used to create a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md). If this is provided, along with a `config` (which may be inherited from the `parentComponent`), then a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md) variable will be created for this setting.
 --- @field converter nil|fun(newValue: unknown): unknown *Optional*. A converter to use for this component's `variable`.
 --- @field defaultSetting unknown? *Optional*. If `defaultSetting` wasn't passed in the `variable` table, can be passed here. The new variable will be initialized to this value. If not provided, then the value in `defaultConfig` will be used, if possible.
+--- @field showDefaultSetting boolean? *Default*: ``parentComponent.showDefaultSetting``. If `true`, and in a [Sidebar Page](../types/mwseMCMSideBarPage.md), then the `defaultSetting` of this setting's `variable` will be shown below its `description`. The `defaultSetting` will be formatted in accordance with the `convertToLabelValue` function. **Note:** This parameter does not update the `description` field.
 --- @field callback nil|fun(self: mwseMCMOnOffButton) *Optional*. The custom function called when the player interacts with this Button.
 --- @field inGameOnly boolean? *Default*: `false`. If true, the setting is disabled while the game is on main menu.
 --- @field restartRequired boolean? *Default*: `false`. If true, updating this Setting will notify the player to restart the game.
@@ -898,6 +919,8 @@ function mwse.mcm.createOnOffButton(parent, data) end
 --- 
 --- `defaultSetting`: unknown? — *Optional*. If `defaultSetting` wasn't passed in the `variable` table, can be passed here. The new variable will be initialized to this value. If not provided, then the value in `defaultConfig` will be used, if possible.
 --- 
+--- `showDefaultSetting`: boolean? — *Default*: ``parentComponent.showDefaultSetting``. If `true`, and in a [Sidebar Page](../types/mwseMCMSideBarPage.md), then the `defaultSetting` of this setting's `variable` will be shown below its `description`. The `defaultSetting` will be formatted in accordance with the `convertToLabelValue` function. **Note:** This parameter does not update the `description` field.
+--- 
 --- `numbersOnly`: boolean? — *Default*: `false`. If true, only numbers will be allowed in this TextField.
 --- 
 --- `description`: string? — *Optional*. If in a [Sidebar Page](../types/mwseMCMSideBarPage.md), the description will be shown on mouseover.
@@ -936,6 +959,7 @@ function mwse.mcm.createParagraphField(parent, data) end
 --- @field configKey string|number|nil *Optional*. The `configKey` used to create a new [`mwseMCMTableVariable`](../types/mwseMCMTableVariable.md). If this is provided, along with a `config` (which may be inherited from the `parentComponent`), then a new [`mwseMCMTableVariable`](../types/mwseMCMTableVariable.md) variable will be created for this setting.
 --- @field converter nil|fun(newValue: unknown): unknown *Optional*. A converter to use for this component's `variable`.
 --- @field defaultSetting unknown? *Optional*. If `defaultSetting` wasn't passed in the `variable` table, can be passed here. The new variable will be initialized to this value. If not provided, then the value in `defaultConfig` will be used, if possible.
+--- @field showDefaultSetting boolean? *Default*: ``parentComponent.showDefaultSetting``. If `true`, and in a [Sidebar Page](../types/mwseMCMSideBarPage.md), then the `defaultSetting` of this setting's `variable` will be shown below its `description`. The `defaultSetting` will be formatted in accordance with the `convertToLabelValue` function. **Note:** This parameter does not update the `description` field.
 --- @field numbersOnly boolean? *Default*: `false`. If true, only numbers will be allowed in this TextField.
 --- @field description string? *Optional*. If in a [Sidebar Page](../types/mwseMCMSideBarPage.md), the description will be shown on mouseover.
 --- @field height integer? *Optional*. Fixes the height of the paragraph field to a custom value.
@@ -977,6 +1001,8 @@ function mwse.mcm.createParagraphField(parent, data) end
 --- `converter`: nil|fun(newValue: unknown): unknown — *Optional*. A converter to use for this component's `variable`.
 --- 
 --- `defaultSetting`: unknown? — *Optional*. If `defaultSetting` wasn't passed in the `variable` table, can be passed here. The new variable will be initialized to this value. If not provided, then the value in `defaultConfig` will be used, if possible.
+--- 
+--- `showDefaultSetting`: boolean? — *Default*: ``parentComponent.showDefaultSetting``. If `true`, and in a [Sidebar Page](../types/mwseMCMSideBarPage.md), then the `defaultSetting` of this setting's `variable` will be shown below its `description`. The `defaultSetting` will be formatted in accordance with the `convertToLabelValue` function. **Note:** This parameter does not update the `description` field.
 --- 
 --- `min`: number? — *Default*: `0`. Minimum value of slider.
 --- 
@@ -1021,6 +1047,7 @@ function mwse.mcm.createPercentageSlider(parent, data) end
 --- @field configKey string|number|nil *Optional*. The `configKey` used to create a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md). If this is provided, along with a `config` (which may be inherited from the `parentComponent`), then a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md) variable will be created for this setting.
 --- @field converter nil|fun(newValue: unknown): unknown *Optional*. A converter to use for this component's `variable`.
 --- @field defaultSetting unknown? *Optional*. If `defaultSetting` wasn't passed in the `variable` table, can be passed here. The new variable will be initialized to this value. If not provided, then the value in `defaultConfig` will be used, if possible.
+--- @field showDefaultSetting boolean? *Default*: ``parentComponent.showDefaultSetting``. If `true`, and in a [Sidebar Page](../types/mwseMCMSideBarPage.md), then the `defaultSetting` of this setting's `variable` will be shown below its `description`. The `defaultSetting` will be formatted in accordance with the `convertToLabelValue` function. **Note:** This parameter does not update the `description` field.
 --- @field min number? *Default*: `0`. Minimum value of slider.
 --- @field max number? *Default*: `1`. Maximum value of slider.
 --- @field step number? *Default*: `0.01`. How far the slider moves when you press the arrows.
@@ -1094,6 +1121,8 @@ function mwse.mcm.createPlayerData(variable) end
 --- 
 --- `defaultSetting`: unknown? — *Optional*. If `defaultSetting` wasn't passed in the `variable` table, can be passed here. The new variable will be initialized to this value. If not provided, then the value in `defaultConfig` will be used, if possible.
 --- 
+--- `showDefaultSetting`: boolean? — *Default*: ``parentComponent.showDefaultSetting``. If `true`, and in a [Sidebar Page](../types/mwseMCMSideBarPage.md), then the `defaultSetting` of this setting's `variable` will be shown below its `description`. The `defaultSetting` will be formatted in accordance with the `convertToLabelValue` function. **Note:** This parameter does not update the `description` field.
+--- 
 --- `min`: number? — *Default*: `0`. Minimum value of slider.
 --- 
 --- `max`: number? — *Default*: `100`. Maximum value of slider.
@@ -1137,6 +1166,7 @@ function mwse.mcm.createSlider(parent, data) end
 --- @field configKey string|number|nil *Optional*. The `configKey` used to create a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md). If this is provided, along with a `config` (which may be inherited from the `parentComponent`), then a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md) variable will be created for this setting.
 --- @field converter nil|fun(newValue: unknown): unknown *Optional*. A converter to use for this component's `variable`.
 --- @field defaultSetting unknown? *Optional*. If `defaultSetting` wasn't passed in the `variable` table, can be passed here. The new variable will be initialized to this value. If not provided, then the value in `defaultConfig` will be used, if possible.
+--- @field showDefaultSetting boolean? *Default*: ``parentComponent.showDefaultSetting``. If `true`, and in a [Sidebar Page](../types/mwseMCMSideBarPage.md), then the `defaultSetting` of this setting's `variable` will be shown below its `description`. The `defaultSetting` will be formatted in accordance with the `convertToLabelValue` function. **Note:** This parameter does not update the `description` field.
 --- @field min number? *Default*: `0`. Minimum value of slider.
 --- @field max number? *Default*: `100`. Maximum value of slider.
 --- @field step number? *Default*: `1`. How far the slider moves when you press the arrows.
@@ -1251,7 +1281,19 @@ function mwse.mcm.createTemplate(data) end
 --- 
 --- `buttonText`: string? — *Optional*. The text shown on the button next to the input field. The default text is a localized version of: "Submit".
 --- 
---- `variable`: mwseMCMConfigVariable|mwseMCMCustomVariable|mwseMCMGlobal|mwseMCMGlobalBoolean|mwseMCMPlayerData|mwseMCMTableVariable|mwseMCMVariable|mwseMCMSettingNewVariable — A variable for this setting.
+--- `variable`: mwseMCMConfigVariable|mwseMCMCustomVariable|mwseMCMGlobal|mwseMCMGlobalBoolean|mwseMCMPlayerData|mwseMCMTableVariable|mwseMCMVariable|mwseMCMSettingNewVariable|nil — *Optional*. A variable for this setting. If not provided, this setting will try to create a variable using the `config` and `configKey` parameters, if possible.
+--- 
+--- `config`: table? — *Default*: ``parentComponent.config``. The config to use when creating a [`mwseMCMTableVariable`](../types/mwseMCMTableVariable.md) for this `Setting`. If provided, it will override the config stored in `parentComponent`. Otherwise, the value in `parentComponent` will be used.
+--- 
+--- `defaultConfig`: table? — *Default*: ``parentComponent.defaultConfig``. The `defaultConfig` to use when creating a [`mwseMCMTableVariable`](../types/mwseMCMTableVariable.md) for this `Setting`. If provided, it will override the `defaultConfig` stored in `parentComponent`. Otherwise, the value in `parentComponent` will be used.
+--- 
+--- `configKey`: string|number|nil — *Optional*. The `configKey` used to create a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md). If this is provided, along with a `config` (which may be inherited from the `parentComponent`), then a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md) variable will be created for this setting.
+--- 
+--- `converter`: nil|fun(newValue: unknown): unknown — *Optional*. A converter to use for this component's `variable`.
+--- 
+--- `defaultSetting`: unknown? — *Optional*. If `defaultSetting` wasn't passed in the `variable` table, can be passed here. The new variable will be initialized to this value. If not provided, then the value in `defaultConfig` will be used, if possible.
+--- 
+--- `showDefaultSetting`: boolean? — *Default*: ``parentComponent.showDefaultSetting``. If `true`, and in a [Sidebar Page](../types/mwseMCMSideBarPage.md), then the `defaultSetting` of this setting's `variable` will be shown below its `description`. The `defaultSetting` will be formatted in accordance with the `convertToLabelValue` function. **Note:** This parameter does not update the `description` field.
 --- 
 --- `numbersOnly`: boolean? — *Default*: `false`. If true, only numbers will be allowed in this TextField.
 --- 
@@ -1287,7 +1329,13 @@ function mwse.mcm.createTextField(parent, data) end
 --- @class mwse.mcm.createTextField.data
 --- @field label string? *Optional*. Text shown above the text field.
 --- @field buttonText string? *Optional*. The text shown on the button next to the input field. The default text is a localized version of: "Submit".
---- @field variable mwseMCMConfigVariable|mwseMCMCustomVariable|mwseMCMGlobal|mwseMCMGlobalBoolean|mwseMCMPlayerData|mwseMCMTableVariable|mwseMCMVariable|mwseMCMSettingNewVariable A variable for this setting.
+--- @field variable mwseMCMConfigVariable|mwseMCMCustomVariable|mwseMCMGlobal|mwseMCMGlobalBoolean|mwseMCMPlayerData|mwseMCMTableVariable|mwseMCMVariable|mwseMCMSettingNewVariable|nil *Optional*. A variable for this setting. If not provided, this setting will try to create a variable using the `config` and `configKey` parameters, if possible.
+--- @field config table? *Default*: ``parentComponent.config``. The config to use when creating a [`mwseMCMTableVariable`](../types/mwseMCMTableVariable.md) for this `Setting`. If provided, it will override the config stored in `parentComponent`. Otherwise, the value in `parentComponent` will be used.
+--- @field defaultConfig table? *Default*: ``parentComponent.defaultConfig``. The `defaultConfig` to use when creating a [`mwseMCMTableVariable`](../types/mwseMCMTableVariable.md) for this `Setting`. If provided, it will override the `defaultConfig` stored in `parentComponent`. Otherwise, the value in `parentComponent` will be used.
+--- @field configKey string|number|nil *Optional*. The `configKey` used to create a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md). If this is provided, along with a `config` (which may be inherited from the `parentComponent`), then a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md) variable will be created for this setting.
+--- @field converter nil|fun(newValue: unknown): unknown *Optional*. A converter to use for this component's `variable`.
+--- @field defaultSetting unknown? *Optional*. If `defaultSetting` wasn't passed in the `variable` table, can be passed here. The new variable will be initialized to this value. If not provided, then the value in `defaultConfig` will be used, if possible.
+--- @field showDefaultSetting boolean? *Default*: ``parentComponent.showDefaultSetting``. If `true`, and in a [Sidebar Page](../types/mwseMCMSideBarPage.md), then the `defaultSetting` of this setting's `variable` will be shown below its `description`. The `defaultSetting` will be formatted in accordance with the `convertToLabelValue` function. **Note:** This parameter does not update the `description` field.
 --- @field numbersOnly boolean? *Default*: `false`. If true, only numbers will be allowed in this TextField.
 --- @field description string? *Optional*. If in a [Sidebar Page](../types/mwseMCMSideBarPage.md), the description will be shown on mouseover.
 --- @field press nil|fun(self: mwseMCMTextField) *Optional*. This allows overriding the default implementation of this method. Can be overriden to add a confirmation message before updating. This function should call `self:update()` at the end.

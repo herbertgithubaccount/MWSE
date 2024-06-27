@@ -49,7 +49,7 @@ The same is done by this function if you pass both `parent` and `data` arguments
 				{ name = "showDefaultSetting", type = "boolean", optional = true, default = "`parentComponent.showDefaultSetting`",
 					description = "If `true`, and in a [Sidebar Page](../types/mwseMCMSideBarPage.md), then the `defaultSetting` of this setting's `variable` will be shown below its `description`. \z
 						The `defaultSetting` will be formatted in accordance with the `convertToLabelValue` function. \z
-						**Note:** This parameter does not update the `description` field, **Note:** This parameter does not update the `description` field.",
+						**Note:** This parameter does not update the `description` field.",
 				},
 				{ name = "idleColor", type = "number[]", optional = true, default = "tes3ui.getPalette(tes3.palette.normalColor)", description = "The idle color for dropdown. Needs to be an RGB trio in the range [0.0, 1.0]." },
 				{ name = "overColor", type = "number[]", optional = true, default = "tes3ui.getPalette(tes3.palette.normalOverColor)", description = "The color used when the mouse if hovering over the dropdown. Needs to be an RGB trio in the range [0.0, 1.0]." },

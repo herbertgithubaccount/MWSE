@@ -50,7 +50,7 @@ The same is done by this function if you pass both `parent` and `data` arguments
 				{ name = "showDefaultSetting", type = "boolean", optional = true, default = "`parentComponent.showDefaultSetting`",
 					description = "If `true`, and in a [Sidebar Page](../types/mwseMCMSideBarPage.md), then the `defaultSetting` of this setting's `variable` will be shown below its `description`. \z
 						The `defaultSetting` will be formatted in accordance with the `convertToLabelValue` function. \z
-						**Note:** This parameter does not update the `description` field, **Note:** This parameter does not update the `description` field.",
+						**Note:** This parameter does not update the `description` field.",
 				},
 				{ name = "callback", type = "fun(self: mwseMCMCycleButton)", optional = true, description = "The custom function called when the player interacts with this cycle button." },
 				{ name = "inGameOnly", type = "boolean", optional = true, default = false, description = "If true, the setting is disabled while the game is on main menu." },

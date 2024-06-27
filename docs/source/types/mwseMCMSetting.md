@@ -466,7 +466,7 @@ myObject:insertMouseovers(element)
 Creates a new Setting.
 
 ```lua
-local setting = myObject:new({ label = ..., text = ..., variable = ..., config = ..., defaultConfig = ..., configKey = ..., converter = ..., defaultSetting = ..., description = ..., callback = ..., inGameOnly = ..., restartRequired = ..., restartRequiredMessage = ..., indent = ..., childIndent = ..., paddingBottom = ..., childSpacing = ..., postCreate = ..., class = ..., componentType = ..., parentComponent = ... })
+local setting = myObject:new({ label = ..., text = ..., variable = ..., config = ..., defaultConfig = ..., configKey = ..., converter = ..., defaultSetting = ..., showDefaultSetting = ..., description = ..., callback = ..., inGameOnly = ..., restartRequired = ..., restartRequiredMessage = ..., indent = ..., childIndent = ..., paddingBottom = ..., childSpacing = ..., postCreate = ..., class = ..., componentType = ..., parentComponent = ... })
 ```
 
 **Parameters**:
@@ -480,6 +480,7 @@ local setting = myObject:new({ label = ..., text = ..., variable = ..., config =
 	* `configKey` (string, number): *Optional*. The `configKey` used to create a new [`mwseMCMTableVariable`](./mwseMCMTableVariable.md). If this is provided, along with a `config` (which may be inherited from the `parentComponent`), then a new [`mwseMCMTableVariable`](./mwseMCMTableVariable.md) variable will be created for this setting.
 	* `converter` (fun(newValue: unknown): unknown): *Optional*. A converter to use for this component's `variable`.
 	* `defaultSetting` (unknown): *Optional*. If `defaultSetting` wasn't passed in the `variable` table, can be passed here. The new variable will be initialized to this value. If not provided, then the value in `defaultConfig` will be used, if possible.
+	* `showDefaultSetting` (boolean): *Default*: ``parentComponent.showDefaultSetting``. If `true`, and in a [Sidebar Page](../types/mwseMCMSideBarPage.md), then the `defaultSetting` of this setting's `variable` will be shown below its `description`. The `defaultSetting` will be formatted in accordance with the `convertToLabelValue` function. **Note:** This parameter does not update the `description` field.
 	* `description` (string): *Optional*. If in a [Sidebar Page](../types/mwseMCMSideBarPage.md), the description will be shown on mouseover.
 	* `callback` (fun(self: [mwseMCMSetting](../types/mwseMCMSetting.md))): *Optional*. The custom function called when the player interacts with this Setting.
 	* `inGameOnly` (boolean): *Default*: `false`. If true, the setting is disabled while the game is on main menu.
