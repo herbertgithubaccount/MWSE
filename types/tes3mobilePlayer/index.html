@@ -13306,6 +13306,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#overrideheadtrackingthisframe" class="md-nav__link">
+    <span class="md-ellipsis">
+      overrideHeadTrackingThisFrame
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#progressskilllevelifrequirementsmet" class="md-nav__link">
     <span class="md-ellipsis">
       progressSkillLevelIfRequirementsMet
@@ -21598,6 +21607,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#overrideheadtrackingthisframe" class="md-nav__link">
+    <span class="md-ellipsis">
+      overrideHeadTrackingThisFrame
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#progressskilllevelifrequirementsmet" class="md-nav__link">
     <span class="md-ellipsis">
       progressSkillLevelIfRequirementsMet
@@ -24134,6 +24152,21 @@ end
 <div class="highlight"><pre><span></span><code><span class="n">myObject</span><span class="p">:</span><span class="n">kill</span><span class="p">()</span>
 </code></pre></div>
 <hr />
+<h3 id="overrideheadtrackingthisframe"><code>overrideHeadTrackingThisFrame</code><a class="headerlink" href="#overrideheadtrackingthisframe" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">overrideheadtrackingthisframe</div>
+
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This part of the API isn't fully understood yet and thus is considered experimental. That means that there can be breaking changes requiring the code using this part of the API to be rewritten. The MWSE team will not make any effort to keep backward compatibility with the mods using experimental APIs.</p>
+</div>
+<p>Causes the actor to look towards this reference, while obey the usual head turning constraints. This must be called every frame in the <code>simulate</code> event to work. It will override regular head look behaviour and the target may be at any distance in the same worldspace.</p>
+<div class="highlight"><pre><span></span><code><span class="n">myObject</span><span class="p">:</span><span class="n">overrideHeadTrackingThisFrame</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Parameters</strong>:</p>
+<ul>
+<li><code>target</code> (<a href="../tes3reference/">tes3reference</a>)</li>
+</ul>
+<hr />
 <h3 id="progressskilllevelifrequirementsmet"><code>progressSkillLevelIfRequirementsMet</code><a class="headerlink" href="#progressskilllevelifrequirementsmet" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">progressskilllevelifrequirementsmet</div>
 
@@ -24307,7 +24340,7 @@ end
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">June 8, 2024 13:05:05</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">June 29, 2024 04:24:07</span>
   </span>
 
     
