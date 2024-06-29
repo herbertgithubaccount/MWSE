@@ -45,6 +45,11 @@ The same is done by this function if you pass both `parent` and `data` arguments
 					description = "If `defaultSetting` wasn't passed in the `variable` table, can be passed here. \z
 						The new variable will be initialized to this value. If not provided, then the value in `defaultConfig` will be used, if possible." 
 				},
+				{ name = "showDefaultSetting", type = "boolean", optional = true, default = "`parentComponent.showDefaultSetting`",
+					description = "If `true`, and in a [Sidebar Page](../types/mwseMCMSideBarPage.md), then the `defaultSetting` of this setting's `variable` will be shown below its `description`. \z
+						The `defaultSetting` will be formatted in accordance with the `convertToLabelValue` function. \z
+						**Note:** This parameter does not update the `description` field.",
+				},
 				{ name = "min", type = "number", optional = true, default = 0.0, description = "Minimum value of slider." },
 				{ name = "max", type = "number", optional = true, default = 1.0, description = "Maximum value of slider." },
 				{ name = "step", type = "number", optional = true, default = 0.01, description = "How far the slider moves when you press the arrows." },

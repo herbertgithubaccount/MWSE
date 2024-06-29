@@ -10,6 +10,7 @@
 --- @field makeComponent nil|fun(self: mwseMCMSetting, innerContainer: tes3uiElement) This method must be implemented by child classes of mwseMCMSetting.
 --- @field restartRequired boolean If true, updating this Setting will notify the player to restart the game.
 --- @field restartRequiredMessage string The message shown if restartRequired is triggered. The default text is a localized version of: "The game must be restarted before this change will come into effect.".
+--- @field showDefaultSetting boolean If true, then the `defaultSetting` of this setting's `variable` will be shown below its description.
 --- @field variable mwseMCMConfigVariable|mwseMCMCustomVariable|mwseMCMGlobal|mwseMCMGlobalBoolean|mwseMCMPlayerData|mwseMCMTableVariable|mwseMCMVariable|nil The Variable this setting will update.
 mwseMCMSetting = {}
 
@@ -49,6 +50,8 @@ function mwseMCMSetting:insertMouseovers(element) end
 --- 
 --- `defaultSetting`: unknown? — *Optional*. If `defaultSetting` wasn't passed in the `variable` table, can be passed here. The new variable will be initialized to this value. If not provided, then the value in `defaultConfig` will be used, if possible.
 --- 
+--- `showDefaultSetting`: boolean? — *Default*: ``parentComponent.showDefaultSetting``. If `true`, and in a [Sidebar Page](../types/mwseMCMSideBarPage.md), then the `defaultSetting` of this setting's `variable` will be shown below its `description`. The `defaultSetting` will be formatted in accordance with the `convertToLabelValue` function. **Note:** This parameter does not update the `description` field.
+--- 
 --- `description`: string? — *Optional*. If in a [Sidebar Page](../types/mwseMCMSideBarPage.md), the description will be shown on mouseover.
 --- 
 --- `callback`: nil|fun(self: mwseMCMSetting) — *Optional*. The custom function called when the player interacts with this Setting.
@@ -87,6 +90,7 @@ function mwseMCMSetting:new(data) end
 --- @field configKey string|number|nil *Optional*. The `configKey` used to create a new [`mwseMCMTableVariable`](./mwseMCMTableVariable.md). If this is provided, along with a `config` (which may be inherited from the `parentComponent`), then a new [`mwseMCMTableVariable`](./mwseMCMTableVariable.md) variable will be created for this setting.
 --- @field converter nil|fun(newValue: unknown): unknown *Optional*. A converter to use for this component's `variable`.
 --- @field defaultSetting unknown? *Optional*. If `defaultSetting` wasn't passed in the `variable` table, can be passed here. The new variable will be initialized to this value. If not provided, then the value in `defaultConfig` will be used, if possible.
+--- @field showDefaultSetting boolean? *Default*: ``parentComponent.showDefaultSetting``. If `true`, and in a [Sidebar Page](../types/mwseMCMSideBarPage.md), then the `defaultSetting` of this setting's `variable` will be shown below its `description`. The `defaultSetting` will be formatted in accordance with the `convertToLabelValue` function. **Note:** This parameter does not update the `description` field.
 --- @field description string? *Optional*. If in a [Sidebar Page](../types/mwseMCMSideBarPage.md), the description will be shown on mouseover.
 --- @field callback nil|fun(self: mwseMCMSetting) *Optional*. The custom function called when the player interacts with this Setting.
 --- @field inGameOnly boolean? *Default*: `false`. If true, the setting is disabled while the game is on main menu.

@@ -220,6 +220,17 @@ Set to the value of `sCancel` GMST.
 
 ***
 
+### `showDefaultSetting`
+<div class="search_terms" style="display: none">showdefaultsetting, defaultsetting</div>
+
+If true, then the `defaultSetting` of this setting's `variable` will be shown below its description.
+
+**Returns**:
+
+* `result` (boolean)
+
+***
+
 ### `sNo`
 <div class="search_terms" style="display: none">sno</div>
 

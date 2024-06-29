@@ -33,6 +33,11 @@ return {
 				description = "If `defaultSetting` wasn't passed in the `variable` table, can be passed here. \z
 					The new variable will be initialized to this value. If not provided, then the value in `defaultConfig` will be used, if possible." 
 			},
+			{ name = "showDefaultSetting", type = "boolean", optional = true, default = "`parentComponent.showDefaultSetting`",
+				description = "If `true`, and in a [Sidebar Page](../types/mwseMCMSideBarPage.md), then the `defaultSetting` of this setting's `variable` will be shown below its `description`. \z
+					The `defaultSetting` will be formatted in accordance with the `convertToLabelValue` function. \z
+					**Note:** This parameter does not update the `description` field.",
+			},
 			{ name = "idleColor", type = "number[]", optional = true, default = "tes3ui.getPalette(tes3.palette.normalColor)", description = "The idle color for dropdown. Needs to be an RGB trio in the range [0.0, 1.0]." },
 			{ name = "overColor", type = "number[]", optional = true, default = "tes3ui.getPalette(tes3.palette.normalOverColor)", description = "The color used when the mouse if hovering over the dropdown. Needs to be an RGB trio in the range [0.0, 1.0]." },
 			{ name = "pressedColor", type = "number[]", optional = true, default = "tes3ui.getPalette(tes3.palette.normalPressedColor)", description = "The color used when the dropdown is being pressed. Needs to be an RGB trio in the range [0.0, 1.0]." },

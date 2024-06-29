@@ -15,6 +15,10 @@ return {
 				description = "Stores a default config that should be used by this mods `Setting`s. This will initialize the `defaultSetting` \z
 				field of any [`mwseMCMTableVariable`s](./mwseMCMTableVariable.md) created for this mod."
 			},
+			{ name = "showDefaultSetting", type = "boolean", optional = true, default = "`parentComponent.showDefaultSetting`",
+				description = "If `true`, then each `Setting` created inside this `Page`/`Category` will have `showDefaultSetting = true`. \z
+					This is equivalent to manually writing `showDefaultSetting = true` in the constructor of each `Setting` created in this `Page`/`Category`.",
+			},
 			{ name = "headerImagePath", type = "string", optional = true, description = "Set it to display an image at the top of your menu. Path is relative to `Data Files/`. The image must have power-of-2 dimensions (i.e. 16, 32, 64, 128, 256, 512, 1024, etc.)." },
 			{ name = "onClose", type = "fun(modConfigContainer: tes3uiElement)", optional = true, description = "Set this to a function which will be called when the menu is closed. Useful for saving variables, such as TableVariable." },
 			{ name = "searchChildLabels", type = "boolean", optional = true, default = true, description = "If true, default search handler will search through all the page and setting `label` and `text` fields in this MCM template." },
