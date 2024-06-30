@@ -6175,6 +6175,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#showdefaultsetting" class="md-nav__link">
+    <span class="md-ellipsis">
+      showDefaultSetting
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#sno" class="md-nav__link">
     <span class="md-ellipsis">
       sNo
@@ -6355,6 +6364,15 @@
   <a href="#getkeycombofromeventdata" class="md-nav__link">
     <span class="md-ellipsis">
       getKeyComboFromEventData
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getmouseovertext" class="md-nav__link">
+    <span class="md-ellipsis">
+      getMouseOverText
     </span>
   </a>
   
@@ -17938,6 +17956,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#showdefaultsetting" class="md-nav__link">
+    <span class="md-ellipsis">
+      showDefaultSetting
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#sno" class="md-nav__link">
     <span class="md-ellipsis">
       sNo
@@ -18118,6 +18145,15 @@
   <a href="#getkeycombofromeventdata" class="md-nav__link">
     <span class="md-ellipsis">
       getKeyComboFromEventData
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getmouseovertext" class="md-nav__link">
+    <span class="md-ellipsis">
+      getMouseOverText
     </span>
   </a>
   
@@ -18489,6 +18525,15 @@
 <li><code>result</code> (string)</li>
 </ul>
 <hr />
+<h3 id="showdefaultsetting"><code>showDefaultSetting</code><a class="headerlink" href="#showdefaultsetting" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">showdefaultsetting, defaultsetting</div>
+
+<p>If true, then the <code>defaultSetting</code> of this setting's <code>variable</code> will be shown below its description.</p>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>result</code> (boolean)</li>
+</ul>
+<hr />
 <h3 id="sno"><code>sNo</code><a class="headerlink" href="#sno" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">sno</div>
 
@@ -18700,6 +18745,18 @@
 <li><code>keyCombo</code> (<a href="../mwseKeyMouseCombo/">mwseKeyMouseCombo</a>)</li>
 </ul>
 <hr />
+<h3 id="getmouseovertext"><code>getMouseOverText</code><a class="headerlink" href="#getmouseovertext" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">getmouseovertext, mouseovertext</div>
+
+<p>Retrieves the text that this setting should display in any related <a href="../mwseMCMMouseOverInfo/"><code>mouseOverInfo</code>s</a>. This method currently utilized to display this component's description whenever the component is in a <a href="../mwseMCMSideBarPage/"><code>SideBarPage</code></a>. If this <code>Setting</code> has <code>showDefaultSetting == true</code>, then this method will also include the current <code>defaultSetting</code>.</p>
+<p>Primarily intended for internal use.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">text</span> <span class="o">=</span> <span class="n">myObject</span><span class="p">:</span><span class="n">getMouseOverText</span><span class="p">()</span>
+</code></pre></div>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>text</code> (string, nil): The text to display. Returning <code>nil</code> means that the <code>mouseOverInfo</code> should display text from a different source. e.g. from the <code>description</code> of the relevant <a href="../mwseMCMSideBarPage/"><code>SideBarPage</code></a>.</li>
+</ul>
+<hr />
 <h3 id="gettext"><code>getText</code><a class="headerlink" href="#gettext" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">gettext, text</div>
 
@@ -18878,7 +18935,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">June 23, 2024 05:55:13</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">June 30, 2024 04:47:57</span>
   </span>
 
     
