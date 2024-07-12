@@ -9,9 +9,9 @@ return {
 			description = "The list responsible for creating a pick.",
 		},
 		["pick"] = {
-			type = "tes3item",
+			type = "tes3item|nil",
 			--readOnly = true,
-			description = "The result of the pick by vanilla mechanism.", -- This can be modified to change the result to something else.
+			description = "The result of the pick by vanilla mechanism. This can be `nil`.", -- This can be modified to change the result to something else.
 		},
 		["spawner"] = {
 			type = "tes3reference|nil",
