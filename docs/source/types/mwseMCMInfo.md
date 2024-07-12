@@ -70,6 +70,42 @@ The type of this component.
 
 ***
 
+### `config`
+<div class="search_terms" style="display: none">config</div>
+
+The config to use when creating a [`mwseMCMTableVariable`](../types/mwseMCMTableVariable.md) for this `Setting`.
+If provided, it will override the config stored in `parentComponent`.
+Otherwise, the value in `parentComponent` will be used."
+
+!!! note
+	This value is only utilized when constructing a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md). 
+	Nothing will happen if it gets altered after object creation.
+
+
+**Returns**:
+
+* `result` (table)
+
+***
+
+### `configKey`
+<div class="search_terms" style="display: none">configkey</div>
+
+The `configKey` used to create a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md).
+If this is provided, along with a `config` (which may be inherited from the `parentComponent`), then a new
+[`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md) variable will be created for this setting.
+
+!!! note
+	This value is only utilized when constructing a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md). 
+	Nothing will happen if it gets altered after object creation.
+
+
+**Returns**:
+
+* `result` (string, number)
+
+***
+
 ### `createContentsContainer`
 <div class="search_terms" style="display: none">createcontentscontainer, contentscontainer</div>
 
@@ -78,6 +114,24 @@ This method creates the contents of a component. Not every component implements 
 **Returns**:
 
 * `result` (nil, fun(self: [mwseMCMComponent](../types/mwseMCMComponent.md), outerContainer: [tes3uiElement](../types/tes3uiElement.md)))
+
+***
+
+### `defaultConfig`
+<div class="search_terms" style="display: none">defaultconfig</div>
+
+The `defaultConfig` to use when creating a [`mwseMCMTableVariable`](../types/mwseMCMTableVariable.md) for this `Setting`.
+If provided, it will override the `defaultConfig` stored in `parentComponent`.
+Otherwise, the value in `parentComponent` will be used.
+
+!!! note
+	This value is only utilized when constructing a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md). 
+	Nothing will happen if it gets altered after object creation.
+
+
+**Returns**:
+
+* `result` (table)
 
 ***
 

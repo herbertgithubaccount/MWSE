@@ -6,6 +6,30 @@
 --- @class mwseMCMSetting : mwseMCMComponent
 --- @field callback nil|fun(self: mwseMCMSetting) The custom function called when the player interacts with this Setting.
 --- @field componentType "Setting" The type of this component.
+--- @field config table The config to use when creating a [`mwseMCMTableVariable`](../types/mwseMCMTableVariable.md) for this `Setting`.
+--- If provided, it will override the config stored in `parentComponent`.
+--- Otherwise, the value in `parentComponent` will be used."
+--- 
+--- !!! note
+--- 	This value is only utilized when constructing a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md). 
+--- 	Nothing will happen if it gets altered after object creation.
+--- 
+--- @field configKey string|number The `configKey` used to create a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md).
+--- If this is provided, along with a `config` (which may be inherited from the `parentComponent`), then a new
+--- [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md) variable will be created for this setting.
+--- 
+--- !!! note
+--- 	This value is only utilized when constructing a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md). 
+--- 	Nothing will happen if it gets altered after object creation.
+--- 
+--- @field defaultConfig table The `defaultConfig` to use when creating a [`mwseMCMTableVariable`](../types/mwseMCMTableVariable.md) for this `Setting`.
+--- If provided, it will override the `defaultConfig` stored in `parentComponent`.
+--- Otherwise, the value in `parentComponent` will be used.
+--- 
+--- !!! note
+--- 	This value is only utilized when constructing a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md). 
+--- 	Nothing will happen if it gets altered after object creation.
+--- 
 --- @field inGameOnly boolean If true, the setting is disabled while the game is on main menu. If this is enabled, it will override the value of the `inGameOnly` parameter on this setting's `variable`.
 --- @field makeComponent nil|fun(self: mwseMCMSetting, innerContainer: tes3uiElement) This method must be implemented by child classes of mwseMCMSetting.
 --- @field restartRequired boolean If true, updating this Setting will notify the player to restart the game.

@@ -5,6 +5,22 @@
 --- An ExclusionsPage is a highly specialized page used for making whitelists/blacklists. It is made up of two lists: The righthand list displays objects that are filtered using custom settings. It could be a list of NPCs, weapons, plugins, etc. Clicking on an item in the righthand list will transfer it to the lefthand list and add it to the config table. Each list can be searched using a search bar, and buttons can be added for different filters to appear in the lefthand list.
 --- @class mwseMCMExclusionsPage : mwseMCMPage, mwseMCMCategory, mwseMCMComponent
 --- @field components table Unused in this page type.
+--- @field config table The config to use when creating a [`mwseMCMTableVariable`](../types/mwseMCMTableVariable.md) for this `Setting`.
+--- If provided, it will override the config stored in `parentComponent`.
+--- Otherwise, the value in `parentComponent` will be used."
+--- 
+--- !!! note
+--- 	This value is only utilized when constructing a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md). 
+--- 	Nothing will happen if it gets altered after object creation.
+--- 
+--- @field defaultConfig table The `defaultConfig` to use when creating a [`mwseMCMTableVariable`](../types/mwseMCMTableVariable.md) for this `Setting`.
+--- If provided, it will override the `defaultConfig` stored in `parentComponent`.
+--- Otherwise, the value in `parentComponent` will be used.
+--- 
+--- !!! note
+--- 	This value is only utilized when constructing a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md). 
+--- 	Nothing will happen if it gets altered after object creation.
+--- 
 --- @field description string|nil Displayed at the top of the page above the lists.
 --- @field elements mwseMCMExclusionsPageElements This dictionary-style table holds all the UI elements of the Exclusions Page, for easy access.
 --- @field filters mwseMCMExclusionsPageFilter[] A list of filters. Filters control which items will appear in the lists of the Exclusions Page.

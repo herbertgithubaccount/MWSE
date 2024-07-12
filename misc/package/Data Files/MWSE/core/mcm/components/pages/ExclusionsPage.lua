@@ -26,22 +26,55 @@ local placeholderText = mwse.mcm.i18n("Search...")
 --- @param data mwseMCMExclusionsPage.new.data?
 --- @return mwseMCMExclusionsPage page
 function ExclusionsPage:new(data)
-	local t = {}
-	if data then
-		t = data --[[@as mwseMCMExclusionsPage]]
-		local tabUID = ("Page_" .. t.label)
-		t.tabUID = tes3ui.registerID(tabUID)
-		-- create variable
-		local typePath = ("mcm.variables." .. t.variable.class)
-		if not t.variable.__index then
-			t.variable = require(typePath):new(t.variable)
-			if t.variable.value == nil then
-				t.variable.value = {}
-			end
-		end
-	end
+	local t = data or {}
+	---@cast t mwseMCMExclusionsPage
 	setmetatable(t, self)
 	self.__index = self
+	if not data then return t end
+
+	local tabUID = ("Page_" .. t.label)
+	t.tabUID = tes3ui.registerID(tabUID)
+	-- create variable
+
+	local parent = data.parentComponent
+	local configKey = data.configKey
+
+	if parent and data.showDefaultSetting == nil then
+		-- Using `rawget` so we don't inherit a default value
+		t.showDefaultSetting = rawget(parent, "showDefaultSetting")
+	end
+
+	local config = data.config or parent and parent.config
+	local defaultConfig = data.defaultConfig or parent and parent.defaultConfig
+
+	-- Get the default setting. Include `nil` checks so we can handle it being `false`.
+	local defaultSetting = data.variable and data.variable.defaultSetting
+	if defaultSetting == nil then
+		defaultSetting = data.defaultSetting
+	end
+	-- Let's try again if we have to.
+	if defaultSetting == nil and defaultConfig and configKey then
+		defaultSetting = defaultConfig[configKey]
+	end
+	
+	-- No variable? Let's make one.
+	if t.variable == nil and config and configKey then
+		t.variable = TableVariable:new{
+			id = configKey,
+			table = config,
+			converter = data.converter,
+			inGameOnly = data.inGameOnly,
+			defaultSetting = defaultSetting,
+			restartRequired = data.restartRequired,
+			restartRequiredMessage = data.restartRequiredMessage
+		}
+	-- Variable provided? Let's update it for backwards compatibility.
+	elseif t.variable ~= nil then
+		t.variable.defaultSetting = defaultSetting
+		t.variable.converter = t.variable.converter or data.converter
+		t.variable = fileUtils.getVariableClass(t.variable.class):new(t.variable)
+	end
+
 	return t
 end
 

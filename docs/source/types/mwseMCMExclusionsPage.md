@@ -66,6 +66,24 @@ The type of this component.
 
 ***
 
+### `config`
+<div class="search_terms" style="display: none">config</div>
+
+The config to use when creating a [`mwseMCMTableVariable`](../types/mwseMCMTableVariable.md) for this `Setting`.
+If provided, it will override the config stored in `parentComponent`.
+Otherwise, the value in `parentComponent` will be used."
+
+!!! note
+	This value is only utilized when constructing a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md). 
+	Nothing will happen if it gets altered after object creation.
+
+
+**Returns**:
+
+* `result` (table)
+
+***
+
 ### `createContentsContainer`
 <div class="search_terms" style="display: none">createcontentscontainer, contentscontainer</div>
 
@@ -74,6 +92,24 @@ This method creates the contents of a component. Not every component implements 
 **Returns**:
 
 * `result` (nil, fun(self: [mwseMCMComponent](../types/mwseMCMComponent.md), outerContainer: [tes3uiElement](../types/tes3uiElement.md)))
+
+***
+
+### `defaultConfig`
+<div class="search_terms" style="display: none">defaultconfig</div>
+
+The `defaultConfig` to use when creating a [`mwseMCMTableVariable`](../types/mwseMCMTableVariable.md) for this `Setting`.
+If provided, it will override the `defaultConfig` stored in `parentComponent`.
+Otherwise, the value in `parentComponent` will be used.
+
+!!! note
+	This value is only utilized when constructing a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md). 
+	Nothing will happen if it gets altered after object creation.
+
+
+**Returns**:
+
+* `result` (table)
 
 ***
 
@@ -246,7 +282,7 @@ If true, the left list shows all items in the blocked table, regardless of the f
 ### `showDefaultSetting`
 <div class="search_terms" style="display: none">showdefaultsetting, defaultsetting</div>
 
-If `true`, then each `Setting` created inside this `Page`/`Category` will have `showDefaultSetting = true`. \z
+If `true`, then each `Setting` created inside this `Page`/`Category` will have `showDefaultSetting = true`.
 This is equivalent to manually writing `showDefaultSetting = true` in the constructor of each `Setting` created in this `Page`/`Category`.
 
 **Returns**:

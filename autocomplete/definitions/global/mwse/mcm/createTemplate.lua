@@ -10,11 +10,12 @@ return {
 			{ name = "label", type = "string", optional = true, description = "Used in place of `name` if that argument isn't passed. You need to pass at least one of the `name` and `label` arguments. If `headerImagePath` is not passed, a UI element will be created with `label` as text." },
 			{ name = "config", type = "table", optional = true, 
 				description = "Stores a config that should be used by this mods `Setting`s. Sub-configs can be accessed by passing a `configKey` to any `Page`s nested inside this template. \z
-					If provided, this config will be used to generate [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md) for the  any [`mwseMCMSetting`s](../types/mwseMCMSetting.md) made inside this template."
+					If provided, this config will be used to generate [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md) for the [`mwseMCMSetting`s](../types/mwseMCMSetting.md) made inside this template."
 			},
 			{ name = "defaultConfig", type = "table", optional = true, 
 				description = "Stores a default config that should be used by this mods `Setting`s. This will initialize the `defaultSetting` \z
-				field of any [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md) created for this mod."
+					field of any [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md) created for this mod. \z
+					This can be used alongside the `showDefaultSetting` parameter to automatically display the default setting of every MCM component."
 			},
 			
 			{ name = "showDefaultSetting", type = "boolean", optional = true, 

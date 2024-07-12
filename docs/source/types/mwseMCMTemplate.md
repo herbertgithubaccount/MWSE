@@ -55,6 +55,17 @@ The type of this component.
 
 ***
 
+### `config`
+<div class="search_terms" style="display: none">config</div>
+
+Stores a config that should be used by this mods `Setting`s. Sub-configs can be accessed by passing a `configKey` to any `Page`s nested inside this template. If provided, this config will be used to generate [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md) for the [`mwseMCMSetting`s](../types/mwseMCMSetting.md) made inside this template.
+
+**Returns**:
+
+* `result` (table)
+
+***
+
 ### `createContentsContainer`
 <div class="search_terms" style="display: none">createcontentscontainer, contentscontainer</div>
 
@@ -74,6 +85,17 @@ The currently displayed page in this Template.
 **Returns**:
 
 * `result` ([mwseMCMPage](../types/mwseMCMPage.md))
+
+***
+
+### `defaultConfig`
+<div class="search_terms" style="display: none">defaultconfig</div>
+
+Stores a default config that should be used by this mods `Setting`s. This will initialize the `defaultSetting` field of any [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md) created for this mod. This can be used alongside the `showDefaultSetting` parameter to automatically display the default setting of every MCM component.
+
+**Returns**:
+
+* `result` (table)
 
 ***
 
@@ -270,7 +292,7 @@ If true, when the user searches the MCM list, all the pages and settings in this
 ### `showDefaultSetting`
 <div class="search_terms" style="display: none">showdefaultsetting, defaultsetting</div>
 
-If `true`, then each `Page` created inside this `Template` will have `showDefaultSetting = true`. \z
+If `true`, then each `Page` created inside this `Template` will have `showDefaultSetting = true`.
 This is equivalent to manually writing `showDefaultSetting = true` in the constructor of each `Category` created in this `Template`.
 
 **Returns**:
@@ -411,7 +433,7 @@ myObject:createContentsContainer(parentBlock)
 Creates a new Exclusions Page in this Template.
 
 ```lua
-local page = myObject:createExclusionsPage({ showHeader = ..., label = ..., variable = ..., filters = ..., description = ..., toggleText = ..., leftListLabel  = ..., rightListLabel  = ..., showAllBlocked  = ..., indent = ..., childIndent = ..., paddingBottom = ..., childSpacing = ..., inGameOnly = ... })
+local page = myObject:createExclusionsPage({ showHeader = ..., label = ..., variable = ..., config = ..., defaultConfig = ..., configKey = ..., converter = ..., defaultSetting = ..., showDefaultSetting = ..., filters = ..., description = ..., toggleText = ..., leftListLabel  = ..., rightListLabel  = ..., showAllBlocked  = ..., indent = ..., childIndent = ..., paddingBottom = ..., childSpacing = ..., inGameOnly = ... })
 ```
 
 **Parameters**:
@@ -419,7 +441,13 @@ local page = myObject:createExclusionsPage({ showHeader = ..., label = ..., vari
 * `data` (table)
 	* `showHeader` (boolean): *Default*: `false`. The page's label will only be created if set to true.
 	* `label` (string): The label field is displayed in the tab for that page at the top of the menu. Defaults to: "Page {number}".
-	* `variable` ([mwseMCMVariable](../types/mwseMCMVariable.md), [mwseMCMSettingNewVariable](../types/mwseMCMSettingNewVariable.md)): The Variable used to store blocked list entries.
+	* `variable` ([mwseMCMVariable](../types/mwseMCMVariable.md), [mwseMCMSettingNewVariable](../types/mwseMCMSettingNewVariable.md)): *Optional*. A variable for this setting. If not provided, this setting will try to create a variable using the `config` and `configKey` parameters, if possible.
+	* `config` (table): *Default*: ``parentComponent.config``. The config to use when creating a [`mwseMCMTableVariable`](../types/mwseMCMTableVariable.md) for this `Setting`. If provided, it will override the config stored in `parentComponent`. Otherwise, the value in `parentComponent` will be used.
+	* `defaultConfig` (table): *Default*: ``parentComponent.defaultConfig``. The `defaultConfig` to use when creating a [`mwseMCMTableVariable`](../types/mwseMCMTableVariable.md) for this `Setting`. If provided, it will override the `defaultConfig` stored in `parentComponent`. Otherwise, the value in `parentComponent` will be used.
+	* `configKey` (string, number): *Optional*. The `configKey` used to create a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md). If this is provided, along with a `config` (which may be inherited from the `parentComponent`), then a new [`mwseMCMTableVariable`s](../types/mwseMCMTableVariable.md) variable will be created for this setting.
+	* `converter` (fun(newValue: unknown): unknown): *Optional*. A converter to use for this component's `variable`.
+	* `defaultSetting` (unknown): *Optional*. If `defaultSetting` wasn't passed in the `variable` table, can be passed here. The new variable will be initialized to this value. If not provided, then the value in `defaultConfig` will be used, if possible.
+	* `showDefaultSetting` (boolean): *Default*: ``parentComponent.showDefaultSetting``. If `true`, and in a [Sidebar Page](../types/mwseMCMSideBarPage.md), then the `defaultSetting` of this setting's `variable` will be shown below its `description`. The `defaultSetting` will be formatted in accordance with the `convertToLabelValue` function. **Note:** This parameter does not update the `description` field.
 	* `filters` ([mwseMCMExclusionsPageFilter](../types/mwseMCMExclusionsPageFilter.md)[]): A list of filters. Filters control which items will appear in the lists of the Exclusions Page. At least one filter is required. See the [filter page](./mwseMCMExclusionsPageFilter.md) for description.
 	* `description` (string): *Optional*. Displayed at the top of the page above the lists.
 	* `toggleText` (string): *Optional*. The text for the button that toggles filtered items from one list to another. The default is a localised version of "Toggle Filtered".
