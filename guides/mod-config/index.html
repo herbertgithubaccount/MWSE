@@ -20,7 +20,7 @@
     
     
       
-        <title>Mod Configuration Menu - Morrowind Script Extender</title>
+        <title>Mod Configuration Menu (MCM) - Morrowind Script Extender</title>
       
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#mod-configuration-menu" class="md-skip">
+        <a href="#mod-configuration-menu-mcm" class="md-skip">
           Skip to content
         </a>
       
@@ -107,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Mod Configuration Menu
+              Mod Configuration Menu (MCM)
             
           </span>
         </div>
@@ -684,7 +684,7 @@
           
   
   <span class="md-ellipsis">
-    Mod Configuration Menu
+    Mod Configuration Menu (MCM)
   </span>
   
 
@@ -695,7 +695,7 @@
         
   
   <span class="md-ellipsis">
-    Mod Configuration Menu
+    Mod Configuration Menu (MCM)
   </span>
   
 
@@ -726,23 +726,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#advanced-examples" class="md-nav__link">
+  <a href="#other-sorts-of-settings" class="md-nav__link">
     <span class="md-ellipsis">
-      Advanced Examples
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Advanced Examples">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#separate-configlua" class="md-nav__link">
-    <span class="md-ellipsis">
-      Separate config.lua
+      Other Sorts of Settings
     </span>
   </a>
   
 </li>
+      
+        <li class="md-nav__item">
+  <a href="#understanding-the-terminology" class="md-nav__link">
+    <span class="md-ellipsis">
+      Understanding the Terminology
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      "Advanced" Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label=""Advanced" Examples">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#side-bar-page" class="md-nav__link">
@@ -754,9 +763,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#key-binder" class="md-nav__link">
+  <a href="#displaying-default-values-of-settings" class="md-nav__link">
     <span class="md-ellipsis">
-      Key Binder
+      Displaying Default Values of Settings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#separate-configlua" class="md-nav__link">
+    <span class="md-ellipsis">
+      Separate config.lua
     </span>
   </a>
   
@@ -17238,23 +17256,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#advanced-examples" class="md-nav__link">
+  <a href="#other-sorts-of-settings" class="md-nav__link">
     <span class="md-ellipsis">
-      Advanced Examples
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Advanced Examples">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#separate-configlua" class="md-nav__link">
-    <span class="md-ellipsis">
-      Separate config.lua
+      Other Sorts of Settings
     </span>
   </a>
   
 </li>
+      
+        <li class="md-nav__item">
+  <a href="#understanding-the-terminology" class="md-nav__link">
+    <span class="md-ellipsis">
+      Understanding the Terminology
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      "Advanced" Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label=""Advanced" Examples">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#side-bar-page" class="md-nav__link">
@@ -17266,9 +17293,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#key-binder" class="md-nav__link">
+  <a href="#displaying-default-values-of-settings" class="md-nav__link">
     <span class="md-ellipsis">
-      Key Binder
+      Displaying Default Values of Settings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#separate-configlua" class="md-nav__link">
+    <span class="md-ellipsis">
+      Separate config.lua
     </span>
   </a>
   
@@ -17306,14 +17342,15 @@
   
 
 
-<h1 id="mod-configuration-menu">Mod Configuration Menu<a class="headerlink" href="#mod-configuration-menu" title="Permanent link">⚓︎</a></h1>
-<p>Mods can create new GUIs. One GUI that MWSE ships with is the Mod Configuration Menu. By registering into this system, mods can create settings pages for their mods in a place where users can easily find and manipulate them.</p>
+<h1 id="mod-configuration-menu-mcm">Mod Configuration Menu (MCM)<a class="headerlink" href="#mod-configuration-menu-mcm" title="Permanent link">⚓︎</a></h1>
+<p>MWSE comes with a built-in framework for easily making a configuration menu for your mod. All configuration menus made in this way are accessible by pressing the "Mod Config" button in the pause menu. This guide covers the basic concepts and syntax of the Mod Configuration Menu (MCM), and provides some examples to help you get started. More in-depth information can be found on the <a href="../../apis/mwse.mcm/"><code>mwse.mcm</code> API page</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The MCM API is an integration of the EasyMCM project. Users don't need to have EasyMCM installed to use the MWSE's MCM API. You can browse its predecessor <a href="https://easymcm.readthedocs.io/en/latest/">EasyMCM's documentation here</a>.</p>
+<p>The <code>mwse.mcm</code> API acts as a complete replacement for the <a href="https://easymcm.readthedocs.io/en/latest/">easyMCM</a> framework. It is backwards compatible with easyMCM, and provides several new functionalities.
+It's recommended that you use <code>mwse.mcm</code> instead of easyMCM.</p>
 </div>
 <h2 id="simplest-example">Simplest Example<a class="headerlink" href="#simplest-example" title="Permanent link">⚓︎</a></h2>
-<p>Below is the simplest code required to setup a mod config:</p>
+<p>Here is the simplest code required to create a functional mod config:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -17343,44 +17380,291 @@
 <span class="normal">27</span>
 <span class="normal">28</span>
 <span class="normal">29</span>
-<span class="normal">30</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kd">local</span> <span class="n">configPath</span> <span class="o">=</span> <span class="s2">&quot;My Awesome Mod&quot;</span> <span class="c1">-- The name of the config json file of your mod</span>
-
-<span class="c1">-- The config table</span>
-<span class="kd">local</span> <span class="n">config</span> <span class="o">=</span> <span class="n">mwse</span><span class="p">.</span><span class="n">loadConfig</span><span class="p">(</span><span class="n">configPath</span><span class="p">,</span> <span class="p">{</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">-- Default settings for your mod.</span>
+<span class="kd">local</span> <span class="n">myDefaultConfig</span> <span class="o">=</span> <span class="p">{</span>
     <span class="n">enabled</span> <span class="o">=</span> <span class="kc">true</span>
-<span class="p">})</span>
+<span class="p">}</span>
+
+<span class="c1">-- The name of the config json file of your mod.</span>
+<span class="c1">-- This is used to save/load your config, so that changes persist </span>
+<span class="c1">-- between game launches.</span>
+<span class="kd">local</span> <span class="n">configPath</span> <span class="o">=</span> <span class="s2">&quot;My Awesome Mod&quot;</span> 
+
+<span class="c1">-- Loaded config, taking into account any setting changes made by the user.</span>
+<span class="kd">local</span> <span class="n">myConfig</span> <span class="o">=</span> <span class="n">mwse</span><span class="p">.</span><span class="n">loadConfig</span><span class="p">(</span><span class="n">configPath</span><span class="p">,</span> <span class="n">defaultConfig</span><span class="p">)</span>
 
 <span class="c1">-- When the mod config menu is ready to start accepting registrations,</span>
 <span class="c1">-- register this mod.</span>
 <span class="kd">local</span> <span class="kr">function</span> <span class="nf">registerModConfig</span><span class="p">()</span>
-    <span class="c1">-- Create the top level component Template</span>
-    <span class="c1">-- The name will be displayed in the mod list on the lefthand pane</span>
-    <span class="kd">local</span> <span class="n">template</span> <span class="o">=</span> <span class="n">mwse</span><span class="p">.</span><span class="n">mcm</span><span class="p">.</span><span class="n">createTemplate</span><span class="p">({</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;My Awesome Mod&quot;</span> <span class="p">})</span>
-
-    <span class="c1">-- Save config options when the mod config menu is closed</span>
-    <span class="n">template</span><span class="p">:</span><span class="n">saveOnClose</span><span class="p">(</span><span class="n">configPath</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
-
-    <span class="c1">-- Create a simple container Page under Template</span>
-    <span class="kd">local</span> <span class="n">settings</span> <span class="o">=</span> <span class="n">template</span><span class="p">:</span><span class="n">createPage</span><span class="p">({</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Settings&quot;</span> <span class="p">})</span>
-
-    <span class="c1">-- Create a button under Page that toggles a variable between true and false</span>
-    <span class="n">settings</span><span class="p">:</span><span class="n">createYesNoButton</span><span class="p">({</span>
-        <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Enable Mod&quot;</span><span class="p">,</span>
-        <span class="n">variable</span> <span class="o">=</span> <span class="n">mwse</span><span class="p">.</span><span class="n">mcm</span><span class="p">:</span><span class="n">createTableVariable</span><span class="p">({</span> <span class="n">id</span> <span class="o">=</span> <span class="s2">&quot;enabled&quot;</span><span class="p">,</span> <span class="n">table</span> <span class="o">=</span> <span class="n">config</span> <span class="p">}),</span>
+    <span class="c1">-- Create the top level component Template. </span>
+    <span class="c1">-- This is basically a box that holds all the other parts of the menu.</span>
+    <span class="kd">local</span> <span class="n">template</span> <span class="o">=</span> <span class="n">mwse</span><span class="p">.</span><span class="n">mcm</span><span class="p">.</span><span class="n">createTemplate</span><span class="p">({</span> 
+        <span class="c1">-- This will be displayed in the mod list on the lefthand pane.</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;My Awesome Mod&quot;</span><span class="p">,</span> 
+        <span class="c1">-- This makes all settings update the values stored in this table.</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">myConfig</span> 
     <span class="p">})</span>
 
-    <span class="c1">-- Finish up.</span>
+    <span class="c1">-- This tells MWSE to add this config menu to the list.</span>
     <span class="n">template</span><span class="p">:</span><span class="n">register</span><span class="p">()</span>
+
+    <span class="c1">-- Saves the config to a file whenever the menu is closed.</span>
+    <span class="n">template</span><span class="p">:</span><span class="n">saveOnClose</span><span class="p">(</span><span class="n">configPath</span><span class="p">,</span> <span class="n">myConfig</span><span class="p">)</span>
+
+    <span class="c1">-- Create a simple container Page under Template.</span>
+    <span class="kd">local</span> <span class="n">page</span> <span class="o">=</span> <span class="n">template</span><span class="p">:</span><span class="n">createPage</span><span class="p">({</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Settings&quot;</span> <span class="p">})</span>
+
+    <span class="c1">-- Create a button under that controls the `&quot;enabled&quot;` </span>
+    <span class="c1">-- setting in `myConfig`.</span>
+    <span class="c1">-- Clicking on this button will change `&quot;enabled&quot;` from `true`</span>
+    <span class="c1">-- to `false, and vice-versa.</span>
+    <span class="n">page</span><span class="p">:</span><span class="n">createYesNoButton</span><span class="p">({</span> 
+        <span class="c1">-- The `label` is the text that will be shown in your config menu.</span>
+        <span class="c1">-- It lets users know what the button does.</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Enable Mod&quot;</span><span class="p">,</span> 
+        <span class="n">configKey</span> <span class="o">=</span> <span class="s2">&quot;enabled&quot;</span> 
+    <span class="p">})</span>
 <span class="kr">end</span>
 <span class="n">event</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">tes3</span><span class="p">.</span><span class="n">event</span><span class="p">.</span><span class="n">modConfigReady</span><span class="p">,</span> <span class="n">registerModConfig</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
 <p>After loading up the game, you should see "My Awesome Mod" in the mod config menu, with a Yes/No button with label "Enable Mod" in its configuration pane.</p>
-<h2 id="advanced-examples">Advanced Examples<a class="headerlink" href="#advanced-examples" title="Permanent link">⚓︎</a></h2>
+<h2 id="other-sorts-of-settings">Other Sorts of Settings<a class="headerlink" href="#other-sorts-of-settings" title="Permanent link">⚓︎</a></h2>
+<p>In practice, most mods need more than simple "yes" and "no" buttons. Fortunately, MWSE includes many different sorts of settings that help to cover pretty much any use-case.</p>
+<p>Here's an example that comes up fairly frequently: some part of your mod involves making a new UI element, and you'd like to let the user control where things show up on the screen.
+The <a href="../../types/mwseMCMPercentageSlider/"><code>PercentageSlider</code></a> type is well suited to this task. Let's see how we can use it to extend the previous example.</p>
+<p><div class="highlight"><pre><span></span><code><span class="c1">-- Default settings for your mod.</span>
+<span class="kd">local</span> <span class="n">myDefaultConfig</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">enabled</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+<span class="hll">    <span class="c1">-- These values should be between 0 and 1.</span>
+</span><span class="hll">    <span class="n">xPosition</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="c1">-- 0 means &quot;left-most&quot;, and 1 means &quot;right-most&quot;.</span>
+</span><span class="hll">    <span class="n">yPosition</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="c1">-- 0 means &quot;top-most&quot;, and 1 means &quot;bottom-most&quot;.</span>
+</span><span class="p">}</span>
+
+<span class="kd">local</span> <span class="n">configPath</span> <span class="o">=</span> <span class="s2">&quot;My Awesome Mod&quot;</span> 
+<span class="kd">local</span> <span class="n">myConfig</span> <span class="o">=</span> <span class="n">mwse</span><span class="p">.</span><span class="n">loadConfig</span><span class="p">(</span><span class="n">configPath</span><span class="p">,</span> <span class="n">defaultConfig</span><span class="p">)</span>
+
+<span class="c1">-- When the mod config menu is ready to start accepting registrations,</span>
+<span class="c1">-- register this mod.</span>
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">registerModConfig</span><span class="p">()</span>
+
+    <span class="kd">local</span> <span class="n">template</span> <span class="o">=</span> <span class="n">mwse</span><span class="p">.</span><span class="n">mcm</span><span class="p">.</span><span class="n">createTemplate</span><span class="p">({</span> 
+        <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;My Awesome Mod&quot;</span><span class="p">,</span> 
+        <span class="n">config</span> <span class="o">=</span> <span class="n">myConfig</span>
+    <span class="p">})</span>
+    <span class="n">template</span><span class="p">:</span><span class="n">register</span><span class="p">()</span>
+    <span class="n">template</span><span class="p">:</span><span class="n">saveOnClose</span><span class="p">(</span><span class="n">configPath</span><span class="p">,</span> <span class="n">myConfig</span><span class="p">)</span>
+
+    <span class="c1">-- Create a simple container Page under Template.</span>
+    <span class="kd">local</span> <span class="n">page</span> <span class="o">=</span> <span class="n">template</span><span class="p">:</span><span class="n">createPage</span><span class="p">({</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Settings&quot;</span> <span class="p">})</span>
+
+    <span class="n">page</span><span class="p">:</span><span class="n">createYesNoButton</span><span class="p">({</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Enable Mod&quot;</span><span class="p">,</span> <span class="n">configKey</span> <span class="o">=</span> <span class="s2">&quot;enabled&quot;</span> <span class="p">})</span>
+
+<span class="hll">    <span class="c1">-- Create some sliders that let the user control the positioning of whatever menu element</span>
+</span><span class="hll">    <span class="c1">-- your mod is making.</span>
+</span><span class="hll">    <span class="c1">-- Notice how the syntax is exactly the same as the syntax used to create new buttons.</span>
+</span><span class="hll">    <span class="c1">-- The only difference is we&#39;re now telling the page we want a `PercentageSlider`</span>
+</span><span class="hll">    <span class="c1">-- instead of a `YesNoButton`.</span>
+</span><span class="hll">    <span class="n">page</span><span class="p">:</span><span class="n">createPercentageSlider</span><span class="p">({</span> 
+</span><span class="hll">        <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Menu X Position&quot;</span><span class="p">,</span> 
+</span><span class="hll">        <span class="n">configKey</span> <span class="o">=</span> <span class="s2">&quot;xPosition&quot;</span>
+</span><span class="hll">    <span class="p">})</span>
+</span><span class="hll">    <span class="n">page</span><span class="p">:</span><span class="n">createPercentageSlider</span><span class="p">({</span> 
+</span><span class="hll">        <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Menu Y Position&quot;</span><span class="p">,</span> 
+</span><span class="hll">        <span class="n">configKey</span> <span class="o">=</span> <span class="s2">&quot;yPosition&quot;</span>
+</span><span class="hll">    <span class="p">})</span>
+</span><span class="kr">end</span>
+<span class="n">event</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">tes3</span><span class="p">.</span><span class="n">event</span><span class="p">.</span><span class="n">modConfigReady</span><span class="p">,</span> <span class="n">registerModConfig</span><span class="p">)</span>
+</code></pre></div>
+You should now see two additional sliders added to your configuration menu.</p>
+<p>It's fairly common for mod authors to want certain things to happen whenever a certain key is pressed.
+So it would be nice if the MCM had some easy way of managing keybinds... Luckily, it does!</p>
+<div class="highlight"><pre><span></span><code><span class="c1">-- Default settings for your mod.</span>
+<span class="kd">local</span> <span class="n">myDefaultConfig</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">enabled</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="c1">-- These values should be between 0 and 1.</span>
+    <span class="n">xPosition</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="c1">-- 0 means &quot;left-most&quot;, and 1 means &quot;right-most&quot;.</span>
+    <span class="n">yPosition</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="c1">-- 0 means &quot;top-most&quot;, and 1 means &quot;bottom-most&quot;.</span>
+
+<span class="hll">    <span class="c1">-- This stores the key combination that opens your mods UI element.</span>
+</span><span class="hll">    <span class="c1">-- This value corresponds to holding `Alt + H`.</span>
+</span><span class="hll">    <span class="n">menuKeyCombo</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class="hll">        <span class="n">keyCode</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">scanCode</span><span class="p">.</span><span class="n">h</span><span class="p">,</span>
+</span><span class="hll">        <span class="n">isAltDown</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+</span><span class="hll">        <span class="n">isControlDown</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+</span><span class="hll">        <span class="n">isShiftDown</span> <span class="o">=</span> <span class="kc">false</span>
+</span><span class="hll">    <span class="p">},</span>
+</span><span class="p">}</span>
+
+<span class="kd">local</span> <span class="n">configPath</span> <span class="o">=</span> <span class="s2">&quot;My Awesome Mod&quot;</span> 
+<span class="kd">local</span> <span class="n">myConfig</span> <span class="o">=</span> <span class="n">mwse</span><span class="p">.</span><span class="n">loadConfig</span><span class="p">(</span><span class="n">configPath</span><span class="p">,</span> <span class="n">defaultConfig</span><span class="p">)</span>
+
+<span class="c1">-- When the mod config menu is ready to start accepting registrations,</span>
+<span class="c1">-- register this mod.</span>
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">registerModConfig</span><span class="p">()</span>
+    <span class="c1">-- Create the top level component Template. This is basically a box that holds all the other parts of the menu.</span>
+
+    <span class="kd">local</span> <span class="n">template</span> <span class="o">=</span> <span class="n">mwse</span><span class="p">.</span><span class="n">mcm</span><span class="p">.</span><span class="n">createTemplate</span><span class="p">({</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;My Awesome Mod&quot;</span><span class="p">,</span> <span class="n">config</span> <span class="o">=</span> <span class="n">myConfig</span> <span class="p">})</span>
+    <span class="n">template</span><span class="p">:</span><span class="n">register</span><span class="p">()</span>
+    <span class="n">template</span><span class="p">:</span><span class="n">saveOnClose</span><span class="p">(</span><span class="n">configPath</span><span class="p">,</span> <span class="n">myConfig</span><span class="p">)</span>
+
+    <span class="c1">-- Create a simple container Page under Template.</span>
+    <span class="kd">local</span> <span class="n">page</span> <span class="o">=</span> <span class="n">template</span><span class="p">:</span><span class="n">createPage</span><span class="p">({</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Settings&quot;</span> <span class="p">})</span>
+
+    <span class="c1">-- Create a button under Page that toggles a variable between true and false</span>
+    <span class="n">page</span><span class="p">:</span><span class="n">createYesNoButton</span><span class="p">({</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Enable Mod&quot;</span><span class="p">,</span> <span class="n">configKey</span> <span class="o">=</span> <span class="s2">&quot;enabled&quot;</span> <span class="p">})</span>
+
+    <span class="c1">-- Controls the position of the menu.</span>
+    <span class="n">page</span><span class="p">:</span><span class="n">createPercentageSlider</span><span class="p">({</span> 
+        <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Menu X Position&quot;</span><span class="p">,</span> 
+        <span class="n">configKey</span> <span class="o">=</span> <span class="s2">&quot;xPosition&quot;</span>
+    <span class="p">})</span>
+    <span class="n">page</span><span class="p">:</span><span class="n">createPercentageSlider</span><span class="p">({</span> 
+        <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Menu Y Position&quot;</span><span class="p">,</span> 
+        <span class="n">configKey</span> <span class="o">=</span> <span class="s2">&quot;yPosition&quot;</span>
+    <span class="p">})</span>
+
+<span class="hll">    <span class="c1">-- Controls the key that opens the menu.</span>
+</span><span class="hll">    <span class="n">page</span><span class="p">:</span><span class="n">createKeyBinder</span><span class="p">({</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Menu key&quot;</span><span class="p">,</span> <span class="n">configKey</span> <span class="o">=</span> <span class="s2">&quot;menuKeyCombo&quot;</span> <span class="p">})</span>
+</span><span class="kr">end</span>
+<span class="n">event</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">tes3</span><span class="p">.</span><span class="n">event</span><span class="p">.</span><span class="n">modConfigReady</span><span class="p">,</span> <span class="n">registerModConfig</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="understanding-the-terminology">Understanding the Terminology<a class="headerlink" href="#understanding-the-terminology" title="Permanent link">⚓︎</a></h2>
+<p>Now that we've covered a few examples, it might be helpful to explain the big picture a bit.</p>
+<p>The MCM is made up of things called <strong>components</strong>. In the most simple setup, the MCM consists of three different types of components:</p>
+<ol>
+<li>Various <strong>Settings</strong>. These are the reason you wanted to make a menu in the first place. <ul>
+<li>They let users change various parts of a <code>config</code> table by interacting with various UI elements.</li>
+<li>There are many different types of settings: you can have dropdown menus, sliders, buttons, keybinders, and more.</li>
+</ul>
+</li>
+<li>A few <strong>Pages</strong>. These hold various settings, and let you group them into separate pages.<ul>
+<li>In the simple examples we covered above, we only had at most four settings, so there wasn't really a need for multiple pages.<ul>
+<li>But as your mod grows, you might find yourself adding a lot of settings to the MCM. </li>
+<li>In those situations, it can be nice to split things up across several pages.</li>
+</ul>
+</li>
+<li>There are a few different types of <code>Pages</code>, each suited to different use-cases.</li>
+</ul>
+</li>
+<li>One <strong>Template</strong>. This is the thing that holds all the various pages of your mod, as well as some important information about your mod.<ul>
+<li>It needs to know the <code>name</code> of your mod, so it can be properly placed in the list on the left side of the menu.</li>
+<li>It can store your mods <code>config</code> table, and can facilitate the process of saving changes to a file whenever the menu closes.</li>
+</ul>
+</li>
+</ol>
+<p>All MCMs will consist of those three types of components. They're building blocks of any mod's config menu. 
+But there are a couple other components that can be useful:</p>
+<ol>
+<li><strong>Categories</strong>. These basically work like subsections of a <code>Page</code>. <ul>
+<li>You can add a <code>Category</code> to a page as a way to bundle similar settings together.</li>
+<li>You can even make categories inside of other categories.</li>
+</ul>
+</li>
+<li><strong>Infos</strong>. These can sometimes show up in specific situations as a way to present information that's not directly tied to a specific config setting.</li>
+</ol>
+<h2 id="advanced-examples">"Advanced" Examples<a class="headerlink" href="#advanced-examples" title="Permanent link">⚓︎</a></h2>
+<h3 id="side-bar-page">Side Bar Page<a class="headerlink" href="#side-bar-page" title="Permanent link">⚓︎</a></h3>
+<p>MCM has a lot of features, and one of the most commonly used components is the <code>SideBarPage</code>. When a component is moused over in a <code>SideBarPage</code>, the right panel will display the <code>description</code> of that component. It is recommended to use a <code>SideBarPage</code> instead of a regular <code>Page</code> whenever a mod has a lot of settings.</p>
+<div class="highlight"><span class="filename">My Awesome Mod/main.lua</span><pre><span></span><code>    <span class="kd">local</span> <span class="n">settings</span> <span class="o">=</span> <span class="n">template</span><span class="p">:</span><span class="n">createSideBarPage</span><span class="p">({</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Settings&quot;</span><span class="p">,</span>
+        <span class="c1">-- This description will be displayed at the right panel if no component is moused over.</span>
+        <span class="c1">-- (The `\z` character lets you define a string across multiple lines.)</span>
+        <span class="n">description</span> <span class="o">=</span>
+            <span class="s2">&quot;My Awesome Mod</span><span class="se">\n\z</span>
+<span class="se">            </span><span class="s2">Version 1.0.0</span><span class="se">\n\z</span>
+<span class="se">            \n\z</span>
+<span class="se">            </span><span class="s2">The mod is very awesome. And this is its awesome description.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="p">})</span>
+
+    <span class="n">settings</span><span class="p">:</span><span class="n">createYesNoButton</span><span class="p">({</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Enable Mod&quot;</span><span class="p">,</span>
+        <span class="n">configKey</span> <span class="o">=</span> <span class="s2">&quot;enabled&quot;</span><span class="p">,</span>
+        <span class="c1">-- This description will be displayed at the right panel if the button is moused over.</span>
+        <span class="n">description</span> <span class="o">=</span>
+            <span class="s2">&quot;If this setting is enabled, the mod is enabled.</span><span class="se">\n\z</span>
+<span class="se">            \n\z</span>
+<span class="se">            </span><span class="s2">If this setting is disabled, the mod is disabled.&quot;</span>
+    <span class="p">})</span>
+</code></pre></div>
+<h3 id="displaying-default-values-of-settings">Displaying Default Values of Settings<a class="headerlink" href="#displaying-default-values-of-settings" title="Permanent link">⚓︎</a></h3>
+<p>As your config menu grows, you may want to include some information about what the default values for various settings are. 
+Fortunately, the MCM comes with a very straight-forward solution to this problem:
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">template</span> <span class="o">=</span> <span class="n">mwse</span><span class="p">.</span><span class="n">mcm</span><span class="p">.</span><span class="n">createTemplate</span><span class="p">({</span> 
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;My Awesome Mod&quot;</span><span class="p">,</span> 
+    <span class="n">config</span> <span class="o">=</span> <span class="n">myConfig</span><span class="p">,</span>
+<span class="hll">    <span class="n">defaultConfig</span> <span class="o">=</span> <span class="n">myDefaultConfig</span><span class="p">,</span>
+</span><span class="hll">    <span class="n">showDefaultSetting</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+</span><span class="p">})</span>
+</code></pre></div></p>
+<p>This will result in the default values of settings automatically being displayed underneath their descriptions, provided those settings are in a <code>SideBarPage</code>.</p>
 <h3 id="separate-configlua">Separate config.lua<a class="headerlink" href="#separate-configlua" title="Permanent link">⚓︎</a></h3>
 <p>As your default config gets long, you might want to create a separate Lua file for it.</p>
-<div class="admonition example">
-<p class="admonition-title"><strong>MyMod\config.lua</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">My Awesome Mod/defaultConfig.lua</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">-- Define the defaultConfig in a separate file so we can access it later.</span>
+<span class="kd">local</span> <span class="n">defaultConfig</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">enabled</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="n">keybind</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">keyCode</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">scanCode</span><span class="p">.</span><span class="n">k</span><span class="p">,</span>
+        <span class="n">isShiftDown</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="n">isAltDown</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="n">isControlDown</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="p">},</span> <span class="c1">-- Ctrl + K</span>
+    <span class="n">nonEdible</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="p">[</span><span class="s2">&quot;ingred_diamond_01&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="p">[</span><span class="s2">&quot;ingred_scrap_metal_01&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="kr">return</span> <span class="n">defaultConfig</span>
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">My Awesome Mod/config.lua</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kd">local</span> <span class="n">defaultConfig</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;My Awesome Mod.defaultConfig&quot;</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">config</span> <span class="o">=</span> <span class="n">mwse</span><span class="p">.</span><span class="n">loadConfig</span><span class="p">(</span><span class="s2">&quot;My Awesome Mod&quot;</span><span class="p">,</span> <span class="n">defaultConfig</span><span class="p">)</span>
+<span class="kr">return</span> <span class="n">config</span>
+</code></pre></div></td></tr></table></div>
+<p>We can then use the <code>require</code> function to import the <code>config</code> and <code>defaultConfig</code> in <code>main.lua</code>.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">My Awesome Mod/main.lua</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kd">local</span> <span class="n">config</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;My Awesome Mod.config&quot;</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">defaultConfig</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;My Awesome Mod.defaultConfig&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Having a dedicated config file is important when your mod has multiple files.
+When using a dedicated config file, you can import it from every file of your mod using <code>require</code>, and all of those files
+will use a sychronized copy of your config.</p>
+</div>
+<h3 id="exclusions-page">Exclusions Page<a class="headerlink" href="#exclusions-page" title="Permanent link">⚓︎</a></h3>
+<p>Let's say your Awesome Mod makes certain ingredients non-edible. Using an Exclusions Page, you can allow users to manually add what ingredients should be non-edible in game.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">My Awesome Mod/main.lua</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -17395,74 +17679,9 @@
 <span class="normal">13</span>
 <span class="normal">14</span>
 <span class="normal">15</span>
-<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kd">local</span> <span class="n">configPath</span> <span class="o">=</span> <span class="s2">&quot;My Awesome Mod&quot;</span> <span class="c1">-- The name of the config json file of your mod</span>
-<span class="kd">local</span> <span class="n">defaultConfig</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="n">enabled</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="n">keybind</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="n">keyCode</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">scanCode</span><span class="p">.</span><span class="n">k</span><span class="p">,</span>
-        <span class="n">isShiftDown</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
-        <span class="n">isAltDown</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
-        <span class="n">isControlDown</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="p">},</span> <span class="c1">-- Ctrl + K</span>
-    <span class="n">nonEdible</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="p">[</span><span class="s2">&quot;ingred_diamond_01&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
-        <span class="p">[</span><span class="s2">&quot;ingred_scrap_metal_01&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kr">return</span> <span class="n">mwse</span><span class="p">.</span><span class="n">loadConfig</span><span class="p">(</span><span class="n">configPath</span><span class="p">,</span> <span class="n">defaultConfig</span><span class="p">)</span>
-</code></pre></div></td></tr></table></div>
-</div>
-<p>And we import the config with <code>require</code> function in the <code>main.lua</code>.</p>
-<div class="admonition example">
-<p class="admonition-title"><strong>MyMod\main.lua</strong></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kd">local</span> <span class="n">config</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;MyMod.config&quot;</span><span class="p">)</span>
-</code></pre></div></td></tr></table></div>
-</div>
-<h3 id="side-bar-page">Side Bar Page<a class="headerlink" href="#side-bar-page" title="Permanent link">⚓︎</a></h3>
-<p>MCM has a lot of features, and one of the most commonly used components is the Sidebar Page. When a component is moused over in a sidebar page, the right panel will display the description of that component. It is recommended to use a sidebar page instead of a page when a mod has lots of settings.</p>
-<div class="admonition example">
-<p class="admonition-title"><strong>MyMod\main.lua</strong></p>
-<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">settings</span> <span class="o">=</span> <span class="n">template</span><span class="p">:</span><span class="n">createSideBarPage</span><span class="p">({</span>
-    <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Settings&quot;</span><span class="p">,</span>
-    <span class="c1">-- This description will be displayed at the right panel if no component is moused over.</span>
-    <span class="n">description</span> <span class="o">=</span>
-        <span class="s2">&quot;My Awesome Mod</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">..</span>
-        <span class="s2">&quot;Version 1.0.0</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">..</span>
-        <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">..</span>
-        <span class="s2">&quot;The mod is very awesome. And this is its awesome description.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
-<span class="p">})</span>
-
-<span class="n">settings</span><span class="p">:</span><span class="n">createYesNoButton</span><span class="p">({</span>
-    <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Enable Mod&quot;</span><span class="p">,</span>
-    <span class="c1">-- This description will be displayed at the right panel if the button is moused over.</span>
-    <span class="n">description</span> <span class="o">=</span>
-        <span class="s2">&quot;If this setting is enabled, the mod is enabled.</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">..</span>
-        <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">..</span>
-        <span class="s2">&quot;If this setting is disabled, the mod is disabled.</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">..</span>
-        <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">..</span>
-        <span class="s2">&quot;Default: yes&quot;</span><span class="p">,</span>
-    <span class="n">variable</span> <span class="o">=</span> <span class="n">mwse</span><span class="p">.</span><span class="n">mcm</span><span class="p">:</span><span class="n">createTableVariable</span><span class="p">({</span> <span class="n">id</span> <span class="o">=</span> <span class="s2">&quot;enabled&quot;</span><span class="p">,</span> <span class="n">table</span> <span class="o">=</span> <span class="n">config</span> <span class="p">}),</span>
-<span class="p">})</span>
-</code></pre></div>
-</div>
-<h3 id="key-binder">Key Binder<a class="headerlink" href="#key-binder" title="Permanent link">⚓︎</a></h3>
-<p>If your mod adds any hotkey function, a way to rebind the hotkey in the mod config menu is a must.</p>
-<div class="admonition example">
-<p class="admonition-title"><strong>MyMod\main.lua</strong></p>
-<div class="highlight"><pre><span></span><code><span class="n">settings</span><span class="p">:</span><span class="n">createKeyBinder</span><span class="p">({</span>
-    <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Assign Keybind&quot;</span><span class="p">,</span>
-    <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Assign a new keybind to perform awesome tasks.&quot;</span><span class="p">,</span>
-    <span class="n">variable</span> <span class="o">=</span> <span class="n">mwse</span><span class="p">.</span><span class="n">mcm</span><span class="p">.</span><span class="n">createTableVariable</span><span class="p">{</span> <span class="n">id</span> <span class="o">=</span> <span class="s2">&quot;keybind&quot;</span><span class="p">,</span> <span class="n">table</span> <span class="o">=</span> <span class="n">config</span> <span class="p">},</span>
-    <span class="n">allowCombinations</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
-<span class="p">})</span>
-</code></pre></div>
-</div>
-<h3 id="exclusions-page">Exclusions Page<a class="headerlink" href="#exclusions-page" title="Permanent link">⚓︎</a></h3>
-<p>Let's say your My Awesome Mod makes certain ingredients non-edible. Using an Exclusions Page, you can allow users to manually add what ingredients should be non-edible in game.</p>
-<div class="admonition example">
-<p class="admonition-title"><strong>MyMod\main.lua</strong></p>
-<div class="highlight"><pre><span></span><code><span class="n">template</span><span class="p">:</span><span class="n">createExclusionsPage</span><span class="p">({</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">template</span><span class="p">:</span><span class="n">createExclusionsPage</span><span class="p">({</span>
     <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Non-Edible Ingredients&quot;</span><span class="p">,</span>
     <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Ingredients that can&#39;t be directly consumed via equipping.&quot;</span><span class="p">,</span>
     <span class="n">leftListLabel</span> <span class="o">=</span> <span class="s2">&quot;Non-Edible Ingredients&quot;</span><span class="p">,</span>
@@ -17473,15 +17692,31 @@
     <span class="p">},</span>
     <span class="c1">-- This filters the right list by ingredient object</span>
     <span class="n">filters</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="p">{</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Ingredients&quot;</span><span class="p">,</span> <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;Object&quot;</span><span class="p">,</span> <span class="n">objectType</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">objectType</span><span class="p">.</span><span class="n">ingredient</span> <span class="p">},</span>
+        <span class="p">{</span> 
+            <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Ingredients&quot;</span><span class="p">,</span> 
+            <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;Object&quot;</span><span class="p">,</span> 
+            <span class="n">objectType</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">objectType</span><span class="p">.</span><span class="n">ingredient</span> 
+        <span class="p">},</span>
     <span class="p">},</span>
 <span class="p">})</span>
-</code></pre></div>
-</div>
+</code></pre></div></td></tr></table></div>
 <p>There is also a more customized way to filter the right list. The following code filters the right list by ingredients with value higher than 100 gold.</p>
-<div class="admonition example">
-<p class="admonition-title"><strong>MyMod\main.lua</strong></p>
-<div class="highlight"><pre><span></span><code>    <span class="n">filters</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">My Awesome Mod/main.lua</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><code>    <span class="n">filters</span> <span class="o">=</span> <span class="p">{</span>
         <span class="p">{</span>
             <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Ingredients&quot;</span><span class="p">,</span>
             <span class="n">callback</span> <span class="o">=</span> <span class="kr">function</span><span class="p">()</span>
@@ -17497,8 +17732,7 @@
             <span class="kr">end</span>
         <span class="p">},</span>
     <span class="p">},</span>
-</code></pre></div>
-</div>
+</code></pre></div></td></tr></table></div>
 
 
 
@@ -17521,7 +17755,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">September 16, 2023 18:00:49</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">July 1, 2024 14:24:09</span>
   </span>
 
     
