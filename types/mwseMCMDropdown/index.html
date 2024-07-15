@@ -6421,6 +6421,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#selectedoption" class="md-nav__link">
+    <span class="md-ellipsis">
+      selectedOption
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#showdefaultsetting" class="md-nav__link">
     <span class="md-ellipsis">
       showDefaultSetting
@@ -6601,6 +6610,15 @@
   <a href="#getmouseovertext" class="md-nav__link">
     <span class="md-ellipsis">
       getMouseOverText
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getoption" class="md-nav__link">
+    <span class="md-ellipsis">
+      getOption
     </span>
   </a>
   
@@ -17965,6 +17983,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#selectedoption" class="md-nav__link">
+    <span class="md-ellipsis">
+      selectedOption
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#showdefaultsetting" class="md-nav__link">
     <span class="md-ellipsis">
       showDefaultSetting
@@ -18145,6 +18172,15 @@
   <a href="#getmouseovertext" class="md-nav__link">
     <span class="md-ellipsis">
       getMouseOverText
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getoption" class="md-nav__link">
+    <span class="md-ellipsis">
+      getOption
     </span>
   </a>
   
@@ -18506,6 +18542,15 @@
 <li><code>result</code> (string)</li>
 </ul>
 <hr />
+<h3 id="selectedoption"><code>selectedOption</code><a class="headerlink" href="#selectedoption" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">selectedoption</div>
+
+<p>The currently selected <a href="../mwseMCMDropdownOption/">`mwseMCMDropdownOption</a>.</p>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>result</code> (<a href="../mwseMCMDropdownOption/">mwseMCMDropdownOption</a>, nil)</li>
+</ul>
+<hr />
 <h3 id="showdefaultsetting"><code>showDefaultSetting</code><a class="headerlink" href="#showdefaultsetting" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">showdefaultsetting, defaultsetting</div>
 
@@ -18705,6 +18750,21 @@ The default behavior is to return the <code>label</code> of the <a href="../mwse
 <li><code>text</code> (string, nil): The text to display. Returning <code>nil</code> means that the <code>mouseOverInfo</code> should display text from a different source. e.g. from the <code>description</code> of the relevant <a href="../mwseMCMSideBarPage/"><code>SideBarPage</code></a>.</li>
 </ul>
 <hr />
+<h3 id="getoption"><code>getOption</code><a class="headerlink" href="#getoption" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">getoption, option</div>
+
+<p>Given an <code>optionValue</code>, this method will retrieve the first <a href="../mwseMCMDropdownOption/"><code>mwseMCMDropdownOption</code></a> with a matching <code>value</code>, if such an option exists.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">option</span> <span class="o">=</span> <span class="n">myObject</span><span class="p">:</span><span class="n">getOption</span><span class="p">(</span><span class="n">optionValue</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Parameters</strong>:</p>
+<ul>
+<li><code>optionValue</code> (unknown): <em>Default</em>: <code>self.variable.value</code>.</li>
+</ul>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>option</code> (<a href="../mwseMCMDropdownOption/">mwseMCMDropdownOption</a>, nil): The corresponding <a href="../mwseMCMDropdownOption/"><code>mwseMCMDropdownOption</code></a>.</li>
+</ul>
+<hr />
 <h3 id="insertmouseovers"><code>insertMouseovers</code><a class="headerlink" href="#insertmouseovers" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">insertmouseovers</div>
 
@@ -18825,7 +18885,7 @@ The default behavior is to return the <code>label</code> of the <a href="../mwse
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">July 15, 2024 08:17:20</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">July 15, 2024 12:26:53</span>
   </span>
 
     
