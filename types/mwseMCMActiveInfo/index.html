@@ -5974,9 +5974,54 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#config" class="md-nav__link">
+    <span class="md-ellipsis">
+      config
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configkey" class="md-nav__link">
+    <span class="md-ellipsis">
+      configKey
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#converter" class="md-nav__link">
+    <span class="md-ellipsis">
+      converter
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#createcontentscontainer" class="md-nav__link">
     <span class="md-ellipsis">
       createContentsContainer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defaultconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      defaultConfig
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defaultsetting" class="md-nav__link">
+    <span class="md-ellipsis">
+      defaultSetting
     </span>
   </a>
   
@@ -17677,9 +17722,54 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#config" class="md-nav__link">
+    <span class="md-ellipsis">
+      config
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configkey" class="md-nav__link">
+    <span class="md-ellipsis">
+      configKey
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#converter" class="md-nav__link">
+    <span class="md-ellipsis">
+      converter
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#createcontentscontainer" class="md-nav__link">
     <span class="md-ellipsis">
       createContentsContainer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defaultconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      defaultConfig
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defaultsetting" class="md-nav__link">
+    <span class="md-ellipsis">
+      defaultSetting
     </span>
   </a>
   
@@ -18148,6 +18238,33 @@
 <li><code>result</code> ("Info")</li>
 </ul>
 <hr />
+<h3 id="config"><code>config</code><a class="headerlink" href="#config" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">config</div>
+
+<p>The config to use when creating a <a href="../mwseMCMTableVariable/"><code>mwseMCMTableVariable</code></a> for this <code>Setting</code>. If provided, it will override the config stored in <code>parentComponent</code>. Otherwise, the value in <code>parentComponent</code> will be used.</p>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>result</code> (table, nil)</li>
+</ul>
+<hr />
+<h3 id="configkey"><code>configKey</code><a class="headerlink" href="#configkey" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">configkey</div>
+
+<p>The <code>configKey</code> used to create a new <a href="../mwseMCMTableVariable/"><code>mwseMCMTableVariable</code></a>. If this is provided, along with a <code>config</code> (which may be inherited from the <code>parentComponent</code>), then a new <a href="../mwseMCMTableVariable/"><code>mwseMCMTableVariable</code></a> variable will be created for this setting.</p>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>result</code> (string, number, nil)</li>
+</ul>
+<hr />
+<h3 id="converter"><code>converter</code><a class="headerlink" href="#converter" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">converter</div>
+
+<p>A converter to use for this component's <code>variable</code>.</p>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>result</code> ((fun(newValue: unknown): unknown), nil)</li>
+</ul>
+<hr />
 <h3 id="createcontentscontainer"><code>createContentsContainer</code><a class="headerlink" href="#createcontentscontainer" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">createcontentscontainer, contentscontainer</div>
 
@@ -18155,6 +18272,24 @@
 <p><strong>Returns</strong>:</p>
 <ul>
 <li><code>result</code> (nil, fun(self: <a href="../mwseMCMComponent/">mwseMCMComponent</a>, outerContainer: <a href="../tes3uiElement/">tes3uiElement</a>))</li>
+</ul>
+<hr />
+<h3 id="defaultconfig"><code>defaultConfig</code><a class="headerlink" href="#defaultconfig" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">defaultconfig</div>
+
+<p>The <code>defaultConfig</code> to use when creating a <a href="../mwseMCMTableVariable/"><code>mwseMCMTableVariable</code></a> for this <code>Setting</code>. If provided, it will override the <code>defaultConfig</code> stored in <code>parentComponent</code>. Otherwise, the value in <code>parentComponent</code> will be used.</p>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>result</code> (table, nil)</li>
+</ul>
+<hr />
+<h3 id="defaultsetting"><code>defaultSetting</code><a class="headerlink" href="#defaultsetting" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">defaultsetting</div>
+
+<p>If <code>defaultSetting</code> wasn't passed in the <code>variable</code> table, can be passed here. The new variable will be initialized to this value. If not provided, then the value in <code>defaultConfig</code> will be used, if possible.</p>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>result</code> (unknown, nil)</li>
 </ul>
 <hr />
 <h3 id="description"><code>description</code><a class="headerlink" href="#description" title="Permanent link">⚓︎</a></h3>
@@ -18605,7 +18740,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">June 30, 2024 04:47:57</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">July 15, 2024 08:17:20</span>
   </span>
 
     
