@@ -45,6 +45,11 @@ The same is done by this function if you pass both `parent` and `data` arguments
 				description = "If `defaultSetting` wasn't passed in the `variable` table, can be passed here. \z
 					The new variable will be initialized to this value. If not provided, then the value in `defaultConfig` will be used, if possible." 
 			},
+			{ name = "showDefaultSetting", type = "boolean", optional = true, default = "`parentComponent.showDefaultSetting`",
+				description = "If `true`, and in a [Sidebar Page](../types/mwseMCMSideBarPage.md), then the `defaultSetting` of this setting's `variable` will be shown below its `description`. \z
+					The `defaultSetting` will be formatted in accordance with the `convertToLabelValue` function. \z
+					**Note:** This parameter does not update the `description` field.",
+			},
 			{ name = "numbersOnly", type = "boolean", optional = true, default = false, description = "If true, only numbers will be allowed in this TextField." },
 			{ name = "description", type = "string", optional = true, description = "If in a [Sidebar Page](../types/mwseMCMSideBarPage.md), the description will be shown on mouseover." },
 			{ name = "height", type = "integer", optional = true, description = "Fixes the height of the paragraph field to a custom value." },

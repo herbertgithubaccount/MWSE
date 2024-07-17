@@ -96,6 +96,12 @@ function mwseMCMComponent:disable() end
 --- Enables the component's UI elements. That includes: changing the color of the UI elements to the `tes3.palette.normalColor` and registering handlers for `tes3.uiEvent.mouseClick` for buttons.
 function mwseMCMComponent:enable() end
 
+--- Retrieves the text that this component should display in any related [`mouseOverInfo`s](./mwseMCMMouseOverInfo.md). This method currently utilized to display this component's description whenever the component is in a [`SideBarPage`](./mwseMCMSideBarPage.md).
+--- 
+--- Primarily intended for internal use.
+--- @return string|nil text The text to display. Returning `nil` means that the `mouseOverInfo` should display text from a different source. e.g. from the `description` of the relevant [`SideBarPage`](./mwseMCMSideBarPage.md).
+function mwseMCMComponent:getMouseOverText() end
+
 --- Creates a new Component.
 --- @param data mwseMCMComponent.new.data? This table accepts the following values:
 --- 

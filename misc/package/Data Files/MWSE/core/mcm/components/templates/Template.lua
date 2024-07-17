@@ -2,7 +2,7 @@
 --- The warnings arise because each field set here is also 'set' in the annotations in the core\meta\ folder.
 --- @diagnostic disable: duplicate-set-field
 
-local fileUtils = require("mcm.fileUtils")
+local utils = require("mcm.utils")
 
 local Parent = require("mcm.components.Component")
 
@@ -25,7 +25,7 @@ function Template:new(data)
 	for _, page in ipairs(t.pages) do
 		-- Make sure it's actually a `Page`.
 		if not page.componentType then
-			local componentClass = fileUtils.getComponentClass(page.class or "Page")
+			local componentClass = utils.getComponentClass(page.class or "Page")
 			if not componentClass then
 				error(string.format("Could not intialize page %q", page.label))
 			end
