@@ -5468,6 +5468,8 @@
       
         
       
+        
+      
     
     
       
@@ -6551,6 +6553,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#showreset" class="md-nav__link">
+    <span class="md-ellipsis">
+      showReset
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#sidebar" class="md-nav__link">
     <span class="md-ellipsis">
       sidebar
@@ -6845,6 +6856,24 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#createresetbutton" class="md-nav__link">
+    <span class="md-ellipsis">
+      createResetButton
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#createresetbuttoncontainer" class="md-nav__link">
+    <span class="md-ellipsis">
+      createResetButtonContainer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#createrightcolumn" class="md-nav__link">
     <span class="md-ellipsis">
       createRightColumn
@@ -6983,6 +7012,15 @@
   <a href="#registermouseoverelements" class="md-nav__link">
     <span class="md-ellipsis">
       registerMouseOverElements
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resettodefault" class="md-nav__link">
+    <span class="md-ellipsis">
+      resetToDefault
     </span>
   </a>
   
@@ -7275,6 +7313,27 @@
   
   <span class="md-ellipsis">
     mwseMCMPage
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mwseMCMPageElements/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mwseMCMPageElements
   </span>
   
 
@@ -18092,6 +18151,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#showreset" class="md-nav__link">
+    <span class="md-ellipsis">
+      showReset
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#sidebar" class="md-nav__link">
     <span class="md-ellipsis">
       sidebar
@@ -18386,6 +18454,24 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#createresetbutton" class="md-nav__link">
+    <span class="md-ellipsis">
+      createResetButton
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#createresetbuttoncontainer" class="md-nav__link">
+    <span class="md-ellipsis">
+      createResetButtonContainer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#createrightcolumn" class="md-nav__link">
     <span class="md-ellipsis">
       createRightColumn
@@ -18524,6 +18610,15 @@
   <a href="#registermouseoverelements" class="md-nav__link">
     <span class="md-ellipsis">
       registerMouseOverElements
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resettodefault" class="md-nav__link">
+    <span class="md-ellipsis">
+      resetToDefault
     </span>
   </a>
   
@@ -18775,6 +18870,15 @@ This is equivalent to manually writing <code>showDefaultSetting = true</code> in
 <div class="search_terms" style="display: none">showheader, header</div>
 
 <p>The page's label will only be created if set to true.</p>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>result</code> (boolean)</li>
+</ul>
+<hr />
+<h3 id="showreset"><code>showReset</code><a class="headerlink" href="#showreset" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">showreset, reset</div>
+
+<p>When set to true, the Page will have a Reset button. Clicking on it will set the <code>variable.value</code> of all the setting on the page to their respective <code>defaultSetting</code> values.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
 <li><code>result</code> (boolean)</li>
@@ -19419,6 +19523,28 @@ This is equivalent to manually writing <code>showDefaultSetting = true</code> in
 <li><code>slider</code> (<a href="../mwseMCMPercentageSlider/">mwseMCMPercentageSlider</a>)</li>
 </ul>
 <hr />
+<h3 id="createresetbutton"><code>createResetButton</code><a class="headerlink" href="#createresetbutton" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">createresetbutton, resetbutton</div>
+
+<p>Creates the Page's Reset button.</p>
+<div class="highlight"><pre><span></span><code><span class="n">myObject</span><span class="p">:</span><span class="n">createResetButton</span><span class="p">(</span><span class="n">parentBlock</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Parameters</strong>:</p>
+<ul>
+<li><code>parentBlock</code> (<a href="../tes3uiElement/">tes3uiElement</a>)</li>
+</ul>
+<hr />
+<h3 id="createresetbuttoncontainer"><code>createResetButtonContainer</code><a class="headerlink" href="#createresetbuttoncontainer" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">createresetbuttoncontainer, resetbuttoncontainer</div>
+
+<p>Creates parent UI element for the Page's Reset button.</p>
+<div class="highlight"><pre><span></span><code><span class="n">myObject</span><span class="p">:</span><span class="n">createResetButtonContainer</span><span class="p">(</span><span class="n">parentBlock</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Parameters</strong>:</p>
+<ul>
+<li><code>parentBlock</code> (<a href="../tes3uiElement/">tes3uiElement</a>)</li>
+</ul>
+<hr />
 <h3 id="createrightcolumn"><code>createRightColumn</code><a class="headerlink" href="#createrightcolumn" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">createrightcolumn, rightcolumn</div>
 
@@ -19776,6 +19902,13 @@ This is equivalent to manually writing <code>showDefaultSetting = true</code> in
 <li><code>mouseOverList</code> (<a href="../tes3uiElement/">tes3uiElement</a>[]): <em>Optional</em>. If this argument isn't passed, does nothing.</li>
 </ul>
 <hr />
+<h3 id="resettodefault"><code>resetToDefault</code><a class="headerlink" href="#resettodefault" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">resettodefault</div>
+
+<p>This method will reset the settings to the default value for all the nested components in this Category.</p>
+<div class="highlight"><pre><span></span><code><span class="n">myObject</span><span class="p">:</span><span class="n">resetToDefault</span><span class="p">()</span>
+</code></pre></div>
+<hr />
 <h3 id="update"><code>update</code><a class="headerlink" href="#update" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">update</div>
 
@@ -19804,7 +19937,7 @@ This is equivalent to manually writing <code>showDefaultSetting = true</code> in
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">July 15, 2024 08:17:20</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">July 17, 2024 12:10:51</span>
   </span>
 
     
