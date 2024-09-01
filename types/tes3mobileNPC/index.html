@@ -21781,7 +21781,8 @@ end
 <h3 id="facing"><code>facing</code><a class="headerlink" href="#facing" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">facing</div>
 
-<p><em>Read-only</em>. The facing of the actor, in radians. It corresponds to the <code>mobile.reference.orientation.z</code>. Facing of 0 corresponds to the in game North, facing of PI corresponds to the game South. It's in clockwise direction.</p>
+<p><em>Read-only</em>. The facing of the actor, in radians. Facing is defined like a compass heading, positive values are clockwise and North (+Y axis) is zero, while facing of PI corresponds to South (-Y axis).</p>
+<p>It's the same as <code>mobile.reference.orientation.z</code>.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
 <li><code>result</code> (number)</li>
@@ -22896,6 +22897,10 @@ end
 <div class="search_terms" style="display: none">velocity</div>
 
 <p>A vector that represents the 3D velocity of the object.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To change the velocity of an actor change this property during the <a href="https://mwse.github.io/MWSE/events/calcMoveSpeed/">calcMoveSpeed</a> event.</p>
+</div>
 <p><strong>Returns</strong>:</p>
 <ul>
 <li><code>result</code> (<a href="../tes3vector3/">tes3vector3</a>)</li>
@@ -23540,7 +23545,7 @@ end
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">July 13, 2024 12:11:45</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">September 1, 2024 11:53:17</span>
   </span>
 
     
