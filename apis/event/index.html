@@ -17697,7 +17697,7 @@
 <div class="search_terms" style="display: none">register</div>
 
 <p>Registers a function to be called when an event is raised.</p>
-<div class="highlight"><pre><span></span><code><span class="n">event</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">eventId</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="p">{</span> <span class="n">doOnce</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">filter</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">priority</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
+<div class="highlight"><pre><span></span><code><span class="n">event</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">eventId</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="p">{</span> <span class="n">doOnce</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">filter</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">priority</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">unregisterOnLoad</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
@@ -17707,6 +17707,7 @@
 <li><code>doOnce</code> (boolean): <em>Default</em>: <code>false</code>. If this option is set to <code>true</code>, the function registered will be executed only once, and automatically unregistered thereafter.</li>
 <li><code>filter</code> (userdata, string, number, <a href="../../types/tes3baseObject/">tes3baseObject</a>): <em>Optional</em>. This parameter allows selectively executing the callback function only when a specific condition is met. The exact behavior depends on each event.</li>
 <li><code>priority</code> (number): <em>Optional</em>. Event callback with higher priority is executed before callback with lower priority. Typically used to make certain mods compatible.</li>
+<li><code>unregisterOnLoad</code> (boolean): <em>Default</em>: <code>false</code>. If this option is set to <code>true</code>, the registered function will be unregistered when the next <code>load</code> event triggers.</li>
 </ul>
 </li>
 </ul>
@@ -17768,7 +17769,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">November 24, 2023 19:39:34</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">September 2, 2024 13:12:25</span>
   </span>
 
     
