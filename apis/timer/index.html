@@ -9,7 +9,7 @@
       
       
       
-        <link rel="prev" href="../timer.frame/">
+        <link rel="prev" href="../tes3ui/">
       
       
         <link rel="next" href="../toml/">
@@ -4273,16 +4273,6 @@
       
         
       
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
     
     
       
@@ -4494,27 +4484,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../mge.macros/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    mge.macros
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../mge/" class="md-nav__link">
         
   
@@ -4557,74 +4526,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../mwse.mcm/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    mwse.mcm
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../mwse/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     mwse
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../mwse.stack/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    mwse.stack
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../mwse.string/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    mwse.string
   </span>
   
 
@@ -4785,27 +4691,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../timer.frame/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    timer.frame
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -4937,6 +4822,15 @@
   <a href="#timerdelayoneframe" class="md-nav__link">
     <span class="md-ellipsis">
       timer.delayOneFrame
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timerframedelayoneframe" class="md-nav__link">
+    <span class="md-ellipsis">
+      timer.frame.delayOneFrame
     </span>
   </a>
   
@@ -17817,6 +17711,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#timerframedelayoneframe" class="md-nav__link">
+    <span class="md-ellipsis">
+      timer.frame.delayOneFrame
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#timerregister" class="md-nav__link">
     <span class="md-ellipsis">
       timer.register
@@ -17916,6 +17819,25 @@
 <ul>
 <li><code>callback</code> (fun(e: <a href="../../types/mwseTimerCallbackData/">mwseTimerCallbackData</a>)): The callback function that will execute when the timer expires.</li>
 <li><code>type</code> (integer): <em>Default</em>: <code>timer.simulate</code>. Type of the timer. This value can be <code>timer.simulate</code>, <code>timer.game</code> or <code>timer.real</code>.</li>
+</ul>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>timer</code> (<a href="../../types/mwseTimer/">mwseTimer</a>)</li>
+</ul>
+<hr />
+<h3 id="timerframedelayoneframe"><code>timer.frame.delayOneFrame</code><a class="headerlink" href="#timerframedelayoneframe" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">frame.delayoneframe</div>
+
+<p>Creates a timer that will finish the next frame.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>It's recommended to study the <a href="../../guides/object-lifetimes/">Object Lifetimes</a> guide. It describes how to safely use <a href="../../types/tes3reference/">tes3reference</a> objects inside timer callbacks.</p>
+</div>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">timer</span> <span class="o">=</span> <span class="n">timer</span><span class="p">.</span><span class="n">frame</span><span class="p">.</span><span class="n">delayOneFrame</span><span class="p">(</span><span class="n">callback</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Parameters</strong>:</p>
+<ul>
+<li><code>callback</code> (fun(e: <a href="../../types/mwseTimerCallbackData/">mwseTimerCallbackData</a>)): The callback function that will execute when the timer expires.</li>
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
@@ -18055,7 +17977,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">May 25, 2024 10:31:51</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">September 13, 2024 11:56:32</span>
   </span>
 
     
