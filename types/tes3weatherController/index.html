@@ -13390,6 +13390,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#precipitationfallspeed" class="md-nav__link">
+    <span class="md-ellipsis">
+      precipitationFallSpeed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#scenerainroot" class="md-nav__link">
     <span class="md-ellipsis">
       sceneRainRoot
@@ -13501,6 +13510,15 @@
   <a href="#skypresunsettime" class="md-nav__link">
     <span class="md-ellipsis">
       skyPreSunsetTime
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#snowfallspeedscale" class="md-nav__link">
+    <span class="md-ellipsis">
+      snowFallSpeedScale
     </span>
   </a>
   
@@ -18290,6 +18308,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#precipitationfallspeed" class="md-nav__link">
+    <span class="md-ellipsis">
+      precipitationFallSpeed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#scenerainroot" class="md-nav__link">
     <span class="md-ellipsis">
       sceneRainRoot
@@ -18401,6 +18428,15 @@
   <a href="#skypresunsettime" class="md-nav__link">
     <span class="md-ellipsis">
       skyPreSunsetTime
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#snowfallspeedscale" class="md-nav__link">
+    <span class="md-ellipsis">
+      snowFallSpeedScale
     </span>
   </a>
   
@@ -18904,6 +18940,15 @@
 <li><code>result</code> (<a href="../tes3weatherControllerParticle/">tes3weatherControllerParticle</a>[])</li>
 </ul>
 <hr />
+<h3 id="precipitationfallspeed"><code>precipitationFallSpeed</code><a class="headerlink" href="#precipitationfallspeed" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">precipitationfallspeed</div>
+
+<p>The z component of the rain or snow fall particle velocity (not including blizzards). Snow fall velocity is also multiplied by <code>snowFallSpeedScale</code>. This value is initialized by the "Precipitation Gravity" entry in morrowind.ini.</p>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>result</code> (number)</li>
+</ul>
+<hr />
 <h3 id="scenerainroot"><code>sceneRainRoot</code><a class="headerlink" href="#scenerainroot" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">scenerainroot</div>
 
@@ -19016,6 +19061,15 @@
 <div class="search_terms" style="display: none">skypresunsettime</div>
 
 <p>The sky has one color for day and night states each. The day color will be used when the game hour is between <code>skyPostSunriseTime</code> and <code>skyPreSunsetTime</code>. This corresponds to the setting of the same name in Morrowind.ini file.</p>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>result</code> (number)</li>
+</ul>
+<hr />
+<h3 id="snowfallspeedscale"><code>snowFallSpeedScale</code><a class="headerlink" href="#snowfallspeedscale" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">snowfallspeedscale</div>
+
+<p>A multipler for the z component of snow fall particle velocity (not including blizzards). The z component is set by <code>precipitationFallSpeed * snowFallSpeedScale</code>. This value is initialized by the "Snow Gravity Scale" entry in morrowind.ini.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
 <li><code>result</code> (number)</li>
@@ -19319,7 +19373,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">October 21, 2023 21:35:41</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">September 14, 2024 03:09:17</span>
   </span>
 
     
