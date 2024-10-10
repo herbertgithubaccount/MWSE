@@ -18633,7 +18633,7 @@
 <h3 id="tes3uicreatemenu"><code>tes3ui.createMenu</code><a class="headerlink" href="#tes3uicreatemenu" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">createmenu, menu</div>
 
-<p>Creates a top-level menu.</p>
+<p>Creates a top-level menu. It will be styled like a regular menu, with the configurable background alpha and a frame. There are two types of menu: <code>dragFrame</code> (movable and resizeable with titlebar) or <code>fixedFrame</code> (fixed with simple border). A type must be specified to create a menu.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">tes3ui</span><span class="p">.</span><span class="n">createMenu</span><span class="p">({</span> <span class="n">id</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">dragFrame</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">fixedFrame</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">modal</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">loadable</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
@@ -18643,7 +18643,7 @@
 <li><code>dragFrame</code> (boolean): <em>Default</em>: <code>false</code>. Constructs a draggable and resizeable frame and background for the menu. It is similar to the stats, inventory, magic and map menus in the standard UI. Its title bar text can be set with the .text property. After construction, position and minimum dimensions should be set.</li>
 <li><code>fixedFrame</code> (boolean): <em>Default</em>: <code>false</code>. Constructs a fixed (non-draggable) frame and background for the menu. The layout system should automatically centre and size it to fit whatever is added to the menu. This type of menu is modal by default, preventing interaction with other menus while the menu is active.</li>
 <li><code>modal</code> (boolean): <em>Default</em>: <code>true</code>. Only applies to fixedFrame menus. Modal menus prevent interaction with other menus while the menu is active. This behavior can be disabled with this flag.</li>
-<li><code>loadable</code> (boolean): <em>Default</em>: <code>true</code>. If set to false, calls to loadMenuPosition will fail.</li>
+<li><code>loadable</code> (boolean): <em>Default</em>: <code>true</code>. Only applies to dragFrame menus. Remembers the position and size of the menu (by id) when the user moves it. Calling loadMenuPosition after menu creation will restore it to the last set size and position. If set to false, calls to loadMenuPosition will fail.</li>
 </ul>
 </li>
 </ul>
@@ -19502,7 +19502,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">September 1, 2024 11:53:17</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">October 10, 2024 07:24:38</span>
   </span>
 
     
