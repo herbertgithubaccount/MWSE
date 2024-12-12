@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.47">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.48">
     
     
       
@@ -11865,6 +11865,33 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#isactive" class="md-nav__link">
+    <span class="md-ellipsis">
+      isActive
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#isfinished" class="md-nav__link">
+    <span class="md-ellipsis">
+      isFinished
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#isstarted" class="md-nav__link">
+    <span class="md-ellipsis">
+      isStarted
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#modified" class="md-nav__link">
     <span class="md-ellipsis">
       modified
@@ -17838,6 +17865,33 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#isactive" class="md-nav__link">
+    <span class="md-ellipsis">
+      isActive
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#isfinished" class="md-nav__link">
+    <span class="md-ellipsis">
+      isFinished
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#isstarted" class="md-nav__link">
+    <span class="md-ellipsis">
+      isStarted
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#modified" class="md-nav__link">
     <span class="md-ellipsis">
       modified
@@ -17955,7 +18009,8 @@
     More information: https://github.com/MWSE/MWSE/tree/master/docs
 -->
 
-<p>A representation of a quest, with associated dialogue and info.</p>
+<p>A representation of a journal quest log, with associated dialogue(s), infos and quest flags. Quest tracking was added by Tribunal as a separate system on top of the dialogue system. It had to add tracking to existing quests as well as new ones, but its design is not seamlessly integrated.</p>
+<p>Quests have a name, separate from the dialogue id, which is derived from a specially flagged info (the Quest Name flag) in the dialogue infos. Multiple dialogue topics with the same name are combined into one quest. The overall quest state of active or completed is tracked by the quest.</p>
 <p>This type inherits the following: <a href="../tes3baseObject/">tes3baseObject</a></p>
 <h2 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">⚓︎</a></h2>
 <h3 id="blocked"><code>blocked</code><a class="headerlink" href="#blocked" title="Permanent link">⚓︎</a></h3>
@@ -18010,6 +18065,33 @@
 <p><strong>Returns</strong>:</p>
 <ul>
 <li><code>result</code> (<a href="../tes3dialogueInfo/">tes3dialogueInfo</a>[])</li>
+</ul>
+<hr />
+<h3 id="isactive"><code>isActive</code><a class="headerlink" href="#isactive" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">isactive, active</div>
+
+<p>If the quest is active. This occurs when the quest hass started but not finished yet.</p>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>result</code> (boolean)</li>
+</ul>
+<hr />
+<h3 id="isfinished"><code>isFinished</code><a class="headerlink" href="#isfinished" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">isfinished, finished</div>
+
+<p>If the quest has finished. This is when the quest has reached a journal entry with the finished flag.</p>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>result</code> (boolean)</li>
+</ul>
+<hr />
+<h3 id="isstarted"><code>isStarted</code><a class="headerlink" href="#isstarted" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">isstarted, started</div>
+
+<p>If the quest has started. This occurs when at least one journal entry has been added.</p>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>result</code> (boolean)</li>
 </ul>
 <hr />
 <h3 id="modified"><code>modified</code><a class="headerlink" href="#modified" title="Permanent link">⚓︎</a></h3>
@@ -18108,7 +18190,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">October 21, 2023 21:35:41</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">December 12, 2024 22:12:34</span>
   </span>
 
     
