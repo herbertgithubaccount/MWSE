@@ -21969,7 +21969,7 @@
 <div class="search_terms" style="display: none">additem, item</div>
 
 <p>Adds an item to a given reference's inventory or mobile's inventory. The <code>reference</code> will be cloned if needed.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">addedCount</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">addItem</span><span class="p">({</span> <span class="n">reference</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">item</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">itemData</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">soul</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">count</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">playSound</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">showMessage</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">limit</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">reevaluateEquipment</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">equipProjectiles</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">updateGUI</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">count</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">itemData</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">addItem</span><span class="p">({</span> <span class="n">reference</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">item</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">itemData</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">soul</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">count</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">playSound</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">showMessage</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">limit</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">reevaluateEquipment</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">equipProjectiles</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">updateGUI</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
@@ -21990,7 +21990,9 @@
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>addedCount</code> (number)</li>
+<li><code>count</code> (number): The number of items added to the reference.</li>
+<li><code>item</code> (<a href="../../types/tes3item/">tes3item</a>): The item added. This is usually the <code>item</code> parameter passed to the function, but can be something else in the case of leveled items.</li>
+<li><code>itemData</code> (<a href="../../types/tes3itemData/">tes3itemData</a>): The itemData added. This can be created if the <code>soul</code> parameter is used, or if an <code>itemData</code> was passed. If the passed <code>itemData</code> was deleted, the value will be <code>nil</code>.</li>
 </ul>
 <hr />
 <h3 id="tes3additemdata"><code>tes3.addItemData</code><a class="headerlink" href="#tes3additemdata" title="Permanent link">⚓︎</a></h3>
@@ -26485,7 +26487,7 @@ Statics, activators, containers, doors, and lights with non-zero weight.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">January 11, 2025 12:05:10</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">January 14, 2025 07:52:49</span>
   </span>
 
     
