@@ -19107,7 +19107,7 @@
     <span class="n">tes3ui</span><span class="p">.</span><span class="n">logToConsole</span><span class="p">(</span><span class="s2">&quot;player-&gt;ModStrength 10&quot;</span><span class="p">,</span> <span class="kc">false</span><span class="p">)</span>
 
     <span class="c1">-- This will make &quot;player-&gt;ModWillpower 10&quot; appear in the console coloured blue.</span>
-    <span class="c1">-- It CAN be selected by using up arrow key, and when the enter is pressed,</span>
+    <span class="c1">-- It can be selected by using up arrow key, and when the enter is pressed,</span>
     <span class="c1">-- it will call that function.</span>
     <span class="n">tes3ui</span><span class="p">.</span><span class="n">logToConsole</span><span class="p">(</span><span class="s2">&quot;player-&gt;ModWillpower 10&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
 
@@ -19303,27 +19303,27 @@
         <span class="c1">-- .. is Lua operator of concatenation. It joins 2 strings together.</span>
         <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Bribe &quot;</span> <span class="o">..</span> <span class="n">actorReference</span><span class="p">.</span><span class="n">object</span><span class="p">.</span><span class="n">name</span><span class="p">,</span>
         <span class="n">callback</span> <span class="o">=</span> <span class="kr">function</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
-            <span class="kr">if</span> <span class="n">e</span><span class="p">.</span><span class="n">item</span> <span class="kr">then</span>
-                <span class="c1">-- If e.item exist, that means that the player picked an</span>
-                <span class="c1">-- item in the  menu. It up to us to do something with it.</span>
-                <span class="n">tes3</span><span class="p">.</span><span class="n">transferItem</span><span class="p">({</span>
-                    <span class="n">from</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">player</span><span class="p">,</span>
-                    <span class="n">to</span> <span class="o">=</span> <span class="n">actorReference</span><span class="p">,</span>
-                    <span class="n">item</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">item</span><span class="p">,</span>
-                    <span class="n">itemData</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">itemData</span><span class="p">,</span>
-                    <span class="n">count</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">count</span><span class="p">,</span>
-                <span class="p">})</span>
-                <span class="c1">-- Here we calculate the total gold value of the transfered item(s), since that</span>
-                <span class="c1">-- can be a stack of items. e.count holds the amount of the items selected.</span>
-                <span class="kd">local</span> <span class="n">itemWorth</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">item</span><span class="p">.</span><span class="n">value</span> <span class="o">*</span> <span class="n">e</span><span class="p">.</span><span class="n">count</span>
+            <span class="kr">if</span> <span class="ow">not</span> <span class="n">e</span><span class="p">.</span><span class="n">item</span> <span class="kr">then</span> <span class="kr">return</span> <span class="kr">end</span>
 
-                <span class="c1">-- At last! Now the actual persuasion part. We use `modifier` argument.</span>
-                <span class="c1">-- The higher the value we pass there the higher the disposition change.</span>
-                <span class="n">tes3</span><span class="p">.</span><span class="n">persuade</span><span class="p">({</span>
-                    <span class="n">actor</span> <span class="o">=</span> <span class="n">actorReference</span><span class="p">,</span>
-                    <span class="n">modifier</span> <span class="o">=</span> <span class="n">math</span><span class="p">.</span><span class="n">log10</span><span class="p">(</span><span class="n">itemWorth</span><span class="p">)</span>
-                <span class="p">})</span>
-            <span class="kr">end</span>
+            <span class="c1">-- If e.item exist, that means that the player picked an</span>
+            <span class="c1">-- item in the menu. It up to us to do something with it.</span>
+            <span class="n">tes3</span><span class="p">.</span><span class="n">transferItem</span><span class="p">({</span>
+                <span class="n">from</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">player</span><span class="p">,</span>
+                <span class="n">to</span> <span class="o">=</span> <span class="n">actorReference</span><span class="p">,</span>
+                <span class="n">item</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">item</span><span class="p">,</span>
+                <span class="n">itemData</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">itemData</span><span class="p">,</span>
+                <span class="n">count</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">count</span><span class="p">,</span>
+            <span class="p">})</span>
+            <span class="c1">-- Here we calculate the total gold value of the transfered item(s), since that</span>
+            <span class="c1">-- can be a stack of items. e.count holds the amount of the items selected.</span>
+            <span class="kd">local</span> <span class="n">itemWorth</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">item</span><span class="p">.</span><span class="n">value</span> <span class="o">*</span> <span class="n">e</span><span class="p">.</span><span class="n">count</span>
+
+            <span class="c1">-- At last! Now the actual persuasion part. We use `modifier` argument.</span>
+            <span class="c1">-- The higher the value we pass there the higher the disposition change.</span>
+            <span class="n">tes3</span><span class="p">.</span><span class="n">persuade</span><span class="p">({</span>
+                <span class="n">actor</span> <span class="o">=</span> <span class="n">actorReference</span><span class="p">,</span>
+                <span class="n">modifier</span> <span class="o">=</span> <span class="n">math</span><span class="p">.</span><span class="n">log10</span><span class="p">(</span><span class="n">itemWorth</span><span class="p">)</span>
+            <span class="p">})</span>
         <span class="kr">end</span><span class="p">,</span>
         <span class="c1">-- At first it&#39;s counter intuitive that this filter selects all the non-enchanted items</span>
         <span class="c1">-- This illusion disappears soon as we relize that the game uses this filter in the</span>
@@ -19345,14 +19345,15 @@
 <span class="c1">-- can be passed to `filter` argument of tes3.showInventorySelectMenu().</span>
 
 <span class="c1">-- This function will filter only weapon items.</span>
+<span class="c1">---@param e tes3ui.showInventorySelectMenu.filterParams</span>
 <span class="kd">local</span> <span class="kr">function</span> <span class="nf">weaponFilter</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
     <span class="kr">if</span> <span class="n">e</span><span class="p">.</span><span class="n">item</span><span class="p">.</span><span class="n">objectType</span> <span class="o">==</span> <span class="n">tes3</span><span class="p">.</span><span class="n">objectType</span><span class="p">.</span><span class="n">weapon</span> <span class="kr">then</span>
         <span class="c1">-- The filter function needs to return `true`</span>
         <span class="c1">-- for a certain item to appear in the menu.</span>
         <span class="kr">return</span> <span class="kc">true</span>
-    <span class="kr">else</span>
-        <span class="kr">return</span> <span class="kc">false</span>
     <span class="kr">end</span>
+
+    <span class="kr">return</span> <span class="kc">false</span>
 <span class="kr">end</span>
 
 <span class="c1">-- This is a dictinary of items that can be damaged (have a condition)</span>
@@ -19361,6 +19362,7 @@
     <span class="p">[</span><span class="n">tes3</span><span class="p">.</span><span class="n">objectType</span><span class="p">.</span><span class="n">armor</span><span class="p">]</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
 <span class="p">}</span>
 <span class="c1">-- This function will filter only items that aren&#39;t at full condition.</span>
+<span class="c1">---@param e tes3ui.showInventorySelectMenu.filterParams</span>
 <span class="kd">local</span> <span class="kr">function</span> <span class="nf">damagedItemsFilter</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
     <span class="c1">-- The first check is whether the item is in our</span>
     <span class="c1">-- dictionary of items with condition</span>
@@ -19370,19 +19372,20 @@
     <span class="n">e</span><span class="p">.</span><span class="n">itemData</span> <span class="ow">and</span>
     <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">itemData</span><span class="p">.</span><span class="n">condition</span> <span class="o">&lt;</span> <span class="n">e</span><span class="p">.</span><span class="n">item</span><span class="p">.</span><span class="n">maxCondition</span><span class="p">)</span> <span class="kr">then</span>
         <span class="kr">return</span> <span class="kc">true</span>
-    <span class="kr">else</span>
-        <span class="kr">return</span> <span class="kc">false</span>
     <span class="kr">end</span>
+
+    <span class="kr">return</span> <span class="kc">false</span>
 <span class="kr">end</span>
 
 <span class="kd">local</span> <span class="n">myFilterValue</span> <span class="o">=</span> <span class="mi">256</span>
-<span class="c1">-- This function will filter only items that have a value less than `myFilterValue`</span>
+<span class="c1">-- This function will filter only items that have a value less than `myFilterValue`.</span>
+<span class="c1">---@param e tes3ui.showInventorySelectMenu.filterParams</span>
 <span class="kd">local</span> <span class="kr">function</span> <span class="nf">valueFilter</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
     <span class="kr">if</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">item</span><span class="p">.</span><span class="n">value</span> <span class="o">&lt;</span> <span class="n">myFilterValue</span><span class="p">)</span> <span class="kr">then</span>
         <span class="kr">return</span> <span class="kc">true</span>
-    <span class="kr">else</span>
-        <span class="kr">return</span> <span class="kc">false</span>
     <span class="kr">end</span>
+
+    <span class="kr">return</span> <span class="kc">false</span>
 <span class="kr">end</span>
 </code></pre></div>
 </details>
@@ -19640,7 +19643,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">November 6, 2024 04:49:56</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">January 16, 2025 18:02:41</span>
   </span>
 
     
