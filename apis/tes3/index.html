@@ -21998,14 +21998,15 @@
 <h3 id="tes3additemdata"><code>tes3.addItemData</code><a class="headerlink" href="#tes3additemdata" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">additemdata, itemdata</div>
 
-<p>Creates an item data if there is room for a new stack in a given inventory. This can be then used to add custom user data or adjust an item's condition. This will return nil if no item data could be allocated for the item -- for example if the reference doesn't have the item in their inventory or each item of that type already has item data. Calling this function will mark the <code>to</code> reference as modified.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">createdData</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">addItemData</span><span class="p">({</span> <span class="n">to</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">item</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">updateGUI</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
+<p>Creates itemData on a given <code>reference</code>, or <code>to</code> a reference's inventory. This can be then used to add custom user data or adjust an item's condition. This will return nil if no item data could be allocated for the item -- for example if the reference doesn't have the item in their inventory or each item of that type already has item data. Calling this function will mark the <code>reference</code> or <code>to</code> reference as modified.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">createdData</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">addItemData</span><span class="p">({</span> <span class="n">reference</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">to</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">item</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">updateGUI</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
 <li><code>params</code> (table)<ul>
-<li><code>to</code> (<a href="../../types/tes3reference/">tes3reference</a>, <a href="../../types/tes3mobileActor/">tes3mobileActor</a>, string): The reference or mobile whose inventory will be modified.</li>
-<li><code>item</code> (<a href="../../types/tes3item/">tes3item</a>, string): The item to create item data for.</li>
+<li><code>reference</code> (<a href="../../types/tes3reference/">tes3reference</a>, <a href="../../types/tes3mobileActor/">tes3mobileActor</a>, string): <em>Optional</em>. The reference who will be modified. Use this parameter if you want to add itemData to a reference itself.</li>
+<li><code>to</code> (<a href="../../types/tes3reference/">tes3reference</a>, <a href="../../types/tes3mobileActor/">tes3mobileActor</a>, string): <em>Optional</em>. The reference or mobile whose inventory will be modified. Use this parameter if you want to add itemData to an item in a reference's inventory.</li>
+<li><code>item</code> (<a href="../../types/tes3item/">tes3item</a>, string): <em>Optional</em>. The item to create item data for. Only applicable if the <code>to</code> parameter is used.</li>
 <li><code>updateGUI</code> (boolean): <em>Default</em>: <code>true</code>. If false, the player or contents menu won't be updated.</li>
 </ul>
 </li>
@@ -26485,7 +26486,7 @@ Statics, activators, containers, doors, and lights with non-zero weight.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">January 16, 2025 18:02:41</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">January 27, 2025 17:35:32</span>
   </span>
 
     
