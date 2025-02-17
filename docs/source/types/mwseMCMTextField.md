@@ -8,7 +8,7 @@
 
 A TextField allows you to enter a single line of text and submit with a button. You can also force it to only accept numbers with the `numbersOnly` field.
 
-This type inherits the following: [mwseMCMSetting](../types/mwseMCMSetting.md), [mwseMCMComponent](../types/mwseMCMComponent.md)
+This type inherits the following: [mwseMCMSetting](../types/mwseMCMSetting.md), [mwseMCMComponent](../types/mwseMCMComponent.md).
 ## Properties
 
 ### `buttonText`
@@ -705,6 +705,32 @@ myObject:registerMouseOverElements(mouseOverList)
 **Parameters**:
 
 * `mouseOverList` ([tes3uiElement](../types/tes3uiElement.md)[]): *Optional*. If this argument isn't passed, does nothing.
+
+***
+
+### `resetToDefault`
+<div class="search_terms" style="display: none">resettodefault</div>
+
+This method will reset the `variable.value` to the default value.
+
+```lua
+myObject:resetToDefault()
+```
+
+***
+
+### `setVariableValue`
+<div class="search_terms" style="display: none">setvariablevalue, variablevalue</div>
+
+Changes the TextField's `variable.value` to the given value, updates the TextField's label and widget, and calls `self:update`.
+
+```lua
+myObject:setVariableValue(newValue)
+```
+
+**Parameters**:
+
+* `newValue` (string)
 
 ***
 

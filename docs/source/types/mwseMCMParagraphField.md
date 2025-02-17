@@ -8,7 +8,7 @@
 
 A ParagraphField allows you to enter a multi-line of text. Press ++enter++ to submit or ++shift+enter++ to enter a new line.
 
-This type inherits the following: [mwseMCMTextField](../types/mwseMCMTextField.md), [mwseMCMSetting](../types/mwseMCMSetting.md), [mwseMCMComponent](../types/mwseMCMComponent.md)
+This type inherits the following: [mwseMCMTextField](../types/mwseMCMTextField.md), [mwseMCMSetting](../types/mwseMCMSetting.md), [mwseMCMComponent](../types/mwseMCMComponent.md).
 ## Properties
 
 ### `buttonText`
@@ -729,6 +729,32 @@ myObject:registerMouseOverElements(mouseOverList)
 **Parameters**:
 
 * `mouseOverList` ([tes3uiElement](../types/tes3uiElement.md)[]): *Optional*. If this argument isn't passed, does nothing.
+
+***
+
+### `resetToDefault`
+<div class="search_terms" style="display: none">resettodefault</div>
+
+This method will reset the `variable.value` to the default value.
+
+```lua
+myObject:resetToDefault()
+```
+
+***
+
+### `setVariableValue`
+<div class="search_terms" style="display: none">setvariablevalue, variablevalue</div>
+
+Changes the TextField's `variable.value` to the given value, updates the TextField's label and widget, and calls `self:update`.
+
+```lua
+myObject:setVariableValue(newValue)
+```
+
+**Parameters**:
+
+* `newValue` (string)
 
 ***
 

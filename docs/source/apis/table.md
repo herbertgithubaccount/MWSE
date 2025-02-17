@@ -395,6 +395,22 @@ local result = table.removevalue(t, value)
 
 ***
 
+### `table.shuffle`
+<div class="search_terms" style="display: none">shuffle</div>
+
+Shuffles the table in place using the Fisher-Yates algorithm. Passing in table size as the second argument saves the function from having to get it itself.
+
+```lua
+table.shuffle(t, n)
+```
+
+**Parameters**:
+
+* `t` (table)
+* `n` (integer): *Default*: `#t`. The length of the array.
+
+***
+
 ### `table.size`
 <div class="search_terms" style="display: none">size</div>
 
@@ -443,7 +459,7 @@ local iterator = table.traverse(t, k)
 	```lua
 	local function onLoaded()
 		mwse.log("Player's scene graph:")
-		for node in table.traverse({tes3.player.sceneNode}) do
+		for node in table.traverse({ tes3.player.sceneNode }) do
 			mwse.log("%s : %s", node.RTTI.name, node.name)
 		end
 	end

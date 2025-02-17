@@ -8,7 +8,7 @@
 
 An Info field that shows mouseover information for settings.
 
-This type inherits the following: [mwseMCMMouseOverInfo](../types/mwseMCMMouseOverInfo.md), [mwseMCMInfo](../types/mwseMCMInfo.md), [mwseMCMSetting](../types/mwseMCMSetting.md), [mwseMCMComponent](../types/mwseMCMComponent.md)
+This type inherits the following: [mwseMCMMouseOverInfo](../types/mwseMCMMouseOverInfo.md), [mwseMCMInfo](../types/mwseMCMInfo.md), [mwseMCMSetting](../types/mwseMCMSetting.md), [mwseMCMComponent](../types/mwseMCMComponent.md).
 ## Properties
 
 ### `callback`
@@ -651,6 +651,32 @@ myObject:registerMouseOverElements(mouseOverList)
 **Parameters**:
 
 * `mouseOverList` ([tes3uiElement](../types/tes3uiElement.md)[]): *Optional*. If this argument isn't passed, does nothing.
+
+***
+
+### `resetToDefault`
+<div class="search_terms" style="display: none">resettodefault</div>
+
+This method will reset the `variable.value` to the default value.
+
+```lua
+myObject:resetToDefault()
+```
+
+***
+
+### `setVariableValue`
+<div class="search_terms" style="display: none">setvariablevalue, variablevalue</div>
+
+Changes the Setting's `variable.value` to the given value, updates the Setting's label and widget if needed, and calls `self:update`.
+
+```lua
+myObject:setVariableValue(newValue)
+```
+
+**Parameters**:
+
+* `newValue` (unknown)
 
 ***
 

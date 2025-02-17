@@ -8,7 +8,7 @@
 
 A mobile object for a physical projectile.
 
-This type inherits the following: [tes3mobileObject](../types/tes3mobileObject.md)
+This type inherits the following: [tes3mobileObject](../types/tes3mobileObject.md).
 ## Properties
 
 ### `animTime`
@@ -102,7 +102,7 @@ A flag that causes the projectile to expire when set to `1`.
 ### `firingMobile`
 <div class="search_terms" style="display: none">firingmobile</div>
 
-*Read-only*. The mobile that fired this projectile.
+The mobile that fired this projectile.
 
 **Returns**:
 

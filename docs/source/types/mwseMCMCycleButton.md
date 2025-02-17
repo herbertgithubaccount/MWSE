@@ -8,7 +8,7 @@
 
 A button setting that cycles between given option states. Has similar uses to Dropdown setting.
 
-This type inherits the following: [mwseMCMButton](../types/mwseMCMButton.md), [mwseMCMSetting](../types/mwseMCMSetting.md), [mwseMCMComponent](../types/mwseMCMComponent.md)
+This type inherits the following: [mwseMCMButton](../types/mwseMCMButton.md), [mwseMCMSetting](../types/mwseMCMSetting.md), [mwseMCMComponent](../types/mwseMCMComponent.md).
 ## Properties
 
 ### `buttonText`
@@ -425,30 +425,11 @@ local result = myObject:checkDisabled()
 ### `convertToLabelValue`
 <div class="search_terms" style="display: none">converttolabelvalue</div>
 
-This function specifies how values stored in the `variable` field should correspond to values displayed by this setting.
-
-```lua
-local labelValue = myObject:convertToLabelValue(variableValue)
-```
-
-**Parameters**:
-
-* `variableValue` (number)
-
-**Returns**:
-
-* `labelValue` (number, string)
-
-***
-
-### `convertToLabelValue.lua`
-<div class="search_terms" style="display: none">converttolabelvalue.lua</div>
-
 This function specifies how values stored in the `variable` field should correspond to values displayed by this CycleButton.
 The default behavior is to return the `text` of the [`mwseMCMCycleButton`](./mwseMCMCycleButton.md) with a given `variableValue`.
 
 ```lua
-local labelValue = myObject:convertToLabelValue.lua(variableValue)
+local labelValue = myObject:convertToLabelValue(variableValue)
 ```
 
 **Parameters**:
@@ -711,6 +692,17 @@ myObject:registerMouseOverElements(mouseOverList)
 
 ***
 
+### `resetToDefault`
+<div class="search_terms" style="display: none">resettodefault</div>
+
+This method will reset the `variable.value` to the default value.
+
+```lua
+myObject:resetToDefault()
+```
+
+***
+
 ### `setText`
 <div class="search_terms" style="display: none">settext, text</div>
 
@@ -719,6 +711,21 @@ This method is unused in cycle button setting.
 ```lua
 myObject:setText()
 ```
+
+***
+
+### `setVariableValue`
+<div class="search_terms" style="display: none">setvariablevalue, variablevalue</div>
+
+Changes the Setting's `variable.value` to the given value, updates the Setting's label and widget if needed, and calls `self:update`.
+
+```lua
+myObject:setVariableValue(newValue)
+```
+
+**Parameters**:
+
+* `newValue` (unknown)
 
 ***
 

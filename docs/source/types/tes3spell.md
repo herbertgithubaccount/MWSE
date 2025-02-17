@@ -8,7 +8,7 @@
 
 A spell game object.
 
-This type inherits the following: [tes3object](../types/tes3object.md), [tes3baseObject](../types/tes3baseObject.md)
+This type inherits the following: [tes3object](../types/tes3object.md), [tes3baseObject](../types/tes3baseObject.md).
 ## Properties
 
 ### `alwaysSucceeds`
@@ -105,15 +105,15 @@ The spell's cast type. Maps to [`tes3.spellType`](https://mwse.github.io/MWSE/re
 	
 	--- @param magicSource tes3spell|tes3enchantment|tes3alchemy
 	local function isSpellHostile(magicSource)
-	    for _, effect in ipairs(magicSource.effects) do
-	        if (effect.object.isHarmful) then
+		for _, effect in ipairs(magicSource.effects) do
+			if (effect.object.isHarmful) then
 				-- If one of the spell's effects is harmful, then
 				-- `true` is returned and function ends here.
-	            return true
-	        end
-	    end
+				return true
+			end
+		end
 		-- If no harmful effect was found then return `false`.
-	    return false
+		return false
 	end
 
 	```
@@ -310,7 +310,7 @@ The scene graph node for this object.
 ### `sourceless`
 <div class="search_terms" style="display: none">sourceless</div>
 
-The soruceless flag of the object.
+The sourceless flag of the object.
 
 **Returns**:
 
@@ -326,6 +326,19 @@ The soruceless flag of the object.
 **Returns**:
 
 * `result` (string)
+
+***
+
+### `supportsActivate`
+<div class="search_terms" style="display: none">supportsactivate</div>
+
+If true, the object supports activation. This includes all the items (excluding non-carriable lights), actors outside combat, activators, containers and doors.
+
+However, the activation of such an object may still be blocked via mwscript or a Lua script.
+
+**Returns**:
+
+* `result` (boolean)
 
 ***
 

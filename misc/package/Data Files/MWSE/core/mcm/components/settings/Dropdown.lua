@@ -31,6 +31,11 @@ function Dropdown:getOption(optionValue)
 	end
 end
 
+function Dropdown:setVariableValue(newValue)
+	local option = self:getOption(newValue)
+	self:selectOption(option)
+end
+
 function Dropdown:enable()
 	Parent.enable(self)
 
@@ -84,6 +89,7 @@ function Dropdown:createDropdown()
 
 			listItem:register(tes3.uiEvent.mouseClick, function()
 				self:selectOption(option)
+				dropdown:getTopLevelMenu():updateLayout()
 			end)
 		end
 		self.elements.dropdown = dropdown

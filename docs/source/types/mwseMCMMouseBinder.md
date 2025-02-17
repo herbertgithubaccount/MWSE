@@ -10,7 +10,7 @@ This button allows the player to bind a key combination for use with hotkeys. It
 
 When the player presses the button with current hotkey, a prompt asks them to press a new key (or key combination using Shift, Ctrl or Alt) to bind. The key combination is stored as [mwseKeyMouseCombo](../types/mwseKeyMouseCombo.md).
 
-This type inherits the following: [mwseMCMBinder](../types/mwseMCMBinder.md), [mwseMCMButton](../types/mwseMCMButton.md), [mwseMCMSetting](../types/mwseMCMSetting.md), [mwseMCMComponent](../types/mwseMCMComponent.md)
+This type inherits the following: [mwseMCMBinder](../types/mwseMCMBinder.md), [mwseMCMButton](../types/mwseMCMButton.md), [mwseMCMSetting](../types/mwseMCMSetting.md), [mwseMCMComponent](../types/mwseMCMComponent.md).
 ## Properties
 
 ### `allowButtons`
@@ -831,6 +831,17 @@ myObject:registerMouseOverElements(mouseOverList)
 
 ***
 
+### `resetToDefault`
+<div class="search_terms" style="display: none">resettodefault</div>
+
+This method will reset the `variable.value` to the default value.
+
+```lua
+myObject:resetToDefault()
+```
+
+***
+
 ### `setText`
 <div class="search_terms" style="display: none">settext, text</div>
 
@@ -843,6 +854,21 @@ myObject:setText(newText)
 **Parameters**:
 
 * `newText` (string)
+
+***
+
+### `setVariableValue`
+<div class="search_terms" style="display: none">setvariablevalue, variablevalue</div>
+
+Changes the Setting's `variable.value` to the given value, updates the Setting's label and widget if needed, and calls `self:update`.
+
+```lua
+myObject:setVariableValue(newValue)
+```
+
+**Parameters**:
+
+* `newValue` (unknown)
 
 ***
 
