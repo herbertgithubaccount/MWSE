@@ -25,6 +25,7 @@
 #include "TES3MagicEffectInstance.h"
 #include "TES3Misc.h"
 #include "TES3MobilePlayer.h"
+#include "TES3MobileProjectile.h"
 #include "TES3MobManager.h"
 #include "TES3Reference.h"
 #include "TES3Script.h"
@@ -1449,6 +1450,31 @@ namespace mwse::patch {
 	}
 
 	//
+	// Patch: Fix crash when trying to unequip a nocked projectile item while still using an item index for its position.
+	// 
+	// Before serializing, the nocked projectile is converted into an item index. Some mods may try to unequip the index
+	// before it is resolved back into an actual projectile. This will prevent the crash.
+	//
+
+	static void __fastcall PatchUnequipIndexedProjectile(TES3::MobileActor* mobile) {
+		auto& actionData = mobile->actionData;
+
+		// Only call the destructor if the value can reasonably be a pointer.
+		if (size_t(actionData.nockedProjectile) > 0x70000u) {
+			actionData.nockedProjectile->vTable.mobileObject->destructor(actionData.nockedProjectile, true);
+		}
+
+		actionData.nockedProjectile = nullptr;
+	}
+
+	__declspec(naked) void PatchUnequipIndexedProjectileSetup() {
+		__asm {
+			mov ecx, ebx // Size: 0x2
+		}
+	}
+	constexpr size_t PatchUnequipIndexedProjectileSetup_size = 0x2;
+
+	//
 	// Install all the patches.
 	//
 
@@ -1929,6 +1955,11 @@ namespace mwse::patch {
 
 		// Patch: Expand keyboard key translations
 		PatchExpandKeyboardCharacterTranslations();
+
+		// Patch: Fix crash when trying to unequip a nocked projectile item while still using an item index for its position.
+		genNOPUnprotected(0x4968E1, 0x4968FB - 0x4968E1);
+		writePatchCodeUnprotected(0x4968E1, (BYTE*)&PatchUnequipIndexedProjectileSetup, PatchUnequipIndexedProjectileSetup_size);
+		genCallUnprotected(0x4968E1 + 0x2, reinterpret_cast<DWORD>(PatchUnequipIndexedProjectile));
 	}
 
 	void installPostLuaPatches() {

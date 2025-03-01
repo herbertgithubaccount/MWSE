@@ -6644,6 +6644,8 @@ tes3.uiEvent = require("tes3.uiEvent")
 ---| `tes3.uiEvent.mouseStillPressedOutside`
 ---| `tes3.uiEvent.partScrollBarChanged`
 ---| `tes3.uiEvent.preUpdate`
+---| `tes3.uiEvent.tabFocus`
+---| `tes3.uiEvent.tabUnfocus`
 ---| `tes3.uiEvent.textCleared`
 ---| `tes3.uiEvent.textUpdated`
 ---| `tes3.uiEvent.unfocus`
