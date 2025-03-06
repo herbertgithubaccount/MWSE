@@ -101,7 +101,9 @@ function tes3.addItem(params) end
 --- Creates itemData on a given `reference`, or `to` a reference's inventory. This can be then used to add custom user data or adjust an item's condition. This will return nil if no item data could be allocated for the item -- for example if the reference doesn't have the item in their inventory or each item of that type already has item data. Calling this function will mark the `reference` or `to` reference as modified.
 --- @param params tes3.addItemData.params This table accepts the following values:
 --- 
---- `reference`: tes3reference|tes3mobileActor|tes3mobileCreature|tes3mobileNPC|tes3mobilePlayer|string|nil — *Optional*. The reference who will be modified. Use this parameter if you want to add itemData to a reference itself.
+--- `reference`: tes3reference|tes3mobileActor|tes3mobileCreature|tes3mobileNPC|tes3mobilePlayer|string|nil — *Optional*. The reference who will be modified. Use this parameter if you want to add itemData to a reference itself. No other parameters are necessary when this one is used.
+--- 
+--- `toCursor`: boolean? — *Optional*. Use this parameter if you want to add itemData to an item on the player's cursor. No other parameters are necessary when this one is used.
 --- 
 --- `to`: tes3reference|tes3mobileActor|tes3mobileCreature|tes3mobileNPC|tes3mobilePlayer|string|nil — *Optional*. The reference or mobile whose inventory will be modified. Use this parameter if you want to add itemData to an item in a reference's inventory.
 --- 
@@ -113,7 +115,8 @@ function tes3.addItemData(params) end
 
 ---Table parameter definitions for `tes3.addItemData`.
 --- @class tes3.addItemData.params
---- @field reference tes3reference|tes3mobileActor|tes3mobileCreature|tes3mobileNPC|tes3mobilePlayer|string|nil *Optional*. The reference who will be modified. Use this parameter if you want to add itemData to a reference itself.
+--- @field reference tes3reference|tes3mobileActor|tes3mobileCreature|tes3mobileNPC|tes3mobilePlayer|string|nil *Optional*. The reference who will be modified. Use this parameter if you want to add itemData to a reference itself. No other parameters are necessary when this one is used.
+--- @field toCursor boolean? *Optional*. Use this parameter if you want to add itemData to an item on the player's cursor. No other parameters are necessary when this one is used.
 --- @field to tes3reference|tes3mobileActor|tes3mobileCreature|tes3mobileNPC|tes3mobilePlayer|string|nil *Optional*. The reference or mobile whose inventory will be modified. Use this parameter if you want to add itemData to an item in a reference's inventory.
 --- @field item tes3alchemy|tes3apparatus|tes3armor|tes3book|tes3clothing|tes3ingredient|tes3item|tes3light|tes3lockpick|tes3misc|tes3probe|tes3repairTool|tes3weapon|string|nil *Optional*. The item to create item data for. Only applicable if the `to` parameter is used.
 --- @field updateGUI boolean? *Default*: `true`. If false, the player or contents menu won't be updated.

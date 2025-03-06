@@ -307,6 +307,36 @@ local result = tes3ui.getConsoleReference()
 
 ***
 
+### `tes3ui.getCursor`
+<div class="search_terms" style="display: none">getcursor, cursor</div>
+
+Locates a help layer menu that represents the player's cursor.
+
+```lua
+local result = tes3ui.getCursor()
+```
+
+**Returns**:
+
+* `result` ([tes3uiElement](../types/tes3uiElement.md), nil)
+
+***
+
+### `tes3ui.getCursorTile`
+<div class="search_terms" style="display: none">getcursortile, cursortile</div>
+
+Gets the item tile associated with the player's cursor. Returns `nil` if no item is on the player's cursor.
+
+```lua
+local result = tes3ui.getCursorTile()
+```
+
+**Returns**:
+
+* `result` ([tes3inventoryTile](../types/tes3inventoryTile.md), nil)
+
+***
+
 ### `tes3ui.getInventorySelectType`
 <div class="search_terms" style="display: none">getinventoryselecttype, inventoryselecttype</div>
 

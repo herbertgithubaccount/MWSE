@@ -134,6 +134,14 @@ function tes3ui.forcePlayerInventoryUpdate() end
 --- @return tes3reference|nil result No description yet available.
 function tes3ui.getConsoleReference() end
 
+--- Locates a help layer menu that represents the player's cursor.
+--- @return tes3uiElement|nil result No description yet available.
+function tes3ui.getCursor() end
+
+--- Gets the item tile associated with the player's cursor. Returns `nil` if no item is on the player's cursor.
+--- @return tes3inventoryTile|nil result No description yet available.
+function tes3ui.getCursorTile() end
+
 --- Determines what sort of search is being done when performing an inventory selection, e.g. "alembic" or "ingredient" or "soulGemFilled".
 --- @return string result No description yet available.
 function tes3ui.getInventorySelectType() end

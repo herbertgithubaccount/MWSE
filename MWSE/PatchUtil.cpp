@@ -991,6 +991,24 @@ namespace mwse::patch {
 	}
 
 	//
+	// Patch: Fix crash when updating lights for a reference that has had a light unassigned.
+	//
+
+	static TES3::LightAttachmentNode* __fastcall PatchGetLightAttachmentIfItHasALight(TES3::Reference* reference) {
+		const auto result = reference->getAttachedDynamicLight();
+		if (result == nullptr) {
+			return nullptr;
+		}
+
+		if (result->light == nullptr) {
+			reference->deleteDynamicLightAttachment();
+			return nullptr;
+		}
+
+		return result;
+	}
+
+	//
 	// Patch: Guard against invalid light flicker/pulse updates.
 	//
 
@@ -1901,6 +1919,12 @@ namespace mwse::patch {
 		writeDoubleWordUnprotected(0x746114, reinterpret_cast<DWORD>(&PatchFindFirstFileA));
 		writeDoubleWordUnprotected(0x746118, reinterpret_cast<DWORD>(&PatchFindNextFileA));
 		writeDoubleWordUnprotected(0x74611C, reinterpret_cast<DWORD>(&PatchFindClose));
+
+		// Patch: Guard against updating dynamic light attachments that have no actual light.
+		genCallEnforced(0x485DA4, 0x4E5170, reinterpret_cast<DWORD>(PatchGetLightAttachmentIfItHasALight));
+		genCallEnforced(0x485E87, 0x4E5170, reinterpret_cast<DWORD>(PatchGetLightAttachmentIfItHasALight));
+		genCallEnforced(0x4D260C, 0x4E5170, reinterpret_cast<DWORD>(PatchGetLightAttachmentIfItHasALight));
+		genCallEnforced(0x5243D6, 0x4E5170, reinterpret_cast<DWORD>(PatchGetLightAttachmentIfItHasALight));
 
 		// Patch: Guard against invalid light flicker/pulse updates.
 		genCallEnforced(0x49B75E, 0x4D33D0, reinterpret_cast<DWORD>(PatchEntityLightFlickerPulseUpdate));
