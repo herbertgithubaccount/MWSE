@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.8">
     
     
       
@@ -11524,6 +11524,24 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#getfirstindexofeffect" class="md-nav__link">
+    <span class="md-ellipsis">
+      getFirstIndexOfEffect
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#haseffect" class="md-nav__link">
+    <span class="md-ellipsis">
+      hasEffect
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -19141,6 +19159,24 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#getfirstindexofeffect" class="md-nav__link">
+    <span class="md-ellipsis">
+      getFirstIndexOfEffect
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#haseffect" class="md-nav__link">
+    <span class="md-ellipsis">
+      hasEffect
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -19476,6 +19512,36 @@
 <ul>
 <li><code>string</code> (string)</li>
 </ul>
+<hr />
+<h3 id="getfirstindexofeffect"><code>getFirstIndexOfEffect</code><a class="headerlink" href="#getfirstindexofeffect" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">getfirstindexofeffect, firstindexofeffect</div>
+
+<p>Gets the first index of an effect ID in the ingredient's effect table. Returns <code>-1</code> if provided effect doesn't exist in the ingredient.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">index</span> <span class="o">=</span> <span class="n">myObject</span><span class="p">:</span><span class="n">getFirstIndexOfEffect</span><span class="p">(</span><span class="n">effectId</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Parameters</strong>:</p>
+<ul>
+<li><code>effectId</code> (<a href="../../references/magic-effects/">tes3.effect</a>, integer): A value from <a href="https://mwse.github.io/MWSE/references/magic-effects/"><code>tes3.effect</code></a> table.</li>
+</ul>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>index</code> (integer): Returns 0-based index. Because Lua's arrays are 1-based, to index the ingredient's <code>effects</code> array with the return value add 1.</li>
+</ul>
+<hr />
+<h3 id="haseffect"><code>hasEffect</code><a class="headerlink" href="#haseffect" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">haseffect, effect</div>
+
+<p>Determines if the ingredient contains an effect with the given id.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">hasEffect</span> <span class="o">=</span> <span class="n">myObject</span><span class="p">:</span><span class="n">hasEffect</span><span class="p">(</span><span class="n">effectId</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Parameters</strong>:</p>
+<ul>
+<li><code>effectId</code> (<a href="../../references/magic-effects/">tes3.effect</a>, integer): A value from <a href="https://mwse.github.io/MWSE/references/magic-effects/"><code>tes3.effect</code></a> table.</li>
+</ul>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>hasEffect</code> (boolean): Returns <code>true</code> if the ingredient contains the given effect id, otherwise <code>false</code>.</li>
+</ul>
 
 
 
@@ -19498,7 +19564,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="February 13, 2025 22:06:19">February 13, 2025 22:06:19</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="March 14, 2025 02:26:08">March 14, 2025 02:26:08</span>
   </span>
 
     
