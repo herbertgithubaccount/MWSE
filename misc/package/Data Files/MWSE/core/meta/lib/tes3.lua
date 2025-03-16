@@ -145,6 +145,10 @@ function tes3.addJournalEntry(params) end
 --- 
 --- `name`: string? — *Default*: `Unnamed Effect`. Name of the effect.
 --- 
+--- `magnitudeType`: string? — *Optional*. The suffix describing the magnitude, when its value is 1. By default, this resolves to the sPoint GMST.
+--- 
+--- `magnitudeTypePlural`: string? — *Optional*. The suffix describing the magnitude, when its value is not 1. By default, this resolves to the sPoints GMST.
+--- 
 --- `baseCost`: number? — *Default*: `1`. Base magicka cost for the effect.
 --- 
 --- `school`: tes3.magicSchool|integer|nil — *Default*: `tes3.magicSchool.alteration`. The magic school the new effect will be assigned to. Maps to [`tes3.magicSchool`](https://mwse.github.io/MWSE/references/magic-schools/) constants.
@@ -223,6 +227,8 @@ function tes3.addMagicEffect(params) end
 --- @class tes3.addMagicEffect.params
 --- @field id tes3.effect|integer Id of the new effect. Maps to newly claimed `tes3.effect` constants with `tes3.claimSpellEffectId()`. If the effect of this id already exists, an error will be thrown.
 --- @field name string? *Default*: `Unnamed Effect`. Name of the effect.
+--- @field magnitudeType string? *Optional*. The suffix describing the magnitude, when its value is 1. By default, this resolves to the sPoint GMST.
+--- @field magnitudeTypePlural string? *Optional*. The suffix describing the magnitude, when its value is not 1. By default, this resolves to the sPoints GMST.
 --- @field baseCost number? *Default*: `1`. Base magicka cost for the effect.
 --- @field school tes3.magicSchool|integer|nil *Default*: `tes3.magicSchool.alteration`. The magic school the new effect will be assigned to. Maps to [`tes3.magicSchool`](https://mwse.github.io/MWSE/references/magic-schools/) constants.
 --- @field size number? *Default*: `1`. Controls how much the visual effect scales with its magnitude.
@@ -1671,7 +1677,7 @@ function tes3.isInitialized() end
 --- `actual`: table|mwseKeyCombo|mwseKeyMouseCombo|mwseKeyMouseCombo|keyDownEventData|keyUpEventData|keyEventData|mouseButtonDownEventData|mouseButtonUpEventData|mouseWheelEventData — The key object that is being compared.
 --- 
 --- `expected`: table|mwseKeyCombo|mwseKeyMouseCombo|mwseKeyMouseCombo|keyDownEventData|keyUpEventData|keyEventData|mouseButtonDownEventData|mouseButtonUpEventData|mouseWheelEventData — The key object that is being compared against.
---- @return any equal No description yet available.
+--- @return boolean equal No description yet available.
 function tes3.isKeyEqual(params) end
 
 ---Table parameter definitions for `tes3.isKeyEqual`.
