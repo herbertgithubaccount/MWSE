@@ -160,11 +160,11 @@ function table.map(t, f, ...) end
 --- @return table newTable The pre-sized table that was created.
 function table.new(narray, nhash) end
 
---- Removes a value from a given table. Returns true if the value was successfully removed.
---- @param t table No description yet available.
+--- Removes a `value` from a given `list`. Returns `true` if the value was successfully removed.
+--- @param list table No description yet available.
 --- @param value unknown No description yet available.
 --- @return boolean result No description yet available.
-function table.removevalue(t, value) end
+function table.removevalue(list, value) end
 
 --- Shuffles the table in place using the Fisher-Yates algorithm. Passing in table size as the second argument saves the function from having to get it itself.
 --- @param t table No description yet available.

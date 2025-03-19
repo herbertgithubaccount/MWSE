@@ -426,15 +426,15 @@ local newTable = table.new(narray, nhash)
 ### `table.removevalue`
 <div class="search_terms" style="display: none">removevalue, value</div>
 
-Removes a value from a given table. Returns true if the value was successfully removed.
+Removes a `value` from a given `list`. Returns `true` if the value was successfully removed.
 
 ```lua
-local result = table.removevalue(t, value)
+local result = table.removevalue(list, value)
 ```
 
 **Parameters**:
 
-* `t` (table)
+* `list` (table)
 * `value` (unknown)
 
 **Returns**:
