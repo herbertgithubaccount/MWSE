@@ -89,13 +89,25 @@ namespace mwse::lua {
 		usertypeDefinition["create"] = &createSpell;
 		usertypeDefinition["createCopy"] = &TES3::Spell::createCopy_lua<TES3::Spell>;
 		usertypeDefinition["getActiveEffectCount"] = &TES3::Spell::getActiveEffectCount;
+		usertypeDefinition["getAutoCalcMagickaCost"] = &TES3::Spell::getAutoCalcMagickaCost;
 		usertypeDefinition["getFirstIndexOfEffect"] = &TES3::Spell::getFirstIndexOfEffect;
 		usertypeDefinition["getLeastProficientEffect"] = &TES3::Spell::getLeastProficientEffect_lua;
 		usertypeDefinition["getLeastProficientSchool"] = &TES3::Spell::getLeastProficientSchool_lua;
+		usertypeDefinition["hasEffect"] = &TES3::Spell::hasEffect;
 
 		// Convenient flag access.
 		usertypeDefinition["alwaysSucceeds"] = sol::property(&TES3::Spell::getAlwaysSucceeds, &TES3::Spell::setAlwaysSucceeds);
 		usertypeDefinition["autoCalc"] = sol::property(&TES3::Spell::getAutoCalc, &TES3::Spell::setAutoCalc);
 		usertypeDefinition["playerStart"] = sol::property(&TES3::Spell::getPlayerStart, &TES3::Spell::setPlayerStart);
+
+		// Named cast type access.
+		usertypeDefinition["isAbility"] = sol::readonly_property(&TES3::Spell::isAbility);
+		usertypeDefinition["isBlightDisease"] = sol::readonly_property(&TES3::Spell::isBlightDisease);
+		usertypeDefinition["isCorprusDisease"] = sol::readonly_property(&TES3::Spell::isCorprusDisease);
+		usertypeDefinition["isCommonDisease"] = sol::readonly_property(&TES3::Spell::isCommonDisease);
+		usertypeDefinition["isCurse"] = sol::readonly_property(&TES3::Spell::isCurse);
+		usertypeDefinition["isDisease"] = sol::readonly_property(&TES3::Spell::isDisease);
+		usertypeDefinition["isPower"] = sol::readonly_property(&TES3::Spell::isPower);
+		usertypeDefinition["isSpell"] = sol::readonly_property(&TES3::Spell::isSpell);
 	}
 }

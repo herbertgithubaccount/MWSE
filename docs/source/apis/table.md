@@ -41,36 +41,29 @@ local result = table.bininsert(t, value, comp)
 ### `table.binsearch`
 <div class="search_terms" style="display: none">binsearch</div>
 
-Performs a binary search for a given `value` inside a specified `table` `t`.
+Performs a binary search for a given `value` inside a specified array-style `table` `tbl`.
 
-If the `value` is found in `t`, then a `table` providing the range of all matching indices is returned. (e.g. `{ startindice, endindice }`.) 
-If only one matching index was found, then `startindice` will be the same as `endindice`.
+If the `value` is in `tbl`, then its corresponding `index` will be returned. Otherwise, this function will return `nil`.
+If `findAll == true`, then this `binsearch` will return the lowest and highest indices that store `value`. (These indices will be equal if there is only one copy of `value` in `tbl`.)
 
-If `value` is not found in `t`, then `nil` is returned.
+You can optionally provide a `comp` function. If provided, `binsearch` will treat `tbl` as if it had been sorted by `table.sort(tbl, comp)`.
 
-If `compval` is given, then it must be a function that takes in an element of `t` and returns a value to use for comparisons.
-For example, to compare arrays based on their first entry, you can write `compvalue = function(value) return value[1] end`.
-
-Note that `compval` is different from the `comp` that is specified in the `bininsert` function.
-
-If `reversed == true`, then the search assumes that `t` is sorted in reverse order (i.e., largest value at position 1).
-Note that specifying `reversed` requires specifying `compval`. 
-You can circumvent this by passing `nil` for `compval`. e.g., `binsearch(tbl, value, nil, true)`.
 
 ```lua
-local result = table.binsearch(t, value, compval, reversed)
+local index, highestMatch = table.binsearch(tbl, value, comp, findAll)
 ```
 
 **Parameters**:
 
-* `t` (table)
+* `tbl` (table)
 * `value` (unknown): The value to search for.
-* `compval` (function): *Optional*. A function that returns the value to use in comparisons.
-* `reversed` (boolean): *Optional*. If true, then `binsearch` will assume `t` is sorted in reverse order.
+* `comp` (fun(a, b): boolean): *Optional*. The function used to sort `tbl`. If not provided, then the standard `<` operator will be used.
+* `findAll` (boolean): *Default*: `false`. If true,
 
 **Returns**:
 
-* `result` (table)
+* `index` (integer, nil): An `index` such that `tbl[index] == value`, if such an index exists. `nil` otherwise. If `findAll == true`, this will be the smallest index such that `tbl[index] == value`.
+* `highestMatch` (integer, nil): If a match was found, and if `findAll == true`, then this will be the largest `index` such that `tbl[index] == vale`. `nil` otherwise.
 
 ***
 
@@ -108,6 +101,26 @@ table.clear(table)
 **Parameters**:
 
 * `table` (table): The table to clear.
+
+***
+
+### `table.contains`
+<div class="search_terms" style="display: none">contains</div>
+
+Returns `true` if a `value` is contained in a table `t`, and `false` otherwise.
+
+```lua
+local result = table.contains(t, value)
+```
+
+**Parameters**:
+
+* `t` (table)
+* `value` (unknown)
+
+**Returns**:
+
+* `result` (boolean)
 
 ***
 
@@ -169,9 +182,9 @@ local result = table.deepcopy(t)
 ### `table.empty`
 <div class="search_terms" style="display: none">empty</div>
 
-Checks if a table is empty. 
-	
-	If `deepCheck == true`, then tables are allowed to have nested subtables, so long as those subtables are empty. e.g., `table.empty({ {}, {} }, true) == true`, while `table.empty({ {}, {} }) == false`.
+Checks if a table is empty.
+
+If `deepCheck == true`, then tables are allowed to have nested subtables, so long as those subtables are empty. e.g., `table.empty({ {}, {} }, true) == true`, while `table.empty({ {}, {} }) == false`.
 
 ```lua
 local result = table.empty(t, deepCheck)
@@ -185,6 +198,34 @@ local result = table.empty(t, deepCheck)
 **Returns**:
 
 * `result` (boolean)
+
+***
+
+### `table.equal`
+<div class="search_terms" style="display: none">equal</div>
+
+Checks if one table is equal to another by recursively iterating through the (key, value) pairs of both tables.
+Unlike the `==` operator, this will return `true` if two distinct tables have contents that compare equal.
+For example, all of the following assertions pass:
+```lua
+assert(table.equal({1, 2}, {1, 2}))
+assert({1, 2} ~= {1, 2})
+assert(table.equal({a = 1, b = {x = 1}}, {a = 1, b = {x = 1}}))
+```
+
+
+```lua
+local result = table.equal(left, right)
+```
+
+**Parameters**:
+
+* `left` (table)
+* `right` (table)
+
+**Returns**:
+
+* `result` (boolean): True if the contents of `left` are equal to the contents of `right`. False otherwise.
 
 ***
 
@@ -205,7 +246,7 @@ local result = table.filter(t, f, ...)
 **Parameters**:
 
 * `t` (table)
-* `f` (fun(k: unknown, v: unknown, ...): boolean)
+* `f` (fun(k: unknown, v: unknown, ...): boolean): The function to use when filtering values of `t`. (This is sometimes called a predicate function.)
 * `...` (any): Additional parameters to pass to `f`.
 
 **Returns**:
@@ -230,7 +271,7 @@ local result = table.filterarray(arr, f, ...)
 **Parameters**:
 
 * `arr` (table)
-* `f` (fun(i: integer, v: unknown, ...): boolean)
+* `f` (fun(i: integer, v: unknown, ...): boolean): The function to use when filtering values of `t`. (This is sometimes called a predicate function.)
 * `...` (any): Additional parameters to pass to `f`.
 
 **Returns**:
@@ -353,7 +394,7 @@ local result = table.map(t, f, ...)
 **Parameters**:
 
 * `t` (table)
-* `f` (fun(k: unknown, v: unknown, ...): unknown)
+* `f` (fun(k: unknown, v: unknown, ...): unknown): The function to apply to each element of `t`.
 * `...` (any): Additional parameters to pass to `f`.
 
 **Returns**:
@@ -385,20 +426,36 @@ local newTable = table.new(narray, nhash)
 ### `table.removevalue`
 <div class="search_terms" style="display: none">removevalue, value</div>
 
-Removes a value from a given table. Returns true if the value was successfully removed.
+Removes a `value` from a given `list`. Returns `true` if the value was successfully removed.
 
 ```lua
-local result = table.removevalue(t, value)
+local result = table.removevalue(list, value)
 ```
 
 **Parameters**:
 
-* `t` (table)
+* `list` (table)
 * `value` (unknown)
 
 **Returns**:
 
 * `result` (boolean)
+
+***
+
+### `table.shuffle`
+<div class="search_terms" style="display: none">shuffle</div>
+
+Shuffles the table in place using the Fisher-Yates algorithm. Passing in table size as the second argument saves the function from having to get it itself.
+
+```lua
+table.shuffle(t, n)
+```
+
+**Parameters**:
+
+* `t` (table)
+* `n` (integer): *Default*: `#t`. The length of the array.
 
 ***
 
@@ -450,7 +507,7 @@ local iterator = table.traverse(t, k)
 	```lua
 	local function onLoaded()
 		mwse.log("Player's scene graph:")
-		for node in table.traverse({tes3.player.sceneNode}) do
+		for node in table.traverse({ tes3.player.sceneNode }) do
 			mwse.log("%s : %s", node.RTTI.name, node.name)
 		end
 	end

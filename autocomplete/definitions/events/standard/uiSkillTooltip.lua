@@ -11,10 +11,15 @@ Note that tooltips may have different width depending on which menu they were cr
 			readOnly = true,
 			description = "The newly created tooltip element. Due to timeouts and target changes, it may be destroyed at any time.",
 		},
-		["skill"] = {
-			type = "tes3skill",
+		["creator"] = {
+			type = "tes3uiElement?",
 			readOnly = true,
-			description = "The skill being examined.",
+			description = "The UI element, if applicable, that created this tooltip.",
+		},
+		["skill"] = {
+			type = "tes3.skill",
+			readOnly = true,
+			description = "The id of the skill being examined.",
 		},
 		["type"] = {
 			type = "integer",
