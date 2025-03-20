@@ -83,6 +83,75 @@ namespace mwse::lua {
 		return iterateReferencesFiltered(self, std::move(filters), iterateDisabled.value_or(true));
 	}
 
+	sol::optional<std::vector<TES3::Cell*>>
+	pathToCell(TES3::Cell* self, sol::table params) {
+
+		bool toClosestExterior = getOptionalParam(params, "toClosestExterior", false);
+
+		TES3::Cell* dest = getOptionalParam(params, "destination", nullptr);
+
+		if (!dest && !toClosestExterior) {
+			return {};
+		}
+
+		// Stores depth and the cell in question.
+		std::vector<std::tuple<int, TES3::Cell*>> unvisitedCells;
+
+		std::vector<TES3::Cell*> path;
+
+		std::unordered_set<TES3::Cell*> knownCells;
+		unvisitedCells.push_back({-1, self});
+
+		knownCells.insert(self);
+
+		while (unvisitedCells.size() > 0) {
+			int depth = 1 + std::get<0>(unvisitedCells.back());
+			TES3::Cell* cell = std::get<1>(unvisitedCells.back());
+
+			unvisitedCells.pop_back();
+
+			if (path.size() <= depth) {
+				path.push_back(cell);
+			} else {
+				path[depth] = cell;
+			}
+
+			for (auto refr : cell->persistentRefs) {
+				if (refr->baseObject->objectType == TES3::ObjectType::Door) {
+					auto destination = refr->getAttachedTravelDestination();
+					if (destination) {
+						auto destinationCell = destination->cell;
+						if (toClosestExterior) {
+							if (!destinationCell->getIsInterior()) {
+								path.push_back(destinationCell);
+								return { path };
+							
+							}
+						}
+						else if (dest != 0 && destinationCell->getObjectID() == dest->getObjectID()) {
+							path.push_back(destinationCell);
+							return { path };
+						}
+						
+
+						// Queue up new unseen interior cells.
+						if (knownCells.count(destinationCell) == 0) {
+							knownCells.insert(destinationCell);
+							unvisitedCells.push_back({ depth, destinationCell });
+						} 
+					}
+				}
+			}
+
+
+
+
+		}
+
+		return {};
+	}
+
+
 	void bindTES3Cell() {
 		// Get our lua state.
 		auto stateHandle = LuaManager::getInstance().getThreadSafeStateHandle();
@@ -130,6 +199,7 @@ namespace mwse::lua {
 			// Basic function binding.
 			usertypeDefinition["isPointInCell"] = &TES3::Cell::isPointInCell;
 			usertypeDefinition["iterateReferences"] = iterateReferences;
+			usertypeDefinition["pathToCell"] = pathToCell;
 		}
 
 		// Binding for TES3::PathGrid	
@@ -164,4 +234,5 @@ namespace mwse::lua {
 			usertypeDefinition["position"] = sol::readonly_property(&TES3::PathGrid::Node::getPosition);
 		}
 	}
+	
 }
