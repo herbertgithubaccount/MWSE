@@ -392,9 +392,9 @@ static LexToken lex_scan(LexState *ls, TValue *tv)
 	  return TK_dots;   /* ... */
 	}
 	if (ls->c == '=') {
-		lex_next(ls);
-		return TK_cconcat;
-		}
+	  lex_next(ls);
+	  return TK_cconcat;  /* ..= */
+	}
 	return TK_concat;   /* .. */
       } else if (!lj_char_isdigit(ls->c)) {
 	return '.';
