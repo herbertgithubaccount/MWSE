@@ -109,6 +109,7 @@ typedef struct FuncScope {
 #define FSCOPE_GOLA		0x04	/* Goto or label used in scope. */
 #define FSCOPE_UPVAL		0x08	/* Upvalue in scope. */
 #define FSCOPE_NOCLOSE		0x10	/* Do not close upvalues. */
+
 #define NAME_BREAK		((GCstr *)(uintptr_t)1)
 
 /* Index into variable stack. */
@@ -1960,8 +1961,7 @@ static void expr_primary(LexState *ls, ExpDesc *v)
       expr_str(ls, &key);
       bcemit_method(fs, v, &key);
       parse_args(ls, v);
-    } 
-    else if (ls->tok == '(' || ls->tok == TK_string || ls->tok == '{') {
+    } else if (ls->tok == '(' || ls->tok == TK_string || ls->tok == '{') {
       expr_tonextreg(fs, v);
       if (LJ_FR2) bcreg_reserve(fs, 1);
       parse_args(ls, v);
