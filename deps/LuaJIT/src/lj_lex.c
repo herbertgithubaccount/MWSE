@@ -317,6 +317,7 @@ static LexToken lex_scan(LexState *ls, TValue *tv)
       continue;
     case '-':
       lex_next(ls);
+	  if (ls->c == '=')  { lex_next(ls); return TK_csub; }
       if (ls->c != '-') return '-';
       lex_next(ls);
       if (ls->c == '[') {  /* Long comment "--[=*[...]=*]". */
@@ -359,6 +360,27 @@ static LexToken lex_scan(LexState *ls, TValue *tv)
     case ':':
       lex_next(ls);
       if (ls->c != ':') return ':'; else { lex_next(ls); return TK_label; }
+    
+    // compound injection
+    case '+':
+      lex_next(ls);
+      if (ls->c == '=') { lex_next(ls); return TK_cadd; }
+      if (ls->c == '+') { lex_next(ls); return TK_plusplus; }
+      return '+';
+    case '*':
+      lex_next(ls);
+      if (ls->c == '=') { lex_next(ls); return TK_cmul; }
+      return '*';
+    case '/':
+      lex_next(ls);
+      if (ls->c == '=') { lex_next(ls); return TK_cdiv; }
+      return '/';
+    case '%':
+      lex_next(ls);
+      if (ls->c == '=') { lex_next(ls); return TK_cmod; }
+      return '%';
+      
+      
     case '"':
     case '\'':
       lex_string(ls, tv);
@@ -370,6 +392,10 @@ static LexToken lex_scan(LexState *ls, TValue *tv)
 	  lex_next(ls);
 	  return TK_dots;   /* ... */
 	}
+	if (ls->c == '=') {
+		lex_next(ls);
+		return TK_cconcat;
+		}
 	return TK_concat;   /* .. */
       } else if (!lj_char_isdigit(ls->c)) {
 	return '.';
