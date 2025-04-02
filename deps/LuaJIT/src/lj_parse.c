@@ -1971,8 +1971,6 @@ static void expr_primary(LexState *ls, ExpDesc *v)
   }
 }
 
-
-
 /* Parse simple expression. */
 static void expr_simple(LexState *ls, ExpDesc *v)
 {
@@ -2278,8 +2276,6 @@ static void parse_call_assign(LexState *ls)
    else if (ls->tok >= TK_cadd && ls->tok <= TK_cmod) {
 		vl.prev = NULL;
     assign_compound(ls, &vl, ls->tok);
-//   } else if (ls->tok == ';') {
-    /* TK_PLUSPLUS, TK_MINUMINUS should be already managed */
   } else {  /* Start of an assignment. */
     vl.prev = NULL;
     parse_assignment(ls, &vl, 1);
@@ -2392,8 +2388,6 @@ static void parse_return(LexState *ls)
   bcemit_INS(fs, ins);
 }
 
-
-
 /* Parse 'break' statement. */
 static void parse_break(LexState *ls)
 {
@@ -2482,7 +2476,7 @@ static void parse_repeat(LexState *ls, BCLine line)
 {
   FuncState *fs = ls->fs;
   BCPos loop = fs->lasttarget = fs->pc;
-  BCPos condexit, iter;
+  BCPos condexit;
   FuncScope bl1, bl2;
   fscope_begin(fs, &bl1, FSCOPE_LOOP);  /* Breakable loop scope. */
   fscope_begin(fs, &bl2, 0);  /* Inner scope. */
@@ -2490,7 +2484,6 @@ static void parse_repeat(LexState *ls, BCLine line)
   bcemit_AD(fs, BC_LOOP, fs->nactvar, 0);
   parse_chunk(ls);
   lex_match(ls, TK_until, TK_repeat, line);
-  iter = fs->pc;
   condexit = expr_cond(ls);  /* Parse condition (still inside inner scope). */
   if (!(bl2.flags & FSCOPE_UPVAL)) {  /* No upvalues? Just end inner scope. */
     fscope_end(fs);
@@ -2583,7 +2576,7 @@ static void parse_for_iter(LexState *ls, GCstr *indexname)
   BCReg nvars = 0;
   BCLine line;
   BCReg base = fs->freereg + 3;
-  BCPos loop, loopend, iter, exprpc = fs->pc;
+  BCPos loop, loopend, exprpc = fs->pc;
   FuncScope bl;
   int isnext;
   /* Hidden control variables. */
@@ -2610,7 +2603,7 @@ static void parse_for_iter(LexState *ls, GCstr *indexname)
   fscope_end(fs);
   /* Perform loop inversion. Loop control instructions are at the end. */
   jmp_patchins(fs, loop, fs->pc);
-  iter = bcemit_ABC(fs, isnext ? BC_ITERN : BC_ITERC, base, nvars-3+1, 2+1);
+  bcemit_ABC(fs, isnext ? BC_ITERN : BC_ITERC, base, nvars-3+1, 2+1);
   loopend = bcemit_AJ(fs, BC_ITERL, base, NO_JMP);
   fs->bcbase[loopend-1].line = line;  /* Fix line for control ins. */
   fs->bcbase[loopend].line = line;
