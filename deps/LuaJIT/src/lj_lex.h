@@ -19,7 +19,6 @@
    __(concat, ..) __(dots, ...) __(eq, ==) __(ge, >=) __(le, <=) __(ne, ~=) \
    __(label, ::) __(number, <number>) __(name, <name>) __(string, <string>) \
    __(cadd, +=) __(csub, -=) __(cmul, *=) __(cdiv, /=) __(cconcat, ..=) __(cmod, %=) \
-   __(plusplus, ++) \
    __(eof, <eof>)
 
 enum {
