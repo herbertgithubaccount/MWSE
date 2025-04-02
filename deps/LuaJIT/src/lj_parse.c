@@ -110,8 +110,7 @@ typedef struct FuncScope {
 #define FSCOPE_UPVAL		0x08	/* Upvalue in scope. */
 #define FSCOPE_NOCLOSE		0x10	/* Do not close upvalues. */
  
- #define NAME_BREAK		((GCstr *)(uintptr_t)1)
- #define NAME_BREAK		((GCstr *)(uintptr_t)1)
+#define NAME_BREAK		((GCstr *)(uintptr_t)1)
 
 /* Index into variable stack. */
 typedef uint16_t VarIndex;
@@ -1228,8 +1227,8 @@ static void gola_fixup(LexState *ls, FuncScope *bl)
 	    gola_patch(ls, vg, v);
 	  }
       } else if (gola_isgoto(v)) {
-		if (bl->prev) {  /* Propagate goto or break to outer scope. */
-			bl->prev->flags |= name == NAME_BREAK ? FSCOPE_BREAK : FSCOPE_GOLA;
+	if (bl->prev) {  /* Propagate goto or break to outer scope. */
+	  bl->prev->flags |= name == NAME_BREAK ? FSCOPE_BREAK : FSCOPE_GOLA;
 	  v->slot = bl->nactvar;
 	  if ((bl->flags & FSCOPE_UPVAL))
 	    gola_close(ls, v);
@@ -1268,7 +1267,6 @@ static void fscope_begin(FuncState *fs, FuncScope *bl, int flags)
   fs->bl = bl;
   lua_assert(fs->freereg == fs->nactvar);
 }
-
 
 /* End a scope. */
 static void fscope_end(FuncState *fs)
@@ -1933,10 +1931,7 @@ static void parse_args(LexState *ls, ExpDesc *e)
   fs->freereg = base+1;  /* Leave one result by default. */
 }
 
-
 static void inc_dec_op (LexState *ls, BinOpr op, ExpDesc *v, int isPost);
-
-
 
 /* Parse primary expression. */
 static void expr_primary(LexState *ls, ExpDesc *v)
