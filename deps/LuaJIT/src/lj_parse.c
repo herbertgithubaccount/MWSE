@@ -2173,7 +2173,6 @@ static BCPos expr_cond(LexState *ls)
 typedef struct LHSVarList {
   ExpDesc v;			/* LHS variable. */
   struct LHSVarList *prev;	/* Link to previous LHS variable. */
-  struct LHSVarList *next;	/* Link to next LHS variable. */
 } LHSVarList;
 
 /* Eliminate write-after-read hazards for local variable assignment. */
@@ -2274,7 +2273,6 @@ static void parse_assignment(LexState *ls, LHSVarList *lh, BCReg nvars)
   if (lex_opt(ls, ',')) {  /* Collect LHS list and recurse upwards. */
     LHSVarList vl;
     vl.prev = lh;
-	lh->next = &vl;
     expr_primary(ls, &vl.v);
     if (vl.v.k == VLOCAL)
       assign_hazard(ls, lh, &vl.v);
@@ -2319,7 +2317,7 @@ static void parse_call_assign(LexState *ls)
   } else if (ls->tok == ';') {
     /* TK_PLUSPLUS, TK_MINUMINUS should be already managed */
   } else {  /* Start of an assignment. */
-    vl.prev = vl.next = NULL;
+    vl.prev = NULL;
     parse_assignment(ls, &vl, 1);
   }
 }
