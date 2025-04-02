@@ -109,7 +109,6 @@ typedef struct FuncScope {
 #define FSCOPE_GOLA		0x04	/* Goto or label used in scope. */
 #define FSCOPE_UPVAL		0x08	/* Upvalue in scope. */
 #define FSCOPE_NOCLOSE		0x10	/* Do not close upvalues. */
- 
 #define NAME_BREAK		((GCstr *)(uintptr_t)1)
 
 /* Index into variable stack. */
@@ -1931,8 +1930,6 @@ static void parse_args(LexState *ls, ExpDesc *e)
   fs->freereg = base+1;  /* Leave one result by default. */
 }
 
-static void inc_dec_op (LexState *ls, BinOpr op, ExpDesc *v, int isPost);
-
 /* Parse primary expression. */
 static void expr_primary(LexState *ls, ExpDesc *v)
 {
@@ -1964,10 +1961,6 @@ static void expr_primary(LexState *ls, ExpDesc *v)
       bcemit_method(fs, v, &key);
       parse_args(ls, v);
     } 
-    else if (ls->tok == TK_plusplus) {
-      lj_lex_next(ls);
-      inc_dec_op(ls, OPR_ADD, v, 1);
-    } 
     else if (ls->tok == '(' || ls->tok == TK_string || ls->tok == '{') {
       expr_tonextreg(fs, v);
       if (LJ_FR2) bcreg_reserve(fs, 1);
@@ -1978,35 +1971,6 @@ static void expr_primary(LexState *ls, ExpDesc *v)
   }
 }
 
-static void inc_dec_op (LexState *ls, BinOpr op, ExpDesc *v, int isPost) {
-  FuncState *fs = ls->fs;
-  ExpDesc lv, e1, e2;
-  BCReg indices;
-  if(!v) v = &lv;
-  indices = fs->freereg;
-  expr_init(&e2, VKNUM, 0);
-  setintV(&e2.u.nval, 1);
-  if(isPost) {
-    checkcond(ls, vkisvar(v->k), LJ_ERR_XNOTASSIGNABLE);
-    lv = e1 = *v;
-    if (v->k == VINDEXED)
-      bcreg_reserve(fs, 1);
-    expr_tonextreg(fs, v);
-    bcreg_reserve(fs, 1); //copy again to operate on it
-    bcemit_arith(fs, op, &e1, &e2);
-    bcemit_store(fs, &lv, &e1);
-    --fs->freereg; //remove extra copy register
-    return;
-  }
-  expr_primary(ls, v);
-  checkcond(ls, vkisvar(v->k), LJ_ERR_XNOTASSIGNABLE);
-  e1 = *v;
-  if (v->k == VINDEXED)
-    bcreg_reserve(fs, fs->freereg - indices);
-  bcemit_arith(fs, op, &e1, &e2);
-  bcemit_store(fs, v, &e1);
-  if(v != &lv) expr_tonextreg(fs, v);
-}
 
 
 /* Parse simple expression. */
@@ -2314,7 +2278,7 @@ static void parse_call_assign(LexState *ls)
    else if (ls->tok >= TK_cadd && ls->tok <= TK_cmod) {
 		vl.prev = NULL;
     assign_compound(ls, &vl, ls->tok);
-  } else if (ls->tok == ';') {
+//   } else if (ls->tok == ';') {
     /* TK_PLUSPLUS, TK_MINUMINUS should be already managed */
   } else {  /* Start of an assignment. */
     vl.prev = NULL;

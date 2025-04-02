@@ -365,7 +365,6 @@ static LexToken lex_scan(LexState *ls, TValue *tv)
     case '+':
       lex_next(ls);
       if (ls->c == '=') { lex_next(ls); return TK_cadd; }
-      if (ls->c == '+') { lex_next(ls); return TK_plusplus; }
       return '+';
     case '*':
       lex_next(ls);
