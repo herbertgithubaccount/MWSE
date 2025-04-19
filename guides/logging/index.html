@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.4af4bdda.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2afb09e1.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -713,28 +713,46 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#log-levels" class="md-nav__link">
+  <a href="#quickstart" class="md-nav__link">
     <span class="md-ellipsis">
-      Log Levels
+      Quickstart
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quickstart">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-logger" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating a Logger
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#log-colors" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#writing-log-messages" class="md-nav__link">
     <span class="md-ellipsis">
-      Log Colors
+      Writing Log Messages
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Log Colors">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
-  <a href="#log-level-colors" class="md-nav__link">
+  <a href="#writing-more-useful-log-messages" class="md-nav__link">
     <span class="md-ellipsis">
-      Log Level Colors:
+      Writing More Useful Log Messages
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multifile-setups" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multifile Setups
     </span>
   </a>
   
@@ -746,18 +764,102 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#registering-and-using-your-logger" class="md-nav__link">
+  <a href="#in-more-detail" class="md-nav__link">
     <span class="md-ellipsis">
-      Registering and using your Logger
+      In more Detail
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="In more Detail">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#log-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      Log Levels
     </span>
   </a>
   
 </li>
+        
+          <li class="md-nav__item">
+  <a href="#loggers-synchronize-their-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Loggers Synchronize their Settings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#passing-functions-to-the-logging-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Passing Functions to the Logging Methods
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#using-your-logger-in-different-source-files" class="md-nav__link">
+  <a href="#customizing-your-logger" class="md-nav__link">
     <span class="md-ellipsis">
-      Using your logger in different source files
+      Customizing Your Logger
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Customizing Your Logger">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#include-a-timestamp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Include a Timestamp
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-a-custom-output-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Set a custom output file.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-colors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Log Colors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#line-numbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Line Numbers
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-new-logger" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating a new Logger
     </span>
   </a>
   
@@ -767,6 +869,15 @@
   <a href="#creating-an-mcm-to-control-log-level" class="md-nav__link">
     <span class="md-ellipsis">
       Creating an MCM to control Log Level
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-customizing-the-formatter" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced: Customizing the formatter
     </span>
   </a>
   
@@ -6031,6 +6142,8 @@
       
         
       
+        
+      
     
     
     
@@ -6494,6 +6607,29 @@
   
   <span class="md-ellipsis">
     mwseKeyMouseCombo
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../types/mwseLogger.Record/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    mwseLogger.Record
     
   </span>
   
@@ -19320,28 +19456,46 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#log-levels" class="md-nav__link">
+  <a href="#quickstart" class="md-nav__link">
     <span class="md-ellipsis">
-      Log Levels
+      Quickstart
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quickstart">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-logger" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating a Logger
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#log-colors" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#writing-log-messages" class="md-nav__link">
     <span class="md-ellipsis">
-      Log Colors
+      Writing Log Messages
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Log Colors">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
-  <a href="#log-level-colors" class="md-nav__link">
+  <a href="#writing-more-useful-log-messages" class="md-nav__link">
     <span class="md-ellipsis">
-      Log Level Colors:
+      Writing More Useful Log Messages
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multifile-setups" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multifile Setups
     </span>
   </a>
   
@@ -19353,18 +19507,102 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#registering-and-using-your-logger" class="md-nav__link">
+  <a href="#in-more-detail" class="md-nav__link">
     <span class="md-ellipsis">
-      Registering and using your Logger
+      In more Detail
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="In more Detail">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#log-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      Log Levels
     </span>
   </a>
   
 </li>
+        
+          <li class="md-nav__item">
+  <a href="#loggers-synchronize-their-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Loggers Synchronize their Settings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#passing-functions-to-the-logging-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Passing Functions to the Logging Methods
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#using-your-logger-in-different-source-files" class="md-nav__link">
+  <a href="#customizing-your-logger" class="md-nav__link">
     <span class="md-ellipsis">
-      Using your logger in different source files
+      Customizing Your Logger
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Customizing Your Logger">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#include-a-timestamp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Include a Timestamp
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-a-custom-output-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Set a custom output file.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-colors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Log Colors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#line-numbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Line Numbers
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-new-logger" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating a new Logger
     </span>
   </a>
   
@@ -19374,6 +19612,15 @@
   <a href="#creating-an-mcm-to-control-log-level" class="md-nav__link">
     <span class="md-ellipsis">
       Creating an MCM to control Log Level
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-customizing-the-formatter" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced: Customizing the formatter
     </span>
   </a>
   
@@ -19399,61 +19646,180 @@
 
 
 <h1 id="logging">Logging<a class="headerlink" href="#logging" title="Permanent link">⚓︎</a></h1>
-<p>The MWSE Logger library allows you to register a logger for your mod. It provides the following features:</p>
-<ul>
-<li>Mod-specific log levels</li>
-<li>Change log level via MCM</li>
-<li>Log messages can be color coded according to log level (via MWSE MCM)</li>
-<li>Optional setting to print messages to a separate log file</li>
-<li>Optional setting to print messages to the in-game console</li>
-<li>Optional setting to print messages with a timestamp prepended</li>
-</ul>
-<h2 id="log-levels">Log Levels<a class="headerlink" href="#log-levels" title="Permanent link">⚓︎</a></h2>
-<p>Log levels are ordered as follows: <code>TRACE</code>, <code>DEBUG</code>, <code>INFO</code>, <code>WARN</code>, and <code>ERROR</code>. Only logs at or below the current log level will be printed to the log file. For example, if log level is set to <code>INFO</code>, then <code>INFO</code>, <code>WARN</code> and <code>ERROR</code> messages will be logged, but <code>TRACE</code> and <code>DEBUG</code> messages will not.</p>
-<h2 id="log-colors">Log Colors<a class="headerlink" href="#log-colors" title="Permanent link">⚓︎</a></h2>
-<p>In the MWSE MCM, there is an option to enable log colors. This will display logs in different colors according to their log level when tailing the log in the console. However, it is recommended that non-modders keep this turned off, as it makes the log file harder to read in a regular text editor.</p>
-<h3 id="log-level-colors">Log Level Colors:<a class="headerlink" href="#log-level-colors" title="Permanent link">⚓︎</a></h3>
-<ul>
-<li><code>TRACE</code>: Bright White</li>
-<li><code>DEBUG</code>: Green</li>
-<li><code>INFO</code>: White</li>
-<li><code>WARN</code>: Yellow</li>
-<li><code>ERROR</code>: Red</li>
-</ul>
-<h2 id="registering-and-using-your-logger">Registering and using your Logger<a class="headerlink" href="#registering-and-using-your-logger" title="Permanent link">⚓︎</a></h2>
-<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">logger</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;logging.logger&quot;</span><span class="p">)</span>
-<span class="kd">local</span> <span class="n">log</span> <span class="o">=</span> <span class="n">logger</span><span class="p">.</span><span class="n">new</span><span class="p">{</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Test Mod&quot;</span><span class="p">,</span>
-    <span class="n">logLevel</span> <span class="o">=</span> <span class="s2">&quot;TRACE&quot;</span><span class="p">,</span>
-    <span class="n">logToConsole</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="n">includeTimestamp</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
-<span class="p">}</span>
-<span class="n">log</span><span class="p">:</span><span class="n">trace</span><span class="p">(</span><span class="s2">&quot;This is a trace message&quot;</span><span class="p">)</span>
-<span class="n">log</span><span class="p">:</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;This is a debug message&quot;</span><span class="p">)</span>
-<span class="n">log</span><span class="p">:</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;This is an info message&quot;</span><span class="p">)</span>
-<span class="n">log</span><span class="p">:</span><span class="nb">warn</span><span class="p">(</span><span class="s2">&quot;This is a warn message&quot;</span><span class="p">)</span>
-<span class="n">log</span><span class="p">:</span><span class="nb">error</span><span class="p">(</span><span class="s2">&quot;This is an error message&quot;</span><span class="p">)</span>
-
-<span class="n">log</span><span class="p">:</span><span class="n">setLogLevel</span><span class="p">(</span><span class="s2">&quot;INFO&quot;</span><span class="p">)</span>
-
-<span class="c1">-- To disable logging to the in-game console, set the logToConsole field to false</span>
-<span class="n">log</span><span class="p">.</span><span class="n">logToConsole</span> <span class="o">=</span> <span class="kc">false</span>
-
-<span class="c1">-- After this point no logging messages will be logged to the in-game console</span>
-</code></pre></div>
-<h2 id="using-your-logger-in-different-source-files">Using your logger in different source files<a class="headerlink" href="#using-your-logger-in-different-source-files" title="Permanent link">⚓︎</a></h2>
-<p>In your main.lua, place the logger creation before other source files are included or required. This is to ensure the logger is created and accessible to these other source files.</p>
-<p>In the other source files:
-<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">logger</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;logging.logger&quot;</span><span class="p">)</span>
-<span class="kd">local</span> <span class="n">log</span> <span class="o">=</span> <span class="n">logger</span><span class="p">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;Test Mod&quot;</span><span class="p">)</span>
-
-<span class="n">log</span><span class="p">:</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;This is an info message&quot;</span><span class="p">)</span>
+<p>The MWSE Logger library allows you to create a logger for your mod. It can be a helpful tool when debugging mods, and is designed to be simple to use. </p>
+<h2 id="quickstart">Quickstart<a class="headerlink" href="#quickstart" title="Permanent link">⚓︎</a></h2>
+<h3 id="creating-a-logger">Creating a Logger<a class="headerlink" href="#creating-a-logger" title="Permanent link">⚓︎</a></h3>
+<p>For the vast majority of use-cases, it's enough to write:
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">log</span> <span class="o">=</span> <span class="n">mwse</span><span class="p">.</span><span class="n">Logger</span><span class="p">.</span><span class="n">new</span><span class="p">()</span>
 </code></pre></div></p>
+<h3 id="writing-log-messages">Writing Log Messages<a class="headerlink" href="#writing-log-messages" title="Permanent link">⚓︎</a></h3>
+<p>To start debugging, set the logging level to be <code>DEBUG</code> or higher:
+<div class="highlight"><pre><span></span><code><span class="n">log</span><span class="p">.</span><span class="n">level</span> <span class="o">=</span> <span class="s2">&quot;DEBUG&quot;</span>
+</code></pre></div>
+Typically, the above would be done by changing an MCM setting. And that is definitely how you should do it in practice, but this is the quickstart guide!</p>
+<p>You can now write logging messages by typing:
+<div class="highlight"><pre><span></span><code><span class="n">log</span><span class="p">:</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;my message&quot;</span><span class="p">)</span>
+</code></pre></div>
+The above message will then be written to <code>MWSE.log</code> in the following format:
+<div class="highlight"><pre><span></span><code>[My Awesome Mod | main.lua | DEBUG] my message
+</code></pre></div>
+The information in the header says that this log message was written in the <code>main.lua</code> file of a mod called <code>"My Awesome Mod"</code>. All of this information is captured automatically behind the scenes. In particular, the mod name will be loaded from your mod's <a href="../metadata/">metadata file</a> if it has one.</p>
+<h3 id="writing-more-useful-log-messages">Writing More Useful Log Messages<a class="headerlink" href="#writing-more-useful-log-messages" title="Permanent link">⚓︎</a></h3>
+<p>In general, you'll likely want to log the values of various local variables you have floating around in your code. The logging framework makes this easy. For example:
+<div class="highlight"><pre><span></span><code><span class="c1">-- Any kind of table works.</span>
+<span class="kd">local</span> <span class="n">myData</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">date</span> <span class="o">=</span> <span class="s2">&quot;2025-03-02&quot;</span><span class="p">}</span>
+<span class="n">log</span><span class="p">:</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;myData = %s.&quot;</span><span class="p">,</span> <span class="n">myData</span><span class="p">)</span>
+</code></pre></div>
+outputs
+<div class="highlight"><pre><span></span><code>[My Awesome Mod | main.lua | DEBUG] myData = { date = &quot;2025-03-02&quot;, x = 1, y = 20 }.
+</code></pre></div>
+Internally, the logging methods convert their arguments into useful, human-readable text representations and then pass them to <a href="../../apis/string/#stringformat"><code>string.format</code></a>.</p>
+<p>This wraps up the quickstart guide. But there are still a few useful things you may want to know about before publishing your mod.</p>
+<h3 id="multifile-setups">Multifile Setups<a class="headerlink" href="#multifile-setups" title="Permanent link">⚓︎</a></h3>
+<p>It's common for larger mods to split code into multiple files. The Logger API is designed with this is mind and makes it easy to track down which logging message originated from which file. No extra work is required to support multiple files. Just write
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">log</span> <span class="o">=</span> <span class="n">mwse</span><span class="p">.</span><span class="n">Logger</span><span class="p">.</span><span class="n">new</span><span class="p">()</span>
+</code></pre></div>
+in each file you want a <code>Logger</code>. The rest will be taken care of behind the scenes. For example, consider the following code:
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">log</span> <span class="o">=</span> <span class="n">mwse</span><span class="p">.</span><span class="n">Logger</span><span class="p">.</span><span class="n">new</span><span class="p">()</span>
+<span class="n">log</span><span class="p">:</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Hello world&quot;</span><span class="p">)</span>
+</code></pre></div>
+If this code is run in <code>mods/My Awesome Mod/main.lua</code>, then the message would be:
+<div class="highlight"><pre><span></span><code>[My Awesome Mod | main.lua | INFO] Hello world
+</code></pre></div>
+Meanwhile, if the same code was run in <code>mods/My Awesome Mod/someOtherFile.lua</code>, the message would be
+<div class="highlight"><pre><span></span><code>[My Awesome Mod | someotherfile.lua | INFO] Hello world
+</code></pre></div>
+To make things simpler, all loggers created for a mod will synchronize their settings. For example, if you update <code>log.level</code> in <code>mods/My Awesome Mod/main.lua</code>, then the logging level will also be updated in <code>mods/My Awesome Mod/someOtherFile.lua</code>.</p>
+<h2 id="in-more-detail">In more Detail<a class="headerlink" href="#in-more-detail" title="Permanent link">⚓︎</a></h2>
+<h3 id="log-levels">Log Levels<a class="headerlink" href="#log-levels" title="Permanent link">⚓︎</a></h3>
+<p>There are 5 logging levels:</p>
+<ol>
+<li><code>ERROR</code>: Something bad happened.</li>
+<li><code>WARN</code>: Something something potentially bad happened, or something bad <em>almost</em> happened.</li>
+<li><code>INFO</code>: Something normal and expected has happened. (i.e., the mod was loaded.) </li>
+<li><code>DEBUG</code>: Used to record the inner workings of a mod. Useful for troubleshooting. </li>
+<li><code>TRACE</code>: Basically like <code>DEBUG</code>, but more extreme. Also useful for debugging code that gets run very frequently.</li>
+</ol>
+<p>Log messages may be written as follows:
+<div class="highlight"><pre><span></span><code><span class="n">log</span><span class="p">:</span><span class="n">trace</span><span class="p">(</span><span class="s2">&quot;This is a TRACE message&quot;</span><span class="p">)</span>
+<span class="n">log</span><span class="p">:</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;This is a DEBUG message&quot;</span><span class="p">)</span>
+<span class="n">log</span><span class="p">(</span><span class="s2">&quot;This is also a DEBUG message&quot;</span><span class="p">)</span> <span class="c1">-- Shorthand syntax.</span>
+<span class="n">log</span><span class="p">:</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;This is an INFO message&quot;</span><span class="p">)</span>
+<span class="n">log</span><span class="p">:</span><span class="nb">warn</span><span class="p">(</span><span class="s2">&quot;This is a WARN message&quot;</span><span class="p">)</span>
+<span class="n">log</span><span class="p">:</span><span class="nb">error</span><span class="p">(</span><span class="s2">&quot;This is an ERROR message&quot;</span><span class="p">)</span>
+</code></pre></div></p>
+<p>Only logs at or below the current log level will be printed to the log file. For example, if the log level is set to <code>INFO</code>, then <code>INFO</code>, <code>WARN</code> and <code>ERROR</code> messages will be logged, but <code>TRACE</code> and <code>DEBUG</code> messages will not. This has two advantages:</p>
+<ol>
+<li>Logging messages have basically no performance impact when the user has disabled them.</li>
+<li>The <code>MWSE.log</code> file is (ideally) not flooded by tons of logging messages that the user does not care about.</li>
+</ol>
+<h3 id="loggers-synchronize-their-settings">Loggers Synchronize their Settings<a class="headerlink" href="#loggers-synchronize-their-settings" title="Permanent link">⚓︎</a></h3>
+<p>Each file of your mod gets its own unique logger, corresponding to that filepath. This helps to make it easy to track down the exact origin of a logging statement.  But this also introduces a potential problem: how do you make sure all the loggers synchronize their settings properly?</p>
+<p>The answer is that you don't have to! The logging framework ensures that all loggers synchronize their data automatically. Whenever you update the logging level of one logger, all the other loggers have their logging levels updated as well. The same goes for changing the <code>modName</code>, whether or not to include timestamps, and various other formatting parameters.</p>
+<h3 id="passing-functions-to-the-logging-methods">Passing Functions to the Logging Methods<a class="headerlink" href="#passing-functions-to-the-logging-methods" title="Permanent link">⚓︎</a></h3>
+<p>The following situation is fairly common: you have some data you want to include in a log statement, but you'd like to transform it in some way before logging it. Examples include things like logging the keys of a table, logging the skill names of a table of <code>tes3.skill</code> IDs, etc. In other words, you would like to transform some data before including it in a log message, but it would be rather inefficient to transform the data if the log message isn't going to be printed anyway.</p>
+<p>To solve this problem, the logging framework allows you to lazily (i.e., only when necessary) compute the values passed to logging messages. For example: evaluate functions by passing them as arguments. For example:
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">skillId</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">skill</span><span class="p">.</span><span class="n">heavyArmor</span>
+<span class="kd">local</span> <span class="n">myTable</span> <span class="o">=</span> <span class="p">{</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="mi">4</span><span class="p">}</span>
+<span class="n">log</span><span class="p">(</span><span class="s2">&quot;The keys of my table are: %s.&quot;</span><span class="p">,</span> <span class="kr">function</span><span class="p">()</span>
+    <span class="kr">return</span> <span class="n">json</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="n">table</span><span class="p">.</span><span class="n">keys</span><span class="p">(</span><span class="n">myTable</span><span class="p">))</span>
+<span class="kr">end</span><span class="p">)</span>
+<span class="c1">-- is basically the same as</span>
+<span class="n">log</span><span class="p">(</span><span class="s2">&quot;The keys of my table are: %s.&quot;</span><span class="p">,</span> <span class="n">json</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="n">table</span><span class="p">.</span><span class="n">keys</span><span class="p">(</span><span class="n">myTable</span><span class="p">)))</span>
+</code></pre></div>
+The key difference is that, in the first case, <code>json.encode(table.keys(myTable))</code> is computed <em>after</em> ensuring that the logging level is high enough.</p>
+<p>In general, 
+<div class="highlight"><pre><span></span><code><span class="n">log</span><span class="p">(</span><span class="n">formatString</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="p">...)</span>
+</code></pre></div>
+becomes
+<div class="highlight"><pre><span></span><code><span class="kr">if</span> <span class="n">log</span><span class="p">.</span><span class="n">level</span> <span class="o">&gt;=</span> <span class="n">mwse</span><span class="p">.</span><span class="n">logLevel</span><span class="p">.</span><span class="n">debug</span> <span class="kr">then</span>
+    <span class="n">log</span><span class="p">(</span><span class="n">formatString</span><span class="p">,</span> <span class="n">func</span><span class="p">(...))</span>
+<span class="kr">end</span>
+</code></pre></div>
+This means that it's also possible to define <code>func</code> somewhere else and then re-use it in multiple log statements. For example, you can take advantage of the fact that tables are pretty-printed to write the log statement from before as:
+<div class="highlight"><pre><span></span><code><span class="n">log</span><span class="p">(</span><span class="s2">&quot;The keys of my table are: %s.&quot;</span><span class="p">,</span> <span class="n">table</span><span class="p">.</span><span class="n">keys</span><span class="p">,</span> <span class="n">myTable</span><span class="p">)</span>
+</code></pre></div>
+It's also possible for <code>func</code> to return multiple formatting parameters.</p>
+<p>One other form of lazy evaluation is supported as well: 
+<div class="highlight"><pre><span></span><code><span class="n">log</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="p">...)</span> 
+<span class="c1">-- expands to</span>
+<span class="n">log</span><span class="p">(</span><span class="n">func</span><span class="p">(...))</span>
+</code></pre></div>
+This means it's possible to have a function return the format string as well.</p>
+<h2 id="customizing-your-logger">Customizing Your Logger<a class="headerlink" href="#customizing-your-logger" title="Permanent link">⚓︎</a></h2>
+<p>You can customize the appearance of your logging messages in a number of ways.</p>
+<h3 id="include-a-timestamp">Include a Timestamp<a class="headerlink" href="#include-a-timestamp" title="Permanent link">⚓︎</a></h3>
+<p>If you set <code>log.includeTimestamp = true</code>, then all log messages will include a timestamp. This is taken relative to the time the game launched. For example:
+<div class="highlight"><pre><span></span><code><span class="n">log</span><span class="p">.</span><span class="n">includeTimestamp</span> <span class="o">=</span> <span class="kc">true</span>
+<span class="n">log</span><span class="p">(</span><span class="s2">&quot;In main.lua!&quot;</span><span class="p">)</span>
+<span class="n">event</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="s2">&quot;initialized&quot;</span><span class="p">,</span> <span class="kr">function</span> <span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="n">log</span><span class="p">(</span><span class="s2">&quot;Game has initialized!&quot;</span><span class="p">)</span>
+<span class="kr">end</span><span class="p">)</span>
+</code></pre></div>
+yields
+<div class="highlight"><pre><span></span><code>[My Awesome Mod | main.lua | DEBUG | 00:00.343] In main.lua!
+... -- other messages
+[My Awesome Mod | main.lua | DEBUG | 00:04.250] Game has initialized!
+</code></pre></div>
+This can also be used as an easy way to time certain functions:
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">functionThatMightBeTooSlow</span><span class="p">()</span>
+    <span class="n">log</span><span class="p">:</span><span class="n">trace</span><span class="p">(</span><span class="s2">&quot;started functionThatMightBeTooSlow&quot;</span><span class="p">)</span>
+    <span class="p">...</span> <span class="c1">-- actually do stuff here</span>
+    <span class="n">log</span><span class="p">:</span><span class="n">trace</span><span class="p">(</span><span class="s2">&quot;ending functionThatMightBeTooSlow&quot;</span><span class="p">)</span>
+    <span class="kr">return</span> <span class="n">whatever</span>
+<span class="kr">end</span>
+</code></pre></div>
+You can then compare the timestamps in the corresponding log messages to get an idea of how long it takes your function to execute. Log statements can also be sprinkled into various parts of your function to get a more granular view of how long it takes to execute each part of the function.</p>
+<h3 id="set-a-custom-output-file">Set a custom output file.<a class="headerlink" href="#set-a-custom-output-file" title="Permanent link">⚓︎</a></h3>
+<p>You can ask your logger to record its output in a separate file. To do so, write:
+<div class="highlight"><pre><span></span><code><span class="n">log</span><span class="p">:</span><span class="n">setOutputFile</span><span class="p">(</span><span class="s2">&quot;my file&quot;</span><span class="p">)</span>
+</code></pre></div>
+This will ensure your log messages get written to <code>Data Files/MWSE/logs/my file.log</code>. You can also write:
+<div class="highlight"><pre><span></span><code><span class="n">log</span><span class="p">:</span><span class="n">setOutputFile</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+</code></pre></div>
+to automatically generate an output file based on the name of your mod. For example, if your mod was named "My Awesome Mod", then the above code would result in your logging statements being written to <code>Data Files/MWSE/logs/My Awesome Mod.log</code>.</p>
+<h3 id="log-colors">Log Colors<a class="headerlink" href="#log-colors" title="Permanent link">⚓︎</a></h3>
+<p>In the MCM page of the script extender, there is an option to enable log colors.  This will display logs in different colors according to their log level.</p>
+<h3 id="line-numbers">Line Numbers<a class="headerlink" href="#line-numbers" title="Permanent link">⚓︎</a></h3>
+<p>In the MCM page of the script extender, there is an option to include line numbers in log messages. This can make it easier to track down a specific location in which a log message was written. For example, writing the following log statement on line 215
+<div class="highlight"><pre><span></span><code><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Here!&quot;</span><span class="p">)</span>
+</code></pre></div>
+prints the following text to <code>MWSE.log</code>:
+<div class="highlight"><pre><span></span><code>[My Awesome Mod | main.lua:215 | DEBUG] Here!
+</code></pre></div>
+Note that enabling line numbers does incur a performance penalty, which is why it is not enabled by default.</p>
+<h2 id="creating-a-new-logger">Creating a new Logger<a class="headerlink" href="#creating-a-new-logger" title="Permanent link">⚓︎</a></h2>
+<p>The simplest way to create a new logger is to simply call <code>mwse.Logger.new()</code> and have all the relevant information be retrieved automatically. But it's also possible to pass additional parameters to the <code>new</code> function, all of which are optional:
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">log</span> <span class="o">=</span> <span class="n">mwse</span><span class="p">.</span><span class="n">Logger</span><span class="p">.</span><span class="n">new</span><span class="p">{</span>
+    <span class="c1">-- Manually specify the name of your mod. </span>
+    <span class="c1">-- This can be done if aren&#39;t happy with the way that the logger automatically retrieves the name of your mod.</span>
+    <span class="n">modName</span> <span class="o">=</span> <span class="s2">&quot;My Mod&quot;</span><span class="p">,</span>
+    <span class="c1">-- A way to differentiate loggers that are part of the same file.</span>
+    <span class="c1">-- Can be any string.</span>
+    <span class="n">moduleName</span> <span class="o">=</span> <span class="s2">&quot;Skills Component&quot;</span><span class="p">,</span>
+    <span class="c1">-- Set a log level on creation. But it&#39;s typically best to manage log levels entirely through the MCM.</span>
+    <span class="n">level</span> <span class="o">=</span> <span class="s2">&quot;ERROR&quot;</span><span class="p">,</span>
+    <span class="c1">-- Print the log messages in a separate file.</span>
+    <span class="c1">-- Can be either true, false, or a string specifying the name of the file.</span>
+    <span class="n">outputFile</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> 
+    <span class="c1">-- Include a timestamp in log messages.</span>
+    <span class="n">includeTimestamp</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="c1">-- Shorten the header portion of the logging messages.</span>
+    <span class="n">abbreviateHeader</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="c1">-- Advanced option: specify a custom formatting function for your log messages.</span>
+    <span class="c1">-- This can be used if you would like to change how log messages are printed.</span>
+    <span class="n">formatter</span> <span class="o">=</span> <span class="n">myFormattingFunction</span>
+<span class="p">}</span>
+</code></pre></div>
+All of the above settings only need to be specified (at most) once, because loggers synchronize their settings. This means that, for example, it's enough to specify the <code>modName</code> parameter in a single file.</p>
+<p>In your main.lua, place the logger creation before other source files are included or required. This is to ensure the logger is created and accessible to these other source files.</p>
 <h2 id="creating-an-mcm-to-control-log-level">Creating an MCM to control Log Level<a class="headerlink" href="#creating-an-mcm-to-control-log-level" title="Permanent link">⚓︎</a></h2>
 <p>In your MCM config, create a dropdown with the following options:
 <div class="highlight"><pre><span></span><code><span class="n">settings</span><span class="p">:</span><span class="n">createDropdown</span><span class="p">{</span>
     <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Logging Level&quot;</span><span class="p">,</span>
     <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Set the log level.&quot;</span><span class="p">,</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">mcmConfig</span><span class="p">,</span>
+    <span class="n">configKey</span> <span class="o">=</span> <span class="s2">&quot;logLevel&quot;</span><span class="p">,</span>
     <span class="n">options</span> <span class="o">=</span> <span class="p">{</span>
         <span class="p">{</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;TRACE&quot;</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;TRACE&quot;</span><span class="p">},</span>
         <span class="p">{</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;DEBUG&quot;</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;DEBUG&quot;</span><span class="p">},</span>
@@ -19462,12 +19828,89 @@
         <span class="p">{</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;ERROR&quot;</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;ERROR&quot;</span><span class="p">},</span>
         <span class="p">{</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;NONE&quot;</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;NONE&quot;</span><span class="p">},</span>
     <span class="p">},</span>
-    <span class="n">variable</span> <span class="o">=</span> <span class="n">mwse</span><span class="p">.</span><span class="n">mcm</span><span class="p">.</span><span class="n">createTableVariable</span><span class="p">{</span> <span class="n">id</span> <span class="o">=</span> <span class="s2">&quot;logLevel&quot;</span><span class="p">,</span> <span class="n">table</span> <span class="o">=</span> <span class="n">mcmConfig</span> <span class="p">},</span>
     <span class="n">callback</span> <span class="o">=</span> <span class="kr">function</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
-        <span class="n">log</span><span class="p">:</span><span class="n">setLogLevel</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">variable</span><span class="p">.</span><span class="n">value</span><span class="p">)</span>
+        <span class="n">log</span><span class="p">.</span><span class="n">level</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">variable</span><span class="p">.</span><span class="n">value</span>
     <span class="kr">end</span>
 <span class="p">}</span>
 </code></pre></div></p>
+<h2 id="advanced-customizing-the-formatter">Advanced: Customizing the formatter<a class="headerlink" href="#advanced-customizing-the-formatter" title="Permanent link">⚓︎</a></h2>
+<p>Under the hood, logging messages are printed by executing code that (in its simplest form) is analogous to:
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">formatter</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">logRecord</span><span class="p">,</span> <span class="p">...))</span>
+</code></pre></div>
+The <code>formatter</code> is responsible for piecing together all of its arguments to generate a coherent (and helpful) logging message. It receives the following parameters:</p>
+<ul>
+<li><code>self</code>: The <code>mwseLogger</code> that issued the logging statement.</li>
+<li><code>logRecord</code>: A <a href="../../types/mwseLogger.Record/"><code>mwseLogger.Record</code></a> created by the logging statement. This is basically just a table that, among other things, stores:<ul>
+<li>The line number that the log message originated from. This is only available if the relevant MWSE setting is enabled.</li>
+<li>The <code>mwseLogger.logLevel</code> of the log statement. (e.g., this will be <code>logLevel.debug</code> if the log statement was created by the <code>Logger:debug</code> method.)</li>
+<li>A timestamp that marks when the logging call was issued. This is only available if the logger in question had <code>log.includeTimestamp == true</code>.</li>
+</ul>
+</li>
+<li><code>...</code>: This refers to the actual parameters passed to the logging functions (e.g., to <code>Logger:debug(...)</code>).</li>
+</ul>
+<p>Several of the features mentioned in this guide (e.g. lazy function evaluation, prettyprinting tables) are due to the behavior of the default formatter. As such, they can be customized by changing the <code>formatter</code> field of your <code>Logger</code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The <code>formatter</code> field is also responsible for printing the "header" that appears in braces before the body of a log statement. In other words, it is the responsibility of the <code>formatter</code> to print the following part of logging messages:
+<div class="highlight"><pre><span></span><code>[My Awesome Mod | main.lua | DEBUG | 00:04.250]
+</code></pre></div>
+When writing a custom formatter, it is your responsibility to ensure a header is preprended to the output of your custom formatter. If you would prefer to avoid rewriting the "header" yourself, you can use the protected <code>Logger:makeHeader</code> method to use the default header. This means your formatter would look something like:
+<div class="highlight"><pre><span></span><code><span class="c1">---@param self mwseLogger</span>
+<span class="c1">---@param record mwseLogger.Record</span>
+<span class="c1">---@param ... any</span>
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">myFormatter</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">record</span><span class="p">,</span> <span class="p">...)</span>
+    <span class="c1">-- Use the default header.</span>
+    <span class="kd">local</span> <span class="n">header</span> <span class="o">=</span> <span class="n">self</span><span class="p">:</span><span class="n">makeHeader</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+
+    <span class="c1">---@type string</span>
+    <span class="kd">local</span> <span class="n">message</span>
+
+    <span class="kr">do</span> <span class="c1">-- Use `self`, `record`, and `...` to generate the logging `message`.</span>
+        <span class="p">...</span>
+    <span class="kr">end</span>
+
+    <span class="c1">-- Prefix the message with the default header.</span>
+    <span class="kr">return</span> <span class="n">header</span> <span class="o">..</span> <span class="n">message</span>
+<span class="kr">end</span>
+</code></pre></div></p>
+</div>
+<p>The definition of the default formatter can be found at <code>MWSE/core/lib/Logger/formatters.lua</code>. The <code>formatters.lua</code> file also includes another formatter, labeled <code>expandAllFunctions</code> that illustrates how custom formatters can be used to alter the behavior of the logging methods. In particular, the <code>expandAllFunctions</code> formatter will lazily-evaluate <em>all</em> functions that are passed to the logging methods.</p>
+<div class="admonition example">
+<p class="admonition-title">Example: Creating a minimal formatter</p>
+<p>The following example illustrates how a custom <code>formatter</code> can be used to make the logging methods behave more similarly to <code>string.format</code>:
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">log</span> <span class="o">=</span> <span class="n">mwse</span><span class="p">.</span><span class="n">Logger</span><span class="p">.</span><span class="n">new</span><span class="p">{</span>
+    <span class="c1">---@param self mwseLogger</span>
+    <span class="c1">---@param record mwseLogger.Record</span>
+    <span class="c1">---@param msg string|any</span>
+    <span class="c1">---@param ... any</span>
+    <span class="n">formatter</span> <span class="o">=</span> <span class="kr">function</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">record</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="p">...)</span>
+        <span class="c1">-- Use the default header.</span>
+        <span class="kd">local</span> <span class="n">header</span> <span class="o">=</span> <span class="n">self</span><span class="p">:</span><span class="n">makeHeader</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+
+        <span class="c1">-- Make sure the first parameter is a string.</span>
+        <span class="kd">local</span> <span class="n">outputMessage</span> <span class="o">=</span> <span class="nb">tostring</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+        <span class="c1">-- If there were multiple arguments passed, call `string.format`.</span>
+        <span class="kr">if</span> <span class="nb">select</span><span class="p">(</span><span class="s2">&quot;#&quot;</span><span class="p">,</span> <span class="p">...)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="kr">then</span>
+            <span class="n">outputMessage</span> <span class="o">=</span> <span class="nb">string.format</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="p">...)</span>
+        <span class="kr">end</span>
+
+        <span class="c1">-- Prefix the message with the default header.</span>
+        <span class="kr">return</span> <span class="n">header</span> <span class="o">..</span> <span class="n">outputMessage</span>
+    <span class="kr">end</span>
+<span class="p">}</span>
+</code></pre></div>
+Notice how in the above code, we used <code>msg</code> to capture the first variadic argument. The above formatter would result in these log messages
+<div class="highlight"><pre><span></span><code><span class="n">log</span><span class="p">:</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;My table: %s&quot;</span><span class="p">,</span> <span class="p">{</span><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">})</span>
+<span class="n">log</span><span class="p">:</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Encoded table: %s&quot;</span><span class="p">,</span> <span class="n">json</span><span class="p">.</span><span class="n">encode</span><span class="p">,</span> <span class="p">{</span><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">})</span>
+</code></pre></div>
+being printed as:
+<div class="highlight"><pre><span></span><code>[my awesome mod | main.lua | INFO] My table: table: 0x18b33be8
+[my awesome mod | main.lua | INFO] Encoded table: function: 0x18515738
+</code></pre></div>
+In particular, the above formatter does not prettyprint tables nor does it lazily evaluate its function arguments.</p>
+</div>
+<p>Note that formatters are synchronized between all loggers belonging to the same mod, so you only need to update the formatter in one place. If customizing the formatter, it is best to do it at the very beginning of your <code>main.lua</code> file, before importing any other files. This ensures that all logging messages will use your formatter.</p>
 
 
 
@@ -19490,7 +19933,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="February 18, 2023 19:29:59">February 18, 2023 19:29:59</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 19, 2025 10:11:48">April 19, 2025 10:11:48</span>
   </span>
 
     
