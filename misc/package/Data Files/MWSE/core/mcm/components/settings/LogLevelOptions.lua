@@ -2,10 +2,10 @@
 local Parent = require("mcm.components.settings.Dropdown")
 local Logger = require("logging.logger")
 
---- @class mwseMCMLogOptions : mwseMCMDropdown
+--- @class mwseMCMLogLevelOptions : mwseMCMDropdown
 --- @field logger mwseLogger
-local LogOptions = Parent:new()
-LogOptions.options = {
+local LogLevelOptions = Parent:new()
+LogLevelOptions.options = {
 	{ label = mwse.mcm.i18n("Trace"), value = "TRACE" },
 	{ label = mwse.mcm.i18n("Debug"), value = "DEBUG" },
 	{ label = mwse.mcm.i18n("Info"),  value = "INFO" },
@@ -13,14 +13,14 @@ LogOptions.options = {
 	{ label = mwse.mcm.i18n("Error"), value = "ERROR" },
 	{ label = mwse.mcm.i18n("None"),  value = "NONE" },
 }
-LogOptions.description = mwse.mcm.i18n("Log options description")
+LogLevelOptions.description = mwse.mcm.i18n("Log options description")
 
----@class LogOptions.new.data
+---@class mwseMCMLogLevelOptions.new.data
 ---@field logger mwseLogger|string
 
 ---@param data LogOptions.new.data
----@return mwseMCMLogOptions
-function LogOptions:new(data)
+---@return mwseMCMLogLevelOptions
+function LogLevelOptions:new(data)
 	local logger = data.logger
 	if not logger then
 		error("No logger provided!", 2)
@@ -39,13 +39,13 @@ function LogOptions:new(data)
 	return Parent.new(self, data)
 end
 
-function LogOptions:updateLogLevel()
+function LogLevelOptions:updateLogLevel()
 	self.logger:setLogLevel(self.variable.value)
 end
 
-function LogOptions:update()
+function LogLevelOptions:update()
 	self:updateLogLevel()
 	Parent.update(self)
 end
 
-return LogOptions
+return LogLevelOptions
