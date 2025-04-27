@@ -244,8 +244,10 @@ local result = myObject:distanceXY(vec)
 ??? example "Example: Items on bookshelves."
 
 	Let's say you want to make a function that checks if two ingredients are close together. This will involve looking at the distance between two `tes3reference`s.
-One way to do this would be to use the normal `tes3vector3:distance` method, but this has a drawback: it doesn't work consistently with ingredients on bookshelves. If two ingredients are on the same shelf, their `z`-coordinates contribute very little to the distance between them, while the situation is reversed for ingredients on different shelves.
-This problem is remedied by using `tes3vector3:distanceXY` as follows:
+
+	One way to do this would be to use the normal `tes3vector3:distance` method, but this has a drawback: it doesn't work consistently with ingredients on bookshelves. If two ingredients are on the same shelf, their `z`-coordinates contribute very little to the distance between them, while the situation is reversed for ingredients on different shelves.
+
+	This problem is remedied by using `tes3vector3:distanceXY` as follows:
 
 	```lua
 	-- Check if two items are on the same bookshelf
@@ -443,6 +445,44 @@ local lerpedVector = myObject:lerp(toVector, transition)
 
 ***
 
+### `max`
+<div class="search_terms" style="display: none">max</div>
+
+Returns a vector containing the maximum values for each component of the given vectors.
+
+```lua
+local result = myObject:max(other)
+```
+
+**Parameters**:
+
+* `other` ([tes3vector3](../types/tes3vector3.md))
+
+**Returns**:
+
+* `result` ([tes3vector3](../types/tes3vector3.md))
+
+***
+
+### `min`
+<div class="search_terms" style="display: none">min</div>
+
+Returns a vector containing the minimum values for each component of the given vectors.
+
+```lua
+local result = myObject:min(other)
+```
+
+**Parameters**:
+
+* `other` ([tes3vector3](../types/tes3vector3.md))
+
+**Returns**:
+
+* `result` ([tes3vector3](../types/tes3vector3.md))
+
+***
+
 ### `negate`
 <div class="search_terms" style="display: none">negate</div>
 
@@ -541,13 +581,88 @@ local vector = tes3vector3.new(x, y, z)
 
 ***
 
+### `ones`
+<div class="search_terms" style="display: none">ones</div>
+
+Creates a new vector with all components set to 1.
+
+```lua
+local vector = tes3vector3.ones()
+```
+
+**Returns**:
+
+* `vector` ([tes3vector3](../types/tes3vector3.md))
+
+***
+
+### `unitX`
+<div class="search_terms" style="display: none">unitx</div>
+
+Creates a new vector pointing along the positive X axis.
+
+```lua
+local vector = tes3vector3.unitX()
+```
+
+**Returns**:
+
+* `vector` ([tes3vector3](../types/tes3vector3.md))
+
+***
+
+### `unitY`
+<div class="search_terms" style="display: none">unity</div>
+
+Creates a new vector pointing along the positive Y axis.
+
+```lua
+local vector = tes3vector3.unitY()
+```
+
+**Returns**:
+
+* `vector` ([tes3vector3](../types/tes3vector3.md))
+
+***
+
+### `unitZ`
+<div class="search_terms" style="display: none">unitz</div>
+
+Creates a new vector pointing along the positive Z axis.
+
+```lua
+local vector = tes3vector3.unitZ()
+```
+
+**Returns**:
+
+* `vector` ([tes3vector3](../types/tes3vector3.md))
+
+***
+
+### `zeroes`
+<div class="search_terms" style="display: none">zeroes</div>
+
+Creates a new vector with all components set to 0.
+
+```lua
+local vector = tes3vector3.zeroes()
+```
+
+**Returns**:
+
+* `vector` ([tes3vector3](../types/tes3vector3.md))
+
+***
+
 ## Math Operations
 
 ### Addition (`+`)
 
 | Left operand type | Right operand type | Result type | Description |
 | ----------------- | ------------------ | ----------- | ----------- |
-| [tes3vector3](../types/tes3vector3.md) | number | [tes3vector3](../types/tes3vector3.md) | Standard vector addition. |
+| [tes3vector3](../types/tes3vector3.md) | number | [tes3vector3](../types/tes3vector3.md) | Add the given number to each of the vector's components. |
 | [tes3vector3](../types/tes3vector3.md) | [tes3vector3](../types/tes3vector3.md) | [tes3vector3](../types/tes3vector3.md) | Standard vector addition. |
 
 ***
@@ -572,7 +687,7 @@ local vector = tes3vector3.new(x, y, z)
 
 | Left operand type | Right operand type | Result type | Description |
 | ----------------- | ------------------ | ----------- | ----------- |
-| [tes3vector3](../types/tes3vector3.md) | [tes3vector3](../types/tes3vector3.md) | [tes3vector3](../types/tes3vector3.md) | The per-element multiplication of two vectors. |
+| [tes3vector3](../types/tes3vector3.md) | [tes3vector3](../types/tes3vector3.md) | [tes3vector3](../types/tes3vector3.md) | The per-element multiplication of two vectors, also known as [Hadamard product](https://en.wikipedia.org/wiki/Hadamard_product_(matrices)). |
 | [tes3vector3](../types/tes3vector3.md) | number | [tes3vector3](../types/tes3vector3.md) | Multiplies the vector by a scalar. |
 
 ***
@@ -581,7 +696,7 @@ local vector = tes3vector3.new(x, y, z)
 
 | Left operand type | Right operand type | Result type | Description |
 | ----------------- | ------------------ | ----------- | ----------- |
-| [tes3vector3](../types/tes3vector3.md) | number | [tes3vector3](../types/tes3vector3.md) | Standard vector subtraction. |
+| [tes3vector3](../types/tes3vector3.md) | number | [tes3vector3](../types/tes3vector3.md) | Subtracts given number from each of the vector's components. |
 | [tes3vector3](../types/tes3vector3.md) | [tes3vector3](../types/tes3vector3.md) | [tes3vector3](../types/tes3vector3.md) | Standard vector subtraction. |
 
 ***

@@ -289,6 +289,21 @@ local result = myObject:toRotation()
 
 ## Functions
 
+### `identity`
+<div class="search_terms" style="display: none">identity</div>
+
+Creates a new identity quaternion.
+
+```lua
+local quaternion = niQuaternion.identity()
+```
+
+**Returns**:
+
+* `quaternion` ([niQuaternion](../types/niQuaternion.md))
+
+***
+
 ### `new`
 <div class="search_terms" style="display: none">new</div>
 
@@ -317,7 +332,7 @@ local quaternion = niQuaternion.new(w, x, y, z)
 
 | Left operand type | Right operand type | Result type | Description |
 | ----------------- | ------------------ | ----------- | ----------- |
-| [niQuaternion](../types/niQuaternion.md) | [niQuaternion](../types/niQuaternion.md) | [niQuaternion](../types/niQuaternion.md) | Multiplies two quaternions. The end effect is that the resulting rotation quaternion is equal to the rotation of both quaternions. |
+| [niQuaternion](../types/niQuaternion.md) | [niQuaternion](../types/niQuaternion.md) | [niQuaternion](../types/niQuaternion.md) | Multiplies two quaternions. The end effect is that the resulting rotation quaternion is equal to the combined rotation of both quaternions. |
 
 ***
 
@@ -325,5 +340,5 @@ local quaternion = niQuaternion.new(w, x, y, z)
 
 | Result type | Description |
 | ----------- | ----------- |
-| [niQuaternion](../types/niQuaternion.md) | Unary negation. |
+| [niQuaternion](../types/niQuaternion.md) | Unary negation. The resulting quaternion represents the same rotation. It's used to get the closest rotation to another quaternion. `if q1:dot(targetQuat) < 0` then the closest path to reach `targetQuat` is `-targetQuat`. Used in the `slerp` method. |
 

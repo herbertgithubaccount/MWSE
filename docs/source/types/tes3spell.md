@@ -8,7 +8,7 @@
 
 A spell game object.
 
-This type inherits the following: [tes3object](../types/tes3object.md), [tes3baseObject](../types/tes3baseObject.md)
+This type inherits the following: [tes3object](../types/tes3object.md), [tes3baseObject](../types/tes3baseObject.md).
 ## Properties
 
 ### `alwaysSucceeds`
@@ -105,15 +105,15 @@ The spell's cast type. Maps to [`tes3.spellType`](https://mwse.github.io/MWSE/re
 	
 	--- @param magicSource tes3spell|tes3enchantment|tes3alchemy
 	local function isSpellHostile(magicSource)
-	    for _, effect in ipairs(magicSource.effects) do
-	        if (effect.object.isHarmful) then
+		for _, effect in ipairs(magicSource.effects) do
+			if (effect.object.isHarmful) then
 				-- If one of the spell's effects is harmful, then
 				-- `true` is returned and function ends here.
-	            return true
-	        end
-	    end
+				return true
+			end
+		end
 		-- If no harmful effect was found then return `false`.
-	    return false
+		return false
 	end
 
 	```
@@ -142,10 +142,76 @@ A bit field for the spell's flags.
 
 ***
 
+### `isAbility`
+<div class="search_terms" style="display: none">isability, ability</div>
+
+*Read-only*. `true` if the spell is an ability. This is equivalent to checking the `.castType` property against the constant.
+
+**Returns**:
+
+* `result` (boolean)
+
+***
+
 ### `isActiveCast`
 <div class="search_terms" style="display: none">isactivecast, activecast</div>
 
 *Read-only*. True if the spell is actively cast. If false, the spell's effects are always passively affecting the owner.
+
+**Returns**:
+
+* `result` (boolean)
+
+***
+
+### `isBlightDisease`
+<div class="search_terms" style="display: none">isblightdisease, blightdisease</div>
+
+*Read-only*. `true` if the spell is a blight disease. This is equivalent to checking the `.castType` property against the constant.
+
+**Returns**:
+
+* `result` (boolean)
+
+***
+
+### `isCommonDisease`
+<div class="search_terms" style="display: none">iscommondisease, commondisease</div>
+
+*Read-only*. `true` if the spell is a common disease. This is equivalent to checking the `.castType` property against the constant.
+
+**Returns**:
+
+* `result` (boolean)
+
+***
+
+### `isCorprusDisease`
+<div class="search_terms" style="display: none">iscorprusdisease, corprusdisease</div>
+
+*Read-only*. `true` if the spell is a blight disease with a corprus effect. This is equivalent to checking the `.castType` property against the constant, combined with using `:hasEffect` to check for corprus.
+
+**Returns**:
+
+* `result` (boolean)
+
+***
+
+### `isCurse`
+<div class="search_terms" style="display: none">iscurse, curse</div>
+
+*Read-only*. `true` if the spell is a curse. This is equivalent to checking the `.castType` property against the constant.
+
+**Returns**:
+
+* `result` (boolean)
+
+***
+
+### `isDisease`
+<div class="search_terms" style="display: none">isdisease, disease</div>
+
+*Read-only*. `true` if the spell is a common or blight disease. This is equivalent to checking the `.castType` property against the constants.
 
 **Returns**:
 
@@ -164,10 +230,32 @@ True if this object is an editor marker for a gameplay location. These include t
 
 ***
 
+### `isPower`
+<div class="search_terms" style="display: none">ispower, power</div>
+
+*Read-only*. `true` if the spell is a power. This is equivalent to checking the `.castType` property against the constant.
+
+**Returns**:
+
+* `result` (boolean)
+
+***
+
+### `isSpell`
+<div class="search_terms" style="display: none">isspell, spell</div>
+
+*Read-only*. `true` if the spell is a normal spell. This is equivalent to checking the `.castType` property against the constant.
+
+**Returns**:
+
+* `result` (boolean)
+
+***
+
 ### `magickaCost`
 <div class="search_terms" style="display: none">magickacost</div>
 
-No description yet available.
+The magicka used when attempting to cast this spell. For an auto-calculated spell, it is updated when the spell is created or loaded.
 
 **Returns**:
 
@@ -310,7 +398,7 @@ The scene graph node for this object.
 ### `sourceless`
 <div class="search_terms" style="display: none">sourceless</div>
 
-The soruceless flag of the object.
+The sourceless flag of the object.
 
 **Returns**:
 
@@ -326,6 +414,19 @@ The soruceless flag of the object.
 **Returns**:
 
 * `result` (string)
+
+***
+
+### `supportsActivate`
+<div class="search_terms" style="display: none">supportsactivate</div>
+
+If true, the object supports activation. This includes all the items (excluding non-carriable lights), actors outside combat, activators, containers and doors.
+
+However, the activation of such an object may still be blocked via mwscript or a Lua script.
+
+**Returns**:
+
+* `result` (boolean)
 
 ***
 
@@ -426,13 +527,28 @@ local result = myObject:getActiveEffectCount()
 
 ***
 
+### `getAutoCalcMagickaCost`
+<div class="search_terms" style="display: none">getautocalcmagickacost, autocalcmagickacost</div>
+
+Calculates and returns the magicka cost as if this spell was an autoCalc spell. It only returns the magicka value and does not update the spell's magickaCost.
+
+```lua
+local result = myObject:getAutoCalcMagickaCost()
+```
+
+**Returns**:
+
+* `result` (number)
+
+***
+
 ### `getFirstIndexOfEffect`
 <div class="search_terms" style="display: none">getfirstindexofeffect, firstindexofeffect</div>
 
-Gets the first index of an effect ID in the spell effect table. Returns `-1` if provided effect doesn't exist in the spell
+Gets the first index of an effect ID in the spell effect table. Returns `-1` if provided effect doesn't exist in the spell.
 
 ```lua
-local result = myObject:getFirstIndexOfEffect(effectId)
+local index = myObject:getFirstIndexOfEffect(effectId)
 ```
 
 **Parameters**:
@@ -441,7 +557,7 @@ local result = myObject:getFirstIndexOfEffect(effectId)
 
 **Returns**:
 
-* `result` (integer)
+* `index` (integer): Returns 0-based index. Because Lua's arrays are 1-based, to index the spell's `effects` array with the return value add 1.
 
 ***
 
@@ -480,4 +596,23 @@ local schoolID = myObject:getLeastProficientSchool(actor)
 **Returns**:
 
 * `schoolID` ([tes3.magicSchool](../references/magic-schools.md), nil): The least proficient school ID (from [`tes3.magicSchool`](https://mwse.github.io/MWSE/references/magic-schools/) table), or `nil` if the spell has no valid effects.
+
+***
+
+### `hasEffect`
+<div class="search_terms" style="display: none">haseffect, effect</div>
+
+Determines if the spell contains an effect with the given id.
+
+```lua
+local hasEffect = myObject:hasEffect(effectId)
+```
+
+**Parameters**:
+
+* `effectId` ([tes3.effect](../references/magic-effects.md), integer): A value from [`tes3.effect`](https://mwse.github.io/MWSE/references/magic-effects/) table.
+
+**Returns**:
+
+* `hasEffect` (boolean): Returns `true` if the spell contains the given effect id, otherwise `false`.
 

@@ -46,8 +46,8 @@ namespace mwse::lua::event {
 		eventData["witness"] = m_Witness->reference;
 		eventData["witnessMobile"] = m_Witness;
 
+		eventData["crimeEvent"] = m_Crime;
+
 		return eventData;
 	}
-
-	bool CrimeWitnessedEvent::m_EventEnabled = false;
 }

@@ -14,6 +14,7 @@ namespace NI {
 	struct ColorA;
 	struct ColorData;
 	struct DirectionalLight;
+	struct DX8Renderer;
 	struct DynamicEffect;
 	struct ExtraData;
 	struct FogProperty;
@@ -46,6 +47,7 @@ namespace NI {
 	struct PointLight;
 	struct PosData;
 	struct Property;
+	struct PropertyState;
 	struct Quaternion;
 	struct RenderedTexture;
 	struct Renderer;
@@ -73,6 +75,7 @@ namespace NI {
 	struct TriShape;
 	struct TriShapeData;
 	struct VertexColorProperty;
+	struct WireframeProperty;
 	struct ZBufferProperty;
 
 	struct AVObject_vTable;

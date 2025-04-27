@@ -4,9 +4,11 @@
 
 #include "TES3UIManager.h"
 
-#include "TES3MobileNPC.h"
-#include "TES3UIElement.h"
+#include "TES3MobilePlayer.h"
 #include "TES3Race.h"
+#include "TES3Reference.h"
+#include "TES3UIElement.h"
+#include "TES3WorldController.h"
 
 #include "LuaManager.h"
 
@@ -88,6 +90,23 @@ namespace TES3 {
 	// NPC
 	//
 
+	Race* NPC::getRace() const {
+		return race;
+	}
+
+	void NPC::setRace(Race* newRace) {
+		race = newRace;
+		if (race) {
+			setModelPath("");
+		}
+
+		const auto worldController = WorldController::get();
+		const auto macp = worldController ? worldController->getMobilePlayer() : nullptr;
+		if (macp && macp->npcInstance->baseNPC == this) {
+			macp->firstPerson->setRace(race);
+		}
+	}
+
 	std::reference_wrapper<unsigned char[8]> NPC::getAttributes() {
 		return std::ref(attributes);
 	}
@@ -111,16 +130,24 @@ namespace TES3 {
 	}
 
 	//
-	// NPC Instance
+	// Shared code
+	//
+	// The engine functions getDisposition and modDisposition are a special case.
+	// These functions only uses virtual functions, and can be used with both NPC and NPCInstance objects.
+	// This may have been due to templating or compiler de-duplication.
+	// The majority of uses are with NPCInstances. It may be called on the base NPC class if the NPC has not been cloned yet.
 	//
 
-	const auto TES3_NPCInstance_calculateDisposition = reinterpret_cast<int (__thiscall*)(const NPCInstance*, bool)>(0x4DA330);
+	const auto TES3_NPCorNPCInstance_calculateDisposition = reinterpret_cast<int (__thiscall*)(const NPCInstance*, bool)>(0x4DA330);
 	int NPCInstance::getDisposition(bool clamp) {
+		// As a shared function, the `this` pointer may be TES3::NPC* or TES3::NPCInstance*.
+
 		// Call the base function without clamping.
-		auto disposition = TES3_NPCInstance_calculateDisposition(this, false);
+		auto disposition = TES3_NPCorNPCInstance_calculateDisposition(this, false);
 
 		// Fire off our event.
-		if (mwse::lua::event::DispositionEvent::getEventEnabled()) {
+		// Avoid firing events on a base NPC, due to the lack of a reference.
+		if (isClone() && mwse::lua::event::DispositionEvent::getEventEnabled()) {
 			auto stateHandle = mwse::lua::LuaManager::getInstance().getThreadSafeStateHandle();
 			sol::table payload = stateHandle.triggerEvent(new mwse::lua::event::DispositionEvent(this, disposition, clamp));
 			if (payload.valid()) {
@@ -135,6 +162,10 @@ namespace TES3 {
 
 		return disposition;
 	}
+
+	//
+	// NPC Instance
+	//
 
 	const auto TES3_NPCInstance_reevaluateEquipment = reinterpret_cast<void(__thiscall*)(NPCInstance*)>(0x4D9A20);
 	void NPCInstance::reevaluateEquipment() {

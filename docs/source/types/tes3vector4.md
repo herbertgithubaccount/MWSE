@@ -176,6 +176,44 @@ local result = myObject:length()
 
 ***
 
+### `max`
+<div class="search_terms" style="display: none">max</div>
+
+Returns a vector containing the maximum values for each component of the given vectors.
+
+```lua
+local result = myObject:max(other)
+```
+
+**Parameters**:
+
+* `other` ([tes3vector4](../types/tes3vector4.md))
+
+**Returns**:
+
+* `result` ([tes3vector4](../types/tes3vector4.md))
+
+***
+
+### `min`
+<div class="search_terms" style="display: none">min</div>
+
+Returns a vector containing the minimum values for each component of the given vectors.
+
+```lua
+local result = myObject:min(other)
+```
+
+**Parameters**:
+
+* `other` ([tes3vector4](../types/tes3vector4.md))
+
+**Returns**:
+
+* `result` ([tes3vector4](../types/tes3vector4.md))
+
+***
+
 ## Functions
 
 ### `new`
@@ -230,7 +268,7 @@ local vector = tes3vector4.new(x, y, z, w)
 
 | Left operand type | Right operand type | Result type | Description |
 | ----------------- | ------------------ | ----------- | ----------- |
-| [tes3vector4](../types/tes3vector4.md) | [tes3vector4](../types/tes3vector4.md) | [tes3vector4](../types/tes3vector4.md) | The per-element multiplication of two vectors. |
+| [tes3vector4](../types/tes3vector4.md) | [tes3vector4](../types/tes3vector4.md) | [tes3vector4](../types/tes3vector4.md) | The per-element multiplication of two vectors, also known as [Hadamard product](https://en.wikipedia.org/wiki/Hadamard_product_(matrices)). |
 | [tes3vector4](../types/tes3vector4.md) | number | [tes3vector4](../types/tes3vector4.md) | Multiplies the vector by a scalar. |
 
 ***

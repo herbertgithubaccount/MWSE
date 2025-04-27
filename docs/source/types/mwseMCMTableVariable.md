@@ -10,7 +10,7 @@ A TableVariable takes a lua table and stores the variable in the `id` field in t
 
 The TableVariable can be used to save multiple changes to a config file only when the menu is closed. Load the config file with `mwse.loadConfig()`, pass it to any TableVariables in your MCM, and then save it using the `template:saveOnClose()` function.
 
-This type inherits the following: [mwseMCMVariable](../types/mwseMCMVariable.md)
+This type inherits the following: [mwseMCMVariable](../types/mwseMCMVariable.md).
 ## Properties
 
 ### `class`
@@ -64,7 +64,7 @@ Key in the config file used to store the variable.
 
 **Returns**:
 
-* `result` (string)
+* `result` (string, number)
 
 ***
 
@@ -152,7 +152,7 @@ local variable = myObject:new({ id = ..., table = ..., defaultSetting = ..., inG
 **Parameters**:
 
 * `variable` (table)
-	* `id` (string): Key in the config file used to store the variable.
+	* `id` (string, number): Key in the config file used to store the variable.
 	* `table` (table): The table to save the data to.
 	* `defaultSetting` (unknown): *Optional*. If `id` does not exist in the table, it will be initialised to this value.
 	* `inGameOnly` (boolean): *Default*: `false`. If true, the setting containing this variable will be disabled if the game is on main menu.

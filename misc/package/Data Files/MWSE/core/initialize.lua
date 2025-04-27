@@ -151,6 +151,31 @@ function dofile(path)
 	error("dofile: Could not resolve path " .. path)
 end
 
+local function addUserFriendlyNameToSolType(friendlyName, metatable)
+	metatable.__type.friendlyName = friendlyName
+end
+
+for friendlyName, maybeUserdataType in pairs(_G) do
+	pcall(addUserFriendlyNameToSolType, friendlyName, maybeUserdataType)
+end
+
+local function getUserdataTypeName(variable)
+    return variable.__type.friendlyName
+end
+
+local originalType = type
+function type(variable)
+	local baseType = originalType(variable)
+	if (baseType == "userdata") then
+		local success, typeName = pcall(getUserdataTypeName, variable)
+		if (success) then
+			return baseType, typeName
+		end
+	end
+	return baseType
+end
+
+
 -------------------------------------------------
 -- Global includes
 -------------------------------------------------
@@ -234,41 +259,6 @@ function mwse.loadTranslations(mod)
 	return setmetatable({ mod = mod }, i18nWrapper)
 end
 
-
--------------------------------------------------
--- Extend base API: math
--------------------------------------------------
-
--- Seed random number generator.
-math.randomseed(os.time())
-
-function math.lerp(v0, v1, t)
-	return (1 - t) * v0 + t * v1;
-end
-
-function math.clamp(value, low, high)
-	if (low > high) then
-		low, high = high, low
-	end
-	return math.max(low, math.min(high, value))
-end
-
-function math.remap(value, lowIn, highIn, lowOut, highOut)
-	return lowOut + (value - lowIn) * (highOut - lowOut) / (highIn - lowIn)
-end
-
-function math.round(value, digits)
-	local mult = 10 ^ (digits or 0)
-	return math.floor(value * mult + 0.5) / mult
-end
-
-function math.isclose(a, b, absoluteTolerance, relativeTolerance)
-	absoluteTolerance = absoluteTolerance or math.epsilon
-	relativeTolerance = relativeTolerance or 1e-9
-	return math.abs(a-b) <= math.max(relativeTolerance * math.max(math.abs(a), math.abs(b)), absoluteTolerance)
-end
-
-
 -------------------------------------------------
 -- Extend base API: table
 -------------------------------------------------
@@ -326,6 +316,47 @@ function table.find(t, value)
 	end
 end
 
+function table.contains(t, value) 
+	return table.find(t, value) ~= nil
+end
+
+
+function table.equal(t1, t2)
+
+	-- Try a quick basic equality check.
+	if (t1 == t2) then
+		return true
+	end
+
+	-- Make sure both inputs are tables.
+	if (type(t1) ~= "table" or type(t2) ~= "table") then
+		return false
+	end
+
+	-- Loop through pairs and see if all values match from t1 -> t2.
+	local size1 = 0
+	-- Store the function locally for faster function calls.
+	local eq = table.equal
+	for k, v1 in pairs(t1) do
+		-- Note: If `v1 ~= v2`, then the recursive call to `table.equal` will
+		-- result in a redundant comparison of `v1` and `v2`.
+		-- But, testing shows that for highly similar tables, this approach is faster
+		-- than only checking `not table.equal(v1, v2)`.
+		-- This is likely due to the overhead from function calls.
+
+		local v2 = t2[k]
+		if (v1 ~= v2 and not eq(v1, v2)) then
+			return false
+		end
+
+		size1 = size1 + 1
+	end
+
+	-- We can assume t1 == t2 if all values match for t1 -> t2 and both tables have the same size.
+	return size1 == table.size(t2)
+end
+
+
 function table.removevalue(t, value)
 	local i = table.find(t, value)
 	if (i ~= nil) then
@@ -338,8 +369,6 @@ end
 function table.copy(from, to)
 	if (to == nil) then
 		to = {}
-	elseif (type(from) ~= "table" or type(to) ~= "table") then
-		error("Arguments for table.copy must be tables.")
 	end
 
 	for k, v in pairs(from) do
@@ -364,10 +393,6 @@ function table.deepcopy(t)
 end
 
 function table.copymissing(to, from)
-	if (type(to) ~= "table" or type(from) ~= "table") then
-		error("Arguments for table.copymissing must be tables.")
-	end
-
 	for k, v in pairs(from) do
 		if (type(to[k]) == "table" and type(v) == "table") then
 			table.copymissing(to[k], v)
@@ -467,60 +492,66 @@ function table.wrapindex(t, index)
 	return newIndex
 end
 
+function table.shuffle(t, n)
+	n = n or #t
+	for i = n, 2, -1 do
+		local j = math.random(i)
+		t[i], t[j] = t[j], t[i]
+	end
+end
+
 
 -------------------------------------------------
 -- Extend base table: Add binary search/insert
 -------------------------------------------------
 
 --[[
-	table.binsearch( table, value [, compval [, reversed] ] )
+	table.binsearch( table, value [, comp [, findAll] ] )
 
-	Searches the table through BinarySearch for the given value.
-	If the  value is found:
-		it returns a table holding all the mathing indices (e.g. { startindice,endindice } )
-		endindice may be the same as startindice if only one matching indice was found
-	If compval is given:
-		then it must be a function that takes one value and returns a second value2,
-		to be compared with the input value, e.g.:
-		compvalue = function( value ) return value[1] end
-	If reversed is set to true:
-		then the search assumes that the table is sorted in reverse order (largest value at position 1)
-		note when reversed is given compval must be given as well, it can be nil/_ in this case
+	finds a value by performing a binary search.
+	If the `value` is found:
+		if `findAll` evaluates to true, then the lowest matching index and the highest matching index will be returned.
+		otherwise, the first index to match will be returned.
+	If `comp` is given:
+		comparisons will be performed as though the array was sorted via `table.sort(tbl, comp)`.
+	If `findAll == true`:
+		two indices will be returned, corresponding to the lowest and highest indices whose corresponding elements are equal to `value`.
 	Return value:
-		on success: a table holding matching indices (e.g. { startindice,endindice } )
+		on success: two integers: `lowestMatch, highestMatch`
 		on failure: nil
 ]]--
-local function default_fcompval( value ) return value end
-local function fcompf( a,b ) return a < b end
-local function fcompr( a,b ) return a > b end
-function table.binsearch( t,value,compval,reversed )
-	-- Initialise functions
-	local compval = compval or default_fcompval
-	local fcomp = reversed and fcompr or fcompf
-	--  Initialise numbers
-	local iStart,iEnd,iMid = 1,#t,0
+function table.binsearch(tbl, value, comp, findAll)
+	-- initialize the index variables
+	local first, last, midpt = 1, #tbl, 0
+	local floor = math.floor
+	comp = comp or function(a,b) return a < b end -- set to default if not given
 	-- Binary Search
-	while iStart <= iEnd do
+	while first <= last do
 		-- calculate middle
-		iMid = math.floor( (iStart+iEnd)/2 )
-		-- get compare value
-		local value2 = compval( t[iMid] )
-		-- get all values that match
-		if value == value2 then
-			local tfound,num = { iMid,iMid },iMid - 1
-			while value == compval( t[num] ) do
-				tfound[1],num = num,num - 1
+		midpt = floor((first + last) / 2)
+
+		if comp(value, tbl[midpt]) then -- `value < tbl[midpt]`
+
+			last = midpt - 1 -- value is in the first half
+
+		elseif comp(tbl[midpt], value) then -- `tbl[midpt] < value`
+
+			first = midpt + 1 -- value is in the second half
+
+		else -- `tbl[midpt] == value`
+
+			-- only want the first match? bail
+			if not findAll then return midpt, midpt end
+
+			-- find all the remaining matches
+			local lowestMatch, highestMatch = midpt, midpt
+			while value == tbl[lowestMatch - 1] do
+				lowestMatch = lowestMatch - 1
 			end
-			num = iMid + 1
-			while value == compval( t[num] ) do
-				tfound[2],num = num,num + 1
+			while value == tbl[highestMatch + 1] do
+				highestMatch = highestMatch + 1
 			end
-			return tfound
-		-- keep searching
-		elseif fcomp( value,value2 ) then
-			iEnd = iMid - 1
-		else
-			iStart = iMid + 1
+			return lowestMatch, highestMatch
 		end
 	end
 end
@@ -856,6 +887,30 @@ end
 
 
 -------------------------------------------------
+-- Extend our base API: yaml
+-------------------------------------------------
+
+function yaml.loadFile(fileName)
+	-- Load the contents of the file.
+	local f = io.open(fileName, "r")
+	if (f == nil) then
+		return nil, { reason = "Could not open file." }
+	end
+
+	local fileContents = f:read("*all")
+	f:close()
+
+	-- Return decoded yaml.
+	local status, resultOrError = pcall(yaml.decode, fileContents)
+	if (status) then
+		return resultOrError
+	else
+		return nil, resultOrError
+	end
+end
+
+
+-------------------------------------------------
 -- Extend our base API: mwse
 -------------------------------------------------
 
@@ -863,42 +918,55 @@ function mwse.log(str, ...)
 	print(tostring(str):format(...))
 end
 
--- This will convert the table keys that were converted to
--- strings when they were saved to json. This happens since
--- json dictionaries can only have string keys. Use defaults
--- table to check which keys are integers.
-local function restoreIntegerKeys(configTable, defaults)
-	for key, val in pairs(defaults or {}) do
-		local defaultKeyType = type(key)
-		local defaultValType = type(val)
-		local stringKey = tostring(key)
-		if ((defaultKeyType == "number") and
-			(configTable[stringKey] ~= nil)) then
-				configTable[key] = configTable[stringKey]
-				configTable[stringKey] = nil
+-- helper function for `mwse.loadConfig`.
+-- this function is responsible for:
+-- 1) restoring numeric keys (i.e. keys that should be numbers, but were turned into strings by `json.savefile`)
+-- 2) adding missing values to `config` that are present in `defaultConfig`
+--
+-- both of these things need to be done recursively, so it's not possible to use `table.copymissing`.
+-- (i.e., we may need to alternate between converting integer keys and adding missing values)
+---@param config table
+---@param defaultConfig table
+local function fixLoadedResult(config, defaultConfig)
+	local configValue
+	for key, defaultValue in pairs(defaultConfig) do
+		configValue = config[key]
+
+		-- check if we need to convert a string key to a numeric key
+		if configValue == nil and type(key) == "number" and config[tostring(key)] ~= nil then
+			config[key] = config[tostring(key)]
+			config[tostring(key)] = nil
+			configValue = config[key]
 		end
 
-		-- Handle subtables
-		if (defaultValType == "table") then
-			restoreIntegerKeys(configTable[key], defaults[key])
+		-- recheck the config value because it may have changed in the last code block
+		if configValue ~= nil then
+			-- if the default value is a table, we need to fix values recursively
+			if type(defaultValue) == "table" and type(configValue) == "table" then
+				fixLoadedResult(configValue, defaultValue)
+			else
+				-- no change needed
+			end
+		else -- configValue == nil
+			-- make sure the config gets a copy of any subtables
+			if type(defaultValue) == "table" then
+				config[key] = table.deepcopy(defaultValue)
+			else
+				config[key] = defaultValue
+			end
 		end
 	end
 end
 
 function mwse.loadConfig(fileName, defaults)
 	local result = json.loadfile(string.format("config\\%s", fileName))
-	local isDefaultsTable = (type(defaults) == "table")
 
-	if (result) then
-		if (isDefaultsTable) then
-			table.copymissing(result, defaults)
-		end
-	else
-		result = defaults
-	end
-	if (isDefaultsTable) then
-		restoreIntegerKeys(result, defaults)
-	end
+	if not result and not defaults then return end
+
+	result = result or {} -- make sure the user gets something
+
+	-- the for loop in `fixLoadedResult` wont be iterated at all if `defaults` evaluates to false
+	fixLoadedResult(result, defaults or {})
 
 	return result
 end
@@ -985,6 +1053,13 @@ mwse.saveConfig("MWSE", userConfig)
 -------------------------------------------------
 
 function tes3.claimSpellEffectId(name, id)
+	-- Ignore duplicate claims.
+	if (name and tes3.effect[name] == id) then
+		return
+	end
+
+	assert(type(name) == "string", "Name must be a string.")
+	assert(type(id) == "number", "ID must be a number.")
 	assert(table.find(tes3.effect, id) == nil, "Effect ID is not unique.")
 	assert(tes3.effect[name] == nil, "Effect name is not unique.")
 	tes3.effect[name] = id
@@ -994,9 +1069,16 @@ end
 tes3.installDirectory = lfs.currentdir()
 
 local safeObjectHandle = require("mwse_safeObjectHandle")
+--- @return mwseSafeObjectHandle
 function tes3.makeSafeObjectHandle(object)
 	return safeObjectHandle.new(object)
 end
+
+-------------------------------------------------
+-- Extend base API: math
+-------------------------------------------------
+
+dofile("math")
 
 
 -------------------------------------------------
