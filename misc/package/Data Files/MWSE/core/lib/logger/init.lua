@@ -122,7 +122,6 @@ local LOG_FILE_PARENT_DIR = "Data Files/MWSE/logs"
 local Logger = {}
 
 -- Make it available globally.
-mwse.Logger = Logger
 mwse.logLevel = logLevel
 
 --- Indexed by `modDir`. Keeps track of all the loggers associated with a given mod.
