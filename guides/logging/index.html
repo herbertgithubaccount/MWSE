@@ -6624,12 +6624,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../../types/mwseLogger.Record/" class="md-nav__link">
+      <a href="../../types/mwseLogger/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    mwseLogger.Record
+    mwseLogger
     
   </span>
   
@@ -6647,12 +6647,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../../types/mwseLogger/" class="md-nav__link">
+      <a href="../../types/mwseLoggerRecord/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    mwseLogger
+    mwseLoggerRecord
     
   </span>
   
@@ -19840,7 +19840,7 @@ All of the above settings only need to be specified (at most) once, because logg
 The <code>formatter</code> is responsible for piecing together all of its arguments to generate a coherent (and helpful) logging message. It receives the following parameters:</p>
 <ul>
 <li><code>self</code>: The <code>mwseLogger</code> that issued the logging statement.</li>
-<li><code>logRecord</code>: A <a href="../../types/mwseLogger.Record/"><code>mwseLogger.Record</code></a> created by the logging statement. This is basically just a table that, among other things, stores:<ul>
+<li><code>logRecord</code>: A <a href="../types/mwseLogger.Record.md"><code>mwseLogger.Record</code></a> created by the logging statement. This is basically just a table that, among other things, stores:<ul>
 <li>The line number that the log message originated from. This is only available if the relevant MWSE setting is enabled.</li>
 <li>The <code>mwseLogger.logLevel</code> of the log statement. (e.g., this will be <code>logLevel.debug</code> if the log statement was created by the <code>Logger:debug</code> method.)</li>
 <li>A timestamp that marks when the logging call was issued. This is only available if the logger in question had <code>log.includeTimestamp == true</code>.</li>

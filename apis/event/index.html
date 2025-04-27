@@ -6513,12 +6513,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../../types/mwseLogger.Record/" class="md-nav__link">
+      <a href="../../types/mwseLogger/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    mwseLogger.Record
+    mwseLogger
     
   </span>
   
@@ -6536,12 +6536,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../../types/mwseLogger/" class="md-nav__link">
+      <a href="../../types/mwseLoggerRecord/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    mwseLogger
+    mwseLoggerRecord
     
   </span>
   
@@ -19503,6 +19503,52 @@
 <ul>
 <li><code>resultPayload</code> (table): This is the modified payload after all the callback functions registered on the triggered event are executed. Returning <code>true</code> from a callback function will set both <code>payload.block</code> and <code>payload.claim</code> to <code>true</code>. After an event has been claimed by a certain function (by setting the <code>claim</code> in eventData to <code>true</code>) no other registered callback functions will be executed on this event trigger. This is useful if you wish to implement blocking system for your event. In addition, this can be used to the same effect as some MWSE's events allow changing some of the <code>eventData</code> values to modify the behavior of the vanilla mechanics.</li>
 </ul>
+<details class="example">
+<summary>Example: Custom event with <code>e.block</code> support</summary>
+<div class="highlight"><pre><span></span><code><span class="c1">-- Definition for my custom event eventData table</span>
+<span class="c1">--- @class myCustomEventData</span>
+<span class="c1">--- @field count integer</span>
+<span class="c1">--- @field item tes3item</span>
+<span class="c1">--- @field itemData tes3itemData|nil</span>
+<span class="c1">--- @field equipped boolean</span>
+
+<span class="c1">--- @param e myCustomEventData</span>
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">doMyCustomLogic</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="c1">-- We can do some logic accounting for the changes callbacks made in the eventData table.</span>
+    <span class="c1">-- ...</span>
+<span class="kr">end</span>
+
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">somethingHappened</span><span class="p">()</span>
+    <span class="c1">-- Assemble the eventData table</span>
+    <span class="c1">--- @type myCustomEventData</span>
+    <span class="kd">local</span> <span class="n">e</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">item</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">getObject</span><span class="p">(</span><span class="s2">&quot;myItemId&quot;</span><span class="p">)</span> <span class="cm">--[[@as tes3misc]]</span><span class="p">,</span>
+        <span class="n">itemData</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+        <span class="n">equipped</span> <span class="o">=</span> <span class="kc">false</span>
+    <span class="p">}</span>
+
+    <span class="c1">-- First we trigger the pre-event that supports blocking our logic from happening.</span>
+    <span class="kd">local</span> <span class="n">eventResult</span> <span class="o">=</span> <span class="n">event</span><span class="p">.</span><span class="n">trigger</span><span class="p">(</span><span class="s2">&quot;myMod:myCustomEvent&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="p">{</span> <span class="n">filter</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">item</span><span class="p">.</span><span class="n">id</span><span class="p">:</span><span class="n">lower</span><span class="p">()</span> <span class="p">})</span>
+
+    <span class="c1">-- Was the event blocked by one of the callbacks?</span>
+    <span class="kr">if</span> <span class="n">eventResult</span><span class="p">.</span><span class="n">block</span> <span class="kr">then</span>
+        <span class="c1">-- Nothing to do then :)</span>
+        <span class="kr">return</span>
+    <span class="kr">end</span>
+
+    <span class="n">doMyCustomLogic</span><span class="p">(</span><span class="n">eventResult</span><span class="p">)</span>
+
+    <span class="c1">-- We have to reset these fields to be able to reuse</span>
+    <span class="c1">-- eventResult table in the next call to event.trigger</span>
+    <span class="n">eventResult</span><span class="p">.</span><span class="n">block</span> <span class="o">=</span> <span class="kc">nil</span>
+    <span class="n">eventResult</span><span class="p">.</span><span class="n">claim</span> <span class="o">=</span> <span class="kc">nil</span>
+
+    <span class="c1">-- Now we can trigger off the post-event</span>
+    <span class="n">event</span><span class="p">.</span><span class="n">trigger</span><span class="p">(</span><span class="s2">&quot;myMod:postMyCustomEvent&quot;</span><span class="p">,</span> <span class="n">eventResult</span><span class="p">,</span> <span class="p">{</span> <span class="n">filter</span> <span class="o">=</span> <span class="n">eventResult</span><span class="p">.</span><span class="n">item</span><span class="p">.</span><span class="n">id</span><span class="p">:</span><span class="n">lower</span><span class="p">()</span> <span class="p">})</span>
+<span class="kr">end</span>
+</code></pre></div>
+</details>
 <hr />
 <h3 id="eventunregister"><code>event.unregister</code><a class="headerlink" href="#eventunregister" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">unregister</div>
@@ -19541,7 +19587,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="September 2, 2024 13:12:25">September 2, 2024 13:12:25</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 27, 2025 10:22:18">April 27, 2025 10:22:18</span>
   </span>
 
     

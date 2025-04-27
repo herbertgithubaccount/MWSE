@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../mwseLogger.Record/">
+        <link rel="prev" href="../mwseKeyMouseCombo/">
       
       
-        <link rel="next" href="../mwseLuaExecutor/">
+        <link rel="next" href="../mwseLoggerRecord/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -6408,29 +6408,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../mwseLogger.Record/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    mwseLogger.Record
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -6784,6 +6761,29 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mwseLoggerRecord/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    mwseLoggerRecord
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -19942,14 +19942,14 @@ This does not affect how the "body" of log messages are displayed.</p>
 <h3 id="formatter"><code>formatter</code><a class="headerlink" href="#formatter" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">formatter</div>
 
-<p>This is an advanced option and should be used with care. 
+<p>This is an advanced option and should be used with care.
 It allows specifying a custom formatter, allowing for more fine-tuned control over how log messages are printed.
 If supplying a formatter, you are responsible for also including the "header" portion of the log.
 These can be created by calling the <code>protected</code> <code>makeHeader</code> method.</p>
 <p>Some examples can be found in the <code>logger/formatters.lua</code> folder of the core library.</p>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (fun(self: <a href="./">mwseLogger</a>, record: <a href="../mwseLogger.Record/">mwseLogger.Record</a>, ...: string|any|fun(...)): string)</li>
+<li><code>result</code> (fun(self: <a href="./">mwseLogger</a>, record: <a href="../mwseLoggerRecord/">mwseLoggerRecord</a>, ...: string|any|fun(...)): string)</li>
 </ul>
 <hr />
 <h3 id="includetimestamp"><code>includeTimestamp</code><a class="headerlink" href="#includetimestamp" title="Permanent link">⚓︎</a></h3>
@@ -20124,13 +20124,13 @@ Use whichever one you prefer.</p>
 <div class="search_terms" style="display: none">setformatter, formatter</div>
 
 <p>Changes the <code>formatter</code> field of this logger.</p>
-<p>This function does exactly the same thing as writing <code>log.formatter = newFormatter</code>. 
+<p>This function does exactly the same thing as writing <code>log.formatter = newFormatter</code>.
 Use whichever one you prefer.</p>
 <div class="highlight"><pre><span></span><code><span class="n">myObject</span><span class="p">:</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">newFormatter</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>newFormatter</code> (fun(self: <a href="./">mwseLogger</a>, record: <a href="../mwseLogger.Record/">mwseLogger.Record</a>, ...: string|any|fun(...)): string)</li>
+<li><code>newFormatter</code> (fun(self: <a href="./">mwseLogger</a>, record: <a href="../mwseLoggerRecord/">mwseLoggerRecord</a>, ...: string|any|fun(...)): string)</li>
 </ul>
 <hr />
 <h3 id="setincludetimestamp"><code>setIncludeTimestamp</code><a class="headerlink" href="#setincludetimestamp" title="Permanent link">⚓︎</a></h3>
@@ -20300,7 +20300,7 @@ You may also supply a version number directly as an argument to this method.</p>
 <li><code>outputFile</code> (boolean, string): <em>Default</em>: <code>false</code>. The path of the output file to write log messages in. This path is taken relative to <code>Data Files/MWSE/logs/</code>. If not provided, log messages will be written to <code>MWSE.log</code>. If <code>true</code>, then the <code>modDir</code> will be used as the output path.</li>
 <li><code>includeTimestamp</code> (boolean): <em>Default</em>: <code>true</code>. Should timestamps be included in logging messages? The timestamps are relative to the time that the game was launched.</li>
 <li><code>abbreviateHeader</code> (boolean): <em>Default</em>: <code>false</code>. Should the headers be abbreviated?</li>
-<li><code>formatter</code> (fun(self: Logger, record: <a href="../mwseLogger.Record/">mwseLogger.Record</a>, ...: string|any|fun(...)): string): <em>Optional</em>. A custom formatter. This lets you customize how your logging messages are formatted. If not provided, the default formatter will be used.</li>
+<li><code>formatter</code> (fun(self: Logger, record: <a href="../mwseLoggerRecord/">mwseLoggerRecord</a>, ...: string|any|fun(...)): string): <em>Optional</em>. A custom formatter. This lets you customize how your logging messages are formatted. If not provided, the default formatter will be used.</li>
 </ul>
 </li>
 </ul>
@@ -20330,7 +20330,7 @@ You may also supply a version number directly as an argument to this method.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 19, 2025 10:26:06">April 19, 2025 10:26:06</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 27, 2025 10:18:36">April 27, 2025 10:18:36</span>
   </span>
 
     
