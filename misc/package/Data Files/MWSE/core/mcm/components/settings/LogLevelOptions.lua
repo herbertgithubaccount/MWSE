@@ -4,7 +4,7 @@
 
 local Parent = require("mcm.components.settings.Dropdown")
 
-local loggerPathResolver = require("logger.pathResolver")
+local pathResolver = require("logger.pathResolver")
 
 
 --- @class mwseMCMLogLevelOptions : mwseMCMDropdown
@@ -30,12 +30,12 @@ function LogLevelOptions:new(data)
 	local logger = data.logger
 
 	if logger == nil then
-		local modName, autoModDir = loggerPathResolver(2)
+		local modName, autoModDir = pathResolver.getModNameAndDirAndFilepath(2)
 		local modDir = autoModDir or modName
 		logger = mwse.Logger.get(modDir)
 	elseif type(logger) == "string" then
 		--- @cast logger string
-		-- Support resolving the logger by passed mod name.
+		-- Support resolving the logger by passing the mod's name.
 		logger = mwse.Logger.getLogger(logger) --- @diagnostic disable-line
 	end
 

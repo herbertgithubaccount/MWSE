@@ -2,16 +2,19 @@ local GET_MOD_INFO_MAX_ITERS = 15
 local BAD_FILEPATHS = {
 	[string.lower("@Data Files\\MWSE\\core\\initialize.lua")] = true,
 	[string.lower("@Data Files\\MWSE\\core\\startLuaMods.lua")] = true,
+	[string.lower("@.\\Data Files\\MWSE\\core\\lib\\event.lua")] = true,
+	[string.lower("@Data Files\\MWSE\\core\\lib\\event.lua")] = true,
 	[string.lower("=[C]")] = true,
 }
 
+local pathResolver = {}
 
 ---Returns the `modName`, `modDir`, and `filepath` of the currently executing file.
 ---@param offset integer? The stack offset to use when calling `debug.getinfo`. DEFAULT: `0`.
 ---@return string? modName
 ---@return string? modDir
 ---@return string? filepath
-local function getModNameAndDirAndFilepath(offset)
+function pathResolver.getModNameAndDirAndFilepath(offset)
 
 	-- =========================================================================
 	-- STEP 1: Get the filepath of the file that wants to construct a Logger.
@@ -129,4 +132,4 @@ local function getModNameAndDirAndFilepath(offset)
 	return modName, modDir, relativeFilePath
 end
 
-return getModNameAndDirAndFilepath
+return pathResolver

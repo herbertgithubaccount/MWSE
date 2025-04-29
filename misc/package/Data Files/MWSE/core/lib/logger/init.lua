@@ -12,7 +12,7 @@ Credit to Greatness7 as well, for the ideas of adding a `format` parameter and a
 
 local socket = require("socket")
 local FORMATTERS = require("logger.formatters")
-local getModNameAndDirAndFilepath = require("logger.pathResolver")
+local pathResolver = require("logger.pathResolver")
 
 -- The time that the game was launched.
 ---@type number
@@ -396,7 +396,7 @@ function Logger.new(params)
 	local filepath = params.filepath
 
 	if not (modName and modDir and filepath) then
-		local autoModName, autoModDir, autofilepath = getModNameAndDirAndFilepath(2)
+		local autoModName, autoModDir, autofilepath = pathResolver.getModNameAndDirAndFilepath(2)
 		modName = modName or autoModName
 		modDir = modDir or autoModDir or modName
 		filepath = filepath or autofilepath

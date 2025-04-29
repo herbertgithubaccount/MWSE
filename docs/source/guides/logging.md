@@ -65,6 +65,17 @@ Meanwhile, if the same code was run in `mods/My Awesome Mod/someOtherFile.lua`, 
 ```
 To make things simpler, all loggers created for a mod will synchronize their settings. For example, if you update `log.level` in `mods/My Awesome Mod/main.lua`, then the logging level will also be updated in `mods/My Awesome Mod/someOtherFile.lua`.
 
+### Creating an MCM to Control Log Level
+
+To configure your logging level use the `LogLevelOptions` MCM setting. It allows the user to change the logging level inside a dropdown:
+
+```lua
+settings:createLogLevelOptions{
+	config = mcmConfig,
+	configKey = "logLevel",
+}
+```
+
 ## In more Detail
 
 ### Log Levels
@@ -72,7 +83,7 @@ To make things simpler, all loggers created for a mod will synchronize their set
 There are 5 logging levels:
 
 1. `ERROR`: Something bad happened.
-2. `WARN`: Something something potentially bad happened, or something bad _almost_ happened.
+2. `WARN`: Something potentially bad happened, or something bad _almost_ happened.
 3. `INFO`: Something normal and expected has happened. (i.e., the mod was loaded.)
 4. `DEBUG`: Used to record the inner workings of a mod. Useful for troubleshooting.
 5. `TRACE`: Basically like `DEBUG`, but more extreme. Also useful for debugging code that gets run very frequently.
@@ -226,18 +237,6 @@ local log = mwse.Logger.new{
 All of the above settings only need to be specified (at most) once, because loggers synchronize their settings. This means that, for example, it's enough to specify the `modName` parameter in a single file.
 
 In your main.lua, place the logger creation before other source files are included or required. This is to ensure the logger is created and accessible to these other source files.
-
-
-## Creating an MCM to control Log Level
-
-Built-in logger is well-integrated into the MCM. A premade MCM setting called `LogLevelOptions` allows the user to change the logging level inside a dropdown:
-
-```lua
-settings:createLogLevelOptions{
-	config = mcmConfig,
-	configKey = "logLevel",
-}
-```
 
 ## Advanced: Customizing the formatter
 
