@@ -2084,8 +2084,7 @@ namespace mwse::patch {
 		}
 
 		// Try to print the lua stack trace.
-		log::getLog() << "Lua traceback at time of crash:" << std::endl;
-		lua::logStackTrace();
+		lua::logStackTrace("Lua traceback at time of crash:");
 
 		// Try to print any relevant mwscript information.
 		if (TES3::Script::currentlyExecutingScript) {
