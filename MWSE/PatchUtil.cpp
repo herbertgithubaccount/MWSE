@@ -2105,6 +2105,23 @@ namespace mwse::patch {
 			TES3::DataHandler::currentlyLoadingMeshesMutex.unlock();
 		}
 
+		// Dump Warnings.txt.
+		if (std::filesystem::exists("Warnings.txt")) {
+			std::ifstream warnings("Warnings.txt");
+			if (warnings.is_open()) {
+				log::getLog() << "Game warnings:" << std::endl;
+				std::unordered_set<std::string> seenLines;
+				std::string line;
+				while (std::getline(warnings, line)) {
+					if (seenLines.find(line) == seenLines.end()) {
+						std::cout << " > " << line << std::endl;
+						seenLines.insert(line);
+					}
+				}
+				warnings.close();
+			}
+		}
+
 		// Open the file.
 		auto hFile = CreateFile("MWSE_MiniDump.dmp", GENERIC_READ | GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
