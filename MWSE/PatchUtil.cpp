@@ -56,6 +56,7 @@
 #include "CodePatchUtil.h"
 #include "MWSEConfig.h"
 #include "MWSEDefs.h"
+#include "CrashLogExceptionHandler.hpp"
 
 namespace mwse::patch {
 
@@ -2078,7 +2079,7 @@ namespace mwse::patch {
 		// Display the memory usage in the log.
 		PROCESS_MEMORY_COUNTERS_EX memCounter = {};
 		GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS*)&memCounter, sizeof(memCounter));
-		log::getLog() << "Memory usage: " << std::dec << memCounter.PrivateUsage << " bytes." << std::endl;
+		//log::getLog() << "Memory usage: " << std::dec << memCounter.PrivateUsage << " bytes." << std::endl;
 		if (memCounter.PrivateUsage > 3650722201) {
 			log::getLog() << "  Memory usage is high. Crash is likely due to running out of memory." << std::endl;
 		}
@@ -2152,6 +2153,9 @@ namespace mwse::patch {
 			else {
 				log::getLog() << "MiniDump creation successful." << std::endl;
 			}
+
+			log::getLog() << "Attempting To Log Crash \n";
+			CrashLogger::AttemptLog(pep);
 
 			// Close the file
 			CloseHandle(hFile);
