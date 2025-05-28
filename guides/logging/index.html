@@ -758,6 +758,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#creating-an-mcm-to-control-log-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating an MCM to Control Log Level
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -860,15 +869,6 @@
   <a href="#creating-a-new-logger" class="md-nav__link">
     <span class="md-ellipsis">
       Creating a new Logger
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#creating-an-mcm-to-control-log-level" class="md-nav__link">
-    <span class="md-ellipsis">
-      Creating an MCM to control Log Level
     </span>
   </a>
   
@@ -6144,6 +6144,8 @@
       
         
       
+        
+      
     
     
     
@@ -7366,6 +7368,29 @@
   
   <span class="md-ellipsis">
     mwseMCMKeyBinder
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../types/mwseMCMLogLevelOptions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    mwseMCMLogLevelOptions
     
   </span>
   
@@ -19501,6 +19526,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#creating-an-mcm-to-control-log-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating an MCM to Control Log Level
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -19609,15 +19643,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#creating-an-mcm-to-control-log-level" class="md-nav__link">
-    <span class="md-ellipsis">
-      Creating an MCM to control Log Level
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#advanced-customizing-the-formatter" class="md-nav__link">
     <span class="md-ellipsis">
       Advanced: Customizing the formatter
@@ -19646,7 +19671,7 @@
 
 
 <h1 id="logging">Logging<a class="headerlink" href="#logging" title="Permanent link">⚓︎</a></h1>
-<p>The MWSE Logger library allows you to create a logger for your mod. It can be a helpful tool when debugging mods, and is designed to be simple to use. </p>
+<p>The MWSE Logger library allows you to create a logger for your mod. It can be a helpful tool when debugging mods, and is designed to be simple to use.</p>
 <h2 id="quickstart">Quickstart<a class="headerlink" href="#quickstart" title="Permanent link">⚓︎</a></h2>
 <h3 id="creating-a-logger">Creating a Logger<a class="headerlink" href="#creating-a-logger" title="Permanent link">⚓︎</a></h3>
 <p>For the vast majority of use-cases, it's enough to write:
@@ -19690,14 +19715,21 @@ Meanwhile, if the same code was run in <code>mods/My Awesome Mod/someOtherFile.l
 <div class="highlight"><pre><span></span><code>[My Awesome Mod | someotherfile.lua | INFO] Hello world
 </code></pre></div>
 To make things simpler, all loggers created for a mod will synchronize their settings. For example, if you update <code>log.level</code> in <code>mods/My Awesome Mod/main.lua</code>, then the logging level will also be updated in <code>mods/My Awesome Mod/someOtherFile.lua</code>.</p>
+<h3 id="creating-an-mcm-to-control-log-level">Creating an MCM to Control Log Level<a class="headerlink" href="#creating-an-mcm-to-control-log-level" title="Permanent link">⚓︎</a></h3>
+<p>To configure your logging level use the <code>LogLevelOptions</code> MCM setting. It allows the user to change the logging level inside a dropdown:</p>
+<div class="highlight"><pre><span></span><code><span class="n">settings</span><span class="p">:</span><span class="n">createLogLevelOptions</span><span class="p">{</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">mcmConfig</span><span class="p">,</span>
+    <span class="n">configKey</span> <span class="o">=</span> <span class="s2">&quot;logLevel&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div>
 <h2 id="in-more-detail">In more Detail<a class="headerlink" href="#in-more-detail" title="Permanent link">⚓︎</a></h2>
 <h3 id="log-levels">Log Levels<a class="headerlink" href="#log-levels" title="Permanent link">⚓︎</a></h3>
 <p>There are 5 logging levels:</p>
 <ol>
 <li><code>ERROR</code>: Something bad happened.</li>
-<li><code>WARN</code>: Something something potentially bad happened, or something bad <em>almost</em> happened.</li>
-<li><code>INFO</code>: Something normal and expected has happened. (i.e., the mod was loaded.) </li>
-<li><code>DEBUG</code>: Used to record the inner workings of a mod. Useful for troubleshooting. </li>
+<li><code>WARN</code>: Something potentially bad happened, or something bad <em>almost</em> happened.</li>
+<li><code>INFO</code>: Something normal and expected has happened. (i.e., the mod was loaded.)</li>
+<li><code>DEBUG</code>: Used to record the inner workings of a mod. Useful for troubleshooting.</li>
 <li><code>TRACE</code>: Basically like <code>DEBUG</code>, but more extreme. Also useful for debugging code that gets run very frequently.</li>
 </ol>
 <p>Log messages may be written as follows:
@@ -19728,7 +19760,7 @@ To make things simpler, all loggers created for a mod will synchronize their set
 <span class="n">log</span><span class="p">(</span><span class="s2">&quot;The keys of my table are: %s.&quot;</span><span class="p">,</span> <span class="n">json</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="n">table</span><span class="p">.</span><span class="n">keys</span><span class="p">(</span><span class="n">myTable</span><span class="p">)))</span>
 </code></pre></div>
 The key difference is that, in the first case, <code>json.encode(table.keys(myTable))</code> is computed <em>after</em> ensuring that the logging level is high enough.</p>
-<p>In general, 
+<p>In general,
 <div class="highlight"><pre><span></span><code><span class="n">log</span><span class="p">(</span><span class="n">formatString</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="p">...)</span>
 </code></pre></div>
 becomes
@@ -19740,8 +19772,8 @@ This means that it's also possible to define <code>func</code> somewhere else an
 <div class="highlight"><pre><span></span><code><span class="n">log</span><span class="p">(</span><span class="s2">&quot;The keys of my table are: %s.&quot;</span><span class="p">,</span> <span class="n">table</span><span class="p">.</span><span class="n">keys</span><span class="p">,</span> <span class="n">myTable</span><span class="p">)</span>
 </code></pre></div>
 It's also possible for <code>func</code> to return multiple formatting parameters.</p>
-<p>One other form of lazy evaluation is supported as well: 
-<div class="highlight"><pre><span></span><code><span class="n">log</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="p">...)</span> 
+<p>One other form of lazy evaluation is supported as well:
+<div class="highlight"><pre><span></span><code><span class="n">log</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="p">...)</span>
 <span class="c1">-- expands to</span>
 <span class="n">log</span><span class="p">(</span><span class="n">func</span><span class="p">(...))</span>
 </code></pre></div>
@@ -19791,7 +19823,7 @@ Note that enabling line numbers does incur a performance penalty, which is why i
 <h2 id="creating-a-new-logger">Creating a new Logger<a class="headerlink" href="#creating-a-new-logger" title="Permanent link">⚓︎</a></h2>
 <p>The simplest way to create a new logger is to simply call <code>mwse.Logger.new()</code> and have all the relevant information be retrieved automatically. But it's also possible to pass additional parameters to the <code>new</code> function, all of which are optional:
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">log</span> <span class="o">=</span> <span class="n">mwse</span><span class="p">.</span><span class="n">Logger</span><span class="p">.</span><span class="n">new</span><span class="p">{</span>
-    <span class="c1">-- Manually specify the name of your mod. </span>
+    <span class="c1">-- Manually specify the name of your mod.</span>
     <span class="c1">-- This can be done if aren&#39;t happy with the way that the logger automatically retrieves the name of your mod.</span>
     <span class="n">modName</span> <span class="o">=</span> <span class="s2">&quot;My Mod&quot;</span><span class="p">,</span>
     <span class="c1">-- A way to differentiate loggers that are part of the same file.</span>
@@ -19801,7 +19833,7 @@ Note that enabling line numbers does incur a performance penalty, which is why i
     <span class="n">level</span> <span class="o">=</span> <span class="s2">&quot;ERROR&quot;</span><span class="p">,</span>
     <span class="c1">-- Print the log messages in a separate file.</span>
     <span class="c1">-- Can be either true, false, or a string specifying the name of the file.</span>
-    <span class="n">outputFile</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> 
+    <span class="n">outputFile</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
     <span class="c1">-- Include a timestamp in log messages.</span>
     <span class="n">includeTimestamp</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
     <span class="c1">-- Shorten the header portion of the logging messages.</span>
@@ -19813,26 +19845,6 @@ Note that enabling line numbers does incur a performance penalty, which is why i
 </code></pre></div>
 All of the above settings only need to be specified (at most) once, because loggers synchronize their settings. This means that, for example, it's enough to specify the <code>modName</code> parameter in a single file.</p>
 <p>In your main.lua, place the logger creation before other source files are included or required. This is to ensure the logger is created and accessible to these other source files.</p>
-<h2 id="creating-an-mcm-to-control-log-level">Creating an MCM to control Log Level<a class="headerlink" href="#creating-an-mcm-to-control-log-level" title="Permanent link">⚓︎</a></h2>
-<p>In your MCM config, create a dropdown with the following options:
-<div class="highlight"><pre><span></span><code><span class="n">settings</span><span class="p">:</span><span class="n">createDropdown</span><span class="p">{</span>
-    <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Logging Level&quot;</span><span class="p">,</span>
-    <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Set the log level.&quot;</span><span class="p">,</span>
-    <span class="n">config</span> <span class="o">=</span> <span class="n">mcmConfig</span><span class="p">,</span>
-    <span class="n">configKey</span> <span class="o">=</span> <span class="s2">&quot;logLevel&quot;</span><span class="p">,</span>
-    <span class="n">options</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="p">{</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;TRACE&quot;</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;TRACE&quot;</span><span class="p">},</span>
-        <span class="p">{</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;DEBUG&quot;</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;DEBUG&quot;</span><span class="p">},</span>
-        <span class="p">{</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;INFO&quot;</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;INFO&quot;</span><span class="p">},</span>
-        <span class="p">{</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;WARN&quot;</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;WARN&quot;</span><span class="p">},</span>
-        <span class="p">{</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;ERROR&quot;</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;ERROR&quot;</span><span class="p">},</span>
-        <span class="p">{</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;NONE&quot;</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;NONE&quot;</span><span class="p">},</span>
-    <span class="p">},</span>
-    <span class="n">callback</span> <span class="o">=</span> <span class="kr">function</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
-        <span class="n">log</span><span class="p">.</span><span class="n">level</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">variable</span><span class="p">.</span><span class="n">value</span>
-    <span class="kr">end</span>
-<span class="p">}</span>
-</code></pre></div></p>
 <h2 id="advanced-customizing-the-formatter">Advanced: Customizing the formatter<a class="headerlink" href="#advanced-customizing-the-formatter" title="Permanent link">⚓︎</a></h2>
 <p>Under the hood, logging messages are printed by executing code that (in its simplest form) is analogous to:
 <div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">formatter</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">logRecord</span><span class="p">,</span> <span class="p">...))</span>
@@ -19933,7 +19945,7 @@ In particular, the above formatter does not prettyprint tables nor does it lazil
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 19, 2025 10:11:48 UTC">April 19, 2025 10:11:48</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 29, 2025 18:55:44 UTC">April 29, 2025 18:55:44</span>
   </span>
 
     

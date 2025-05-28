@@ -5928,6 +5928,8 @@
       
         
       
+        
+      
     
     
     
@@ -7016,6 +7018,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#createlogleveloptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      createLogLevelOptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#createmousebinder" class="md-nav__link">
     <span class="md-ellipsis">
       createMouseBinder
@@ -7774,6 +7785,29 @@
   
   <span class="md-ellipsis">
     mwseMCMKeyBinder
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mwseMCMLogLevelOptions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    mwseMCMLogLevelOptions
     
   </span>
   
@@ -20258,6 +20292,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#createlogleveloptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      createLogLevelOptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#createmousebinder" class="md-nav__link">
     <span class="md-ellipsis">
       createMouseBinder
@@ -21112,6 +21155,46 @@ This is equivalent to manually writing <code>showDefaultSetting = true</code> in
 <li><code>parentBlock</code> (<a href="../tes3uiElement/">tes3uiElement</a>)</li>
 </ul>
 <hr />
+<h3 id="createlogleveloptions"><code>createLogLevelOptions</code><a class="headerlink" href="#createlogleveloptions" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">createlogleveloptions, logleveloptions</div>
+
+<p>Creates a new nested LogLevelOptions setting. This is a specialized dropdown with a default label and description text provided for convenience when using MWSE's logger.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">dropdown</span> <span class="o">=</span> <span class="n">myObject</span><span class="p">:</span><span class="n">createLogLevelOptions</span><span class="p">({</span> <span class="n">label</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">description</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">logger</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">options</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">variable</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">config</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">defaultConfig</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">configKey</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">converter</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">defaultSetting</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">showDefaultSetting</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">idleColor</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">overColor</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">pressedColor</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">callback</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">inGameOnly</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">restartRequired</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">restartRequiredMessage</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">indent</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">childIndent</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">paddingBottom</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">childSpacing</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">postCreate</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
+</code></pre></div>
+<p><strong>Parameters</strong>:</p>
+<ul>
+<li><code>data</code> (table)<ul>
+<li><code>label</code> (string): <em>Optional</em>. The text shown above the dropdown. If not provided, the default label text will be used.</li>
+<li><code>description</code> (string): <em>Optional</em>. If in a <a href="../mwseMCMSideBarPage/">Sidebar Page</a>, the description will be shown on mouseover. If not provided, the default description will be used.</li>
+<li><code>logger</code> (<a href="../mwseLogger/">mwseLogger</a>, string): <em>Optional</em>. A logger whose logging level will be changed. The setting will try to automatically resolve your mod's logger using the same mechanism as <code>mwse.Logger.new</code>. If this isn't possible, an error message will be printed to the <code>MWSE.log</code>. In such a case, you can pass your mod's logger or mod name.</li>
+<li><code>options</code> (<a href="../mwseMCMDropdownOption/">mwseMCMDropdownOption</a>[]): <em>Optional</em>. This table holds the text and variable value for each of the dropdown's options.</li>
+<li><code>variable</code> (<a href="../mwseMCMVariable/">mwseMCMVariable</a>, <a href="../mwseMCMSettingNewVariable/">mwseMCMSettingNewVariable</a>): <em>Optional</em>. A variable for this setting. If not provided, this setting will try to create a variable using the <code>config</code> and <code>configKey</code> parameters, if possible.</li>
+<li><code>config</code> (table): <em>Default</em>: <code>parentComponent.config</code>. The config to use when creating a <a href="../mwseMCMTableVariable/"><code>mwseMCMTableVariable</code></a> for this <code>Setting</code>. If provided, it will override the config stored in <code>parentComponent</code>. Otherwise, the value in <code>parentComponent</code> will be used.</li>
+<li><code>defaultConfig</code> (table): <em>Default</em>: <code>parentComponent.defaultConfig</code>. The <code>defaultConfig</code> to use when creating a <a href="../mwseMCMTableVariable/"><code>mwseMCMTableVariable</code></a> for this <code>Setting</code>. If provided, it will override the <code>defaultConfig</code> stored in <code>parentComponent</code>. Otherwise, the value in <code>parentComponent</code> will be used.</li>
+<li><code>configKey</code> (string, number): <em>Optional</em>. The <code>configKey</code> used to create a new <a href="../mwseMCMTableVariable/"><code>mwseMCMTableVariable</code></a>. If this is provided, along with a <code>config</code> (which may be inherited from the <code>parentComponent</code>), then a new <a href="../mwseMCMTableVariable/"><code>mwseMCMTableVariable</code></a> variable will be created for this setting.</li>
+<li><code>converter</code> (fun(newValue: unknown): unknown): <em>Optional</em>. A converter to use for this component's <code>variable</code>.</li>
+<li><code>defaultSetting</code> (unknown): <em>Optional</em>. If <code>defaultSetting</code> wasn't passed in the <code>variable</code> table, can be passed here. The new variable will be initialized to this value. If not provided, then the value in <code>defaultConfig</code> will be used, if possible.</li>
+<li><code>showDefaultSetting</code> (boolean): <em>Default</em>: <code>parentComponent.showDefaultSetting</code>. If <code>true</code>, and in a <a href="../mwseMCMSideBarPage/">Sidebar Page</a>, then the <code>defaultSetting</code> of this setting's <code>variable</code> will be shown below its <code>description</code>. The <code>defaultSetting</code> will be formatted in accordance with the <code>convertToLabelValue</code> function. <strong>Note:</strong> This parameter does not update the <code>description</code> field.</li>
+<li><code>idleColor</code> (number[]): <em>Default</em>: <code>tes3ui.getPalette(tes3.palette.normalColor)</code>. The idle color for dropdown. Needs to be an RGB trio in the range [0.0, 1.0].</li>
+<li><code>overColor</code> (number[]): <em>Default</em>: <code>tes3ui.getPalette(tes3.palette.normalOverColor)</code>. The color used when the mouse if hovering over the dropdown. Needs to be an RGB trio in the range [0.0, 1.0].</li>
+<li><code>pressedColor</code> (number[]): <em>Default</em>: <code>tes3ui.getPalette(tes3.palette.normalPressedColor)</code>. The color used when the dropdown is being pressed. Needs to be an RGB trio in the range [0.0, 1.0].</li>
+<li><code>callback</code> (fun(self: <a href="../mwseMCMLogLevelOptions/">mwseMCMLogLevelOptions</a>)): <em>Optional</em>. The custom function called when the player interacts with this Setting.</li>
+<li><code>inGameOnly</code> (boolean): <em>Default</em>: <code>false</code>. If true, the setting is disabled while the game is on main menu.</li>
+<li><code>restartRequired</code> (boolean): <em>Default</em>: <code>false</code>. If true, updating this Setting will notify the player to restart the game.</li>
+<li><code>restartRequiredMessage</code> (string): <em>Optional</em>. The message shown if restartRequired is triggered. The default text is a localized version of: "The game must be restarted before this change will come into effect."</li>
+<li><code>indent</code> (integer): <em>Default</em>: <code>12</code>. The left padding size in pixels. Only used if the <code>childIndent</code> isn't set on the parent component.</li>
+<li><code>childIndent</code> (integer): <em>Optional</em>. The left padding size in pixels. Used on all the child components.</li>
+<li><code>paddingBottom</code> (integer): <em>Default</em>: <code>4</code>. The bottom border size in pixels. Only used if the <code>childSpacing</code> is unset on the parent component.</li>
+<li><code>childSpacing</code> (integer): <em>Optional</em>. The bottom border size in pixels. Used on all the child components.</li>
+<li><code>postCreate</code> (fun(self: <a href="../mwseMCMLogLevelOptions/">mwseMCMLogLevelOptions</a>)): <em>Optional</em>. Can define a custom formatting function to make adjustments to any element saved in <code>self.elements</code>.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>dropdown</code> (<a href="../mwseMCMLogLevelOptions/">mwseMCMLogLevelOptions</a>)</li>
+</ul>
+<hr />
 <h3 id="createmousebinder"><code>createMouseBinder</code><a class="headerlink" href="#createmousebinder" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">createmousebinder, mousebinder</div>
 
@@ -21656,7 +21739,7 @@ This is equivalent to manually writing <code>showDefaultSetting = true</code> in
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="January 24, 2025 15:38:12 UTC">January 24, 2025 15:38:12</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="May 28, 2025 19:59:16 UTC">May 28, 2025 19:59:16</span>
   </span>
 
     
