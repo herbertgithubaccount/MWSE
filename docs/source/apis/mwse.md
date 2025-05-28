@@ -798,7 +798,7 @@ local button = mwse.mcm.createKeyBinder(parent, { label = ..., description = ...
 ### `mwse.mcm.createLogLevelOptions`
 <div class="search_terms" style="display: none">mcm.createlogleveloptions</div>
 
-Creates a new LogLevelOptions setting inside given `parent` menu.
+Creates a new LogLevelOptions setting inside given `parent` menu. This is a specialized dropdown with a default label and description text provided for convenience when using MWSE's logger.
 
 The canonical way to use this function is to pass a `parent` and `data` arguments. If passing only `data` table, LogLevelOptions's UI element tree won't be created. To do so, use LogLevelOptions's `create` method:
 
@@ -818,8 +818,8 @@ local dropdown = mwse.mcm.createLogLevelOptions(parent, { label = ..., descripti
 
 * `parent` ([tes3uiElement](../types/tes3uiElement.md), mwse.mcm.createLogLevelOptions.data): The UI element inside which the new LogLevelOptions will be created.
 * `data` (table): *Optional*.
-	* `label` (string): *Optional*. The text shown above the dropdown.
-	* `description` (string): *Optional*. If in a [Sidebar Page](../types/mwseMCMSideBarPage.md), the description will be shown on mouseover.
+	* `label` (string): *Optional*. The text shown above the dropdown. If not provided, the default label text will be used.
+	* `description` (string): *Optional*. If in a [Sidebar Page](../types/mwseMCMSideBarPage.md), the description will be shown on mouseover. If not provided, the default description will be used.
 	* `logger` ([mwseLogger](../types/mwseLogger.md), string): *Optional*. A logger whose logging level will be changed. The setting will try to automatically resolve your mod's logger using the same mechanism as `mwse.Logger.new`. If this isn't possible, an error message will be printed to the `MWSE.log`. In such a case, you can pass your mod's logger or mod name.
 	* `options` ([mwseMCMDropdownOption](../types/mwseMCMDropdownOption.md)[]): *Optional*. This table holds the text and variable value for each of the dropdown's options.
 	* `variable` ([mwseMCMVariable](../types/mwseMCMVariable.md), [mwseMCMSettingNewVariable](../types/mwseMCMSettingNewVariable.md)): *Optional*. A variable for this setting. If not provided, this setting will try to create a variable using the `config` and `configKey` parameters, if possible.

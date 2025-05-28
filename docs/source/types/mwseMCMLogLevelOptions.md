@@ -6,7 +6,7 @@
 	More information: https://github.com/MWSE/MWSE/tree/master/docs
 -->
 
-A premade setting to adjust log level setting for your [logger](https://mwse.github.io/MWSE/types/mwseLogger/) with minimal setup.
+A premade setting to adjust log level setting for your [logger](https://mwse.github.io/MWSE/types/mwseLogger/) with minimal setup. For convenience, it provides default label text and description.
 
 This type inherits the following: [mwseMCMDropdown](../types/mwseMCMDropdown.md), [mwseMCMSetting](../types/mwseMCMSetting.md), [mwseMCMComponent](../types/mwseMCMComponent.md).
 ## Properties
@@ -667,8 +667,8 @@ local dropdown = myObject:new({ label = ..., description = ..., logger = ..., op
 **Parameters**:
 
 * `data` (table): *Optional*.
-	* `label` (string): *Optional*. The text shown above the dropdown.
-	* `description` (string): *Optional*. If in a [Sidebar Page](../types/mwseMCMSideBarPage.md), the description will be shown on mouseover.
+	* `label` (string): *Optional*. The text shown above the dropdown. If not provided, the default label text will be used.
+	* `description` (string): *Optional*. If in a [Sidebar Page](../types/mwseMCMSideBarPage.md), the description will be shown on mouseover. If not provided, the default description will be used.
 	* `logger` ([mwseLogger](../types/mwseLogger.md), string): *Optional*. A logger whose logging level will be changed. The setting will try to automatically resolve your mod's logger using the same mechanism as `mwse.Logger.new`. If this isn't possible, an error message will be printed to the `MWSE.log`. In such a case, you can pass your mod's logger or mod name.
 	* `options` ([mwseMCMDropdownOption](../types/mwseMCMDropdownOption.md)[]): *Optional*. This table holds the text and variable value for each of the dropdown's options.
 	* `variable` ([mwseMCMVariable](../types/mwseMCMVariable.md), [mwseMCMSettingNewVariable](../types/mwseMCMSettingNewVariable.md)): *Optional*. A variable for this setting.

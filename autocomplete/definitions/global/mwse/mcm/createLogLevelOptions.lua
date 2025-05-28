@@ -1,6 +1,6 @@
 return {
 	type = "function",
-	description = [[Creates a new LogLevelOptions setting inside given `parent` menu.
+	description = [[Creates a new LogLevelOptions setting inside given `parent` menu. This is a specialized dropdown with a default label and description text provided for convenience when using MWSE's logger.
 
 The canonical way to use this function is to pass a `parent` and `data` arguments. If passing only `data` table, LogLevelOptions's UI element tree won't be created. To do so, use LogLevelOptions's `create` method:
 
@@ -18,8 +18,8 @@ The same is done by this function if you pass both `parent` and `data` arguments
 			type = "table",
 			optional = true,
 			tableParams = {
-				{ name = "label", type = "string", optional = true, description = "The text shown above the dropdown." },
-				{ name = "description", type = "string", optional = true, description = "If in a [Sidebar Page](../types/mwseMCMSideBarPage.md), the description will be shown on mouseover." },
+				{ name = "label", type = "string", optional = true, description = "The text shown above the dropdown. If not provided, the default label text will be used." },
+				{ name = "description", type = "string", optional = true, description = "If in a [Sidebar Page](../types/mwseMCMSideBarPage.md), the description will be shown on mouseover. If not provided, the default description will be used." },
 				{ name = "logger", type = "mwseLogger|string", optional = true, description = "A logger whose logging level will be changed. The setting will try to automatically resolve your mod's logger using the same mechanism as `mwse.Logger.new`. If this isn't possible, an error message will be printed to the `MWSE.log`. In such a case, you can pass your mod's logger or mod name." },
 				{ name = "options", type = "mwseMCMDropdownOption[]", optional = true, description = "This table holds the text and variable value for each of the dropdown's options." },
 				{ name = "variable", type = "mwseMCMVariable|mwseMCMSettingNewVariable", optional = true,

@@ -829,7 +829,7 @@ function mwse.mcm.createKeyBinder(parent, data) end
 --- @field childSpacing integer? *Optional*. The bottom border size in pixels. Used on all the child components.
 --- @field postCreate nil|fun(self: mwseMCMKeyBinder) *Optional*. Can define a custom formatting function to make adjustments to any element saved in `self.elements`.
 
---- Creates a new LogLevelOptions setting inside given `parent` menu.
+--- Creates a new LogLevelOptions setting inside given `parent` menu. This is a specialized dropdown with a default label and description text provided for convenience when using MWSE's logger.
 --- 
 --- The canonical way to use this function is to pass a `parent` and `data` arguments. If passing only `data` table, LogLevelOptions's UI element tree won't be created. To do so, use LogLevelOptions's `create` method:
 --- 
@@ -843,9 +843,9 @@ function mwse.mcm.createKeyBinder(parent, data) end
 --- @param parent tes3uiElement|mwse.mcm.createLogLevelOptions.data The UI element inside which the new LogLevelOptions will be created.
 --- @param data mwse.mcm.createLogLevelOptions.data? This table accepts the following values:
 --- 
---- `label`: string? — *Optional*. The text shown above the dropdown.
+--- `label`: string? — *Optional*. The text shown above the dropdown. If not provided, the default label text will be used.
 --- 
---- `description`: string? — *Optional*. If in a [Sidebar Page](../types/mwseMCMSideBarPage.md), the description will be shown on mouseover.
+--- `description`: string? — *Optional*. If in a [Sidebar Page](../types/mwseMCMSideBarPage.md), the description will be shown on mouseover. If not provided, the default description will be used.
 --- 
 --- `logger`: mwseLogger|string|nil — *Optional*. A logger whose logging level will be changed. The setting will try to automatically resolve your mod's logger using the same mechanism as `mwse.Logger.new`. If this isn't possible, an error message will be printed to the `MWSE.log`. In such a case, you can pass your mod's logger or mod name.
 --- 
@@ -893,8 +893,8 @@ function mwse.mcm.createLogLevelOptions(parent, data) end
 
 ---Table parameter definitions for `mwse.mcm.createLogLevelOptions`.
 --- @class mwse.mcm.createLogLevelOptions.data
---- @field label string? *Optional*. The text shown above the dropdown.
---- @field description string? *Optional*. If in a [Sidebar Page](../types/mwseMCMSideBarPage.md), the description will be shown on mouseover.
+--- @field label string? *Optional*. The text shown above the dropdown. If not provided, the default label text will be used.
+--- @field description string? *Optional*. If in a [Sidebar Page](../types/mwseMCMSideBarPage.md), the description will be shown on mouseover. If not provided, the default description will be used.
 --- @field logger mwseLogger|string|nil *Optional*. A logger whose logging level will be changed. The setting will try to automatically resolve your mod's logger using the same mechanism as `mwse.Logger.new`. If this isn't possible, an error message will be printed to the `MWSE.log`. In such a case, you can pass your mod's logger or mod name.
 --- @field options mwseMCMDropdownOption[]? *Optional*. This table holds the text and variable value for each of the dropdown's options.
 --- @field variable mwseMCMConfigVariable|mwseMCMCustomVariable|mwseMCMGlobal|mwseMCMGlobalBoolean|mwseMCMPlayerData|mwseMCMTableVariable|mwseMCMVariable|mwseMCMSettingNewVariable|nil *Optional*. A variable for this setting. If not provided, this setting will try to create a variable using the `config` and `configKey` parameters, if possible.
