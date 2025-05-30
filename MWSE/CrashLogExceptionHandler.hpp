@@ -79,7 +79,15 @@ namespace CrashLogger::PDB
 	{
 		std::string name;
 		GetClassNameFromPDBSEH(object, name);
-		return name.substr(0, name.find("::`vftable'"));
+		std::string delimiter = "vtbl_";
+		if (name.find(delimiter) != std::string::npos) {
+			name.erase(0, name.find(delimiter) + delimiter.length());
+		}
+		delimiter = "sg_";
+		if (name.find(delimiter) != std::string::npos) {
+			name.erase(0, name.find(delimiter) + delimiter.length());
+		}
+		return name;
 	}
 
 	struct RTTIType
