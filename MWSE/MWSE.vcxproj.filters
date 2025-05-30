@@ -196,6 +196,9 @@
     <Filter Include="Source Files\Utility\CrashLogger\fmt\src">
       <UniqueIdentifier>{21703afb-31bc-462a-96d8-7f74709cf2cc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Utility\CrashLogger\fmt\include\fmt">
+      <UniqueIdentifier>{d00cf7bd-e4cd-4bd2-ba52-e53a1ab0fa70}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Flags.h">
@@ -1806,47 +1809,47 @@
     <ClInclude Include="CrashLogUtilities.hpp">
       <Filter>Source Files\Utility\CrashLogger</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\fmt\include\fmt\args.h">
-      <Filter>Source Files\Utility\CrashLogger\fmt\include</Filter>
+    <ClInclude Include="fmt\include\fmt\args.h">
+      <Filter>Source Files\Utility\CrashLogger\fmt\include\fmt</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\fmt\include\fmt\base.h">
-      <Filter>Source Files\Utility\CrashLogger\fmt\include</Filter>
+    <ClInclude Include="fmt\include\fmt\base.h">
+      <Filter>Source Files\Utility\CrashLogger\fmt\include\fmt</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\fmt\include\fmt\chrono.h">
-      <Filter>Source Files\Utility\CrashLogger\fmt\include</Filter>
+    <ClInclude Include="fmt\include\fmt\chrono.h">
+      <Filter>Source Files\Utility\CrashLogger\fmt\include\fmt</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\fmt\include\fmt\color.h">
-      <Filter>Source Files\Utility\CrashLogger\fmt\include</Filter>
+    <ClInclude Include="fmt\include\fmt\color.h">
+      <Filter>Source Files\Utility\CrashLogger\fmt\include\fmt</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\fmt\include\fmt\compile.h">
-      <Filter>Source Files\Utility\CrashLogger\fmt\include</Filter>
+    <ClInclude Include="fmt\include\fmt\compile.h">
+      <Filter>Source Files\Utility\CrashLogger\fmt\include\fmt</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\fmt\include\fmt\core.h">
-      <Filter>Source Files\Utility\CrashLogger\fmt\include</Filter>
+    <ClInclude Include="fmt\include\fmt\core.h">
+      <Filter>Source Files\Utility\CrashLogger\fmt\include\fmt</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\fmt\include\fmt\format.h">
-      <Filter>Source Files\Utility\CrashLogger\fmt\include</Filter>
+    <ClInclude Include="fmt\include\fmt\format.h">
+      <Filter>Source Files\Utility\CrashLogger\fmt\include\fmt</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\fmt\include\fmt\format-inl.h">
-      <Filter>Source Files\Utility\CrashLogger\fmt\include</Filter>
+    <ClInclude Include="fmt\include\fmt\format-inl.h">
+      <Filter>Source Files\Utility\CrashLogger\fmt\include\fmt</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\fmt\include\fmt\os.h">
-      <Filter>Source Files\Utility\CrashLogger\fmt\include</Filter>
+    <ClInclude Include="fmt\include\fmt\os.h">
+      <Filter>Source Files\Utility\CrashLogger\fmt\include\fmt</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\fmt\include\fmt\ostream.h">
-      <Filter>Source Files\Utility\CrashLogger\fmt\include</Filter>
+    <ClInclude Include="fmt\include\fmt\ostream.h">
+      <Filter>Source Files\Utility\CrashLogger\fmt\include\fmt</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\fmt\include\fmt\printf.h">
-      <Filter>Source Files\Utility\CrashLogger\fmt\include</Filter>
+    <ClInclude Include="fmt\include\fmt\printf.h">
+      <Filter>Source Files\Utility\CrashLogger\fmt\include\fmt</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\fmt\include\fmt\ranges.h">
-      <Filter>Source Files\Utility\CrashLogger\fmt\include</Filter>
+    <ClInclude Include="fmt\include\fmt\ranges.h">
+      <Filter>Source Files\Utility\CrashLogger\fmt\include\fmt</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\fmt\include\fmt\std.h">
-      <Filter>Source Files\Utility\CrashLogger\fmt\include</Filter>
+    <ClInclude Include="fmt\include\fmt\std.h">
+      <Filter>Source Files\Utility\CrashLogger\fmt\include\fmt</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\fmt\include\fmt\xchar.h">
-      <Filter>Source Files\Utility\CrashLogger\fmt\include</Filter>
+    <ClInclude Include="fmt\include\fmt\xchar.h">
+      <Filter>Source Files\Utility\CrashLogger\fmt\include\fmt</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

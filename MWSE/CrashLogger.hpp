@@ -1,6 +1,6 @@
 #pragma once
 #define FMT_HEADER_ONLY
-#include "fmt/format.h"
+#include "fmt/include/fmt/format.h"
 #include "CrashLogUtilities.hpp"
 #include <string>
 #include <chrono>
