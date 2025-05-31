@@ -22,14 +22,12 @@ inline std::string pcName;
 inline std::string userName;
 
 inline std::string& SanitizeStringFromUserInfo(std::string& str) {
-	[[unlikely]]
 	if (pcName.empty()) {
 		TCHAR infoBuf[MAX_PATH];
 		DWORD bufCharCount = MAX_PATH;
 		if (GetComputerName(infoBuf, &bufCharCount)) pcName = infoBuf;
 	}
 
-	[[unlikely]]
 	if (userName.empty()) {
 		TCHAR infoBuf[MAX_PATH];
 		DWORD bufCharCount = MAX_PATH;

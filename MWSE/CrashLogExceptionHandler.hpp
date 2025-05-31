@@ -65,7 +65,6 @@ namespace CrashLogger::PDB {
 	inline std::string& GetClassNameFromPDBSEH(void* object, std::string& buffer) {
 		__try { GetClassNameGetSymbol(object, buffer); return buffer; }
 		__except (EXCEPTION_EXECUTE_HANDLER) { return buffer; }
-
 	}
 
 	inline std::string GetClassNameFromPDB(void* object) {
@@ -84,8 +83,8 @@ namespace CrashLogger::PDB {
 
 	struct RTTIType {
 		void* typeInfo;
-		UINT32	pad;
-		char	name[0];
+		UINT32 pad;
+		char name[];
 	};
 
 	struct RTTILocator {
@@ -377,8 +376,7 @@ namespace CrashLogger::PDB {
 
 
 	// use the RTTI information to return an object's class name
-	inline const char* GetObjectClassNameInternal2(void* objBase)
-	{
+	inline const char* GetObjectClassNameInternal2(void* objBase) {
 		__try {
 			const char* result = "";
 			void** obj = (void**)objBase;
@@ -387,11 +385,9 @@ namespace CrashLogger::PDB {
 			RTTIType* type = rtti->type;
 
 			// starts with .?AV
-			if ((type->name[0] == '.') && (type->name[1] == '?'))
-			{
+			if ((type->name[0] == '.') && (type->name[1] == '?')) {
 				// is at most MAX_PATH chars long
-				for (UINT32 i = 0; i < MAX_PATH; i++) if (type->name[i] == 0)
-				{
+				for (UINT32 i = 0; i < MAX_PATH; i++) if (type->name[i] == 0) {
 					result = type->name;
 					break;
 				}
