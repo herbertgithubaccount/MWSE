@@ -14,8 +14,6 @@ namespace CrashLogger::Device
 
 	extern void Process(EXCEPTION_POINTERS* info) {
 		try {
-			output << "Device:" << '\n';
-
 			const char* gpu = *(const char**)0x11C72C4;
 			std::string cpu = "Unknown";
 

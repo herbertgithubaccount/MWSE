@@ -166,8 +166,7 @@ namespace CrashLogger {
 	};
 }
 
-namespace CrashLogger::Labels
-{
+namespace CrashLogger::Labels {
 	inline std::string AsUINT32(void* ptr) { return fmt::format("{:#08X}", **static_cast<UINT32**>(ptr)); }
 
 	template<typename T> std::string As(void* ptr) {

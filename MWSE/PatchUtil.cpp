@@ -2159,7 +2159,9 @@ namespace mwse::patch {
 				log::getLog() << "MiniDump creation successful." << std::endl;
 			}
 
-			log::getLog() << "Attempting To Log Crash \n";
+			if constexpr (CrashLogger::DEBUG_LOGGER) {
+				log::getLog() << "Attempting To Log Crash \n";
+			}
 			CrashLogger::AttemptLog(pep);
 
 			// Close the file

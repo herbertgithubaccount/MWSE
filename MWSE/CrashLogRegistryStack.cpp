@@ -72,8 +72,7 @@ namespace CrashLogger::Registry {
 
 	extern void Process(EXCEPTION_POINTERS* info) {
 		try {
-			output << "Registry:" << '\n'
-				<< fmt::format("REG | {:^10} | DEREFERENCE INFO", "Value") << '\n';
+			output << fmt::format("REG | {:^10} | DEREFERENCE INFO", "Value") << '\n';
 
 			const std::map<std::string, UINT32> registers{
 				{ "eax", info->ContextRecord->Eax },
@@ -177,7 +176,7 @@ namespace CrashLogger::Stack {
 
 	extern void Process(EXCEPTION_POINTERS* info) {
 		try {
-			output << "Stack:" << '\n' << fmt::format("  # | {:^10} | DEREFERENCE INFO", "Value") << '\n';
+			output << fmt::format("  # | {:^10} | DEREFERENCE INFO", "Value") << '\n';
 			const auto esp = reinterpret_cast<UINT32*>(info->ContextRecord->Esp);
 			std::vector<int> iotaVec(0x100);
 			std::iota(iotaVec.begin(), iotaVec.end(), 0);
@@ -187,13 +186,11 @@ namespace CrashLogger::Stack {
 				if (i <= 0x8 || (!str.empty() && memoize.find(espi) == memoize.end())) {
 					std::stringstream line;
 					line << fmt::format(" {:2X} | 0x{:08X} | ", i, espi);
-					if (memoize.find(espi) == memoize.end())
-					{
+					if (memoize.find(espi) == memoize.end()) {
 						if (!str.empty()) line << str;
 						memoize.emplace(espi, i);
 					}
-					else
-					{
+					else {
 						line << fmt::format("Identical to {:2X}", memoize[espi]);
 					}
 					output << line.str() << '\n';

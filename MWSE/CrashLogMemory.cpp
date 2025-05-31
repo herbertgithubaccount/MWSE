@@ -20,11 +20,9 @@ namespace CrashLogger::Memory {
 			MEMORYSTATUSEX memoryStatus;
 			memoryStatus.dwLength = sizeof(memoryStatus);
 			GlobalMemoryStatusEx(&memoryStatus);
-			if (GetProcessMemoryInfo(hProcess, (PROCESS_MEMORY_COUNTERS*)&pmc, sizeof(pmc)))
-			{
+			if (GetProcessMemoryInfo(hProcess, (PROCESS_MEMORY_COUNTERS*)&pmc, sizeof(pmc))) {
 				DWORDLONG virtUsage = memoryStatus.ullTotalVirtual - memoryStatus.ullAvailVirtual;
 				DWORDLONG physUsage = pmc.PrivateUsage;
-				output << "Process' Memory:" << '\n';
 				output << fmt::format("Physical Usage: {}", GetMemoryUsageString(physUsage, memoryStatus.ullTotalPhys)) << '\n';
 				output << fmt::format("Virtual  Usage: {}", GetMemoryUsageString(virtUsage, memoryStatus.ullTotalVirtual)) << '\n';
 			}

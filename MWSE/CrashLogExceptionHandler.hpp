@@ -8,6 +8,11 @@
 
 constexpr UINT32 ce_printStackCount = 256;
 
+namespace CrashLogger {
+	// Set to true if you want extra logging to debug the logger itself.
+	constexpr auto DEBUG_LOGGER = false;
+}
+
 namespace CrashLogger::PDB {
 	extern std::string GetModule(UINT32 eip, HANDLE process) {
 		IMAGEHLP_MODULE module = { 0 };
@@ -523,37 +528,35 @@ namespace CrashLogger {
 
 		const auto processing = std::chrono::system_clock::now();
 
-		//mwse::log::getLog() << ("%s", Playtime::Get().str().c_str());
+		mwse::log::getLog() << ("=== BASIC INFORMATION: =================================================================================================\n");
+//		mwse::log::getLog() << ("%s", Playtime::Get().str().c_str());
 		mwse::log::getLog() << ("%s", Exception::Get().str().c_str());
 		mwse::log::getLog() << ("%s", Thread::Get().str().c_str());
-		mwse::log::getLog() << ("================================");
-		mwse::log::getLog() << ("%s", Calltrace::Get().str().c_str());
-		mwse::log::getLog() << ("================================\n");
-		mwse::log::getLog() << ("%s", Registry::Get().str().c_str());
-		mwse::log::getLog() << ("================================\n");
-		mwse::log::getLog() << ("%s", Stack::Get().str().c_str());
-		mwse::log::getLog() << ("================================\n");
-		//mwse::log::getLog() << ("%s", Device::Get().str().c_str());
-		//mwse::log::getLog() << ("================================");
 		mwse::log::getLog() << ("%s", Memory::Get().str().c_str());
-		mwse::log::getLog() << ("================================\n");
-		//mwse::log::getLog() << ("================================");
-		//mwse::log::getLog() << ("%s", Mods::Get().str());
-		//mwse::log::getLog() << ("================================");
-		//mwse::log::getLog() << ("%s", AssetTracker::Get().str());
-		//mwse::log::getLog() << ("================================");
-		//Modules::Process(info);
-		//mwse::log::getLog() << ("%s", Modules::Get().str().c_str());
-		//mwse::log::getLog() << ("================================\n");
-		//mwse::log::getLog() << ("%s", Install::Get().str().c_str());
+		mwse::log::getLog() << ("=== CALL STACK: ========================================================================================================\n");
+		mwse::log::getLog() << ("%s", Calltrace::Get().str().c_str());
+		mwse::log::getLog() << ("=== REGISTRY: ==========================================================================================================\n");
+		mwse::log::getLog() << ("%s", Registry::Get().str().c_str());
+		mwse::log::getLog() << ("=== STACK: =============================================================================================================\n");
+		mwse::log::getLog() << ("%s", Stack::Get().str().c_str());
+//		mwse::log::getLog() << ("=== DEVICE: ============================================================================================================\n");
+//		mwse::log::getLog() << ("%s", Device::Get().str().c_str());
+//		mwse::log::getLog() << ("==== MODS: =============================================================================================================\n");
+//		mwse::log::getLog() << ("%s", Mods::Get().str());
+//		mwse::log::getLog() << ("==== ASSETS: ===========================================================================================================\n");
+//		mwse::log::getLog() << ("%s", AssetTracker::Get().str());
+//		mwse::log::getLog() << ("==== MODULES: ==========================================================================================================\n");
+//		mwse::log::getLog() << ("%s", Modules::Get().str().c_str());
+//		mwse::log::getLog() << ("==== INSTALL: ==========================================================================================================\n");
+//		mwse::log::getLog() << ("%s", Install::Get().str().c_str());
 
-		const auto printing = std::chrono::system_clock::now();
-
-		const auto timeProcessing = std::chrono::duration_cast<std::chrono::milliseconds>(processing - begin);
-
-		const auto timePrinting = std::chrono::duration_cast<std::chrono::milliseconds>(printing - processing);
-
-		mwse::log::getLog() << ("%s", fmt::format("Processed in {:d} ms, printed in {:d} ms", (long)timeProcessing.count(), (long)timePrinting.count()).c_str());
+		if constexpr (CrashLogger::DEBUG_LOGGER) {
+			const auto printing = std::chrono::system_clock::now();
+			const auto timeProcessing = std::chrono::duration_cast<std::chrono::milliseconds>(processing - begin);
+			const auto timePrinting = std::chrono::duration_cast<std::chrono::milliseconds>(printing - processing);
+			mwse::log::getLog() << ("=== LOGGING INFORMATION: ===============================================================================================\n");
+			mwse::log::getLog() << ("%s", fmt::format("Processed in {:d} ms, printed in {:d} ms", (long)timeProcessing.count(), (long)timePrinting.count()).c_str());
+		}
 
 		//Logger::Copy();
 

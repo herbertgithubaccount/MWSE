@@ -132,8 +132,7 @@ namespace CrashLogger::Calltrace {
 			DWORD eip = 0;
 
 			// crutch to try to copy dbghelp before.
-			output << "Calltrace:" << '\n' << fmt::format("{:^10} |  {:^40} | {:^40} | Source", "ebp", "Function Address", "Function Name") <<
-				'\n';
+			output << fmt::format("{:^10} |  {:^40} | {:^40} | Source", "ebp", "Function Address", "Function Name") << '\n';
 
 			while (StackWalk(machine, process, thread, &frame, &context, NULL, SymFunctionTableAccess, SymGetModuleBase, NULL)) {
 				/*
