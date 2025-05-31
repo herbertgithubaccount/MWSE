@@ -1,5 +1,4 @@
 #include "CrashLogger.hpp"
-#include <psapi.h>
 
 #define _WIN32_WINNT 0x0A000010
 

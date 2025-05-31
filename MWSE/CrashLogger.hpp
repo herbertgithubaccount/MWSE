@@ -1,12 +1,5 @@
 #pragma once
-#define FMT_HEADER_ONLY
-#include "fmt/include/fmt/format.h"
 #include "CrashLogUtilities.hpp"
-#include <string>
-#include <chrono>
-#include <filesystem>
-#include <mutex>
-#include <vector>
 
 #include "TES3Actor.h"
 #include "TES3ActorAnimationController.h"

@@ -1,5 +1,3 @@
-#include <format>
-#include <set>
 
 #include "TES3Object.h"
 #include "NINode.h"

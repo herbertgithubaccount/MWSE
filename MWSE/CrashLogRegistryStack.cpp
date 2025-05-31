@@ -1,8 +1,4 @@
 #include "CrashLogger.hpp"
-#include <ranges>
-#include <iostream>
-#include <ios>
-#include <istream>
 
 namespace CrashLogger
 {
