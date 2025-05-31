@@ -71,7 +71,7 @@ namespace CrashLogger
 		}
 
 	}
-	}
+}
 
 namespace CrashLogger::Registry
 {
@@ -177,7 +177,7 @@ namespace CrashLogger::Stack
 		{
 			if (GetStringForLabelSEH(object, buffer)) {
 				return buffer;
-			} 
+			}
 			deref = Dereference<UINT32>(object);
 			buffer += fmt::format("0x{:08X} ==> ", deref);
 			object = (void**)deref;

@@ -4,8 +4,7 @@ namespace CrashLogger::Device
 {
 	std::stringstream output;
 
-	std::string GetRegistryString(HKEY key, const char* name)
-	{
+	std::string GetRegistryString(HKEY key, const char* name) {
 		char buffer[MAX_PATH];
 		DWORD size = sizeof(buffer);
 		if (RegQueryValueExA(key, name, nullptr, nullptr, (BYTE*)buffer, &size) == ERROR_SUCCESS)
@@ -13,11 +12,8 @@ namespace CrashLogger::Device
 		return "Unknown";
 	}
 
-	extern void Process(EXCEPTION_POINTERS* info)
-	{
-		try
-		{
-
+	extern void Process(EXCEPTION_POINTERS* info) {
+		try {
 			output << "Device:" << '\n';
 
 			const char* gpu = *(const char**)0x11C72C4;
@@ -66,7 +62,9 @@ namespace CrashLogger::Device
 			output << fmt::format("RAM: \"{:>5.2f} GB\"", memAmount / 1024.f / 1024.f) << '\n';
 
 		}
-		catch (...) { output << "Failed to print device info." << '\n'; }
+		catch (...) {
+			output << "Failed to print device info." << '\n';
+		}
 	}
 
 	extern std::stringstream& Get() { output.flush(); return output; }

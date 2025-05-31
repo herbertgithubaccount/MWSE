@@ -1,8 +1,7 @@
 #include "CrashLogger.hpp"
 #include "CrashLogExceptionHandler.hpp"
 
-namespace CrashLogger::Playtime
-{
+namespace CrashLogger::Playtime {
 	std::stringstream output;
 
 	std::chrono::time_point<std::chrono::system_clock> gameStart;
@@ -10,43 +9,43 @@ namespace CrashLogger::Playtime
 
 	extern void Init() { gameStart = std::chrono::system_clock::now(); }
 
-	extern void Process(EXCEPTION_POINTERS* info)
-	try
-	{
-		gameEnd = std::chrono::system_clock::now();
-		auto playtime = gameEnd - gameStart;
-		output << "Playtime: " << playtime.count() << "\n";
+	extern void Process(EXCEPTION_POINTERS* info) {
+		try {
+			gameEnd = std::chrono::system_clock::now();
+			auto playtime = gameEnd - gameStart;
+			output << "Playtime: " << playtime.count() << "\n";
+		}
+		catch (...) {
+			output << "Failed to log playtime." << '\n';
+		}
 	}
-	catch (...) { output << "Failed to log playtime." << '\n'; }
 
-	extern std::stringstream& Get() { output.flush(); return output; }
-
+	extern std::stringstream& Get() {
+		output.flush();
+		return output;
+	}
 }
 
-namespace CrashLogger::Exception
-{
-
+namespace CrashLogger::Exception {
 	std::stringstream output;
 
-	extern void Process(EXCEPTION_POINTERS* info)
-	{
-		try
-		{
+	extern void Process(EXCEPTION_POINTERS* info) {
+		try {
 			output << fmt::format("Exception: {} ({:08X})\n", GetExceptionAsString(info->ExceptionRecord->ExceptionCode), info->ExceptionRecord->ExceptionCode);
 			if (GetLastError()) output << fmt::format("Last Error: {} ({:08X})\n", SanitizeString(GetErrorAsString(GetLastError())), GetLastError());
 		}
-		catch (...) { output << "Failed to log exception." << '\n'; }
+		catch (...) {
+			output << "Failed to log exception." << '\n';
+		}
 	}
 
 	extern std::stringstream& Get() { output.flush(); return output; }
 }
 
-namespace CrashLogger::Thread
-{
+namespace CrashLogger::Thread {
 	std::stringstream output;
 
-	std::string GetThreadName()
-	{
+	std::string GetThreadName() {
 		std::string threadName;
 		wchar_t* pThreadName = NULL;
 		HRESULT hr = GetThreadDescription(GetCurrentThread(), &pThreadName);
@@ -56,19 +55,18 @@ namespace CrashLogger::Thread
 		return threadName;
 	}
 
-	extern void Process(EXCEPTION_POINTERS* info)
+	extern void Process(EXCEPTION_POINTERS* info) {
 		try { output << "Thread: " << GetThreadName() << '\n'; }
-	catch (...) { output << "Failed to log thread name." << '\n'; }
+		catch (...) { output << "Failed to log thread name." << '\n'; }
+	}
 
 	extern std::stringstream& Get() { output.flush(); return output; }
 }
 
-namespace CrashLogger::Calltrace
-{
+namespace CrashLogger::Calltrace {
 	std::stringstream output;
 
-	std::string GetCalltraceFunction(UINT32 eip, UINT32 ebp, HANDLE process)
-	{
+	std::string GetCalltraceFunction(UINT32 eip, UINT32 ebp, HANDLE process) {
 		/*if (GetModuleFileName((HMODULE)frame.AddrPC.Offset, path, MAX_PATH)) {  //Do this work on non base addresses even on  Windows? Cal directly the LDR function?
 		if (!SymLoadModule(process, NULL, path, NULL, 0, 0)) Log() << FormatString("Porcoddio %0X", GetLastError());
 		}*/
@@ -90,16 +88,14 @@ namespace CrashLogger::Calltrace
 
 		std::string end;
 
-		if (const auto line = PDB::GetLine(eip, process); !line.empty())
-		{
+		if (const auto line = PDB::GetLine(eip, process); !line.empty()) {
 			end = " " + line;
 		}
 
 		return begin + middle + end;
 	}
 
-	extern void Process(EXCEPTION_POINTERS* info)
-	{
+	extern void Process(EXCEPTION_POINTERS* info) {
 		try {
 			HANDLE process = GetCurrentProcess();
 			HANDLE thread = GetCurrentThread();
@@ -122,7 +118,7 @@ namespace CrashLogger::Calltrace
 			if (!SymInitialize(process, lookPath.c_str(), true)) {
 				output << "Error initializing symbol store" << '\n';
 			}
-				
+
 
 			//	SymSetExtendedOption((IMAGEHLP_EXTENDED_OPTIONS)SYMOPT_EX_WINE_NATIVE_MODULES, TRUE);
 
@@ -134,7 +130,7 @@ namespace CrashLogger::Calltrace
 			frame.AddrStack.Offset = info->ContextRecord->Esp;
 			frame.AddrStack.Mode = AddrModeFlat;
 			DWORD eip = 0;
-			
+
 			// crutch to try to copy dbghelp before.
 			output << "Calltrace:" << '\n' << fmt::format("{:^10} |  {:^40} | {:^40} | Source", "ebp", "Function Address", "Function Name") <<
 				'\n';
@@ -149,7 +145,9 @@ namespace CrashLogger::Calltrace
 				output << GetCalltraceFunction(frame.AddrPC.Offset, frame.AddrFrame.Offset, process) << '\n';
 			}
 		}
-		catch (...) { output << "Failed to log callstack." << '\n'; }
+		catch (...) {
+			output << "Failed to log callstack." << '\n';
+		}
 	}
 
 	extern std::stringstream& Get() { output.flush(); return output; }

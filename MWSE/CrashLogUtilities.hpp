@@ -1,19 +1,16 @@
 
-inline int ExceptionFilter(unsigned int code)
-{
+inline int ExceptionFilter(unsigned int code) {
 	return EXCEPTION_EXECUTE_HANDLER;
 }
 
-inline std::string& SanitizeStringBySize(std::string& str)
-{
+inline std::string& SanitizeStringBySize(std::string& str) {
 	for (UINT32 i = 0; i < MAX_PATH; i++) if (str[i] == 0)
 		return str;
 	str = "";
 	return str;
 }
 
-inline std::string& SanitizeStringFromBadData(std::string& str)
-{
+inline std::string& SanitizeStringFromBadData(std::string& str) {
 	str.erase(std::remove_if(str.begin(), str.end(), [](char c) { return !(c >= 0 && c <= 0x128); }), str.end());
 
 	std::replace_if(str.begin(), str.end(), [](char c) { return c == '\n' || c == '\r' || c == '\0' || c == '\v'; }, ' ');
@@ -24,19 +21,16 @@ inline std::string& SanitizeStringFromBadData(std::string& str)
 inline std::string pcName;
 inline std::string userName;
 
-inline std::string& SanitizeStringFromUserInfo(std::string& str)
-{
+inline std::string& SanitizeStringFromUserInfo(std::string& str) {
 	[[unlikely]]
-	if (pcName.empty())
-	{
+	if (pcName.empty()) {
 		TCHAR infoBuf[MAX_PATH];
 		DWORD bufCharCount = MAX_PATH;
 		if (GetComputerName(infoBuf, &bufCharCount)) pcName = infoBuf;
 	}
 
 	[[unlikely]]
-	if (userName.empty())
-	{
+	if (userName.empty()) {
 		TCHAR infoBuf[MAX_PATH];
 		DWORD bufCharCount = MAX_PATH;
 		if (GetUserName(infoBuf, &bufCharCount)) userName = infoBuf;
@@ -51,8 +45,7 @@ inline std::string& SanitizeStringFromUserInfo(std::string& str)
 	return str;
 }
 
-inline const std::string& SanitizeString(std::string&& str)
-{
+inline const std::string& SanitizeString(std::string&& str) {
 	SanitizeStringBySize(str);
 	SanitizeStringFromBadData(str);
 	SanitizeStringFromUserInfo(str);
@@ -94,8 +87,7 @@ inline std::string GetMemoryUsageString(const UINT64 used, const UINT64 total) {
 	return fmt::format("{:10} / {:10} ({:.2f}%)", FormatSize(used), FormatSize(total), usedPercent);
 }
 
-inline std::string GetErrorAsString(UINT32 errorMessageID)
-{
+inline std::string GetErrorAsString(UINT32 errorMessageID) {
 	if (errorMessageID == 0) return ""; //No error message has been recorded
 
 	LPSTR messageBuffer = nullptr;
@@ -114,8 +106,7 @@ inline std::string GetErrorAsString(UINT32 errorMessageID)
 	return message;
 }
 
-inline std::string GetExceptionAsString(UINT32 exceptionMessageID)
-{
+inline std::string GetExceptionAsString(UINT32 exceptionMessageID) {
 	switch (exceptionMessageID) {
 	case EXCEPTION_ACCESS_VIOLATION:			return "EXCEPTION_ACCESS_VIOLATION";
 	case EXCEPTION_ARRAY_BOUNDS_EXCEEDED:		return "EXCEPTION_ARRAY_BOUNDS_EXCEEDED";

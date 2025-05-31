@@ -8,10 +8,8 @@
 
 constexpr UINT32 ce_printStackCount = 256;
 
-namespace CrashLogger::PDB
-{
-	extern std::string GetModule(UINT32 eip, HANDLE process)
-	{
+namespace CrashLogger::PDB {
+	extern std::string GetModule(UINT32 eip, HANDLE process) {
 		IMAGEHLP_MODULE module = { 0 };
 		module.SizeOfStruct = sizeof(IMAGEHLP_MODULE);
 		if (!SymGetModuleInfo(process, eip, &module)) return "";
@@ -19,8 +17,7 @@ namespace CrashLogger::PDB
 		return module.ModuleName;
 	}
 
-	inline extern UINT32 GetModuleBase(UINT32 eip, HANDLE process)
-	{
+	inline extern UINT32 GetModuleBase(UINT32 eip, HANDLE process) {
 		IMAGEHLP_MODULE module = { 0 };
 		module.SizeOfStruct = sizeof(IMAGEHLP_MODULE);
 		if (!SymGetModuleInfo(process, eip, &module)) return 0;
@@ -28,8 +25,7 @@ namespace CrashLogger::PDB
 		return module.BaseOfImage;
 	}
 
-	inline extern std::string GetSymbol(UINT32 eip, HANDLE process)
-	{
+	inline extern std::string GetSymbol(UINT32 eip, HANDLE process) {
 		char symbolBuffer[sizeof(SYMBOL_INFO) + 255];
 		const auto symbol = (SYMBOL_INFO*)symbolBuffer;
 
@@ -44,8 +40,7 @@ namespace CrashLogger::PDB
 		return fmt::format("{}+0x{:0X}", functioName, offset);
 	}
 
-	inline extern std::string GetLine(UINT32 eip, HANDLE process)
-	{
+	inline extern std::string GetLine(UINT32 eip, HANDLE process) {
 		char lineBuffer[sizeof(IMAGEHLP_LINE) + 255];
 		const auto line = (IMAGEHLP_LINE*)lineBuffer;
 		line->SizeOfStruct = sizeof(IMAGEHLP_LINE);
@@ -57,8 +52,7 @@ namespace CrashLogger::PDB
 		return fmt::format("{}:{:d}", line->FileName, line->LineNumber);
 	}
 
-	inline std::string& GetClassNameGetSymbol(void* object, std::string& buffer)
-	{
+	inline std::string& GetClassNameGetSymbol(void* object, std::string& buffer) {
 		try {
 			buffer = GetSymbol(*((UINT32*)object), GetCurrentProcess());
 			return buffer;
@@ -68,15 +62,13 @@ namespace CrashLogger::PDB
 		}
 	}
 
-	inline std::string& GetClassNameFromPDBSEH(void* object, std::string& buffer)
-	{
+	inline std::string& GetClassNameFromPDBSEH(void* object, std::string& buffer) {
 		__try { GetClassNameGetSymbol(object, buffer); return buffer; }
 		__except (EXCEPTION_EXECUTE_HANDLER) { return buffer; }
 
 	}
 
-	inline std::string GetClassNameFromPDB(void* object)
-	{
+	inline std::string GetClassNameFromPDB(void* object) {
 		std::string name;
 		GetClassNameFromPDBSEH(object, name);
 		std::string delimiter = "vtbl_";
@@ -90,27 +82,24 @@ namespace CrashLogger::PDB
 		return name;
 	}
 
-	struct RTTIType
-	{
+	struct RTTIType {
 		void* typeInfo;
 		UINT32	pad;
 		char	name[0];
 	};
 
-	struct RTTILocator
-	{
+	struct RTTILocator {
 		UINT32		sig, offset, cdOffset;
 		RTTIType* type;
 	};
 
-	inline const char* GetObjectClassNameInternal(void* objBase)
-	{
+	inline const char* GetObjectClassNameInternal(void* objBase) {
 		__try {
 			const char* result = "";
 			void** obj = (void**)objBase;
 			RTTILocator** vtbl = (RTTILocator**)obj[0];
 			RTTILocator* rtti = vtbl[-1];
-			
+
 			switch ((UINT32)vtbl) {
 			case TES3::VirtualTableAddress::VirtualTableAddress::Activator:
 				result = "Activator";
@@ -381,8 +370,7 @@ namespace CrashLogger::PDB
 			}
 			return result;
 		}
-		__except (ExceptionFilter(GetExceptionCode()))
-		{
+		__except (ExceptionFilter(GetExceptionCode())) {
 			return "";
 		}
 	}
@@ -416,22 +404,18 @@ namespace CrashLogger::PDB
 		}
 	}
 
-	inline std::string GetClassNameFromRTTI(void* object)
-	{
+	inline std::string GetClassNameFromRTTI(void* object) {
 		return GetObjectClassNameInternal(object);
 	}
 
-	extern std::string GetClassNameFromRTTIorPDB(void* object)
-	{
+	extern std::string GetClassNameFromRTTIorPDB(void* object) {
 		if (const auto str = GetClassNameFromRTTI(object); !str.empty()) return str;
 		return GetClassNameFromPDB(object);
 		//if (const auto str = GetClassNameFromPDB(object); !str.contains("0x")) return str;
 	}
 };
 
-namespace CrashLogger
-{
-
+namespace CrashLogger {
 	inline void LogPlaytime(EXCEPTION_POINTERS* info) {
 		__try {
 			Playtime::Process(info);
@@ -513,9 +497,8 @@ namespace CrashLogger
 		}
 	}
 
-	inline void Log(EXCEPTION_POINTERS* info)
-	{
-		
+	inline void Log(EXCEPTION_POINTERS* info) {
+
 		const auto begin = std::chrono::system_clock::now();
 		//
 		//mwse::log::getLog() << ("Processing playtime \n");
@@ -591,7 +574,6 @@ namespace CrashLogger
 	static LPTOP_LEVEL_EXCEPTION_FILTER s_originalFilter = nullptr;
 
 	inline LONG WINAPI Filter(EXCEPTION_POINTERS* info) {
-
 		static bool caught = false;
 		bool ignored = false;
 		if (caught) ignored = true;
@@ -608,5 +590,4 @@ namespace CrashLogger
 		s_originalFilter = lpTopLevelExceptionFilter;
 		return nullptr;
 	}
-
 }

@@ -6,8 +6,7 @@
 // If class is described by a single line, no need to name the variable
 // If there is a member class, if it's one-line, leave it as one-line, if there are several, prepend the name and add offset
 
-inline std::string GetObjectType(TES3::ObjectType::ObjectType type)
-{
+inline std::string GetObjectType(TES3::ObjectType::ObjectType type) {
 	std::string result;
 	switch (type) {
 	case TES3::ObjectType::ObjectType::Activator:
@@ -163,14 +162,12 @@ inline std::string GetObjectType(TES3::ObjectType::ObjectType type)
 	return result;
 }
 
-inline auto Offset(std::vector<std::string> vector)
-{
+inline auto Offset(std::vector<std::string> vector) {
 	for (auto i : vector) i.insert(0, "    ");
 	return vector;
 }
 
-template<class Member> auto LogMember(const std::string& name, Member& member)
-{
+template<class Member> auto LogMember(const std::string& name, Member& member) {
 	std::vector<std::string> vec = LogClass(member);
 	if (vec.size() == 1) return std::vector{ name + " " + vec[0] };
 	vec = Offset(vec);
@@ -179,8 +176,7 @@ template<class Member> auto LogMember(const std::string& name, Member& member)
 	return vec;
 }
 
-template<class Member> std::string LogClassLineByLine(Member& member)
-{
+template<class Member> std::string LogClassLineByLine(Member& member) {
 	std::string output;
 	std::vector<std::string> vec = LogClass(member);
 	for (const auto& i : vec)
@@ -188,8 +184,7 @@ template<class Member> std::string LogClassLineByLine(Member& member)
 	return output;
 }
 
-inline auto LogClass(TES3::BaseObject& obj)
-{
+inline auto LogClass(TES3::BaseObject& obj) {
 	std::vector<std::string> vec;
 	std::string objectID = obj.getObjectID();
 	std::string objectName;
@@ -210,8 +205,7 @@ inline auto LogClass(TES3::BaseObject& obj)
 	return vec;
 }
 
-inline auto LogClass(TES3::Object& obj)
-{
+inline auto LogClass(TES3::Object& obj) {
 	std::vector<std::string> vec = LogClass(static_cast<TES3::BaseObject&>(obj));
 	std::string objectID = obj.getObjectID();
 	std::string objectName;
@@ -237,8 +231,7 @@ inline auto LogClass(TES3::Object& obj)
 	return vec;
 }
 
-inline auto LogClass(TES3::Reference& obj)
-{
+inline auto LogClass(TES3::Reference& obj) {
 	std::vector<std::string> vec;
 	//std::vector<std::string> vec = LogClass(static_cast<TES3::BaseObject&>(obj));
 	std::string objectID = obj.getObjectID();
@@ -265,14 +258,12 @@ inline auto LogClass(TES3::Reference& obj)
 	return vec;
 }
 
-inline auto LogClass(TES3::MobileObject& obj)
-{
+inline auto LogClass(TES3::MobileObject& obj) {
 	auto vec = LogClass(static_cast<TES3::Reference&>(*obj.reference));
 	return vec;
 }
 
-inline auto LogClass(TES3::PathGrid& obj)
-{
+inline auto LogClass(TES3::PathGrid& obj) {
 	auto vec = LogClass(static_cast<TES3::BaseObject&>(obj));
 	if (obj.parentCell) {
 		std::vector<std::string> baseVector = LogMember("Cell:", static_cast<TES3::BaseObject&>(*obj.parentCell));
@@ -347,16 +338,14 @@ inline std::vector<std::string> LogClass(NiObjectNET& obj)
 	return {};
 } */
 
-inline std::vector<std::string> LogClass(NI::ObjectNET& obj)
-{
+inline std::vector<std::string> LogClass(NI::ObjectNET& obj) {
 	const auto name = obj.name;
 	if (name)
 		return std::vector{ '"' + SanitizeString(name) + '"' };
 	return {};
 }
 
-inline std::vector<std::string> LogClass(NI::Node& obj)
-{
+inline std::vector<std::string> LogClass(NI::Node& obj) {
 	std::vector<std::string> vec;
 	if (const auto name = obj.name)
 		vec = LogMember("Name: ", static_cast<NI::ObjectNET&>(obj));
@@ -395,8 +384,7 @@ inline std::vector<std::string> LogClass(NI::Node& obj)
 //inline std::vector<std::string> LogClass(const ActiveEffect& obj) { if (obj.enchantObject) return LogClass(*obj.enchantObject); return {}; }
 
 
-inline std::vector<std::string> LogClass(TES3::Script& obj)
-{
+inline std::vector<std::string> LogClass(TES3::Script& obj) {
 	std::vector<std::string> vec = LogClass(static_cast<TES3::BaseObject&>(obj));
 	std::string objectID = obj.getObjectID();
 	std::string objectName;

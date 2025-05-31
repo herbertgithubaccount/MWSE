@@ -3,10 +3,8 @@
 
 #include "TES3Defines.h"
 
-namespace CrashLogger::Labels
-{
-	void FillMWSELabels()
-	{
+namespace CrashLogger::Labels {
+	void FillMWSELabels() {
 		Push(TES3::VirtualTableAddress::VirtualTableAddress::BaseObject, As<TES3::BaseObject>);
 		Push(TES3::VirtualTableAddress::VirtualTableAddress::Alchemy, As<TES3::BaseObject>);
 		Push(TES3::VirtualTableAddress::VirtualTableAddress::MagicEffect, As<TES3::BaseObject>);
@@ -575,6 +573,5 @@ namespace CrashLogger::Labels
 
 		Push(TES3::VirtualTableAddress::VirtualTableAddress::bhkWorldObject);
 		Push(TES3::VirtualTableAddress::VirtualTableAddress::hkpAabbPhantom); */
-
 	};
 }
