@@ -2085,7 +2085,9 @@ namespace mwse::patch {
 		}
 
 		// Try to print the lua stack trace.
-		lua::logStackTrace("Lua traceback at time of crash:");
+		if (lua::hasStackTrace()) {
+			lua::logStackTrace("Lua traceback at time of crash:");
+		}
 
 		// Try to print any relevant mwscript information.
 		if (TES3::Script::currentlyExecutingScript) {
@@ -2110,12 +2112,15 @@ namespace mwse::patch {
 		if (std::filesystem::exists("Warnings.txt")) {
 			std::ifstream warnings("Warnings.txt");
 			if (warnings.is_open()) {
-				log::getLog() << "Game warnings:" << std::endl;
 				std::unordered_set<std::string> seenLines;
 				std::string line;
 				while (std::getline(warnings, line)) {
+					if (line.empty()) continue;
+					if (seenLines.empty()) {
+						log::getLog() << "Game warnings:" << std::endl;
+					}
 					if (seenLines.find(line) == seenLines.end()) {
-						std::cout << " > " << line << std::endl;
+						log::getLog() << " > " << line << std::endl;
 						seenLines.insert(line);
 					}
 				}

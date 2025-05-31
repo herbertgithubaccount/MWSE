@@ -96,6 +96,7 @@ namespace mwse::lua {
 
 	// Dumps the current stacktrace to the log.
 	void logStackTrace(const char* message = nullptr);
+	bool hasStackTrace();
 
 	// Report error to in-game notification system.
 	void reportErrorInGame(const char* sourceName, const sol::error& error);

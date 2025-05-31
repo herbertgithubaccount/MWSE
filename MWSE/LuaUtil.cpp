@@ -494,17 +494,38 @@ namespace mwse::lua {
 		if (!result.valid()) {
 			return;
 		}
-
-		sol::optional<std::string> asString = result;
-		if (!asString) {
+		
+		if (result.get_type() != sol::type::string) {
 			return;
 		}
 
+		std::string stackTrace = result;
 		if (message != nullptr) {
 			log::getLog() << message << std::endl;
+
+			// Clear out prefix if an alternate message was given.
+			stackTrace.erase(stackTrace.begin(), stackTrace.begin() + sizeof("stack traceback:"));
 		}
 
-		log::getLog() << asString.value() << std::endl;
+		log::getLog() << stackTrace << std::endl;
+	}
+
+	bool hasStackTrace() {
+		auto stateHandle = LuaManager::getInstance().getThreadSafeStateHandle();
+		auto& state = stateHandle.state;
+		static sol::protected_function luaDebugTraceback = state["debug"]["traceback"];
+
+		sol::protected_function_result result = luaDebugTraceback();
+		if (!result.valid()) {
+			return false;
+		}
+
+		sol::optional<std::string> asString = result;
+		if (!asString) {
+			return false;
+		}
+
+		return asString.value().length() > 17;
 	}
 
 	void reportErrorInGame(const char* sourceName, const sol::error& error) {
