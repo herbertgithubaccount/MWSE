@@ -1966,7 +1966,12 @@ namespace mwse::patch {
 	}
 
 	void installPostInitializationPatches() {
-
+		// Patch: Give threads descriptions.
+		const auto dataHandler = TES3::DataHandler::get();
+		if (dataHandler) {
+			SetThreadDescription(dataHandler->mainThread, L"GameMainThread");
+			SetThreadDescription(dataHandler->backgroundThread, L"GameBackgroundThread");
+		}
 	}
 
 	//
