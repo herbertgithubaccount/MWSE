@@ -86,8 +86,13 @@ namespace CrashLogger::Thread {
 		if (!SUCCEEDED(hr)) {
 			return L"<unknown thread>";
 		}
-		const std::wstring name = pThreadName;
+		std::wstring name = pThreadName;
 		LocalFree(pThreadName);
+
+		if (name.empty()) {
+			name = L"<unknown thread>";
+		}
+
 		return name;
 	}
 
@@ -225,7 +230,11 @@ namespace CrashLogger::LuaTraceback {
 
 	extern void Process(EXCEPTION_POINTERS* info) {
 		try {
-			output << mwse::lua::getStackTrace(true) << '\n';
+			const auto stackTrace = mwse::lua::getStackTrace(true);
+			if (stackTrace.empty()) {
+				return;
+			}
+			output << stackTrace << '\n';
 		}
 		catch (...) {
 			output << "Failed to process lua traceback." << '\n';
@@ -252,7 +261,7 @@ namespace CrashLogger::Mods {
 				return std::strlen(a->getFilename()) < std::strlen(b->getFilename());
 			});
 			const auto gameFileWithLongestAuthor = *std::max_element(activeMods.begin(), activeMods.end(), [](const auto& a, const auto& b) {
-				return std::strlen(a->getFilename()) < std::strlen(b->getFilename());
+				return std::strlen(a->getAuthor()) < std::strlen(b->getAuthor());
 			});
 			const auto filenameLength = std::strlen(gameFileWithLongestFilename->getFilename());
 			const auto authorLength = std::strlen(gameFileWithLongestAuthor->getAuthor());
