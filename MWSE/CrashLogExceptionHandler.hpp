@@ -509,7 +509,7 @@ namespace CrashLogger {
 
 	inline void LogInstall(EXCEPTION_POINTERS* info) {
 		__try {
-			//Install::Process(info);
+			Install::Process(info);
 		}
 		__except (EXCEPTION_EXECUTE_HANDLER) {
 			mwse::log::getLog() << ("Failed to log install. \n");
@@ -570,7 +570,7 @@ namespace CrashLogger {
 		LogMods(info);
 		LogLuaMods(info);
 		//mwse_log << ("Processing install");
-		//LogInstall(info);
+		LogInstall(info);
 		//mwse_log << ("processing modules");
 		//Modules::Process(info);
 		//AssetTracker::Process(info);
@@ -584,6 +584,7 @@ namespace CrashLogger {
 		mwse_log << ("%s", Playtime::Get().str().c_str());
 		mwse_log << ("%s", Thread::Get().str().c_str());
 		mwse_log << ("%s", Exception::Get().str().c_str());
+		mwse_log << ("%s", Install::Get().str().c_str());
 		mwse_log << ("%s", Device::Get().str().c_str());
 		mwse_log << ("=== CALL STACK: ========================================================================================================\n");
 		mwse_log << ("%s", Calltrace::Get().str().c_str());
@@ -601,8 +602,6 @@ namespace CrashLogger {
 //		mwse_log << ("%s", AssetTracker::Get().str());
 //		mwse_log << ("==== MODULES: ==========================================================================================================\n");
 //		mwse_log << ("%s", Modules::Get().str().c_str());
-//		mwse_log << ("==== INSTALL: ==========================================================================================================\n");
-//		mwse_log << ("%s", Install::Get().str().c_str());
 		mwse_log << ("=== WARNINGS: ==========================================================================================================\n");
 		mwse_log << ("%s", Warnings::Get().str().c_str());
 

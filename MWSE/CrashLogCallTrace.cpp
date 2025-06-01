@@ -106,6 +106,32 @@ namespace CrashLogger::Thread {
 	}
 }
 
+namespace CrashLogger::Install {
+	std::stringstream output;
+
+	std::filesystem::path getInstallPath() {
+		CHAR path[MAX_PATH] = {};
+		if (GetModuleFileNameA(NULL, path, MAX_PATH) <= 0) {
+			return {};
+		}
+		return std::filesystem::canonical(path).parent_path();
+	}
+
+	extern void Process(EXCEPTION_POINTERS* info) {
+		try {
+			output << fmt::format("Install Path: {}\n", getInstallPath().string());
+		}
+		catch (...) {
+			output << "Failed to log version." << '\n';
+		}
+	}
+
+	extern std::stringstream& Get() {
+		output.flush();
+		return output;
+	}
+}
+
 namespace CrashLogger::Calltrace {
 	std::stringstream output;
 
