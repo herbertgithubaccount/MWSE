@@ -754,6 +754,7 @@
     <ClCompile Include="NICollisionSwitch.cpp" />
     <ClCompile Include="NICopyTransformController.cpp" />
     <ClCompile Include="NIDirectionalLight.cpp" />
+    <ClCompile Include="NIDX8Renderer.cpp" />
     <ClCompile Include="NIDX8TextureData.cpp" />
     <ClCompile Include="NIDynamicEffectLua.cpp" />
     <ClCompile Include="NIExtraData.cpp" />

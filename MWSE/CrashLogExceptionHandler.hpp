@@ -540,7 +540,7 @@ namespace CrashLogger {
 		//mwse_log << ("Processing memory \n");
 		LogMemory(info);
 		//mwse_log << ("Processing device");
-		//LogDevice(info);
+		LogDevice(info);
 		//mwse_log << ("Processing calltrace \n");
 		LogCalltrace(info);
 		LogLuaTraceback(info);
@@ -573,8 +573,8 @@ namespace CrashLogger {
 		mwse_log << ("%s", Registry::Get().str().c_str());
 		mwse_log << ("=== STACK: =============================================================================================================\n");
 		mwse_log << ("%s", Stack::Get().str().c_str());
-//		mwse_log << ("=== DEVICE: ============================================================================================================\n");
-//		mwse_log << ("%s", Device::Get().str().c_str());
+		mwse_log << ("=== DEVICE: ============================================================================================================\n");
+		mwse_log << ("%s", Device::Get().str().c_str());
 //		mwse_log << ("==== MODS: =============================================================================================================\n");
 //		mwse_log << ("%s", Mods::Get().str());
 //		mwse_log << ("==== ASSETS: ===========================================================================================================\n");
