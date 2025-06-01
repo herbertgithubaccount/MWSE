@@ -251,6 +251,73 @@ namespace CrashLogger::Mods {
 	}
 }
 
+namespace CrashLogger::LuaMods {
+	std::stringstream output;
+
+	struct LuaModResult {
+		std::string key;
+		std::string firstAuthor;
+		std::string version;
+	};
+
+	extern void Process(EXCEPTION_POINTERS* info) {
+		try {
+			const auto stateHandle = mwse::lua::LuaManager::getInstance().getThreadSafeStateHandle();
+			const auto& lua = stateHandle.state;
+			sol::table luaMWSE = lua["mwse"];
+			sol::table luaRuntimes = luaMWSE["runtimes"];
+
+			std::vector<LuaModResult> results;
+
+			// Gather our lua mod information.
+			for (auto i = 1; i <= luaRuntimes.size(); ++i) {
+				sol::table runtime = luaRuntimes[i];
+
+				// We can ignore core mods.
+				const auto core_mod = runtime.get_or("core_mod", false);
+				if (core_mod) continue;
+
+				sol::optional<std::string> key = runtime["key"];
+				sol::optional<std::string> name = runtime["metadata"]["package"]["name"];
+				sol::optional<std::vector<std::string>> authors = runtime["metadata"]["package"]["authors"];
+				sol::optional<std::string> version = runtime["metadata"]["package"]["version"];
+
+				if (authors && authors.value().size() > 5) {
+					authors.value().resize(5);
+				}
+
+				results.push_back({
+					name ? fmt::format("{} ({})", name.value(), key.value_or("<invalid>")) : key.value_or("<invalid>"),
+					authors ? fmt::format("{}", fmt::join(authors.value(), ", ")) : "",
+					version.value_or(""),
+				});
+			}
+
+			// Calculate column widths.
+			const auto keyLength = std::max_element(results.begin(), results.end(), [](const auto& a, const auto& b) {
+				return a.key.length() < b.key.length();
+			})->key.length();
+			const auto authorLength = std::max_element(results.begin(), results.end(), [](const auto& a, const auto& b) {
+				return a.firstAuthor.length() < b.firstAuthor.length();
+			})->firstAuthor.length();
+
+			// We can finally print our table.
+			output << fmt::format("{:<{}} | {:<{}} | {:<s}", "Mod", keyLength, "Author", authorLength, "Version") << '\n';
+			for (const auto& mod : results) {
+				output << fmt::format("{:<{}} | {:<{}} | {}\n", mod.key, keyLength, mod.firstAuthor, authorLength, mod.version);
+			}
+		}
+		catch (...) {
+			output << "Failed to process lua mods." << '\n';
+		}
+	}
+
+	extern std::stringstream& Get() {
+		output.flush();
+		return output;
+	}
+}
+
 namespace CrashLogger::Warnings {
 	std::stringstream output;
 

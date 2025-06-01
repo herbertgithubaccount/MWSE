@@ -498,6 +498,15 @@ namespace CrashLogger {
 		}
 	}
 
+	inline void LogLuaMods(EXCEPTION_POINTERS* info) {
+		__try {
+			LuaMods::Process(info);
+		}
+		__except (EXCEPTION_EXECUTE_HANDLER) {
+			mwse::log::getLog() << ("Failed to log mods. \n");
+		}
+	}
+
 	inline void LogInstall(EXCEPTION_POINTERS* info) {
 		__try {
 			//Install::Process(info);
@@ -559,6 +568,7 @@ namespace CrashLogger {
 		LogStack(info);
 		//mwse_log << ("Processing mods);
 		LogMods(info);
+		LogLuaMods(info);
 		//mwse_log << ("Processing install");
 		//LogInstall(info);
 		//mwse_log << ("processing modules");
@@ -586,6 +596,8 @@ namespace CrashLogger {
 		mwse_log << ("%s", Device::Get().str().c_str());
 		mwse_log << ("==== MODS: =============================================================================================================\n");
 		mwse_log << ("%s", Mods::Get().str());
+		mwse_log << ("==== LUA MODS: =========================================================================================================\n");
+		mwse_log << ("%s", LuaMods::Get().str());
 //		mwse_log << ("==== ASSETS: ===========================================================================================================\n");
 //		mwse_log << ("%s", AssetTracker::Get().str());
 //		mwse_log << ("==== MODULES: ==========================================================================================================\n");
