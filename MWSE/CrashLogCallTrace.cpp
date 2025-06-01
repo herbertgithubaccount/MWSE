@@ -202,7 +202,46 @@ namespace CrashLogger::LuaTraceback {
 			output << mwse::lua::getStackTrace(true) << '\n';
 		}
 		catch (...) {
-			output << "Failed to log lua traceback." << '\n';
+			output << "Failed to process lua traceback." << '\n';
+		}
+	}
+
+	extern std::stringstream& Get() {
+		output.flush();
+		return output;
+	}
+}
+
+namespace CrashLogger::Mods {
+	std::stringstream output;
+
+	extern void Process(EXCEPTION_POINTERS* info) {
+		try {
+			const auto dataHandler = TES3::DataHandler::get();
+			if (dataHandler == nullptr) return;
+			const auto activeMods = dataHandler->nonDynamicData->getActiveMods();
+
+			// Get the longest filename column length.
+			const auto gameFileWithLongestFilename = *std::max_element(activeMods.begin(), activeMods.end(), [](const auto& a, const auto& b) {
+				return std::strlen(a->getFilename()) < std::strlen(b->getFilename());
+			});
+			const auto gameFileWithLongestAuthor = *std::max_element(activeMods.begin(), activeMods.end(), [](const auto& a, const auto& b) {
+				return std::strlen(a->getFilename()) < std::strlen(b->getFilename());
+			});
+			const auto filenameLength = std::strlen(gameFileWithLongestFilename->getFilename());
+			const auto authorLength = std::strlen(gameFileWithLongestAuthor->getAuthor());
+
+			output << fmt::format("{:<{}} | {:<{}} | {:<s}", "File", filenameLength, "Author", authorLength, "Size") << '\n';
+			for (const auto gameFile : activeMods) {
+				if (!gameFile) break;
+				const auto filename = gameFile->getFilename();
+				const auto author = gameFile->getAuthor();
+				const auto size = gameFile->getFileSize();
+				output << fmt::format("{:<{}} | {:<{}} | {} bytes\n", filename, filenameLength, author, authorLength, size);
+			}
+		}
+		catch (...) {
+			output << "Failed to process mods." << '\n';
 		}
 	}
 

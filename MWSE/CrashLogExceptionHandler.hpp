@@ -489,6 +489,15 @@ namespace CrashLogger {
 		}
 	}
 
+	inline void LogMods(EXCEPTION_POINTERS* info) {
+		__try {
+			Mods::Process(info);
+		}
+		__except (EXCEPTION_EXECUTE_HANDLER) {
+			mwse::log::getLog() << ("Failed to log mods. \n");
+		}
+	}
+
 	inline void LogInstall(EXCEPTION_POINTERS* info) {
 		__try {
 			//Install::Process(info);
@@ -549,7 +558,7 @@ namespace CrashLogger {
 		//mwse_log << ("Processing stack \n");
 		LogStack(info);
 		//mwse_log << ("Processing mods);
-		//Mods::Process(info)
+		LogMods(info);
 		//mwse_log << ("Processing install");
 		//LogInstall(info);
 		//mwse_log << ("processing modules");
@@ -575,8 +584,8 @@ namespace CrashLogger {
 		mwse_log << ("%s", Stack::Get().str().c_str());
 		mwse_log << ("=== DEVICE: ============================================================================================================\n");
 		mwse_log << ("%s", Device::Get().str().c_str());
-//		mwse_log << ("==== MODS: =============================================================================================================\n");
-//		mwse_log << ("%s", Mods::Get().str());
+		mwse_log << ("==== MODS: =============================================================================================================\n");
+		mwse_log << ("%s", Mods::Get().str());
 //		mwse_log << ("==== ASSETS: ===========================================================================================================\n");
 //		mwse_log << ("%s", AssetTracker::Get().str());
 //		mwse_log << ("==== MODULES: ==========================================================================================================\n");
