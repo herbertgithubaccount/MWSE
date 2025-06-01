@@ -88,7 +88,7 @@ namespace CrashLogger::Thread {
 		}
 		const std::wstring name = pThreadName;
 		LocalFree(pThreadName);
-		return pThreadName;
+		return name;
 	}
 
 	static std::string GetThreadName() {
