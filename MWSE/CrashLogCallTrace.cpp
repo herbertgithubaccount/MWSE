@@ -30,18 +30,19 @@ namespace CrashLogger::Playtime {
 	std::stringstream output;
 
 	std::chrono::time_point<std::chrono::system_clock> gameStart;
-	std::chrono::time_point<std::chrono::system_clock> gameEnd;
 
-	extern void Init() { gameStart = std::chrono::system_clock::now(); }
+	extern void Init() {
+		gameStart = std::chrono::system_clock::now();
+	}
 
 	extern void Process(EXCEPTION_POINTERS* info) {
 		try {
-			gameEnd = std::chrono::system_clock::now();
-			auto playtime = gameEnd - gameStart;
-			output << "Playtime: " << playtime.count() << "\n";
+			const auto gameEnd = std::chrono::system_clock::now();
+			const auto playtime = gameEnd - gameStart;
+			output << fmt::format("Playtime: {:%H:%M:%S}\n", playtime);
 		}
 		catch (...) {
-			output << "Failed to log playtime." << '\n';
+			output << "Failed to process playtime." << '\n';
 		}
 	}
 

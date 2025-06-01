@@ -52,6 +52,7 @@
 // 3rd party library: fmt
 #define FMT_HEADER_ONLY
 #include <fmt/format.h>
+#include <fmt/chrono.h>
 
 // DirectInput/Sound requirements.
 #define DIRECTINPUT_VERSION 0x0800

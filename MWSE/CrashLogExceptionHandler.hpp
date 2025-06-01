@@ -531,7 +531,7 @@ namespace CrashLogger {
 		const auto begin = std::chrono::system_clock::now();
 		//
 		//mwse_log << ("Processing playtime \n");
-		//LogPlaytime(info);
+		LogPlaytime(info);
 		//mwse_log << ("Processing exception \n");
 		LogVersion(info);
 		LogException(info);
@@ -561,8 +561,8 @@ namespace CrashLogger {
 
 		mwse_log << ("=== BASIC INFORMATION: =================================================================================================\n");
 		mwse_log << ("%s", Version::Get().str().c_str());
-//		mwse_log << ("%s", Playtime::Get().str().c_str());
 		mwse_log << ("%s", Memory::Get().str().c_str());
+		mwse_log << ("%s", Playtime::Get().str().c_str());
 		mwse_log << ("%s", Thread::Get().str().c_str());
 		mwse_log << ("%s", Exception::Get().str().c_str());
 		mwse_log << ("=== CALL STACK: ========================================================================================================\n");

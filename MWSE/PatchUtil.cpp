@@ -2155,6 +2155,7 @@ namespace mwse::patch {
 
 	bool installMiniDumpHook() {
 		if constexpr (INSTALL_MINIDUMP_HOOK) {
+			CrashLogger::Playtime::Init();
 			return genCallEnforced(0x7279AD, 0x416E10, reinterpret_cast<DWORD>(onWinMain));
 		}
 		else {
