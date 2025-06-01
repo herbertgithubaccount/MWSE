@@ -103,6 +103,7 @@ namespace CrashLogger {
 				return reinterpret_cast<T*>(pointer);
 			}
 
+			return nullptr;
 			//throw std::runtime_error("Bad dereference");
 		}
 
@@ -111,6 +112,7 @@ namespace CrashLogger {
 				return reinterpret_cast<T*>(pointer);
 			}
 
+			return nullptr;
 			//throw std::runtime_error("Bad dereference");
 		}
 
