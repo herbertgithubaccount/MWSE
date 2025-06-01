@@ -1,6 +1,8 @@
 #include "CrashLogger.hpp"
 #include "CrashLogExceptionHandler.hpp"
 
+#include "StringUtil.h"
+
 namespace CrashLogger::Version {
 	std::stringstream output;
 
@@ -54,28 +56,42 @@ namespace CrashLogger::Exception {
 
 	extern void Process(EXCEPTION_POINTERS* info) {
 		try {
-			output << fmt::format("Exception: {} ({:08X})\n", GetExceptionAsString(info->ExceptionRecord->ExceptionCode), info->ExceptionRecord->ExceptionCode);
-			if (GetLastError()) output << fmt::format("Last Error: {} ({:08X})\n", SanitizeString(GetErrorAsString(GetLastError())), GetLastError());
+			const auto exceptionAsString = GetExceptionAsString(info->ExceptionRecord->ExceptionCode);
+			output << fmt::format("Exception: {} ({:08X})\n", exceptionAsString, info->ExceptionRecord->ExceptionCode);
+
+			const auto lastError = GetLastError();
+			if (lastError) {
+				const auto asString = SanitizeString(GetErrorAsString(lastError));
+				output << fmt::format("Last Error: {} ({:08X})\n", asString, lastError);
+			}
 		}
 		catch (...) {
 			output << "Failed to log exception." << '\n';
 		}
 	}
 
-	extern std::stringstream& Get() { output.flush(); return output; }
+	extern std::stringstream& Get() {
+		output.flush();
+		return output;
+	}
 }
 
 namespace CrashLogger::Thread {
 	std::stringstream output;
 
-	std::string GetThreadName() {
-		std::string threadName;
-		wchar_t* pThreadName = NULL;
-		HRESULT hr = GetThreadDescription(GetCurrentThread(), &pThreadName);
-		std::wstring wThreadName(pThreadName);
-		std::transform(wThreadName.begin(), wThreadName.end(), std::back_inserter(threadName), [](wchar_t c) { return (char)c; });
+	static std::wstring GetCurrentThreadDescription() {
+		wchar_t* pThreadName = nullptr;
+		const auto hr = GetThreadDescription(GetCurrentThread(), &pThreadName);
+		if (!SUCCEEDED(hr)) {
+			return L"<unknown thread>";
+		}
+		const std::wstring name = pThreadName;
 		LocalFree(pThreadName);
-		return threadName;
+		return pThreadName;
+	}
+
+	static std::string GetThreadName() {
+		return mwse::string::from_wstring(GetCurrentThreadDescription());
 	}
 
 	extern void Process(EXCEPTION_POINTERS* info) {
@@ -83,7 +99,10 @@ namespace CrashLogger::Thread {
 		catch (...) { output << "Failed to log thread name." << '\n'; }
 	}
 
-	extern std::stringstream& Get() { output.flush(); return output; }
+	extern std::stringstream& Get() {
+		output.flush();
+		return output;
+	}
 }
 
 namespace CrashLogger::Calltrace {
