@@ -6,7 +6,6 @@
 #include <chrono>
 #include <exception>
 #include <filesystem>
-#include <format>
 #include <fstream>
 #include <future>
 #include <iomanip>
@@ -20,7 +19,6 @@
 #include <ostream>
 #include <queue>
 #include <random>
-#include <ranges>
 #include <regex>
 #include <set>
 #include <sstream>
