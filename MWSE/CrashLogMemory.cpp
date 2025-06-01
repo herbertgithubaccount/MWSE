@@ -23,8 +23,8 @@ namespace CrashLogger::Memory {
 			if (GetProcessMemoryInfo(hProcess, (PROCESS_MEMORY_COUNTERS*)&pmc, sizeof(pmc))) {
 				DWORDLONG virtUsage = memoryStatus.ullTotalVirtual - memoryStatus.ullAvailVirtual;
 				DWORDLONG physUsage = pmc.PrivateUsage;
-				output << fmt::format("Physical Usage: {}", GetMemoryUsageString(physUsage, memoryStatus.ullTotalPhys)) << '\n';
-				output << fmt::format("Virtual  Usage: {}", GetMemoryUsageString(virtUsage, memoryStatus.ullTotalVirtual)) << '\n';
+				output << fmt::format("Physical Memory Usage: {}", GetMemoryUsageString(physUsage, memoryStatus.ullTotalPhys)) << '\n';
+				output << fmt::format("Virtual  Memory Usage: {}", GetMemoryUsageString(virtUsage, memoryStatus.ullTotalVirtual)) << '\n';
 			}
 
 			// If NVHR is used, the number will be 0

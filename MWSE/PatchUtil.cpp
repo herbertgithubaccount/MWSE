@@ -2074,26 +2074,6 @@ namespace mwse::patch {
 		log::getLog() << std::dec << std::endl;
 		log::getLog() << "Morrowind has crashed! To help improve game stability, send MWSE_Minidump.dmp and mwse.log to the #mwse channel at the Morrowind Modding Community Discord: https://discord.me/mwmods" << std::endl;
 
-#ifdef APPVEYOR_BUILD_NUMBER
-		log::getLog() << "MWSE version: " << MWSE_VERSION_MAJOR << "." << MWSE_VERSION_MINOR << "." << MWSE_VERSION_PATCH << "-" << APPVEYOR_BUILD_NUMBER << std::endl;
-#else
-		log::getLog() << "MWSE version: " << MWSE_VERSION_MAJOR << "." << MWSE_VERSION_MINOR << "." << MWSE_VERSION_PATCH << std::endl;
-#endif
-		log::getLog() << "Build date: " << MWSE_BUILD_DATE << std::endl;
-
-		// Display the memory usage in the log.
-		PROCESS_MEMORY_COUNTERS_EX memCounter = {};
-		GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS*)&memCounter, sizeof(memCounter));
-		//log::getLog() << "Memory usage: " << std::dec << memCounter.PrivateUsage << " bytes." << std::endl;
-		if (memCounter.PrivateUsage > 3650722201) {
-			log::getLog() << "  Memory usage is high. Crash is likely due to running out of memory." << std::endl;
-		}
-
-		// Try to print the lua stack trace.
-		if (lua::hasStackTrace()) {
-			lua::logStackTrace("Lua traceback at time of crash:");
-		}
-
 		// Try to print any relevant mwscript information.
 		if (TES3::Script::currentlyExecutingScript) {
 			log::getLog() << "Currently executing mwscript context:" << std::endl;
@@ -2111,26 +2091,6 @@ namespace mwse::patch {
 				log::getLog() << "Currently loading mesh: " << itt.second << "; Thread: " << GetThreadName(itt.first) << std::endl;
 			}
 			TES3::DataHandler::currentlyLoadingMeshesMutex.unlock();
-		}
-
-		// Dump Warnings.txt.
-		if (std::filesystem::exists("Warnings.txt")) {
-			std::ifstream warnings("Warnings.txt");
-			if (warnings.is_open()) {
-				std::unordered_set<std::string> seenLines;
-				std::string line;
-				while (std::getline(warnings, line)) {
-					if (line.empty()) continue;
-					if (seenLines.empty()) {
-						log::getLog() << "Game warnings:" << std::endl;
-					}
-					if (seenLines.find(line) == seenLines.end()) {
-						log::getLog() << " > " << line << std::endl;
-						seenLines.insert(line);
-					}
-				}
-				warnings.close();
-			}
 		}
 
 		// Open the file.

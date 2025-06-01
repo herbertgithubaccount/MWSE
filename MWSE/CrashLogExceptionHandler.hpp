@@ -417,6 +417,15 @@ namespace CrashLogger::PDB {
 };
 
 namespace CrashLogger {
+	inline void LogVersion(EXCEPTION_POINTERS* info) {
+		__try {
+			Version::Process(info);
+		}
+		__except (EXCEPTION_EXECUTE_HANDLER) {
+			mwse::log::getLog() << ("Failed to log version. \n");
+		}
+	}
+
 	inline void LogPlaytime(EXCEPTION_POINTERS* info) {
 		__try {
 			Playtime::Process(info);
@@ -450,6 +459,15 @@ namespace CrashLogger {
 		}
 		__except (EXCEPTION_EXECUTE_HANDLER) {
 			mwse::log::getLog() << ("Failed to log calltrace. \n");
+		}
+	}
+
+	inline void LogLuaTraceback(EXCEPTION_POINTERS* info) {
+		__try {
+			LuaTraceback::Process(info);
+		}
+		__except (EXCEPTION_EXECUTE_HANDLER) {
+			mwse::log::getLog() << ("Failed to log lua traceback. \n");
 		}
 	}
 
@@ -498,64 +516,82 @@ namespace CrashLogger {
 		}
 	}
 
+	inline void LogWarnings(EXCEPTION_POINTERS* info) {
+		__try {
+			Warnings::Process(info);
+		}
+		__except (EXCEPTION_EXECUTE_HANDLER) {
+			mwse::log::getLog() << ("Failed to log warnings. \n");
+		}
+	}
+
 	inline void Log(EXCEPTION_POINTERS* info) {
+		auto& mwse_log = mwse::log::getLog();
 
 		const auto begin = std::chrono::system_clock::now();
 		//
-		//mwse::log::getLog() << ("Processing playtime \n");
+		//mwse_log << ("Processing playtime \n");
 		//LogPlaytime(info);
-		//mwse::log::getLog() << ("Processing exception \n");
+		//mwse_log << ("Processing exception \n");
+		LogVersion(info);
 		LogException(info);
-		//mwse::log::getLog() << ("Processing thread \n");
+		//mwse_log << ("Processing thread \n");
 		LogThread(info);
-		//mwse::log::getLog() << ("Processing memory \n");
+		//mwse_log << ("Processing memory \n");
 		LogMemory(info);
-		//mwse::log::getLog() << ("Processing device");
+		//mwse_log << ("Processing device");
 		//LogDevice(info);
-		//mwse::log::getLog() << ("Processing calltrace \n");
+		//mwse_log << ("Processing calltrace \n");
 		LogCalltrace(info);
-		//mwse::log::getLog() << ("Processing registry \n");
+		LogLuaTraceback(info);
+		//mwse_log << ("Processing registry \n");
 		LogRegistry(info);
-		//mwse::log::getLog() << ("Processing stack \n");
+		//mwse_log << ("Processing stack \n");
 		LogStack(info);
-		//mwse::log::getLog() << ("Processing mods);
+		//mwse_log << ("Processing mods);
 		//Mods::Process(info)
-		//mwse::log::getLog() << ("Processing install");
+		//mwse_log << ("Processing install");
 		//LogInstall(info);
-		//mwse::log::getLog() << ("processing modules");
+		//mwse_log << ("processing modules");
 		//Modules::Process(info);
 		//AssetTracker::Process(info);
+		LogWarnings(info);
 
 		const auto processing = std::chrono::system_clock::now();
 
-		mwse::log::getLog() << ("=== BASIC INFORMATION: =================================================================================================\n");
-//		mwse::log::getLog() << ("%s", Playtime::Get().str().c_str());
-		mwse::log::getLog() << ("%s", Exception::Get().str().c_str());
-		mwse::log::getLog() << ("%s", Thread::Get().str().c_str());
-		mwse::log::getLog() << ("%s", Memory::Get().str().c_str());
-		mwse::log::getLog() << ("=== CALL STACK: ========================================================================================================\n");
-		mwse::log::getLog() << ("%s", Calltrace::Get().str().c_str());
-		mwse::log::getLog() << ("=== REGISTRY: ==========================================================================================================\n");
-		mwse::log::getLog() << ("%s", Registry::Get().str().c_str());
-		mwse::log::getLog() << ("=== STACK: =============================================================================================================\n");
-		mwse::log::getLog() << ("%s", Stack::Get().str().c_str());
-//		mwse::log::getLog() << ("=== DEVICE: ============================================================================================================\n");
-//		mwse::log::getLog() << ("%s", Device::Get().str().c_str());
-//		mwse::log::getLog() << ("==== MODS: =============================================================================================================\n");
-//		mwse::log::getLog() << ("%s", Mods::Get().str());
-//		mwse::log::getLog() << ("==== ASSETS: ===========================================================================================================\n");
-//		mwse::log::getLog() << ("%s", AssetTracker::Get().str());
-//		mwse::log::getLog() << ("==== MODULES: ==========================================================================================================\n");
-//		mwse::log::getLog() << ("%s", Modules::Get().str().c_str());
-//		mwse::log::getLog() << ("==== INSTALL: ==========================================================================================================\n");
-//		mwse::log::getLog() << ("%s", Install::Get().str().c_str());
+		mwse_log << ("=== BASIC INFORMATION: =================================================================================================\n");
+		mwse_log << ("%s", Version::Get().str().c_str());
+//		mwse_log << ("%s", Playtime::Get().str().c_str());
+		mwse_log << ("%s", Memory::Get().str().c_str());
+		mwse_log << ("%s", Thread::Get().str().c_str());
+		mwse_log << ("%s", Exception::Get().str().c_str());
+		mwse_log << ("=== CALL STACK: ========================================================================================================\n");
+		mwse_log << ("%s", Calltrace::Get().str().c_str());
+		mwse_log << ("=== LUA STACK: =========================================================================================================\n");
+		mwse_log << ("%s", LuaTraceback::Get().str().c_str());
+		mwse_log << ("=== REGISTRY: ==========================================================================================================\n");
+		mwse_log << ("%s", Registry::Get().str().c_str());
+		mwse_log << ("=== STACK: =============================================================================================================\n");
+		mwse_log << ("%s", Stack::Get().str().c_str());
+//		mwse_log << ("=== DEVICE: ============================================================================================================\n");
+//		mwse_log << ("%s", Device::Get().str().c_str());
+//		mwse_log << ("==== MODS: =============================================================================================================\n");
+//		mwse_log << ("%s", Mods::Get().str());
+//		mwse_log << ("==== ASSETS: ===========================================================================================================\n");
+//		mwse_log << ("%s", AssetTracker::Get().str());
+//		mwse_log << ("==== MODULES: ==========================================================================================================\n");
+//		mwse_log << ("%s", Modules::Get().str().c_str());
+//		mwse_log << ("==== INSTALL: ==========================================================================================================\n");
+//		mwse_log << ("%s", Install::Get().str().c_str());
+		mwse_log << ("=== WARNINGS: ==========================================================================================================\n");
+		mwse_log << ("%s", Warnings::Get().str().c_str());
 
 		if constexpr (CrashLogger::DEBUG_LOGGER) {
 			const auto printing = std::chrono::system_clock::now();
 			const auto timeProcessing = std::chrono::duration_cast<std::chrono::milliseconds>(processing - begin);
 			const auto timePrinting = std::chrono::duration_cast<std::chrono::milliseconds>(printing - processing);
-			mwse::log::getLog() << ("=== LOGGING INFORMATION: ===============================================================================================\n");
-			mwse::log::getLog() << ("%s", fmt::format("Processed in {:d} ms, printed in {:d} ms", (long)timeProcessing.count(), (long)timePrinting.count()).c_str());
+			mwse_log << ("=== LOGGING INFORMATION: ===============================================================================================\n");
+			mwse_log << ("%s", fmt::format("Processed in {:d} ms, printed in {:d} ms", (long)timeProcessing.count(), (long)timePrinting.count()).c_str());
 		}
 
 		//Logger::Copy();

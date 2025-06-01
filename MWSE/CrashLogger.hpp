@@ -54,10 +54,12 @@
 #include "MWSEConfig.h"
 #include "MWSEDefs.h"
 
+namespace CrashLogger::Version { inline void Process(EXCEPTION_POINTERS* info); inline std::stringstream& Get(); }
 namespace CrashLogger::Playtime { inline void Init(); inline void Process(EXCEPTION_POINTERS* info); inline std::stringstream& Get(); }
 namespace CrashLogger::Exception { inline void Process(EXCEPTION_POINTERS* info); inline std::stringstream& Get(); }
 namespace CrashLogger::Thread { inline void Process(EXCEPTION_POINTERS* info); inline std::stringstream& Get(); }
 namespace CrashLogger::Calltrace { inline void Process(EXCEPTION_POINTERS* info); inline std::stringstream& Get(); }
+namespace CrashLogger::LuaTraceback { inline void Process(EXCEPTION_POINTERS* info); inline std::stringstream& Get(); }
 namespace CrashLogger::Registry { inline void Process(EXCEPTION_POINTERS* info); inline std::stringstream& Get(); }
 namespace CrashLogger::Stack { inline void Process(EXCEPTION_POINTERS* info); inline std::stringstream& Get(); }
 //namespace CrashLogger::Modules { inline void Process(EXCEPTION_POINTERS* info); inline std::stringstream& Get(); }
@@ -66,6 +68,7 @@ namespace CrashLogger::Memory { inline void Process(EXCEPTION_POINTERS* info); i
 //namespace CrashLogger::Mods { inline void Process(EXCEPTION_POINTERS* info); inline std::stringstream& Get(); }
 namespace CrashLogger::Device { inline void Process(EXCEPTION_POINTERS* info); inline std::stringstream& Get(); }
 //namespace CrashLogger::AssetTracker { inline void Process(EXCEPTION_POINTERS* info); inline std::stringstream& Get(); }
+namespace CrashLogger::Warnings { inline void Process(EXCEPTION_POINTERS* info); inline std::stringstream& Get(); }
 
 namespace CrashLogger::Stack {
 	inline std::string GetLineForObject(void** object, UINT32 depth);

@@ -1,6 +1,29 @@
 #include "CrashLogger.hpp"
 #include "CrashLogExceptionHandler.hpp"
 
+namespace CrashLogger::Version {
+	std::stringstream output;
+
+	extern void Process(EXCEPTION_POINTERS* info) {
+		try {
+#ifdef APPVEYOR_BUILD_NUMBER
+			output << fmt::format("Appveyor Build: {}\n", APPVEYOR_BUILD_NUMBER);
+#else
+			output << "Appveyor Build: <unavailable>\n";
+#endif
+			output << fmt::format("Build Date: {}\n", MWSE_BUILD_DATE);
+		}
+		catch (...) {
+			output << "Failed to log version." << '\n';
+		}
+	}
+
+	extern std::stringstream& Get() {
+		output.flush();
+		return output;
+	}
+}
+
 namespace CrashLogger::Playtime {
 	std::stringstream output;
 
@@ -119,7 +142,6 @@ namespace CrashLogger::Calltrace {
 				output << "Error initializing symbol store" << '\n';
 			}
 
-
 			//	SymSetExtendedOption((IMAGEHLP_EXTENDED_OPTIONS)SYMOPT_EX_WINE_NATIVE_MODULES, TRUE);
 
 			STACKFRAME frame = {};
@@ -150,4 +172,60 @@ namespace CrashLogger::Calltrace {
 	}
 
 	extern std::stringstream& Get() { output.flush(); return output; }
+}
+
+namespace CrashLogger::LuaTraceback {
+	std::stringstream output;
+
+	extern void Process(EXCEPTION_POINTERS* info) {
+		try {
+			output << mwse::lua::getStackTrace(true) << '\n';
+		}
+		catch (...) {
+			output << "Failed to log lua traceback." << '\n';
+		}
+	}
+
+	extern std::stringstream& Get() {
+		output.flush();
+		return output;
+	}
+}
+
+namespace CrashLogger::Warnings {
+	std::stringstream output;
+
+	extern void Process(EXCEPTION_POINTERS* info) {
+		try {
+			// Dump Warnings.txt.
+			if (!std::filesystem::exists("Warnings.txt")) {
+				return;
+			}
+
+			std::ifstream warnings("Warnings.txt");
+			if (!warnings.is_open()) {
+				return;
+			}
+
+			std::unordered_set<std::string> seenLines;
+			std::string line;
+			while (std::getline(warnings, line)) {
+				if (line.empty()) continue;
+				if (seenLines.find(line) == seenLines.end()) {
+					output << line << std::endl;
+					seenLines.insert(line);
+				}
+			}
+
+			warnings.close();
+		}
+		catch (...) {
+			output << "Failed to log warnings." << '\n';
+		}
+	}
+
+	extern std::stringstream& Get() {
+		output.flush();
+		return output;
+	}
 }

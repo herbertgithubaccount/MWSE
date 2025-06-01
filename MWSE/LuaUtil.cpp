@@ -486,46 +486,35 @@ namespace mwse::lua {
 	}
 
 	void logStackTrace(const char* message) {
-		auto stateHandle = LuaManager::getInstance().getThreadSafeStateHandle();
-		auto& state = stateHandle.state;
-		static sol::protected_function luaDebugTraceback = state["debug"]["traceback"];
+		std::string stackTrace = getStackTrace(true);
 
-		sol::protected_function_result result = luaDebugTraceback();
-		if (!result.valid()) {
-			return;
-		}
-		
-		if (result.get_type() != sol::type::string) {
-			return;
-		}
-
-		std::string stackTrace = result;
 		if (message != nullptr) {
 			log::getLog() << message << std::endl;
-
-			// Clear out prefix if an alternate message was given.
-			stackTrace.erase(stackTrace.begin(), stackTrace.begin() + sizeof("stack traceback:"));
 		}
 
 		log::getLog() << stackTrace << std::endl;
 	}
 
-	bool hasStackTrace() {
+	std::string getStackTrace(bool removePrefix) {
 		auto stateHandle = LuaManager::getInstance().getThreadSafeStateHandle();
 		auto& state = stateHandle.state;
 		static sol::protected_function luaDebugTraceback = state["debug"]["traceback"];
 
 		sol::protected_function_result result = luaDebugTraceback();
 		if (!result.valid()) {
-			return false;
+			return "";
 		}
 
-		sol::optional<std::string> asString = result;
-		if (!asString) {
-			return false;
+		if (result.get_type() != sol::type::string) {
+			return "";
 		}
 
-		return asString.value().length() > 17;
+		std::string stackTrace = result;
+		if (removePrefix) {
+			stackTrace.erase(stackTrace.begin(), stackTrace.begin() + sizeof("stack traceback:"));
+		}
+
+		return result;
 	}
 
 	void reportErrorInGame(const char* sourceName, const sol::error& error) {
