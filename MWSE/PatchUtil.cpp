@@ -2124,17 +2124,17 @@ namespace mwse::patch {
 				log::getLog() << "MiniDump creation successful." << std::endl;
 			}
 
-			if constexpr (CrashLogger::DEBUG_LOGGER) {
-				log::getLog() << "Attempting To Log Crash \n";
-			}
-			CrashLogger::AttemptLog(pep);
-
 			// Close the file
 			CloseHandle(hFile);
 		}
 		else {
 			log::getLog() << "MiniDump creation failed. Could not get file handle. Error: " << GetLastError() << std::endl;
 		}
+
+		if constexpr (CrashLogger::DEBUG_LOGGER) {
+			log::getLog() << "Attempting To Log Crash \n";
+		}
+		CrashLogger::AttemptLog(pep);
 	}
 
 	int __stdcall onWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd) {
