@@ -2,6 +2,7 @@
 #include "CrashLogExceptionHandler.hpp"
 
 #include "StringUtil.h"
+#include "WindowsUtil.h"
 
 namespace CrashLogger::Version {
 	std::stringstream output;
@@ -80,24 +81,16 @@ namespace CrashLogger::Exception {
 namespace CrashLogger::Thread {
 	std::stringstream output;
 
-	static std::wstring GetCurrentThreadDescription() {
-		wchar_t* pThreadName = nullptr;
-		const auto hr = GetThreadDescription(GetCurrentThread(), &pThreadName);
-		if (!SUCCEEDED(hr)) {
-			return L"<unknown thread>";
-		}
-		std::wstring name = pThreadName;
-		LocalFree(pThreadName);
-
-		if (name.empty()) {
-			name = L"<unknown thread>";
-		}
-
-		return name;
-	}
-
 	static std::string GetThreadName() {
-		return mwse::string::from_wstring(GetCurrentThreadDescription());
+		auto name = mwse::windows::GetThreadDescription(GetCurrentThread());
+		if (!name.has_value()) {
+			name = L"<unsupported>";
+		}
+		else if (name.value().empty()) {
+			name = L"<unknown>";
+		}
+
+		return mwse::string::from_wstring(name.value());
 	}
 
 	extern void Process(EXCEPTION_POINTERS* info) {
