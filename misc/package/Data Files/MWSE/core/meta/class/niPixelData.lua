@@ -20,6 +20,10 @@ function niPixelData.new(width, height, mipMapLevels) end
 --- @return niSourceTexture result No description yet available.
 function niPixelData:createSourceTexture() end
 
+--- Exports this pixel data as a Truevision TGA file. Only supports export of pixel data in RGBA32 format, which all `niPixelData` created using [`niPixelData.new`](https://mwse.github.io/MWSE/types/niPixelData/#new) are.
+--- @param path string The path to write the file at, relative to the Morrowind installation folder. The `.tga` extension needs to be specified manually.
+function niPixelData:exportTGA(path) end
+
 --- Fills this pixel data with the provided color.
 --- @param data number[] The color data to be set (1-indexed). The values should be in range [0.0, 1.0]. The first three values are RGB color channels, while the last one is alpha channel. The array length must be equal to the `bytesPerPixel` property of this niPixelData object, because alpha can be assigned only to the niPixelData object that has an alpha channel.
 --- @param mipMapLevel number? *Default*: `0`. The mipmap level to fill with the provided color. The finest (largest) mipmap level is level 0.

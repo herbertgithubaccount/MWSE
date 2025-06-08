@@ -50,6 +50,11 @@ function niAVObject:detachProperty(type) end
 --- @return niAVObject|niAmbientLight|niAutoNormalParticles|niBSAnimationNode|niBSParticleNode|niBillboardNode|niCamera|niCollisionSwitch|niDirectionalLight|niNode|niParticles|niPointLight|niRotatingParticles|niSortAdjustNode|niSpotLight|niSwitchNode|niTextureEffect|niTriShape result No description yet available.
 function niAVObject:getObjectByName(name) end
 
+--- Searches the parent node chain returning the node that matches the argument.
+--- @param name string No description yet available.
+--- @return niBSAnimationNode|niBSParticleNode|niBillboardNode|niCollisionSwitch|niNode|niSortAdjustNode|niSwitchNode|nil parentNode No description yet available.
+function niAVObject:getParentByName(name) end
+
 --- Gets an attached property by property type.
 --- @param type ni.propertyType The types are available in [`ni.propertyType`](https://mwse.github.io/MWSE/references/ni/property-types/) table.
 --- @return niAlphaProperty|niFogProperty|niMaterialProperty|niProperty|niStencilProperty|niTexturingProperty|niVertexColorProperty|niZBufferProperty result No description yet available.
