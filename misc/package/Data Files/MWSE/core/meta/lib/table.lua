@@ -142,7 +142,7 @@ function table.invert(t) end
 
 --- Returns an array-style table of all keys in the given table, t. Optionally, it will sort the returned table.
 --- @param t table The table to get keys for.
---- @param sort? boolean|function|nil *Optional*. If true, the returned table will be sorted. If a function is passed, the table will be sorted using the given function.
+--- @param sort? boolean|function *Optional*. If true, the returned table will be sorted. If a function is passed, the table will be sorted using the given function.
 --- @return table keys An array of all table keys.
 function table.keys(t, sort) end
 
@@ -188,7 +188,7 @@ function table.traverse(t, k) end
 
 --- Returns an array-style table of all values in the given table, t. Optionally, it will sort the returned table.
 --- @param t table The table to get values for.
---- @param sort? boolean|function|nil *Optional*. If true, the returned table will be sorted. If a function is passed, the table will be sorted using the given function.
+--- @param sort? boolean|function *Optional*. If true, the returned table will be sorted. If a function is passed, the table will be sorted using the given function.
 --- @return table values An array of all table values.
 function table.values(t, sort) end
 

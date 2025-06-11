@@ -56,7 +56,7 @@ function timer.register(name, fn) end
 --- 
 --- `persist?`: boolean — *Default*: `true`. Registering a timer with persist flag set to `true` will serialize the callback string in the save to persist between sessions. Only a registered timer will persist between sessions. See `timer.register()`.
 --- 
---- `data?`: table|nil — *Default*: `nil`. Data to be attached to the timer. If this is a persistent timer, the data must be json-serializable, matching the same limitations as data stored on references.
+--- `data?`: table — *Default*: `nil`. Data to be attached to the timer. If this is a persistent timer, the data must be json-serializable, matching the same limitations as data stored on references.
 --- @return mwseTimer timer No description yet available.
 function timer.start(params) end
 
@@ -67,5 +67,5 @@ function timer.start(params) end
 --- @field callback fun(e: mwseTimerCallbackData)|string The callback function that will execute when the timer expires. If starting a registered timer, this needs to be the `name` string passed to `timer.register`.
 --- @field iterations? integer *Default*: `1`. The number of iterations to run. Use `-1` for infinite looping.
 --- @field persist? boolean *Default*: `true`. Registering a timer with persist flag set to `true` will serialize the callback string in the save to persist between sessions. Only a registered timer will persist between sessions. See `timer.register()`.
---- @field data? table|nil *Default*: `nil`. Data to be attached to the timer. If this is a persistent timer, the data must be json-serializable, matching the same limitations as data stored on references.
+--- @field data? table *Default*: `nil`. Data to be attached to the timer. If this is a persistent timer, the data must be json-serializable, matching the same limitations as data stored on references.
 

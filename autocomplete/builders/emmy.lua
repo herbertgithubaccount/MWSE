@@ -146,15 +146,20 @@ local function getAllPossibleVariationsOfType(type, package, markOptional)
 		end
 	end
 
-	if (markOptional and (package.optional or package.default ~= nil)) then
-		-- If we only have one type, just add ? to it.
-		if (#types == 1 and (not types[1]:startswith("fun("))) then
-			if (not types[1]:endswith("?")) then
-				types[1] = types[1] .. "?"
+	if (package.optional or package.default ~= nil) then
+		if (markOptional) then
+			-- If we only have one type, just add ? to it.
+			if (#types == 1 and (not types[1]:startswith("fun("))) then
+				if (not types[1]:endswith("?")) then
+					types[1] = types[1] .. "?"
+				end
+			else
+				-- Otherwise add `nil` to the list if it isn't already there.
+				insertNil(types)
 			end
 		else
-			-- Otherwise add `nil` to the list if it isn't already there.
-			insertNil(types)
+			-- `?` will be added to the name instead, remove unnecessary `nil` from type
+			table.removevalue(types, "nil")
 		end
 	end
 
