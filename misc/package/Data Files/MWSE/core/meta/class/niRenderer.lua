@@ -8,7 +8,7 @@
 niRenderer = {}
 
 --- This method changes the active rendering target to the provided texture.
---- @param texture? niRenderedTexture *Default*: `nil`. Set to `nil` to reset to the default rendering target.
+--- @param texture? niRenderedTexture *Optional*. Set to `nil` to reset to the default rendering target.
 --- @return boolean result No description yet available.
 function niRenderer:setRenderTarget(texture) end
 

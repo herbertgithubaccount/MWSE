@@ -266,7 +266,7 @@ local effect = tes3.addMagicEffect({ id = ..., name = ..., magnitudeType = ..., 
 	* `sizeCap` (number): *Default*: `1`. The maximum possible size of the projectile.
 	* `speed` (number): *Default*: `1`.
 	* `description` (string): *Default*: `No description available.`. Description for the effect.
-	* `lighting` ([tes3vector3](../types/tes3vector3.md), table, nil): *Optional*. Value of red, green, and blue values of the color for both particle lighting and enchantment wraps. In range of [0.0, 1.0].
+	* `lighting` ([tes3vector3](../types/tes3vector3.md), table): *Optional*. Value of red, green, and blue values of the color for both particle lighting and enchantment wraps. In range of [0.0, 1.0].
 	* `icon` (string): Path to the effect icon. Must be a string no longer than 31 characters long. Use double \ as path separator.
 	* `particleTexture` (string): Path to the particle texture to use for the effect. Must be a string no longer than 31 characters long.
 	* `castSound` (string): The sound ID which will be played on casting a spell with this effect. Must be a string no longer than 31 characters long. If not specified, the default sound for the spell school will be used.
@@ -2312,7 +2312,7 @@ local isStolen, stolenFrom = tes3.getItemIsStolen({ item = ..., from = ... })
 
 * `params` (table)
 	* `item` ([tes3item](../types/tes3item.md)): The item to check.
-	* `from` ([tes3creature](../types/tes3creature.md), [tes3npc](../types/tes3npc.md), [tes3faction](../types/tes3faction.md), nil): *Optional*. Where the item was stolen from. If not provided, the function will return true if the item was stolen from anyone.
+	* `from` ([tes3creature](../types/tes3creature.md), [tes3npc](../types/tes3npc.md), [tes3faction](../types/tes3faction.md)): *Optional*. Where the item was stolen from. If not provided, the function will return true if the item was stolen from anyone.
 
 **Returns**:
 
@@ -3960,7 +3960,7 @@ local executed = tes3.positionCell({ reference = ..., cell = ..., position = ...
 
 * `params` (table)
 	* `reference` ([tes3reference](../types/tes3reference.md), [tes3mobileActor](../types/tes3mobileActor.md), string): *Default*: `tes3.mobilePlayer`. The reference to reposition.
-	* `cell` ([tes3cell](../types/tes3cell.md), string, table, nil): *Optional*. The cell to move the reference to. Can be a tes3cell, cell name, or a table with two values that correspond to the exterior cell's grid coordinates. If not provided, the reference will be moved to a cell in the exterior worldspace at the position provided.
+	* `cell` ([tes3cell](../types/tes3cell.md), string, table): *Optional*. The cell to move the reference to. Can be a tes3cell, cell name, or a table with two values that correspond to the exterior cell's grid coordinates. If not provided, the reference will be moved to a cell in the exterior worldspace at the position provided.
 	* `position` ([tes3vector3](../types/tes3vector3.md), number[]): The position to move the reference to.
 	* `orientation` ([tes3vector3](../types/tes3vector3.md), number[]): *Optional*. The new orientation of the reference.
 	* `forceCellChange` (boolean): *Default*: `false`. When true, forces the game to update a reference that has moved within a single cell, as if it was moved into a new cell.

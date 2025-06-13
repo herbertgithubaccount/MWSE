@@ -16,7 +16,7 @@ json = {}
 --- 
 --- @param s string No description yet available.
 --- @param position? number *Default*: `1`. No description yet available.
---- @param nullValue? string|nil *Default*: `nil`. No description yet available.
+--- @param nullValue? string *Optional*. No description yet available.
 --- @return table result No description yet available.
 function json.decode(s, position, nullValue) end
 
