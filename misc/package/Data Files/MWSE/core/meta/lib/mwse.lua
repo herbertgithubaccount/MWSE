@@ -54,7 +54,7 @@ function mwse.iconv(languageCode, utf8string) end
 --- 
 --- @generic configType : table
 --- @param fileName string The non-extensioned name of the config file.
---- @param defaults configType? *Optional*. A table of default values.
+--- @param defaults? configType *Optional*. A table of default values.
 --- @return configType result No description yet available.
 function mwse.loadConfig(fileName, defaults) end
 
@@ -67,7 +67,7 @@ function mwse.loadTranslations(mod) end
 --- 
 --- The message accepts formatting and additional parameters matching string.format's usage.
 --- @param message string No description yet available.
---- @param ... any? *Optional*. Formatting arguments. These are passed to `string.format`.
+--- @param ...? any *Optional*. Formatting arguments. These are passed to `string.format`.
 function mwse.log(message, ...) end
 
 --- Converts a TES3 object type (e.g. from tes3.objectType) into an uppercase, 4-character string.
@@ -91,21 +91,21 @@ function mwse.overrideScript(scriptId, callback) end
 --- 
 --- `onCreate`: fun(modConfigContainer: tes3uiElement) — The function that creates the mod's configuration menu inside given `modConfigContainer`.
 --- 
---- `onSearch`: nil|fun(searchText: string): boolean — *Optional*. A custom search handler function. This function should return true if this mod should show up in search results for given `searchText`.
+--- `onSearch?`: fun(searchText: string): boolean — *Optional*. A custom search handler function. This function should return true if this mod should show up in search results for given `searchText`.
 --- 
---- `onClose`: nil|fun(modConfigContainer: tes3uiElement) — *Optional*. This function is called when the mod's configuration menu is closed. Typically, it's used to save the current config table.
+--- `onClose?`: fun(modConfigContainer: tes3uiElement) — *Optional*. This function is called when the mod's configuration menu is closed. Typically, it's used to save the current config table.
 function mwse.registerModConfig(name, package) end
 
 ---Table parameter definitions for `mwse.registerModConfig`.
 --- @class mwse.registerModConfig.package
 --- @field onCreate fun(modConfigContainer: tes3uiElement) The function that creates the mod's configuration menu inside given `modConfigContainer`.
---- @field onSearch nil|fun(searchText: string): boolean *Optional*. A custom search handler function. This function should return true if this mod should show up in search results for given `searchText`.
---- @field onClose nil|fun(modConfigContainer: tes3uiElement) *Optional*. This function is called when the mod's configuration menu is closed. Typically, it's used to save the current config table.
+--- @field onSearch? fun(searchText: string): boolean *Optional*. A custom search handler function. This function should return true if this mod should show up in search results for given `searchText`.
+--- @field onClose? fun(modConfigContainer: tes3uiElement) *Optional*. This function is called when the mod's configuration menu is closed. Typically, it's used to save the current config table.
 
 --- Saves a config table to Data Files\\MWSE\\config\\{fileName}.json. The config is converted to JSON during saving.
 --- @param fileName string Usually named after your mod.
 --- @param config table The config table to save.
---- @param jsonOptions table? *Optional*. Encoding options. These get passed to the `dkjson` encoder.
+--- @param jsonOptions? table *Optional*. Encoding options. These get passed to the `dkjson` encoder.
 function mwse.saveConfig(fileName, config, jsonOptions) end
 
 --- Converts an uppercase, 4-character string into a TES3 object type.
