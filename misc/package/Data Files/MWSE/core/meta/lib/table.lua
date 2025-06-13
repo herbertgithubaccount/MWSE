@@ -17,7 +17,7 @@ table = {}
 --- This function will return the index where `value` was inserted into `t`.
 --- @param t table No description yet available.
 --- @param value unknown No description yet available.
---- @param comp nil|fun(a, b):boolean *Optional*. No description yet available.
+--- @param comp? fun(a, b):boolean *Optional*. No description yet available.
 --- @return number result No description yet available.
 function table.bininsert(t, value, comp) end
 
@@ -30,8 +30,8 @@ function table.bininsert(t, value, comp) end
 --- 
 --- @param tbl table No description yet available.
 --- @param value unknown The value to search for.
---- @param comp nil|fun(a, b):boolean *Optional*. The function used to sort `tbl`. If not provided, then the standard `<` operator will be used.
---- @param findAll boolean? *Default*: `false`. If true,
+--- @param comp? fun(a, b):boolean *Optional*. The function used to sort `tbl`. If not provided, then the standard `<` operator will be used.
+--- @param findAll? boolean *Default*: `false`. If true,
 --- @return integer|nil index An `index` such that `tbl[index] == value`, if such an index exists. `nil` otherwise. If `findAll == true`, this will be the smallest index such that `tbl[index] == value`.
 --- @return integer|nil highestMatch If a match was found, and if `findAll == true`, then this will be the largest `index` such that `tbl[index] == vale`. `nil` otherwise.
 function table.binsearch(tbl, value, comp, findAll) end
@@ -56,7 +56,7 @@ function table.contains(t, value) end
 
 --- Shallowly copies a table's contents to a destination table. If no destination table is provided, a new table will be created. Note that sub tables will not be copied, and will still refer to the same data.
 --- @param from table No description yet available.
---- @param to table? *Optional*. No description yet available.
+--- @param to? table *Optional*. No description yet available.
 --- @return table result No description yet available.
 function table.copy(from, to) end
 
@@ -74,7 +74,7 @@ function table.deepcopy(t) end
 --- 
 --- If `deepCheck == true`, then tables are allowed to have nested subtables, so long as those subtables are empty. e.g., `table.empty({ {}, {} }, true) == true`, while `table.empty({ {}, {} }) == false`.
 --- @param t table No description yet available.
---- @param deepCheck boolean? *Default*: `false`. If `true`, subtables will also be checked to see if they are empty.
+--- @param deepCheck? boolean *Default*: `false`. If `true`, subtables will also be checked to see if they are empty.
 --- @return boolean result No description yet available.
 function table.empty(t, deepCheck) end
 
@@ -142,7 +142,7 @@ function table.invert(t) end
 
 --- Returns an array-style table of all keys in the given table, t. Optionally, it will sort the returned table.
 --- @param t table The table to get keys for.
---- @param sort boolean|function|nil *Optional*. If true, the returned table will be sorted. If a function is passed, the table will be sorted using the given function.
+--- @param sort? boolean|function *Optional*. If true, the returned table will be sorted. If a function is passed, the table will be sorted using the given function.
 --- @return table keys An array of all table keys.
 function table.keys(t, sort) end
 
@@ -168,7 +168,7 @@ function table.removevalue(list, value) end
 
 --- Shuffles the table in place using the Fisher-Yates algorithm. Passing in table size as the second argument saves the function from having to get it itself.
 --- @param t table No description yet available.
---- @param n integer? *Default*: `#t`. The length of the array.
+--- @param n? integer *Default*: `#t`. The length of the array.
 function table.shuffle(t, n) end
 
 --- Returns the number of elements inside the table. Unlike the length operator (#) this will work with any table.
@@ -182,13 +182,13 @@ function table.size(t) end
 ---
 --- [Examples available in online documentation](https://mwse.github.io/MWSE/apis/table/#tabletraverse).
 --- @param t table A table to transverse.
---- @param k string? *Default*: `children`. The subtable key.
+--- @param k? string *Default*: `children`. The subtable key.
 --- @return fun(): any iterator No description yet available.
 function table.traverse(t, k) end
 
 --- Returns an array-style table of all values in the given table, t. Optionally, it will sort the returned table.
 --- @param t table The table to get values for.
---- @param sort boolean|function|nil *Optional*. If true, the returned table will be sorted. If a function is passed, the table will be sorted using the given function.
+--- @param sort? boolean|function *Optional*. If true, the returned table will be sorted. If a function is passed, the table will be sorted using the given function.
 --- @return table values An array of all table values.
 function table.values(t, sort) end
 

@@ -373,7 +373,7 @@ local keys = table.keys(t, sort)
 **Parameters**:
 
 * `t` (table): The table to get keys for.
-* `sort` (boolean, function, nil): *Optional*. If true, the returned table will be sorted. If a function is passed, the table will be sorted using the given function.
+* `sort` (boolean, function): *Optional*. If true, the returned table will be sorted. If a function is passed, the table will be sorted using the given function.
 
 **Returns**:
 
@@ -530,7 +530,7 @@ local values = table.values(t, sort)
 **Parameters**:
 
 * `t` (table): The table to get values for.
-* `sort` (boolean, function, nil): *Optional*. If true, the returned table will be sorted. If a function is passed, the table will be sorted using the given function.
+* `sort` (boolean, function): *Optional*. If true, the returned table will be sorted. If a function is passed, the table will be sorted using the given function.
 
 **Returns**:
 
