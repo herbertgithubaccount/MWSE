@@ -161,7 +161,7 @@ function tes3.addJournalEntry(params) end
 --- 
 --- `description?`: string — *Default*: `No description available.`. Description for the effect.
 --- 
---- `lighting?`: tes3vector3|table — *Optional*. Value of red, green, and blue values of the color for both particle lighting and enchantment wraps. In range of [0.0, 1.0].
+--- `lighting?`: tes3vector3|table|nil — *Optional*. Value of red, green, and blue values of the color for both particle lighting and enchantment wraps. In range of [0.0, 1.0].
 --- 
 --- `icon`: string — Path to the effect icon. Must be a string no longer than 31 characters long. Use double \ as path separator.
 --- 
@@ -235,7 +235,7 @@ function tes3.addMagicEffect(params) end
 --- @field sizeCap? number *Default*: `1`. The maximum possible size of the projectile.
 --- @field speed? number *Default*: `1`. No description yet available.
 --- @field description? string *Default*: `No description available.`. Description for the effect.
---- @field lighting? tes3vector3|table *Optional*. Value of red, green, and blue values of the color for both particle lighting and enchantment wraps. In range of [0.0, 1.0].
+--- @field lighting? tes3vector3|table|nil *Optional*. Value of red, green, and blue values of the color for both particle lighting and enchantment wraps. In range of [0.0, 1.0].
 --- @field icon string Path to the effect icon. Must be a string no longer than 31 characters long. Use double \ as path separator.
 --- @field particleTexture string Path to the particle texture to use for the effect. Must be a string no longer than 31 characters long.
 --- @field castSound string The sound ID which will be played on casting a spell with this effect. Must be a string no longer than 31 characters long. If not specified, the default sound for the spell school will be used.
@@ -1240,7 +1240,7 @@ function tes3.getItemCount(params) end
 --- 
 --- `item`: tes3alchemy|tes3apparatus|tes3armor|tes3book|tes3clothing|tes3ingredient|tes3item|tes3light|tes3lockpick|tes3misc|tes3probe|tes3repairTool|tes3weapon — The item to check.
 --- 
---- `from?`: tes3creature|tes3npc|tes3faction — *Optional*. Where the item was stolen from. If not provided, the function will return true if the item was stolen from anyone.
+--- `from?`: tes3creature|tes3npc|tes3faction|nil — *Optional*. Where the item was stolen from. If not provided, the function will return true if the item was stolen from anyone.
 --- @return boolean isStolen If true the item is stolen.
 --- @return tes3creature[]|tes3npc[]|tes3faction[] stolenFrom A list of who and what the item has been stolen from.
 function tes3.getItemIsStolen(params) end
@@ -1248,7 +1248,7 @@ function tes3.getItemIsStolen(params) end
 ---Table parameter definitions for `tes3.getItemIsStolen`.
 --- @class tes3.getItemIsStolen.params
 --- @field item tes3alchemy|tes3apparatus|tes3armor|tes3book|tes3clothing|tes3ingredient|tes3item|tes3light|tes3lockpick|tes3misc|tes3probe|tes3repairTool|tes3weapon The item to check.
---- @field from? tes3creature|tes3npc|tes3faction *Optional*. Where the item was stolen from. If not provided, the function will return true if the item was stolen from anyone.
+--- @field from? tes3creature|tes3npc|tes3faction|nil *Optional*. Where the item was stolen from. If not provided, the function will return true if the item was stolen from anyone.
 
 --- Gets the index of a given journal, or nil if no valid journal could be found.
 --- @param params tes3.getJournalIndex.params This table accepts the following values:
@@ -1994,7 +1994,7 @@ function tes3.playVoiceover(params) end
 --- 
 --- `reference?`: tes3reference|tes3mobileActor|tes3mobileCreature|tes3mobileNPC|tes3mobilePlayer|string — *Default*: `tes3.mobilePlayer`. The reference to reposition.
 --- 
---- `cell?`: tes3cell|string|table — *Optional*. The cell to move the reference to. Can be a tes3cell, cell name, or a table with two values that correspond to the exterior cell's grid coordinates. If not provided, the reference will be moved to a cell in the exterior worldspace at the position provided.
+--- `cell?`: tes3cell|string|table|nil — *Optional*. The cell to move the reference to. Can be a tes3cell, cell name, or a table with two values that correspond to the exterior cell's grid coordinates. If not provided, the reference will be moved to a cell in the exterior worldspace at the position provided.
 --- 
 --- `position`: tes3vector3|number[] — The position to move the reference to.
 --- 
@@ -2011,7 +2011,7 @@ function tes3.positionCell(params) end
 ---Table parameter definitions for `tes3.positionCell`.
 --- @class tes3.positionCell.params
 --- @field reference? tes3reference|tes3mobileActor|tes3mobileCreature|tes3mobileNPC|tes3mobilePlayer|string *Default*: `tes3.mobilePlayer`. The reference to reposition.
---- @field cell? tes3cell|string|table *Optional*. The cell to move the reference to. Can be a tes3cell, cell name, or a table with two values that correspond to the exterior cell's grid coordinates. If not provided, the reference will be moved to a cell in the exterior worldspace at the position provided.
+--- @field cell? tes3cell|string|table|nil *Optional*. The cell to move the reference to. Can be a tes3cell, cell name, or a table with two values that correspond to the exterior cell's grid coordinates. If not provided, the reference will be moved to a cell in the exterior worldspace at the position provided.
 --- @field position tes3vector3|number[] The position to move the reference to.
 --- @field orientation? tes3vector3|number[] *Optional*. The new orientation of the reference.
 --- @field forceCellChange? boolean *Default*: `false`. When true, forces the game to update a reference that has moved within a single cell, as if it was moved into a new cell.
