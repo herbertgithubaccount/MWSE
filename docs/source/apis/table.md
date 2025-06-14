@@ -30,7 +30,7 @@ local result = table.bininsert(t, value, comp)
 
 * `t` (valueType[])
 * `value` (valueType)
-* `comp` (fun(valueType, valueType): boolean): *Optional*.
+* `comp` (fun(a: valueType, b: valueType): boolean): *Optional*.
 
 **Returns**:
 
@@ -57,7 +57,7 @@ local index, highestMatch = table.binsearch(tbl, value, comp, findAll)
 
 * `tbl` (valueType[])
 * `value` (valueType): The value to search for.
-* `comp` (fun(valueType, valueType): boolean): *Optional*. The function used to sort `tbl`. If not provided, then the standard `<` operator will be used.
+* `comp` (fun(a: valueType, b: valueType): boolean): *Optional*. The function used to sort `tbl`. If not provided, then the standard `<` operator will be used.
 * `findAll` (boolean): *Default*: `false`. If true,
 
 **Returns**:

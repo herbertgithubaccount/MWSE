@@ -18,7 +18,7 @@ table = {}
 --- @generic valueType
 --- @param t valueType[] No description yet available.
 --- @param value valueType No description yet available.
---- @param comp? fun(valueType, valueType):boolean *Optional*. No description yet available.
+--- @param comp? fun(a: valueType, b: valueType): boolean *Optional*. No description yet available.
 --- @return number result No description yet available.
 function table.bininsert(t, value, comp) end
 
@@ -32,7 +32,7 @@ function table.bininsert(t, value, comp) end
 --- @generic valueType
 --- @param tbl valueType[] No description yet available.
 --- @param value valueType The value to search for.
---- @param comp? fun(valueType, valueType):boolean *Optional*. The function used to sort `tbl`. If not provided, then the standard `<` operator will be used.
+--- @param comp? fun(a: valueType, b: valueType): boolean *Optional*. The function used to sort `tbl`. If not provided, then the standard `<` operator will be used.
 --- @param findAll? boolean *Default*: `false`. If true,
 --- @return integer|nil index An `index` such that `tbl[index] == value`, if such an index exists. `nil` otherwise. If `findAll == true`, this will be the smallest index such that `tbl[index] == value`.
 --- @return integer|nil highestMatch If a match was found, and if `findAll == true`, then this will be the largest `index` such that `tbl[index] == vale`. `nil` otherwise.

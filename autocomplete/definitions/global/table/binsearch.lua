@@ -13,7 +13,7 @@ You can optionally provide a `comp` function. If provided, `binsearch` will trea
 	arguments = {
 		{ name = "tbl", type = "valueType[]" },
 		{ name = "value", type = "valueType", description = "The value to search for." },
-		{ name = "comp", type = "fun(valueType, valueType):boolean", optional = true, description = "The function used to sort `tbl`. If not provided, then the standard `<` operator will be used." },
+		{ name = "comp", type = "fun(a: valueType, b: valueType): boolean", optional = true, description = "The function used to sort `tbl`. If not provided, then the standard `<` operator will be used." },
 		{ name = "findAll", type = "boolean", optional = true, default = false, description = "If true," },
 	},
 	returns = {

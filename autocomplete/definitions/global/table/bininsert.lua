@@ -14,7 +14,7 @@ This function will return the index where `value` was inserted into `t`.]],
 	arguments = {
 		{ name = "t", type = "valueType[]" },
 		{ name = "value", type = "valueType" },
-		{ name = "comp", type = "fun(valueType, valueType):boolean", optional = true },
+		{ name = "comp", type = "fun(a: valueType, b: valueType): boolean", optional = true },
 	},
 	valuetype = "number",
 }
