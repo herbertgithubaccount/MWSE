@@ -12,7 +12,7 @@ Each "node" is an object with a children table of other "nodes", each of which m
 	},
 	returns = {
 		name = "iterator",
-		type = "fun():tableType|any",
+		type = "fun(): tableType|any",
 	},
 	examples = {
 		["tableTransverse"] = {

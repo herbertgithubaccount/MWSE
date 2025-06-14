@@ -8,5 +8,5 @@ return {
 	arguments = {
 		{ name = "t", type = "{ [keyType]: valueType }" },
 	},
-	returns = "{ [valueType]: keyType }",
+	valuetype = "{ [valueType]: keyType }",
 }

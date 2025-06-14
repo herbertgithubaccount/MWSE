@@ -108,7 +108,7 @@ function table.equal(left, right) end
 --- @generic keyType
 --- @generic valueType
 --- @param t { [keyType]: valueType } No description yet available.
---- @param f fun(k: keyType, v: valueType, ...):boolean The function to use when filtering values of `t`. (This is sometimes called a predicate function.)
+--- @param f fun(k: keyType, v: valueType, ...): boolean The function to use when filtering values of `t`. (This is sometimes called a predicate function.)
 --- @param ... any Additional parameters to pass to `f`.
 --- @return { [keyType]: valueType } result The result of using `f` to filter out elements of `t`.
 function table.filter(t, f, ...) end
@@ -120,7 +120,7 @@ function table.filter(t, f, ...) end
 --- When an element gets filtered out, the index of subsequent items will be shifted down, so that the resulting table plays nicely with the `#` operator and the `ipairs` function.
 --- @generic valueType
 --- @param arr valueType[] No description yet available.
---- @param f fun(i: integer, v: valueType, ...):boolean The function to use when filtering values of `t`. (This is sometimes called a predicate function.)
+--- @param f fun(i: integer, v: valueType, ...): boolean The function to use when filtering values of `t`. (This is sometimes called a predicate function.)
 --- @param ... any Additional parameters to pass to `f`.
 --- @return valueType[] result The result of using `f` to filter out elements of `t`.
 function table.filterarray(arr, f, ...) end
@@ -161,7 +161,7 @@ function table.invert(t) end
 --- Returns an array-style table of all keys in the given table, t. Optionally, it will sort the returned table.
 --- @generic keyType
 --- @param t { [keyType]: unknown } The table to get keys for.
---- @param sort? boolean|fun(a: keyType, b: keyType):boolean *Optional*. If true, the returned table will be sorted. If a function is passed, the table will be sorted using the given function.
+--- @param sort? boolean|fun(a: keyType, b: keyType): boolean *Optional*. If true, the returned table will be sorted. If a function is passed, the table will be sorted using the given function.
 --- @return keyType[] keys An array of all table keys.
 function table.keys(t, sort) end
 
@@ -171,7 +171,7 @@ function table.keys(t, sort) end
 --- @generic valueType
 --- @generic newValueType
 --- @param t { [keyType]: valueType } No description yet available.
---- @param f fun(k: keyType, v: valueType, ...):newValueType The function to apply to each element of `t`.
+--- @param f fun(k: keyType, v: valueType, ...): newValueType The function to apply to each element of `t`.
 --- @param ... any Additional parameters to pass to `f`.
 --- @return { [keyType]: newValueType } result The result of applying `f` to each value in `t`.
 function table.map(t, f, ...) end
@@ -207,13 +207,13 @@ function table.size(t) end
 --- @generic tableType
 --- @param t tableType A table to transverse.
 --- @param k? string *Default*: `children`. The subtable key.
---- @return fun():tableType|any iterator No description yet available.
+--- @return fun(): tableType|any iterator No description yet available.
 function table.traverse(t, k) end
 
 --- Returns an array-style table of all values in the given table, t. Optionally, it will sort the returned table.
 --- @generic valueType
 --- @param t { [unknown]: valueType } The table to get values for.
---- @param sort? boolean|fun(a: valueType, b: valueType):boolean *Optional*. If true, the returned table will be sorted. If a function is passed, the table will be sorted using the given function.
+--- @param sort? boolean|fun(a: valueType, b: valueType): boolean *Optional*. If true, the returned table will be sorted. If a function is passed, the table will be sorted using the given function.
 --- @return valueType[] values An array of all table values.
 function table.values(t, sort) end
 

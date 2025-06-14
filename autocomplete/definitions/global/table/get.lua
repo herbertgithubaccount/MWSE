@@ -10,5 +10,5 @@ return {
 		{ name = "key", type = "keyType", description = "The key to use to access the table." },
 		{ name = "defaultValue", type = "valueType", description = "The default value if the key didn't exist in the table." },
 	},
-	returns = "valueType",
+	valuetype = "valueType",
 }

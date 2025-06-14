@@ -9,7 +9,7 @@ Any additional arguments will be passed to `f`. For example, `table.map(t, f, 10
 	},
 	arguments = {
 		{ name = "t", type = "{ [keyType]: valueType }" },
-		{ name = "f", type = "fun(k: keyType, v: valueType, ...):newValueType", description = "The function to apply to each element of `t`." },
+		{ name = "f", type = "fun(k: keyType, v: valueType, ...): newValueType", description = "The function to apply to each element of `t`." },
 		{ name = "...", type = "any", description = "Additional parameters to pass to `f`." },
 	},
 	returns = {
