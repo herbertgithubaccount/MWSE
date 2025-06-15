@@ -23,7 +23,7 @@ function math.clamp(value, min, max) end
 --- @param b number Second value.
 --- @param absoluteTolerance? number *Default*: `math.epsilon`. The absolute difference allowed between the two numbers. A value of 0.01 will only allow the values to differ by 0.01.
 --- @param relativeTolerance? number *Default*: `1e-09`. The relative difference allowed between the two numbers. A value of 0.01 will only allow the values to differ by 1%.
---- @return number result No description yet available.
+--- @return boolean result No description yet available.
 function math.isclose(a, b, absoluteTolerance, relativeTolerance) end
 
 --- Performs linear interpolation between values v0 and v1. Returns a value that is t percent between them.
