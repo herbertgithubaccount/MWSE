@@ -4,11 +4,12 @@ return {
 	generics = {
 		{ name = "keyType" },
 		{ name = "valueType" },
+		{ name = "defaultValueType" },
 	},
 	arguments = {
 		{ name = "t", type = "{ [keyType]: valueType }" },
 		{ name = "key", type = "keyType", description = "The key to use to access the table." },
-		{ name = "defaultValue", type = "valueType", description = "The default value if the key didn't exist in the table." },
+		{ name = "defaultValue", type = "defaultValueType", description = "The default value if the key didn't exist in the table." },
 	},
-	valuetype = "valueType",
+	valuetype = "valueType|defaultValueType|unknown",
 }

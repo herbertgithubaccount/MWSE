@@ -129,26 +129,28 @@ function table.filterarray(arr, f, ...) end
 --- @generic keyType
 --- @generic valueType
 --- @param t { [keyType]: valueType } No description yet available.
---- @param value valueType|any No description yet available.
---- @return keyType|nil key A `key` such that `tbl[key] == value`, if such a key exists. `nil` otherwise.
+--- @param value valueType No description yet available.
+--- @return keyType|unknown|nil key A `key` such that `tbl[key] == value`, if such a key exists. `nil` otherwise.
 function table.find(t, value) end
 
 --- Gets a value in a table. If the key doesn't exist in the table, a specified default value will be returned instead.
 --- @generic keyType
 --- @generic valueType
+--- @generic defaultValueType
 --- @param t { [keyType]: valueType } No description yet available.
 --- @param key keyType The key to use to access the table.
---- @param defaultValue valueType The default value if the key didn't exist in the table.
---- @return valueType result No description yet available.
+--- @param defaultValue defaultValueType The default value if the key didn't exist in the table.
+--- @return valueType|defaultValueType|unknown result No description yet available.
 function table.get(t, key, defaultValue) end
 
 --- Gets a value in a table. If the key doesn't exist in the table, a specified default value will be set in the table and returned instead.
 --- @generic keyType
 --- @generic valueType
+--- @generic defaultValueType
 --- @param t { [keyType]: valueType } No description yet available.
 --- @param key keyType The key to use to access the table.
---- @param defaultValue valueType The default value to set and return if the key didn't exist in the table.
---- @return valueType result No description yet available.
+--- @param defaultValue defaultValueType The default value to set and return if the key didn't exist in the table.
+--- @return valueType|defaultValueType|unknown result No description yet available.
 function table.getset(t, key, defaultValue) end
 
 --- Returns a copy of `t` with the keys and values flipped.

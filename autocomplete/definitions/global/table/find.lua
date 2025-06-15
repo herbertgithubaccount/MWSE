@@ -7,9 +7,9 @@ return {
 	},
 	arguments = {
 		{ name = "t", type = "{ [keyType]: valueType }" },
-		{ name = "value", type = "valueType|any" },
+		{ name = "value", type = "valueType" },
 	},
 	returns = {
-		{ name = "key", type = "keyType|nil", description = "A `key` such that `tbl[key] == value`, if such a key exists. `nil` otherwise." }
+		{ name = "key", type = "keyType|unknown|nil", description = "A `key` such that `tbl[key] == value`, if such a key exists. `nil` otherwise." }
 	},
 }

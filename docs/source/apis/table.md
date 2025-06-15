@@ -292,11 +292,11 @@ local key = table.find(t, value)
 **Parameters**:
 
 * `t` ({ [keyType]: valueType })
-* `value` (valueType, any)
+* `value` (valueType)
 
 **Returns**:
 
-* `key` (keyType, nil): A `key` such that `tbl[key] == value`, if such a key exists. `nil` otherwise.
+* `key` (keyType, unknown, nil): A `key` such that `tbl[key] == value`, if such a key exists. `nil` otherwise.
 
 ***
 
@@ -313,11 +313,11 @@ local result = table.get(t, key, defaultValue)
 
 * `t` ({ [keyType]: valueType })
 * `key` (keyType): The key to use to access the table.
-* `defaultValue` (valueType): The default value if the key didn't exist in the table.
+* `defaultValue` (defaultValueType): The default value if the key didn't exist in the table.
 
 **Returns**:
 
-* `result` (valueType)
+* `result` (valueType, defaultValueType, unknown)
 
 ***
 
@@ -334,11 +334,11 @@ local result = table.getset(t, key, defaultValue)
 
 * `t` ({ [keyType]: valueType })
 * `key` (keyType): The key to use to access the table.
-* `defaultValue` (valueType): The default value to set and return if the key didn't exist in the table.
+* `defaultValue` (defaultValueType): The default value to set and return if the key didn't exist in the table.
 
 **Returns**:
 
-* `result` (valueType)
+* `result` (valueType, defaultValueType, unknown)
 
 ***
 
