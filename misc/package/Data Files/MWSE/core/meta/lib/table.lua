@@ -201,6 +201,15 @@ function table.shuffle(t, n) end
 --- @return number result No description yet available.
 function table.size(t) end
 
+--- Sets a value in a table and returns any previously defined value for that key.
+--- @generic keyType
+--- @generic valueType
+--- @param t { [keyType]: valueType } No description yet available.
+--- @param key keyType The key to use to access the table.
+--- @param value any The value to set.
+--- @return valueType|unknown|nil oldValue The previously defined value at `t[key]`.
+function table.swap(t, key, value) end
+
 --- This function is used to iterate over a graph-like table. You can specify the key of the subtable that contains the child nodes.
 --- 
 --- Each "node" is an object with a children table of other "nodes", each of which might have their own children. For example, a sceneNode is made up of niNodes, and each niNodes can have a list of niNode children. This is best used for recursive data structures like UI elements and sceneNodes etc.

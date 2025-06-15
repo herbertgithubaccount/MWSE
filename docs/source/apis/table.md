@@ -478,6 +478,27 @@ local result = table.size(t)
 
 ***
 
+### `table.swap`
+<div class="search_terms" style="display: none">swap</div>
+
+Sets a value in a table and returns any previously defined value for that key.
+
+```lua
+local oldValue = table.swap(t, key, value)
+```
+
+**Parameters**:
+
+* `t` ({ [keyType]: valueType })
+* `key` (keyType): The key to use to access the table.
+* `value` (any): The value to set.
+
+**Returns**:
+
+* `oldValue` (valueType, unknown, nil): The previously defined value at `t[key]`.
+
+***
+
 ### `table.traverse`
 <div class="search_terms" style="display: none">traverse</div>
 
