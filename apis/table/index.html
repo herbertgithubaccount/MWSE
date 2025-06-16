@@ -5259,6 +5259,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#tableswap" class="md-nav__link">
+    <span class="md-ellipsis">
+      table.swap
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#tabletraverse" class="md-nav__link">
     <span class="md-ellipsis">
       table.traverse
@@ -19783,6 +19792,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#tableswap" class="md-nav__link">
+    <span class="md-ellipsis">
+      table.swap
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#tabletraverse" class="md-nav__link">
     <span class="md-ellipsis">
       table.traverse
@@ -19855,9 +19873,9 @@ i.e., <code>comp(a,b) == true</code> would mean <code>a</code> is less than <cod
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>t</code> (table)</li>
-<li><code>value</code> (unknown)</li>
-<li><code>comp</code> (fun(a, b): boolean): <em>Optional</em>.</li>
+<li><code>t</code> (valueType[])</li>
+<li><code>value</code> (valueType)</li>
+<li><code>comp</code> (fun(a: valueType, b: valueType): boolean): <em>Optional</em>.</li>
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
@@ -19875,9 +19893,9 @@ If <code>findAll == true</code>, then this <code>binsearch</code> will return th
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>tbl</code> (table)</li>
-<li><code>value</code> (unknown): The value to search for.</li>
-<li><code>comp</code> (fun(a, b): boolean): <em>Optional</em>. The function used to sort <code>tbl</code>. If not provided, then the standard <code>&lt;</code> operator will be used.</li>
+<li><code>tbl</code> (valueType[])</li>
+<li><code>value</code> (valueType): The value to search for.</li>
+<li><code>comp</code> (fun(a: valueType, b: valueType): boolean): <em>Optional</em>. The function used to sort <code>tbl</code>. If not provided, then the standard <code>&lt;</code> operator will be used.</li>
 <li><code>findAll</code> (boolean): <em>Default</em>: <code>false</code>. If true,</li>
 </ul>
 <p><strong>Returns</strong>:</p>
@@ -19894,12 +19912,12 @@ If <code>findAll == true</code>, then this <code>binsearch</code> will return th
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>t</code> (table)</li>
+<li><code>t</code> ({ [keyType]: valueType })</li>
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>value</code> (unknown): The randomly chosen value.</li>
-<li><code>key</code> (unknown): The table key of the chosen value.</li>
+<li><code>value</code> (valueType): The randomly chosen value.</li>
+<li><code>key</code> (keyType): The table key of the chosen value.</li>
 </ul>
 <hr />
 <h3 id="tableclear"><code>table.clear</code><a class="headerlink" href="#tableclear" title="Permanent link">⚓︎</a></h3>
@@ -19938,12 +19956,12 @@ If <code>findAll == true</code>, then this <code>binsearch</code> will return th
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>from</code> (table)</li>
-<li><code>to</code> (table): <em>Optional</em>.</li>
+<li><code>from</code> (fromType)</li>
+<li><code>to</code> (toType): <em>Optional</em>.</li>
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (table)</li>
+<li><code>result</code> (fromType, toType)</li>
 </ul>
 <hr />
 <h3 id="tablecopymissing"><code>table.copymissing</code><a class="headerlink" href="#tablecopymissing" title="Permanent link">⚓︎</a></h3>
@@ -19966,11 +19984,11 @@ If <code>findAll == true</code>, then this <code>binsearch</code> will return th
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>t</code> (table)</li>
+<li><code>t</code> (tableType)</li>
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (table)</li>
+<li><code>result</code> (tableType)</li>
 </ul>
 <hr />
 <h3 id="tableempty"><code>table.empty</code><a class="headerlink" href="#tableempty" title="Permanent link">⚓︎</a></h3>
@@ -20025,13 +20043,13 @@ Any additional arguments will be passed to <code>f</code>. For example, <code>ta
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>t</code> (table)</li>
-<li><code>f</code> (fun(k: unknown, v: unknown, ...): boolean): The function to use when filtering values of <code>t</code>. (This is sometimes called a predicate function.)</li>
+<li><code>t</code> ({ [keyType]: valueType })</li>
+<li><code>f</code> (fun(k: keyType, v: valueType, ...): boolean): The function to use when filtering values of <code>t</code>. (This is sometimes called a predicate function.)</li>
 <li><code>...</code> (any): Additional parameters to pass to <code>f</code>.</li>
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (table): The result of using <code>f</code> to filter out elements of <code>t</code>.</li>
+<li><code>result</code> ({ [keyType]: valueType }): The result of using <code>f</code> to filter out elements of <code>t</code>.</li>
 </ul>
 <hr />
 <h3 id="tablefilterarray"><code>table.filterarray</code><a class="headerlink" href="#tablefilterarray" title="Permanent link">⚓︎</a></h3>
@@ -20045,29 +20063,29 @@ Any additional arguments will be passed to <code>f</code>. For example, <code>ta
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>arr</code> (table)</li>
-<li><code>f</code> (fun(i: integer, v: unknown, ...): boolean): The function to use when filtering values of <code>t</code>. (This is sometimes called a predicate function.)</li>
+<li><code>arr</code> (valueType[])</li>
+<li><code>f</code> (fun(i: integer, v: valueType, ...): boolean): The function to use when filtering values of <code>t</code>. (This is sometimes called a predicate function.)</li>
 <li><code>...</code> (any): Additional parameters to pass to <code>f</code>.</li>
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (table): The result of using <code>f</code> to filter out elements of <code>t</code>.</li>
+<li><code>result</code> (valueType[]): The result of using <code>f</code> to filter out elements of <code>t</code>.</li>
 </ul>
 <hr />
 <h3 id="tablefind"><code>table.find</code><a class="headerlink" href="#tablefind" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">find</div>
 
 <p>Returns the key for a given value, or <code>nil</code> if the table does not contain the value.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">table</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">key</span> <span class="o">=</span> <span class="n">table</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>t</code> (table)</li>
-<li><code>value</code> (unknown)</li>
+<li><code>t</code> ({ [keyType]: valueType })</li>
+<li><code>value</code> (valueType)</li>
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (unknown)</li>
+<li><code>key</code> (keyType, unknown, nil): A <code>key</code> such that <code>tbl[key] == value</code>, if such a key exists. <code>nil</code> otherwise.</li>
 </ul>
 <hr />
 <h3 id="tableget"><code>table.get</code><a class="headerlink" href="#tableget" title="Permanent link">⚓︎</a></h3>
@@ -20078,13 +20096,13 @@ Any additional arguments will be passed to <code>f</code>. For example, <code>ta
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>t</code> (table)</li>
-<li><code>key</code> (any): The key to use to access the table.</li>
-<li><code>defaultValue</code> (any): The default value if the key didn't exist in the table.</li>
+<li><code>t</code> ({ [keyType]: valueType })</li>
+<li><code>key</code> (keyType): The key to use to access the table.</li>
+<li><code>defaultValue</code> (defaultValueType): The default value if the key didn't exist in the table.</li>
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (any)</li>
+<li><code>result</code> (valueType, defaultValueType, unknown)</li>
 </ul>
 <hr />
 <h3 id="tablegetset"><code>table.getset</code><a class="headerlink" href="#tablegetset" title="Permanent link">⚓︎</a></h3>
@@ -20095,13 +20113,13 @@ Any additional arguments will be passed to <code>f</code>. For example, <code>ta
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>t</code> (table)</li>
-<li><code>key</code> (any): The key to use to access the table.</li>
-<li><code>defaultValue</code> (any): The default value to set and return if the key didn't exist in the table.</li>
+<li><code>t</code> ({ [keyType]: valueType })</li>
+<li><code>key</code> (keyType): The key to use to access the table.</li>
+<li><code>defaultValue</code> (defaultValueType): The default value to set and return if the key didn't exist in the table.</li>
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (any)</li>
+<li><code>result</code> (valueType, defaultValueType, unknown)</li>
 </ul>
 <hr />
 <h3 id="tableinvert"><code>table.invert</code><a class="headerlink" href="#tableinvert" title="Permanent link">⚓︎</a></h3>
@@ -20112,11 +20130,11 @@ Any additional arguments will be passed to <code>f</code>. For example, <code>ta
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>t</code> (table)</li>
+<li><code>t</code> ({ [keyType]: valueType })</li>
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (table)</li>
+<li><code>result</code> ({ [valueType]: keyType })</li>
 </ul>
 <hr />
 <h3 id="tablekeys"><code>table.keys</code><a class="headerlink" href="#tablekeys" title="Permanent link">⚓︎</a></h3>
@@ -20127,12 +20145,12 @@ Any additional arguments will be passed to <code>f</code>. For example, <code>ta
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>t</code> (table): The table to get keys for.</li>
-<li><code>sort</code> (boolean, function): <em>Optional</em>. If true, the returned table will be sorted. If a function is passed, the table will be sorted using the given function.</li>
+<li><code>t</code> ({ [keyType]: unknown }): The table to get keys for.</li>
+<li><code>sort</code> (boolean, fun(a: keyType, b: keyType): boolean): <em>Optional</em>. If true, the returned table will be sorted. If a function is passed, the table will be sorted using the given function.</li>
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>keys</code> (table): An array of all table keys.</li>
+<li><code>keys</code> (keyType[]): An array of all table keys.</li>
 </ul>
 <hr />
 <h3 id="tablemap"><code>table.map</code><a class="headerlink" href="#tablemap" title="Permanent link">⚓︎</a></h3>
@@ -20144,13 +20162,13 @@ Any additional arguments will be passed to <code>f</code>. For example, <code>ta
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>t</code> (table)</li>
-<li><code>f</code> (fun(k: unknown, v: unknown, ...): unknown): The function to apply to each element of <code>t</code>.</li>
+<li><code>t</code> ({ [keyType]: valueType })</li>
+<li><code>f</code> (fun(k: keyType, v: valueType, ...): newValueType): The function to apply to each element of <code>t</code>.</li>
 <li><code>...</code> (any): Additional parameters to pass to <code>f</code>.</li>
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>result</code> (table): The result of applying <code>f</code> to each value in <code>t</code>.</li>
+<li><code>result</code> ({ [keyType]: newValueType }): The result of applying <code>f</code> to each value in <code>t</code>.</li>
 </ul>
 <hr />
 <h3 id="tablenew"><code>table.new</code><a class="headerlink" href="#tablenew" title="Permanent link">⚓︎</a></h3>
@@ -20177,8 +20195,8 @@ Any additional arguments will be passed to <code>f</code>. For example, <code>ta
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>list</code> (table)</li>
-<li><code>value</code> (unknown)</li>
+<li><code>list</code> ({ [unknown]: valueType })</li>
+<li><code>value</code> (valueType)</li>
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
@@ -20212,6 +20230,23 @@ Any additional arguments will be passed to <code>f</code>. For example, <code>ta
 <li><code>result</code> (number)</li>
 </ul>
 <hr />
+<h3 id="tableswap"><code>table.swap</code><a class="headerlink" href="#tableswap" title="Permanent link">⚓︎</a></h3>
+<div class="search_terms" style="display: none">swap</div>
+
+<p>Sets a value in a table and returns any previously defined value for that key.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">oldValue</span> <span class="o">=</span> <span class="n">table</span><span class="p">.</span><span class="n">swap</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Parameters</strong>:</p>
+<ul>
+<li><code>t</code> ({ [keyType]: valueType })</li>
+<li><code>key</code> (keyType): The key to use to access the table.</li>
+<li><code>value</code> (any): The value to set.</li>
+</ul>
+<p><strong>Returns</strong>:</p>
+<ul>
+<li><code>oldValue</code> (valueType, unknown, nil): The previously defined value at <code>t[key]</code>.</li>
+</ul>
+<hr />
 <h3 id="tabletraverse"><code>table.traverse</code><a class="headerlink" href="#tabletraverse" title="Permanent link">⚓︎</a></h3>
 <div class="search_terms" style="display: none">traverse</div>
 
@@ -20221,12 +20256,12 @@ Any additional arguments will be passed to <code>f</code>. For example, <code>ta
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>t</code> (table): A table to transverse.</li>
+<li><code>t</code> (tableType): A table to transverse.</li>
 <li><code>k</code> (string): <em>Default</em>: <code>children</code>. The subtable key.</li>
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>iterator</code> (fun(): any)</li>
+<li><code>iterator</code> (fun(): tableType, any)</li>
 </ul>
 <details class="example">
 <summary>Example: Iterate over all scene nodes attached to player.</summary>
@@ -20251,12 +20286,12 @@ Any additional arguments will be passed to <code>f</code>. For example, <code>ta
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li><code>t</code> (table): The table to get values for.</li>
-<li><code>sort</code> (boolean, function): <em>Optional</em>. If true, the returned table will be sorted. If a function is passed, the table will be sorted using the given function.</li>
+<li><code>t</code> ({ [unknown]: valueType }): The table to get values for.</li>
+<li><code>sort</code> (boolean, fun(a: valueType, b: valueType): boolean): <em>Optional</em>. If true, the returned table will be sorted. If a function is passed, the table will be sorted using the given function.</li>
 </ul>
 <p><strong>Returns</strong>:</p>
 <ul>
-<li><code>values</code> (table): An array of all table values.</li>
+<li><code>values</code> (valueType[]): An array of all table values.</li>
 </ul>
 <hr />
 <h3 id="tablewrapindex"><code>table.wrapindex</code><a class="headerlink" href="#tablewrapindex" title="Permanent link">⚓︎</a></h3>
@@ -20296,7 +20331,7 @@ Any additional arguments will be passed to <code>f</code>. For example, <code>ta
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="June 13, 2025 17:46:18 UTC">June 13, 2025 17:46:18</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="June 15, 2025 23:42:39 UTC">June 15, 2025 23:42:39</span>
   </span>
 
     
