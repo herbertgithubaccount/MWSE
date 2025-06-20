@@ -256,6 +256,22 @@ An engine flag that controls if there is a fade in/out between cells.
 
 ## Methods
 
+### `getCellBufferSizes`
+<div class="search_terms" style="display: none">getcellbuffersizes, cellbuffersizes</div>
+
+The current cell buffer sizes, as determined by Morrowind.ini.
+
+```lua
+local exteriorBufferSize, interiorBufferSize = myObject:getCellBufferSizes()
+```
+
+**Returns**:
+
+* `exteriorBufferSize` (number)
+* `interiorBufferSize` (number)
+
+***
+
 ### `updateCollisionGroupsForActiveCells`
 <div class="search_terms" style="display: none">updatecollisiongroupsforactivecells, collisiongroupsforactivecells</div>
 
