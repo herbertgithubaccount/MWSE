@@ -26730,15 +26730,16 @@ The mod key should match the value of <code>lua-mod</code> specified in the <cod
 <div class="search_terms" style="display: none">modstatistic, statistic</div>
 
 <p>Modifies a statistic on a given actor. This should be used instead of manually setting values on the game structures, to ensure that events and GUI elements are properly handled. Either skill, attribute, or the statistic's property name must be provided.</p>
-<div class="highlight"><pre><span></span><code><span class="n">tes3</span><span class="p">.</span><span class="n">modStatistic</span><span class="p">({</span> <span class="n">reference</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">attribute</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">skill</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">name</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">base</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">current</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">value</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">limit</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">limitToBase</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
+<div class="highlight"><pre><span></span><code><span class="n">tes3</span><span class="p">.</span><span class="n">modStatistic</span><span class="p">({</span> <span class="n">reference</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">attribute</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">skill</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">statistic</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">name</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">base</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">current</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">value</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">limit</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">limitToBase</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
 <li><code>params</code> (table)<ul>
 <li><code>reference</code> (<a href="../../types/tes3mobileActor/">tes3mobileActor</a>, <a href="../../types/tes3reference/">tes3reference</a>, string)</li>
-<li><code>attribute</code> (<a href="../../references/attributes/">tes3.attribute</a>): <em>Optional</em>. The attribute to set. Uses a value from <a href="https://mwse.github.io/MWSE/references/attributes/"><code>tes3.attribute</code></a></li>
-<li><code>skill</code> (<a href="../../references/skills/">tes3.skill</a>): <em>Optional</em>. The skill to set. Uses a value from <a href="https://mwse.github.io/MWSE/references/skills/"><code>tes3.skill</code></a></li>
-<li><code>name</code> (string): <em>Optional</em>. The property name of the statistic to set. The names can be taken from the properties of <code>tes3mobileNPC</code> or <code>tes3mobileCreature</code>. Useful for specifying health, magicka, fatigue or encumbrance.</li>
+<li><code>attribute</code> (<a href="../../references/attributes/">tes3.attribute</a>): <em>Optional</em>. The attribute to modify. Uses a value from <a href="https://mwse.github.io/MWSE/references/attributes/"><code>tes3.attribute</code></a></li>
+<li><code>skill</code> (<a href="../../references/skills/">tes3.skill</a>): <em>Optional</em>. The skill to modify. Uses a value from <a href="https://mwse.github.io/MWSE/references/skills/"><code>tes3.skill</code></a></li>
+<li><code>statistic</code> (<a href="../../types/tes3statistic/">tes3statistic</a>): <em>Optional</em>. The direct statistic taken from the mobile actor. This is usually the most efficient parameter to pass.</li>
+<li><code>name</code> (string): <em>Optional</em>. The property name of the statistic to modify. The names can be taken from the properties of <code>tes3mobileNPC</code> or <code>tes3mobileCreature</code>. Pass the direct statistic using the <code>statistic</code> parameter instead.</li>
 <li><code>base</code> (number): <em>Optional</em>. If set, the base value will be modified.</li>
 <li><code>current</code> (number): <em>Optional</em>. If set, the current value will be modified.</li>
 <li><code>value</code> (number): <em>Optional</em>. If set, both the base and current value will be modified.</li>
@@ -27646,7 +27647,7 @@ The following suggestions will help to minimize the performance impact of calls 
 <div class="search_terms" style="display: none">setstatistic, statistic</div>
 
 <p>Sets a statistic on a given actor. This should be used instead of manually setting values on the game structures, to ensure that events and GUI elements are properly handled. Either skill, attribute, or the statistic's property name must be provided.</p>
-<div class="highlight"><pre><span></span><code><span class="n">tes3</span><span class="p">.</span><span class="n">setStatistic</span><span class="p">({</span> <span class="n">reference</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">attribute</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">skill</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">name</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">base</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">current</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">value</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">limit</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
+<div class="highlight"><pre><span></span><code><span class="n">tes3</span><span class="p">.</span><span class="n">setStatistic</span><span class="p">({</span> <span class="n">reference</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">attribute</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">skill</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">statistic</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">name</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">base</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">current</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">value</span> <span class="o">=</span> <span class="p">...,</span> <span class="n">limit</span> <span class="o">=</span> <span class="p">...</span> <span class="p">})</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
 <ul>
@@ -27654,7 +27655,8 @@ The following suggestions will help to minimize the performance impact of calls 
 <li><code>reference</code> (<a href="../../types/tes3mobileActor/">tes3mobileActor</a>, <a href="../../types/tes3reference/">tes3reference</a>, string)</li>
 <li><code>attribute</code> (<a href="../../references/attributes/">tes3.attribute</a>, integer): <em>Optional</em>. The attribute to set. Uses a value from <a href="https://mwse.github.io/MWSE/references/attributes/"><code>tes3.attribute</code></a></li>
 <li><code>skill</code> (<a href="../../references/skills/">tes3.skill</a>, integer): <em>Optional</em>. The skill to set. Uses a value from <a href="https://mwse.github.io/MWSE/references/skills/"><code>tes3.skill</code></a></li>
-<li><code>name</code> (string): <em>Optional</em>. The property name of the statistic to set. The names can be taken from the properties of <code>tes3mobileNPC</code> or <code>tes3mobileCreature</code>. Useful for specifying health, magicka, fatigue or encumbrance.</li>
+<li><code>statistic</code> (<a href="../../types/tes3statistic/">tes3statistic</a>): <em>Optional</em>. The direct statistic taken from the mobile actor. This is usually the most efficient parameter to pass.</li>
+<li><code>name</code> (string): <em>Optional</em>. The property name of the statistic to set. The names can be taken from the properties of <code>tes3mobileNPC</code> or <code>tes3mobileCreature</code>. Pass the direct statistic using the <code>statistic</code> parameter instead.</li>
 <li><code>base</code> (number): <em>Optional</em>. If set, the base value will be set.</li>
 <li><code>current</code> (number): <em>Optional</em>. If set, the current value will be set.</li>
 <li><code>value</code> (number): <em>Optional</em>. If set, both the base and current value will be set.</li>
@@ -28212,7 +28214,7 @@ Statics, activators, containers, doors, and lights with non-zero weight.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="June 13, 2025 17:46:18 UTC">June 13, 2025 17:46:18</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="June 20, 2025 02:03:24 UTC">June 20, 2025 02:03:24</span>
   </span>
 
     
