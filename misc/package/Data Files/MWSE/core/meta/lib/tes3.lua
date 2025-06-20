@@ -1821,11 +1821,13 @@ function tes3.modDisposition(params) end
 --- 
 --- `reference`: tes3mobileActor|tes3mobileCreature|tes3mobileNPC|tes3mobilePlayer|tes3reference|string — No description yet available.
 --- 
---- `attribute?`: tes3.attribute — *Optional*. The attribute to set. Uses a value from [`tes3.attribute`](https://mwse.github.io/MWSE/references/attributes/)
+--- `attribute?`: tes3.attribute — *Optional*. The attribute to modify. Uses a value from [`tes3.attribute`](https://mwse.github.io/MWSE/references/attributes/)
 --- 
---- `skill?`: tes3.skill — *Optional*. The skill to set. Uses a value from [`tes3.skill`](https://mwse.github.io/MWSE/references/skills/)
+--- `skill?`: tes3.skill — *Optional*. The skill to modify. Uses a value from [`tes3.skill`](https://mwse.github.io/MWSE/references/skills/)
 --- 
---- `name?`: string — *Optional*. The property name of the statistic to set. The names can be taken from the properties of `tes3mobileNPC` or `tes3mobileCreature`. Useful for specifying health, magicka, fatigue or encumbrance.
+--- `statistic?`: tes3statistic|tes3statisticSkill — *Optional*. The direct statistic taken from the mobile actor. This is usually the most efficient parameter to pass.
+--- 
+--- `name?`: string — *Optional*. The property name of the statistic to modify. The names can be taken from the properties of `tes3mobileNPC` or `tes3mobileCreature`. Pass the direct statistic using the `statistic` parameter instead.
 --- 
 --- `base?`: number — *Optional*. If set, the base value will be modified.
 --- 
@@ -1841,9 +1843,10 @@ function tes3.modStatistic(params) end
 ---Table parameter definitions for `tes3.modStatistic`.
 --- @class tes3.modStatistic.params
 --- @field reference tes3mobileActor|tes3mobileCreature|tes3mobileNPC|tes3mobilePlayer|tes3reference|string No description yet available.
---- @field attribute? tes3.attribute *Optional*. The attribute to set. Uses a value from [`tes3.attribute`](https://mwse.github.io/MWSE/references/attributes/)
---- @field skill? tes3.skill *Optional*. The skill to set. Uses a value from [`tes3.skill`](https://mwse.github.io/MWSE/references/skills/)
---- @field name? string *Optional*. The property name of the statistic to set. The names can be taken from the properties of `tes3mobileNPC` or `tes3mobileCreature`. Useful for specifying health, magicka, fatigue or encumbrance.
+--- @field attribute? tes3.attribute *Optional*. The attribute to modify. Uses a value from [`tes3.attribute`](https://mwse.github.io/MWSE/references/attributes/)
+--- @field skill? tes3.skill *Optional*. The skill to modify. Uses a value from [`tes3.skill`](https://mwse.github.io/MWSE/references/skills/)
+--- @field statistic? tes3statistic|tes3statisticSkill *Optional*. The direct statistic taken from the mobile actor. This is usually the most efficient parameter to pass.
+--- @field name? string *Optional*. The property name of the statistic to modify. The names can be taken from the properties of `tes3mobileNPC` or `tes3mobileCreature`. Pass the direct statistic using the `statistic` parameter instead.
 --- @field base? number *Optional*. If set, the base value will be modified.
 --- @field current? number *Optional*. If set, the current value will be modified.
 --- @field value? number *Optional*. If set, both the base and current value will be modified.
@@ -2636,7 +2639,9 @@ function tes3.setSourceless(object, sourceless) end
 --- 
 --- `skill?`: tes3.skill|integer — *Optional*. The skill to set. Uses a value from [`tes3.skill`](https://mwse.github.io/MWSE/references/skills/)
 --- 
---- `name?`: string — *Optional*. The property name of the statistic to set. The names can be taken from the properties of `tes3mobileNPC` or `tes3mobileCreature`. Useful for specifying health, magicka, fatigue or encumbrance.
+--- `statistic?`: tes3statistic|tes3statisticSkill — *Optional*. The direct statistic taken from the mobile actor. This is usually the most efficient parameter to pass.
+--- 
+--- `name?`: string — *Optional*. The property name of the statistic to set. The names can be taken from the properties of `tes3mobileNPC` or `tes3mobileCreature`. Pass the direct statistic using the `statistic` parameter instead.
 --- 
 --- `base?`: number — *Optional*. If set, the base value will be set.
 --- 
@@ -2652,7 +2657,8 @@ function tes3.setStatistic(params) end
 --- @field reference tes3mobileActor|tes3mobileCreature|tes3mobileNPC|tes3mobilePlayer|tes3reference|string No description yet available.
 --- @field attribute? tes3.attribute|integer *Optional*. The attribute to set. Uses a value from [`tes3.attribute`](https://mwse.github.io/MWSE/references/attributes/)
 --- @field skill? tes3.skill|integer *Optional*. The skill to set. Uses a value from [`tes3.skill`](https://mwse.github.io/MWSE/references/skills/)
---- @field name? string *Optional*. The property name of the statistic to set. The names can be taken from the properties of `tes3mobileNPC` or `tes3mobileCreature`. Useful for specifying health, magicka, fatigue or encumbrance.
+--- @field statistic? tes3statistic|tes3statisticSkill *Optional*. The direct statistic taken from the mobile actor. This is usually the most efficient parameter to pass.
+--- @field name? string *Optional*. The property name of the statistic to set. The names can be taken from the properties of `tes3mobileNPC` or `tes3mobileCreature`. Pass the direct statistic using the `statistic` parameter instead.
 --- @field base? number *Optional*. If set, the base value will be set.
 --- @field current? number *Optional*. If set, the current value will be set.
 --- @field value? number *Optional*. If set, both the base and current value will be set.

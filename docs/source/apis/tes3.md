@@ -3731,16 +3731,17 @@ tes3.modDisposition({ reference = ..., value = ..., temporary = ... })
 Modifies a statistic on a given actor. This should be used instead of manually setting values on the game structures, to ensure that events and GUI elements are properly handled. Either skill, attribute, or the statistic's property name must be provided.
 
 ```lua
-tes3.modStatistic({ reference = ..., attribute = ..., skill = ..., name = ..., base = ..., current = ..., value = ..., limit = ..., limitToBase = ... })
+tes3.modStatistic({ reference = ..., attribute = ..., skill = ..., statistic = ..., name = ..., base = ..., current = ..., value = ..., limit = ..., limitToBase = ... })
 ```
 
 **Parameters**:
 
 * `params` (table)
 	* `reference` ([tes3mobileActor](../types/tes3mobileActor.md), [tes3reference](../types/tes3reference.md), string)
-	* `attribute` ([tes3.attribute](../references/attributes.md)): *Optional*. The attribute to set. Uses a value from [`tes3.attribute`](https://mwse.github.io/MWSE/references/attributes/)
-	* `skill` ([tes3.skill](../references/skills.md)): *Optional*. The skill to set. Uses a value from [`tes3.skill`](https://mwse.github.io/MWSE/references/skills/)
-	* `name` (string): *Optional*. The property name of the statistic to set. The names can be taken from the properties of `tes3mobileNPC` or `tes3mobileCreature`. Useful for specifying health, magicka, fatigue or encumbrance.
+	* `attribute` ([tes3.attribute](../references/attributes.md)): *Optional*. The attribute to modify. Uses a value from [`tes3.attribute`](https://mwse.github.io/MWSE/references/attributes/)
+	* `skill` ([tes3.skill](../references/skills.md)): *Optional*. The skill to modify. Uses a value from [`tes3.skill`](https://mwse.github.io/MWSE/references/skills/)
+	* `statistic` ([tes3statistic](../types/tes3statistic.md)): *Optional*. The direct statistic taken from the mobile actor. This is usually the most efficient parameter to pass.
+	* `name` (string): *Optional*. The property name of the statistic to modify. The names can be taken from the properties of `tes3mobileNPC` or `tes3mobileCreature`. Pass the direct statistic using the `statistic` parameter instead.
 	* `base` (number): *Optional*. If set, the base value will be modified.
 	* `current` (number): *Optional*. If set, the current value will be modified.
 	* `value` (number): *Optional*. If set, both the base and current value will be modified.
@@ -4770,7 +4771,7 @@ tes3.setSourceless(object, sourceless)
 Sets a statistic on a given actor. This should be used instead of manually setting values on the game structures, to ensure that events and GUI elements are properly handled. Either skill, attribute, or the statistic's property name must be provided.
 
 ```lua
-tes3.setStatistic({ reference = ..., attribute = ..., skill = ..., name = ..., base = ..., current = ..., value = ..., limit = ... })
+tes3.setStatistic({ reference = ..., attribute = ..., skill = ..., statistic = ..., name = ..., base = ..., current = ..., value = ..., limit = ... })
 ```
 
 **Parameters**:
@@ -4779,7 +4780,8 @@ tes3.setStatistic({ reference = ..., attribute = ..., skill = ..., name = ..., b
 	* `reference` ([tes3mobileActor](../types/tes3mobileActor.md), [tes3reference](../types/tes3reference.md), string)
 	* `attribute` ([tes3.attribute](../references/attributes.md), integer): *Optional*. The attribute to set. Uses a value from [`tes3.attribute`](https://mwse.github.io/MWSE/references/attributes/)
 	* `skill` ([tes3.skill](../references/skills.md), integer): *Optional*. The skill to set. Uses a value from [`tes3.skill`](https://mwse.github.io/MWSE/references/skills/)
-	* `name` (string): *Optional*. The property name of the statistic to set. The names can be taken from the properties of `tes3mobileNPC` or `tes3mobileCreature`. Useful for specifying health, magicka, fatigue or encumbrance.
+	* `statistic` ([tes3statistic](../types/tes3statistic.md)): *Optional*. The direct statistic taken from the mobile actor. This is usually the most efficient parameter to pass.
+	* `name` (string): *Optional*. The property name of the statistic to set. The names can be taken from the properties of `tes3mobileNPC` or `tes3mobileCreature`. Pass the direct statistic using the `statistic` parameter instead.
 	* `base` (number): *Optional*. If set, the base value will be set.
 	* `current` (number): *Optional*. If set, the current value will be set.
 	* `value` (number): *Optional*. If set, both the base and current value will be set.
