@@ -61,7 +61,7 @@ A core game object used for storing both active and non-dynamic gameplay data.
 
 **Returns**:
 
-* `result` (boolean)
+* `result` (number)
 
 ***
 
@@ -72,7 +72,7 @@ A core game object used for storing both active and non-dynamic gameplay data.
 
 **Returns**:
 
-* `result` (boolean)
+* `result` (number)
 
 ***
 
