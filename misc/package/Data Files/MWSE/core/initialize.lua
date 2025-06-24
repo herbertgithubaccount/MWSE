@@ -1107,9 +1107,9 @@ function mwse.loadConfig(fileName, defaults)
 end
 
 function mwse.saveConfig(fileName, object, config)
-	if (fileName and object) then
-		json.savefile(string.format("config\\%s", fileName), object, config or { indent = true })
-	end
+	assert(fileName, "No file name provided.")
+	assert(object, "No save object provided.")
+	json.savefile(string.format("config\\%s", fileName), object, config or { indent = true })
 end
 
 -- Exception handler called when an object can't be correctly validated in the save.
