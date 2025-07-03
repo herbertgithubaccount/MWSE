@@ -367,7 +367,7 @@ namespace CrashLogger::LuaMods {
 	extern void Process(EXCEPTION_POINTERS* info) {
 		try {
 			const auto stateHandle = mwse::lua::LuaManager::getInstance().getThreadSafeStateHandle();
-			const auto& lua = stateHandle.state;
+			const auto& lua = stateHandle.getState();
 			sol::table luaMWSE = lua["mwse"];
 			sol::table luaRuntimes = luaMWSE["runtimes"];
 

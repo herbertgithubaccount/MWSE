@@ -170,7 +170,7 @@ namespace TES3 {
 		// Execute event. If the event blocked the call, bail.
 		mwse::lua::LuaManager& luaManager = mwse::lua::LuaManager::getInstance();
 		if (mwse::lua::event::SaveGameEvent::getEventEnabled()) {
-			auto stateHandle = luaManager.getThreadSafeStateHandle();
+			const auto stateHandle = luaManager.getThreadSafeStateHandle();
 			sol::table eventData = stateHandle.triggerEvent(new mwse::lua::event::SaveGameEvent(saveName, fileName));
 			if (eventData.valid() && eventData.get_or("block", false)) {
 				return true;
@@ -202,7 +202,7 @@ namespace TES3 {
 		std::string eventFileName = fileName ? fileName : "";
 
 		if (mwse::lua::event::LoadGameEvent::getEventEnabled()) {
-			auto stateHandle = luaManager.getThreadSafeStateHandle();
+			const auto stateHandle = luaManager.getThreadSafeStateHandle();
 			sol::table eventData = stateHandle.triggerEvent(new mwse::lua::event::LoadGameEvent(fileName));
 			if (eventData.valid() && eventData.get_or("block", false)) {
 				return LoadGameResult::Block;
@@ -258,7 +258,7 @@ namespace TES3 {
 		std::string eventFileName = fileName ? fileName : "";
 
 		if (mwse::lua::event::LoadGameEvent::getEventEnabled()) {
-			auto stateHandle = luaManager.getThreadSafeStateHandle();
+			const auto stateHandle = luaManager.getThreadSafeStateHandle();
 			sol::table eventData = stateHandle.triggerEvent(new mwse::lua::event::LoadGameEvent(fileName));
 			if (eventData.valid() && eventData.get_or("block", false)) {
 				return LoadGameResult::Block;
@@ -502,7 +502,7 @@ namespace TES3 {
 
 		if (mwse::lua::event::AddSoundEvent::getEventEnabled()) {
 			auto& luaManager = mwse::lua::LuaManager::getInstance();
-			auto stateHandle = luaManager.getThreadSafeStateHandle();
+			const auto stateHandle = luaManager.getThreadSafeStateHandle();
 			sol::table eventData = stateHandle.triggerEvent(new mwse::lua::event::AddSoundEvent(sound, reference, playbackFlags, volume, pitch, isVoiceover));
 			if (eventData.valid()) {
 				if (eventData.get_or("block", false)) {
@@ -530,7 +530,7 @@ namespace TES3 {
 	void DataHandler::addTemporarySound(const char* path, Reference* reference, int playbackFlags, int volume, float pitch, bool isVoiceover, Sound* sound) {
 		if (mwse::lua::event::AddTempSoundEvent::getEventEnabled()) {
 			auto& luaManager = mwse::lua::LuaManager::getInstance();
-			auto stateHandle = luaManager.getThreadSafeStateHandle();
+			const auto stateHandle = luaManager.getThreadSafeStateHandle();
 			sol::table eventData = stateHandle.triggerEvent(new mwse::lua::event::AddTempSoundEvent(path, reference, playbackFlags, volume, pitch, isVoiceover, sound));
 			if (eventData.valid()) {
 				if (eventData.get_or("block", false)) {

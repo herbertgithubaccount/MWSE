@@ -251,7 +251,8 @@ namespace TES3 {
 
 		bool supportsActivate() const;
 
-		BaseObject* getBaseObject() const;
+		BaseObject * getBaseObject();
+		BaseObject const* getBaseObject() const;
 
 		bool isActor() const;
 		bool isItem() const;
