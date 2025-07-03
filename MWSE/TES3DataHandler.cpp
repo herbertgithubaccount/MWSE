@@ -37,29 +37,6 @@ namespace TES3 {
 	Cell* DataHandler::previousVisitedCell = nullptr;
 	bool DataHandler::dontThreadLoad = false;
 	bool DataHandler::suppressThreadLoad = false;
-	std::unordered_map<DWORD, std::string_view> DataHandler::currentlyLoadingMeshes = {};
-	std::recursive_mutex DataHandler::currentlyLoadingMeshesMutex = {};
-
-	std::string_view pushLoadingMesh(const std::string_view path) {
-		const auto threadId = GetCurrentThreadId();
-
-		DataHandler::currentlyLoadingMeshesMutex.lock();
-
-		std::string_view previousMesh;
-		const auto existing = DataHandler::currentlyLoadingMeshes.find(threadId);
-		if (existing != DataHandler::currentlyLoadingMeshes.end()) {
-			previousMesh = existing->second;
-			DataHandler::currentlyLoadingMeshes.erase(existing);
-		}
-
-		if (!path.empty()) {
-			DataHandler::currentlyLoadingMeshes[threadId] = path;
-		}
-
-		DataHandler::currentlyLoadingMeshesMutex.unlock();
-
-		return previousMesh;
-	}
 
 	//
 	// MeshData
@@ -77,9 +54,6 @@ namespace TES3 {
 			}
 		}
 
-		// Store the loading path for debugging purposes.
-		auto previouslyLoadingMesh = pushLoadingMesh(meshPath);
-
 		// Check the loaded NIF count to see if anything new was loaded.
 		auto countBefore = NIFs->count;
 
@@ -90,9 +64,6 @@ namespace TES3 {
 		if (mesh && NIFs->count > countBefore && mwse::lua::event::MeshLoadedEvent::getEventEnabled()) {
 			mwse::lua::LuaManager::getInstance().getThreadSafeStateHandle().triggerEvent(new mwse::lua::event::MeshLoadedEvent(meshPath.c_str(), mesh));
 		}
-
-		// Clean up debug information.
-		pushLoadingMesh(previouslyLoadingMesh);
 
 		return mesh;
 	}
@@ -125,9 +96,6 @@ namespace TES3 {
 			}
 		}
 
-		// Store the loading path for debugging purposes.
-		auto previouslyLoadingMesh = pushLoadingMesh(meshPath);
-
 		// Actually load the mesh.
 		auto mesh = LoadTempMeshNode(meshPath.c_str()).mesh;
 
@@ -135,9 +103,6 @@ namespace TES3 {
 		if (mesh && mwse::lua::event::MeshLoadedEvent::getEventEnabled()) {
 			mwse::lua::LuaManager::getInstance().getThreadSafeStateHandle().triggerEvent(new mwse::lua::event::MeshLoadedEvent(meshPath.c_str(), mesh));
 		}
-
-		// Clean up debug information.
-		pushLoadingMesh(previouslyLoadingMesh);
 
 		return mesh;
 	}
