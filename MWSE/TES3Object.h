@@ -378,6 +378,8 @@ namespace TES3 {
 
 		void setScale_lua(float scale);
 
+		bool supportsActivate() const;
+
 	};
 	static_assert(sizeof(Object) == 0x28, "TES3::Object failed size validation");
 

@@ -106,11 +106,6 @@ namespace TES3 {
 	}
 
 	bool BaseObject::supportsActivate() const {
-		auto asObject = static_cast<const Object*>(this);
-		if (asObject && asObject->getIsLocationMarker()) {
-			return false;
-		}
-
 		// Make sure we aren't dealing with references.
 		auto asBase = getBaseObject();
 
@@ -737,6 +732,14 @@ namespace TES3 {
 
 	void Object::setScale_lua(float scale) {
 		setScale(scale);
+	}
+
+	bool Object::supportsActivate() const {
+		if (getIsLocationMarker()) {
+			return false;
+		}
+
+		return BaseObject::supportsActivate();
 	}
 
 	// This helper function exists to avoid invoking template instantiations from LuaUtil.h in TES3Object.h.
