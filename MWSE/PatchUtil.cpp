@@ -1372,8 +1372,8 @@ namespace mwse::patch {
 	//
 
 	inline static void WritePatchKeyCharacter(unsigned int key, char character) {
-		writeValueEnforced<char>(0x775148 + key, 0, character); // US, Unshifted
-		writeValueEnforced<char>(0x775248 + key, 0, character); // US, Shifted
+		writeByteUnprotected(0x775148 + key, character); // US, Unshifted
+		writeByteUnprotected(0x775248 + key, character); // US, Shifted
 		writeValueEnforced<char>(0x775348 + key, 0, character); // DE, Unshifted
 		writeValueEnforced<char>(0x775448 + key, 0, character); // DE, Shifted
 		writeValueEnforced<char>(0x775548 + key, 0, character); // FR, Unshifted
@@ -1391,6 +1391,12 @@ namespace mwse::patch {
 		WritePatchKeyCharacter(DIK_NUMPAD7, '7');
 		WritePatchKeyCharacter(DIK_NUMPAD8, '8');
 		WritePatchKeyCharacter(DIK_NUMPAD9, '9');
+		WritePatchKeyCharacter(DIK_NUMPADEQUALS, '=');
+		WritePatchKeyCharacter(DIK_NUMPADMINUS, '-');
+		WritePatchKeyCharacter(DIK_NUMPADPERIOD, '.');
+		WritePatchKeyCharacter(DIK_NUMPADPLUS, '+');
+		WritePatchKeyCharacter(DIK_NUMPADSLASH, '/');
+		WritePatchKeyCharacter(DIK_NUMPADSTAR, '*');
 	}
 
 	//
