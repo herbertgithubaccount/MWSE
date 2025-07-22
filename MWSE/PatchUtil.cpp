@@ -1468,6 +1468,16 @@ namespace mwse::patch {
 	}
 
 	//
+	// Patch: IDK something
+	//
+
+	static TES3::UI::InventoryTile* __fastcall PatchFindInventoryTileWithForcedRefreshForPlayer(TES3::InventoryData* inventoryData, DWORD _EDX_, const TES3::Item* item) {
+		const auto player = TES3::WorldController::get()->getMobilePlayer()->reference;
+		inventoryData->refreshForReference(player, 2);
+		return inventoryData->findTile(item);
+	}
+
+	//
 	// Install all the patches.
 	//
 
@@ -2098,6 +2108,9 @@ namespace mwse::patch {
 
 		// Patch: Fix invalid UI memory pointer.
 		genCallEnforced(0x5C48DB, 0x595370, reinterpret_cast<DWORD>(PatchEnchantingMenuPointer));
+
+		// Patch: Prevent quickslot failures from stale inventory data.
+		genCallEnforced(0x608608, 0x633E80, reinterpret_cast<DWORD>(PatchFindInventoryTileWithForcedRefreshForPlayer));
 
 #if false
 		// Patch: Update dynamic lights to implement custom light sorting.
