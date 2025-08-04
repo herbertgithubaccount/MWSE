@@ -399,6 +399,8 @@ namespace TES3 {
 
 		bool isCellInMemory(const Cell* cell, bool unknown) const;
 
+		std::tuple<int, int> getCellBufferSize() const;
+
 		//
 		// Custom functions.
 		//
@@ -408,13 +410,6 @@ namespace TES3 {
 		long getGameSettingLong(int id) const;
 		float getGameSettingFloat(int id) const;
 		const char* getGameSettingString(int id) const;
-
-		//
-		// Debug values.
-		//
-
-		static std::unordered_map<DWORD, std::string_view> currentlyLoadingMeshes;
-		static std::recursive_mutex currentlyLoadingMeshesMutex;
 
 	};
 	static_assert(sizeof(DataHandler) == 0xB558, "TES3::DataHandler failed size validation");

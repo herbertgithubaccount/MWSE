@@ -269,8 +269,8 @@ namespace mwse::lua {
 		}
 		else if (key.is<const char*>()) {
 			auto& luaManager = mwse::lua::LuaManager::getInstance();
-			auto stateHandle = luaManager.getThreadSafeStateHandle();
-			auto& state = stateHandle.state;
+			const auto stateHandle = luaManager.getThreadSafeStateHandle();
+			auto& state = stateHandle.getState();
 			sol::object asIndex = state["tes3"]["gmst"][key.as<const char*>()];
 			if (asIndex.is<int>()) {
 				index = asIndex.as<int>();
@@ -286,8 +286,8 @@ namespace mwse::lua {
 
 	TES3::GameSetting* getGMST(sol::object key) {
 		auto& luaManager = mwse::lua::LuaManager::getInstance();
-		auto stateHandle = luaManager.getThreadSafeStateHandle();
-		auto& state = stateHandle.state;
+		const auto stateHandle = luaManager.getThreadSafeStateHandle();
+		auto& state = stateHandle.getState();
 
 		// Display deprecation warning and traceback.
 		logStackTrace("WARNING: Use of deprecated function tes3.getGMST. Use tes3.findGMST instead.");
@@ -456,6 +456,7 @@ namespace mwse::lua {
 		const auto mobilePlayer = worldController->getMobilePlayer();
 		const auto defaultSituation = mobilePlayer && mobilePlayer->getFlagInCombat() ? TES3::MusicSituation::Combat : TES3::MusicSituation::Explore;
 		const auto situation = (TES3::MusicSituation)getOptionalParam<int>(params, "situation", (int)defaultSituation);
+		mwse::lua::event::MusicChangeTrackEvent::ms_Context = "lua";
 
 		if (!worldController->selectNextMusicTrack(situation)) {
 			return false;
@@ -472,8 +473,8 @@ namespace mwse::lua {
 
 	TES3::UI::Element* messageBox(sol::object param, sol::optional<sol::variadic_args> va) {
 		auto& luaManager = mwse::lua::LuaManager::getInstance();
-		auto stateHandle = luaManager.getThreadSafeStateHandle();
-		auto& state = stateHandle.state;
+		const auto stateHandle = luaManager.getThreadSafeStateHandle();
+		auto& state = stateHandle.getState();
 
 		if (param.is<std::string>()) {
 			std::string message = state["string"]["format"](param, va);
@@ -601,8 +602,8 @@ namespace mwse::lua {
 
 	sol::object getModList() {
 		auto& luaManager = mwse::lua::LuaManager::getInstance();
-		auto stateHandle = luaManager.getThreadSafeStateHandle();
-		auto& state = stateHandle.state;
+		const auto stateHandle = luaManager.getThreadSafeStateHandle();
+		auto& state = stateHandle.getState();
 
 		auto dataHandler = TES3::DataHandler::get();
 		if (dataHandler == nullptr) {
@@ -1324,8 +1325,8 @@ namespace mwse::lua {
 
 	void removeEffects(sol::table params) {
 		auto& luaManager = mwse::lua::LuaManager::getInstance();
-		auto stateHandle = luaManager.getThreadSafeStateHandle();
-		auto& state = stateHandle.state;
+		const auto stateHandle = luaManager.getThreadSafeStateHandle();
+		auto& state = stateHandle.getState();
 
 		TES3::Reference* reference = getOptionalParamExecutionReference(params);
 		if (reference == nullptr) {
@@ -1495,8 +1496,8 @@ namespace mwse::lua {
 
 	bool playVoiceover(sol::table params) {
 		auto& luaManager = mwse::lua::LuaManager::getInstance();
-		auto stateHandle = luaManager.getThreadSafeStateHandle();
-		auto& state = stateHandle.state;
+		const auto stateHandle = luaManager.getThreadSafeStateHandle();
+		auto& state = stateHandle.getState();
 
 		// Get the actor that we're going to make say something.
 		auto actor = getOptionalParamMobileActor(params, "actor");
@@ -1954,8 +1955,8 @@ namespace mwse::lua {
 
 	void setStatistic(sol::table params) {
 		auto& luaManager = mwse::lua::LuaManager::getInstance();
-		auto stateHandle = luaManager.getThreadSafeStateHandle();
-		auto& state = stateHandle.state;
+		const auto stateHandle = luaManager.getThreadSafeStateHandle();
+		auto& state = stateHandle.getState();
 
 		// Figure out our mobile object, in case someone gives us a reference instead.
 		sol::userdata maybeMobile = params["reference"];
@@ -1970,7 +1971,10 @@ namespace mwse::lua {
 
 		// Try to get our statistic.
 		TES3::MobileActor* mobile = maybeMobile.as<TES3::MobileActor*>();
-		TES3::Statistic* statistic = nullptr;
+		auto statistic = getOptionalParam<TES3::Statistic*>(params, "statistic", nullptr);
+		if (statistic && !mobile->hasStatistic(statistic)) {
+			throw std::invalid_argument("tes3.setStatistic: The given statistic does not belong to the given mobile.");
+		}
 		sol::optional<const char*> statisticName = params["name"];
 		sol::optional<int> statisticSkill = params["skill"];
 		sol::optional<int> statisticAttribute = params["attribute"];
@@ -2087,8 +2091,8 @@ namespace mwse::lua {
 
 	void modStatistic(sol::table params) {
 		auto& luaManager = mwse::lua::LuaManager::getInstance();
-		auto stateHandle = luaManager.getThreadSafeStateHandle();
-		auto& state = stateHandle.state;
+		const auto stateHandle = luaManager.getThreadSafeStateHandle();
+		auto& state = stateHandle.getState();
 
 		// Figure out our mobile object, in case someone gives us a reference instead.
 		sol::userdata maybeMobile = params["reference"];
@@ -2103,7 +2107,10 @@ namespace mwse::lua {
 
 		// Try to get our statistic.
 		TES3::MobileActor* mobile = maybeMobile.as<TES3::MobileActor*>();
-		TES3::Statistic* statistic = nullptr;
+		auto statistic = getOptionalParam<TES3::Statistic*>(params, "statistic", nullptr);
+		if (statistic && !mobile->hasStatistic(statistic)) {
+			throw std::invalid_argument("tes3.modStatistic: The given statistic does not belong to the given mobile.");
+		}
 		sol::optional<const char*> statisticName = params["name"];
 		sol::optional<int> statisticSkill = params["skill"];
 		sol::optional<int> statisticAttribute = params["attribute"];
@@ -2368,8 +2375,8 @@ namespace mwse::lua {
 		}
 
 		auto& luaManager = mwse::lua::LuaManager::getInstance();
-		auto stateHandle = luaManager.getThreadSafeStateHandle();
-		auto& state = stateHandle.state;
+		const auto stateHandle = luaManager.getThreadSafeStateHandle();
+		auto& state = stateHandle.getState();
 		sol::table result = state.create_table();
 
 		if (dataHandler->currentInteriorCell) {
@@ -3432,8 +3439,8 @@ namespace mwse::lua {
 
 	std::tuple<int, TES3::Item*, TES3::ItemData*> addItem(sol::table params) {
 		auto& luaManager = mwse::lua::LuaManager::getInstance();
-		auto stateHandle = luaManager.getThreadSafeStateHandle();
-		auto& state = stateHandle.state;
+		const auto stateHandle = luaManager.getThreadSafeStateHandle();
+		auto& state = stateHandle.getState();
 
 		// Get the reference we are manipulating.
 		TES3::Reference* reference = getOptionalParamReference(params, "reference");
@@ -5934,8 +5941,8 @@ namespace mwse::lua {
 		processManager->findActorsInProximity(&position.value(), range.value(), &actors);
 
 		// Convert list to lua array.
-		auto stateHandle = LuaManager::getInstance().getThreadSafeStateHandle();
-		sol::table result = stateHandle.state.create_table();
+		const auto stateHandle = LuaManager::getInstance().getThreadSafeStateHandle();
+		sol::table result = stateHandle.getState().create_table();
 		for (auto& i : actors) {
 			result.add(i);
 		}
@@ -6015,7 +6022,7 @@ namespace mwse::lua {
 		// Allow the event to modify things, if we have one.
 		if (firedEvent) {
 			auto& luaManager = mwse::lua::LuaManager::getInstance();
-			auto stateHandle = luaManager.getThreadSafeStateHandle();
+			const auto stateHandle = luaManager.getThreadSafeStateHandle();
 			sol::table result = stateHandle.triggerEvent(firedEvent);
 			if (result.valid()) {
 				price = result.get_or("price", price);
@@ -6056,7 +6063,7 @@ namespace mwse::lua {
 
 		// Fire off the event.
 		if (event::EnchantChargeUseEvent::getEventEnabled()) {
-			auto stateHandle = LuaManager::getInstance().getThreadSafeStateHandle();
+			const auto stateHandle = LuaManager::getInstance().getThreadSafeStateHandle();
 
 			sol::object eventResult = stateHandle.triggerEvent(new event::EnchantChargeUseEvent(enchant, mobile, nullptr, charge));
 
@@ -6363,8 +6370,8 @@ namespace mwse::lua {
 	}
 
 	void bindTES3Util() {
-		auto stateHandle = LuaManager::getInstance().getThreadSafeStateHandle();
-		auto& state = stateHandle.state;
+		const auto stateHandle = LuaManager::getInstance().getThreadSafeStateHandle();
+		auto& state = stateHandle.getState();
 
 		//
 		// Extend tes3 library with extra functions.

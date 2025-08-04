@@ -21,6 +21,7 @@
 #include "TES3ItemData.h"
 #include "TES3Light.h"
 #include "TES3LoadScreenManager.h"
+#include "TES3MagicEffectController.h"
 #include "TES3MagicEffectInstance.h"
 #include "TES3Misc.h"
 #include "TES3MobilePlayer.h"
@@ -89,16 +90,21 @@ namespace mwse::patch {
 
 	template <typename T>
 	void safePrintObjectToLog(const char* title, const T* object) {
+		safePrintObject(title, object, log::getLog());
+	}
+
+	template <typename T>
+	void safePrintObject(const char* title, const T* object, std::ostream& ss) {
 		if (object) {
 			auto id = SafeGetObjectId(object);
 			auto source = SafeGetSourceFile(object);
-			log::getLog() << "  " << title << ": " << (id ? id : "<memory corrupted>") << " (" << (source ? source : "<memory corrupted>") << ")" << std::endl;
+			ss << "  " << title << ": " << (id ? id : "<memory corrupted>") << " (" << (source ? source : "<memory corrupted>") << ")\n";
 			if (id) {
-				log::prettyDump(object);
+				log::prettyDump(object, ss);
 			}
 		}
 		else {
-			log::getLog() << "  " << title << ": nullptr" << std::endl;
+			ss << "  " << title << ": nullptr\n";
 		}
 	}
 
@@ -1307,14 +1313,20 @@ namespace mwse::patch {
 	// Patch: Prevent crash with magic effects on invalid targets.
 	//
 
-	void __cdecl PatchMagicEffectFortifySkill(TES3::MagicSourceInstance* sourceInstance, float deltaTime, TES3::MagicEffectInstance* effectInstance, int effectIndex) {
+	template <DWORD effectTickFunc>
+	static void __cdecl PatchMagicEffect_RequireMobile(TES3::MagicSourceInstance* sourceInstance, float deltaTime, TES3::MagicEffectInstance* effectInstance, int effectIndex) {
 		auto mobile = effectInstance->target->getAttachedMobileActor();
 		if (mobile == nullptr) {
 			return;
 		}
 
-		const auto MagicEffectFortifySkill = reinterpret_cast<void(__cdecl*)(TES3::MagicSourceInstance*, float, TES3::MagicEffectInstance*, int)>(0x4625F0);
-		MagicEffectFortifySkill(sourceInstance, deltaTime, effectInstance, effectIndex);
+		const auto fn = reinterpret_cast<TES3::MagicEffectController::spellEffectTickFunction>(effectTickFunc);
+		fn(sourceInstance, deltaTime, effectInstance, effectIndex);
+	}
+
+	template <DWORD effectTickFunc>
+	inline static void WritePatchMagicEffect_RequireMobile(TES3::EffectID::EffectID effectId) {
+		writeDoubleWordEnforced(0x7884B0 + (effectId * 4), effectTickFunc, reinterpret_cast<DWORD>(PatchMagicEffect_RequireMobile<effectTickFunc>));
 	}
 
 	//
@@ -1367,8 +1379,8 @@ namespace mwse::patch {
 	//
 
 	inline static void WritePatchKeyCharacter(unsigned int key, char character) {
-		writeValueEnforced<char>(0x775148 + key, 0, character); // US, Unshifted
-		writeValueEnforced<char>(0x775248 + key, 0, character); // US, Shifted
+		writeByteUnprotected(0x775148 + key, character); // US, Unshifted
+		writeByteUnprotected(0x775248 + key, character); // US, Shifted
 		writeValueEnforced<char>(0x775348 + key, 0, character); // DE, Unshifted
 		writeValueEnforced<char>(0x775448 + key, 0, character); // DE, Shifted
 		writeValueEnforced<char>(0x775548 + key, 0, character); // FR, Unshifted
@@ -1386,6 +1398,12 @@ namespace mwse::patch {
 		WritePatchKeyCharacter(DIK_NUMPAD7, '7');
 		WritePatchKeyCharacter(DIK_NUMPAD8, '8');
 		WritePatchKeyCharacter(DIK_NUMPAD9, '9');
+		WritePatchKeyCharacter(DIK_NUMPADEQUALS, '=');
+		WritePatchKeyCharacter(DIK_NUMPADMINUS, '-');
+		WritePatchKeyCharacter(DIK_NUMPADPERIOD, '.');
+		WritePatchKeyCharacter(DIK_NUMPADPLUS, '+');
+		WritePatchKeyCharacter(DIK_NUMPADSLASH, '/');
+		WritePatchKeyCharacter(DIK_NUMPADSTAR, '*');
 	}
 
 	//
@@ -1433,6 +1451,20 @@ namespace mwse::patch {
 		light->specular = { float(radius), float(radius), float(radius) };
 
 		node->updatePointLight(light, isLand);
+	}
+
+	//
+	// Patch: Fix MenuEnchant menu pointer on failed enchant
+	//
+
+	static TES3::UI::Element* __cdecl PatchEnchantingMenuPointer(TES3::UI::UI_ID id) {
+		const auto menuInputController = TES3::WorldController::get()->menuController->menuInputController;
+		if (!menuInputController->textInputFocus->isValid()) {
+			menuInputController->textInputFocus = nullptr;
+		}
+
+		// Call original code.
+		return TES3::UI::findMenu(id);
 	}
 
 	//
@@ -1902,7 +1934,149 @@ namespace mwse::patch {
 		writePatchCodeUnprotected(0x4D8DD7, (BYTE*)&PatchSoulTrappedCreatureNotFound3, PatchSoulTrappedCreatureNotFound3_size);
 
 		// Patch: Prevent crash with magic effects on invalid targets.
-		writeDoubleWordEnforced(0x7884B0 + (TES3::EffectID::FortifySkill * 4), 0x4625F0, reinterpret_cast<DWORD>(PatchMagicEffectFortifySkill));
+		WritePatchMagicEffect_RequireMobile<0x45F170>(TES3::EffectID::WaterBreathing);
+		WritePatchMagicEffect_RequireMobile<0x45F1D0>(TES3::EffectID::SwiftSwim);
+		WritePatchMagicEffect_RequireMobile<0x45F230>(TES3::EffectID::WaterWalking);
+		WritePatchMagicEffect_RequireMobile<0x45F2B0>(TES3::EffectID::Shield);
+		WritePatchMagicEffect_RequireMobile<0x45F310>(TES3::EffectID::FireShield);
+		WritePatchMagicEffect_RequireMobile<0x45F410>(TES3::EffectID::LightningShield);
+		WritePatchMagicEffect_RequireMobile<0x45F390>(TES3::EffectID::FrostShield);
+		WritePatchMagicEffect_RequireMobile<0x45F490>(TES3::EffectID::Burden);
+		WritePatchMagicEffect_RequireMobile<0x45F5C0>(TES3::EffectID::Feather);
+		WritePatchMagicEffect_RequireMobile<0x45F6F0>(TES3::EffectID::Jump);
+		WritePatchMagicEffect_RequireMobile<0x45F750>(TES3::EffectID::Levitate);
+		WritePatchMagicEffect_RequireMobile<0x45F840>(TES3::EffectID::SlowFall);
+		//WritePatchMagicEffect_RequireMobile<0x45F9A0>(TES3::EffectID::Lock);
+		//WritePatchMagicEffect_RequireMobile<0x45FB40>(TES3::EffectID::Open);
+		WritePatchMagicEffect_RequireMobile<0x45FF20>(TES3::EffectID::FireDamage);
+		WritePatchMagicEffect_RequireMobile<0x45FF80>(TES3::EffectID::ShockDamage);
+		WritePatchMagicEffect_RequireMobile<0x45FFE0>(TES3::EffectID::FrostDamage);
+		WritePatchMagicEffect_RequireMobile<0x460040>(TES3::EffectID::DrainAttribute);
+		WritePatchMagicEffect_RequireMobile<0x460120>(TES3::EffectID::DrainHealth);
+		WritePatchMagicEffect_RequireMobile<0x460180>(TES3::EffectID::DrainMagicka);
+		WritePatchMagicEffect_RequireMobile<0x460300>(TES3::EffectID::DrainFatigue);
+		WritePatchMagicEffect_RequireMobile<0x460240>(TES3::EffectID::DrainSkill);
+		WritePatchMagicEffect_RequireMobile<0x460040>(TES3::EffectID::DamageAttribute);
+		WritePatchMagicEffect_RequireMobile<0x460120>(TES3::EffectID::DamageHealth);
+		WritePatchMagicEffect_RequireMobile<0x460180>(TES3::EffectID::DamageMagicka);
+		WritePatchMagicEffect_RequireMobile<0x460300>(TES3::EffectID::DamageFatigue);
+		WritePatchMagicEffect_RequireMobile<0x460240>(TES3::EffectID::DamageSkill);
+		WritePatchMagicEffect_RequireMobile<0x4603C0>(TES3::EffectID::Poison);
+		WritePatchMagicEffect_RequireMobile<0x460420>(TES3::EffectID::WeaknessToFire);
+		WritePatchMagicEffect_RequireMobile<0x460480>(TES3::EffectID::WeaknessToFrost);
+		WritePatchMagicEffect_RequireMobile<0x4604E0>(TES3::EffectID::WeaknessToShock);
+		WritePatchMagicEffect_RequireMobile<0x460540>(TES3::EffectID::WeaknessToMagicka);
+		WritePatchMagicEffect_RequireMobile<0x4605A0>(TES3::EffectID::WeaknessToCommonDisease);
+		WritePatchMagicEffect_RequireMobile<0x460600>(TES3::EffectID::WeaknessToBlightDisease);
+		WritePatchMagicEffect_RequireMobile<0x460660>(TES3::EffectID::WeaknessToCorprus);
+		WritePatchMagicEffect_RequireMobile<0x4606C0>(TES3::EffectID::WeaknessToPoison);
+		WritePatchMagicEffect_RequireMobile<0x460720>(TES3::EffectID::WeaknessToNormalWeapons);
+		WritePatchMagicEffect_RequireMobile<0x460780>(TES3::EffectID::DisintegrateWeapon);
+		WritePatchMagicEffect_RequireMobile<0x4608C0>(TES3::EffectID::DisintegrateArmor);
+		WritePatchMagicEffect_RequireMobile<0x460D30>(TES3::EffectID::Invisibility);
+		WritePatchMagicEffect_RequireMobile<0x460BE0>(TES3::EffectID::Chameleon);
+		WritePatchMagicEffect_RequireMobile<0x460ED0>(TES3::EffectID::Light);
+		WritePatchMagicEffect_RequireMobile<0x460E70>(TES3::EffectID::Sanctuary);
+		WritePatchMagicEffect_RequireMobile<0x4610F0>(TES3::EffectID::NightEye);
+		WritePatchMagicEffect_RequireMobile<0x4611F0>(TES3::EffectID::Charm);
+		WritePatchMagicEffect_RequireMobile<0x461350>(TES3::EffectID::Paralyze);
+		WritePatchMagicEffect_RequireMobile<0x461490>(TES3::EffectID::Silence);
+		WritePatchMagicEffect_RequireMobile<0x4614F0>(TES3::EffectID::Blind);
+		WritePatchMagicEffect_RequireMobile<0x461690>(TES3::EffectID::Sound);
+		WritePatchMagicEffect_RequireMobile<0x461800>(TES3::EffectID::CalmHumanoid);
+		WritePatchMagicEffect_RequireMobile<0x4619E0>(TES3::EffectID::CalmCreature);
+		WritePatchMagicEffect_RequireMobile<0x461890>(TES3::EffectID::FrenzyHumanoid);
+		WritePatchMagicEffect_RequireMobile<0x461A70>(TES3::EffectID::FrenzyCreature);
+		WritePatchMagicEffect_RequireMobile<0x461970>(TES3::EffectID::DemoralizeHumanoid);
+		WritePatchMagicEffect_RequireMobile<0x461B50>(TES3::EffectID::DemoralizeCreature);
+		WritePatchMagicEffect_RequireMobile<0x461900>(TES3::EffectID::RallyHumanoid);
+		WritePatchMagicEffect_RequireMobile<0x461AE0>(TES3::EffectID::RallyCreature);
+		WritePatchMagicEffect_RequireMobile<0x461CC0>(TES3::EffectID::Dispel);
+		WritePatchMagicEffect_RequireMobile<0x463270>(TES3::EffectID::SoulTrap);
+		WritePatchMagicEffect_RequireMobile<0x4634D0>(TES3::EffectID::Telekinesis);
+		WritePatchMagicEffect_RequireMobile<0x463580>(TES3::EffectID::Mark);
+		WritePatchMagicEffect_RequireMobile<0x463650>(TES3::EffectID::Recall);
+		WritePatchMagicEffect_RequireMobile<0x463820>(TES3::EffectID::DivineIntervention);
+		WritePatchMagicEffect_RequireMobile<0x463900>(TES3::EffectID::AlmsiviIntervention);
+		WritePatchMagicEffect_RequireMobile<0x4639E0>(TES3::EffectID::DetectAnimal);
+		WritePatchMagicEffect_RequireMobile<0x463A90>(TES3::EffectID::DetectEnchantment);
+		WritePatchMagicEffect_RequireMobile<0x463B10>(TES3::EffectID::DetectKey);
+		WritePatchMagicEffect_RequireMobile<0x463B90>(TES3::EffectID::SpellAbsorption);
+		WritePatchMagicEffect_RequireMobile<0x463B90>(TES3::EffectID::Reflect);
+		WritePatchMagicEffect_RequireMobile<0x461BC0>(TES3::EffectID::CureCommonDisease);
+		WritePatchMagicEffect_RequireMobile<0x461C40>(TES3::EffectID::CureBlightDisease);
+		WritePatchMagicEffect_RequireMobile<0x461DC0>(TES3::EffectID::CureCorprus);
+		WritePatchMagicEffect_RequireMobile<0x461EC0>(TES3::EffectID::CurePoison);
+		WritePatchMagicEffect_RequireMobile<0x461E40>(TES3::EffectID::CureParalyzation);
+		WritePatchMagicEffect_RequireMobile<0x461F40>(TES3::EffectID::RestoreAttribute);
+		WritePatchMagicEffect_RequireMobile<0x462030>(TES3::EffectID::RestoreHealth);
+		WritePatchMagicEffect_RequireMobile<0x4620B0>(TES3::EffectID::RestoreMagicka);
+		WritePatchMagicEffect_RequireMobile<0x462180>(TES3::EffectID::RestoreFatigue);
+		WritePatchMagicEffect_RequireMobile<0x462250>(TES3::EffectID::RestoreSkill);
+		WritePatchMagicEffect_RequireMobile<0x462330>(TES3::EffectID::FortifyAttribute);
+		WritePatchMagicEffect_RequireMobile<0x462410>(TES3::EffectID::FortifyHealth);
+		WritePatchMagicEffect_RequireMobile<0x462470>(TES3::EffectID::FortifyMagicka);
+		WritePatchMagicEffect_RequireMobile<0x462530>(TES3::EffectID::FortifyFatigue);
+		WritePatchMagicEffect_RequireMobile<0x4625F0>(TES3::EffectID::FortifySkill);
+		WritePatchMagicEffect_RequireMobile<0x4626E0>(TES3::EffectID::FortifyMagickaMultiplier);
+		WritePatchMagicEffect_RequireMobile<0x4627F0>(TES3::EffectID::AbsorbAttribute);
+		WritePatchMagicEffect_RequireMobile<0x462940>(TES3::EffectID::AbsorbHealth);
+		WritePatchMagicEffect_RequireMobile<0x462A00>(TES3::EffectID::AbsorbMagicka);
+		WritePatchMagicEffect_RequireMobile<0x462B60>(TES3::EffectID::AbsorbFatigue);
+		WritePatchMagicEffect_RequireMobile<0x462CC0>(TES3::EffectID::AbsorbSkill);
+		WritePatchMagicEffect_RequireMobile<0x462E00>(TES3::EffectID::ResistFire);
+		WritePatchMagicEffect_RequireMobile<0x462E60>(TES3::EffectID::ResistFrost);
+		WritePatchMagicEffect_RequireMobile<0x462EC0>(TES3::EffectID::ResistShock);
+		WritePatchMagicEffect_RequireMobile<0x462F20>(TES3::EffectID::ResistMagicka);
+		WritePatchMagicEffect_RequireMobile<0x462F80>(TES3::EffectID::ResistCommonDisease);
+		WritePatchMagicEffect_RequireMobile<0x462FE0>(TES3::EffectID::ResistBlightDisease);
+		WritePatchMagicEffect_RequireMobile<0x463040>(TES3::EffectID::ResistCorprus);
+		WritePatchMagicEffect_RequireMobile<0x4630A0>(TES3::EffectID::ResistPoison);
+		WritePatchMagicEffect_RequireMobile<0x463100>(TES3::EffectID::ResistNormalWeapons);
+		WritePatchMagicEffect_RequireMobile<0x463160>(TES3::EffectID::ResistParalysis);
+		WritePatchMagicEffect_RequireMobile<0x461D40>(TES3::EffectID::RemoveCurse);
+		WritePatchMagicEffect_RequireMobile<0x4631C0>(TES3::EffectID::TurnUndead);
+		WritePatchMagicEffect_RequireMobile<0x463E00>(TES3::EffectID::SummonScamp);
+		WritePatchMagicEffect_RequireMobile<0x463E30>(TES3::EffectID::SummonClannfear);
+		WritePatchMagicEffect_RequireMobile<0x463E60>(TES3::EffectID::SummonDaedroth);
+		WritePatchMagicEffect_RequireMobile<0x463E90>(TES3::EffectID::SummonDremora);
+		WritePatchMagicEffect_RequireMobile<0x463EC0>(TES3::EffectID::SummonGhost);
+		WritePatchMagicEffect_RequireMobile<0x463EF0>(TES3::EffectID::SummonSkeleton);
+		WritePatchMagicEffect_RequireMobile<0x463F20>(TES3::EffectID::SummonLeastBonewalker);
+		WritePatchMagicEffect_RequireMobile<0x463F50>(TES3::EffectID::SummonGreaterBonewalker);
+		WritePatchMagicEffect_RequireMobile<0x463F80>(TES3::EffectID::SummonBonelord);
+		WritePatchMagicEffect_RequireMobile<0x463FB0>(TES3::EffectID::SummonTwilight);
+		WritePatchMagicEffect_RequireMobile<0x463FE0>(TES3::EffectID::SummonHunger);
+		WritePatchMagicEffect_RequireMobile<0x464010>(TES3::EffectID::SummonGoldenSaint);
+		WritePatchMagicEffect_RequireMobile<0x464040>(TES3::EffectID::SummonFlameAtronach);
+		WritePatchMagicEffect_RequireMobile<0x464070>(TES3::EffectID::SummonFrostAtronach);
+		WritePatchMagicEffect_RequireMobile<0x4640A0>(TES3::EffectID::SummonStormAtronach);
+		WritePatchMagicEffect_RequireMobile<0x464220>(TES3::EffectID::FortifyAttackBonus);
+		WritePatchMagicEffect_RequireMobile<0x463490>(TES3::EffectID::CommandCreature);
+		WritePatchMagicEffect_RequireMobile<0x4634B0>(TES3::EffectID::CommandHumanoid);
+		WritePatchMagicEffect_RequireMobile<0x463BE0>(TES3::EffectID::BoundDagger);
+		WritePatchMagicEffect_RequireMobile<0x463C10>(TES3::EffectID::BoundLongsword);
+		WritePatchMagicEffect_RequireMobile<0x463C40>(TES3::EffectID::BoundMace);
+		WritePatchMagicEffect_RequireMobile<0x463C70>(TES3::EffectID::BoundBattleAxe);
+		WritePatchMagicEffect_RequireMobile<0x463CA0>(TES3::EffectID::BoundSpear);
+		WritePatchMagicEffect_RequireMobile<0x463CD0>(TES3::EffectID::BoundLongbow);
+		WritePatchMagicEffect_RequireMobile<0x464C90>(TES3::EffectID::ExtraSpell);
+		WritePatchMagicEffect_RequireMobile<0x463D00>(TES3::EffectID::BoundCuirass);
+		WritePatchMagicEffect_RequireMobile<0x463D30>(TES3::EffectID::BoundHelm);
+		WritePatchMagicEffect_RequireMobile<0x463D60>(TES3::EffectID::BoundBoots);
+		WritePatchMagicEffect_RequireMobile<0x463D90>(TES3::EffectID::BoundShield);
+		WritePatchMagicEffect_RequireMobile<0x463DC0>(TES3::EffectID::BoundGloves);
+		WritePatchMagicEffect_RequireMobile<0x464490>(TES3::EffectID::Corprus);
+		WritePatchMagicEffect_RequireMobile<0x464280>(TES3::EffectID::Vampirism);
+		WritePatchMagicEffect_RequireMobile<0x4640D0>(TES3::EffectID::SummonCenturionSphere);
+		WritePatchMagicEffect_RequireMobile<0x464BB0>(TES3::EffectID::SunDamage);
+		WritePatchMagicEffect_RequireMobile<0x464F20>(TES3::EffectID::StuntedMagicka);
+		WritePatchMagicEffect_RequireMobile<0x464100>(TES3::EffectID::SummonFabricant);
+		WritePatchMagicEffect_RequireMobile<0x464130>(TES3::EffectID::SummonWolf);
+		WritePatchMagicEffect_RequireMobile<0x464160>(TES3::EffectID::SummonBear);
+		WritePatchMagicEffect_RequireMobile<0x464190>(TES3::EffectID::SummonBoneWolf);
+		WritePatchMagicEffect_RequireMobile<0x4641C0>(TES3::EffectID::Summon04);
+		WritePatchMagicEffect_RequireMobile<0x4641F0>(TES3::EffectID::Summon05);
 
 		// Patch: Suppress sGeneralMastPlugMismatchMsg message.
 		genCallUnprotected(0x477512, reinterpret_cast<DWORD>(GetCachedYesToAll), 0x477518 - 0x477512);
@@ -1921,6 +2095,9 @@ namespace mwse::patch {
 		genNOPUnprotected(0x4968E1, 0x4968FB - 0x4968E1);
 		writePatchCodeUnprotected(0x4968E1, (BYTE*)&PatchUnequipIndexedProjectileSetup, PatchUnequipIndexedProjectileSetup_size);
 		genCallUnprotected(0x4968E1 + 0x2, reinterpret_cast<DWORD>(PatchUnequipIndexedProjectile));
+
+		// Patch: Fix invalid UI memory pointer.
+		genCallEnforced(0x5C48DB, 0x595370, reinterpret_cast<DWORD>(PatchEnchantingMenuPointer));
 
 #if false
 		// Patch: Update dynamic lights to implement custom light sorting.
@@ -2072,28 +2249,6 @@ namespace mwse::patch {
 	}
 
 	void CreateMiniDump(EXCEPTION_POINTERS* pep) {
-		log::getLog() << std::dec << std::endl;
-		log::getLog() << "Morrowind has crashed! To help improve game stability, send MWSE_Minidump.dmp and mwse.log to the #mwse channel at the Morrowind Modding Community Discord: https://discord.me/mwmods" << std::endl;
-
-		// Try to print any relevant mwscript information.
-		if (TES3::Script::currentlyExecutingScript) {
-			log::getLog() << "Currently executing mwscript context:" << std::endl;
-			safePrintObjectToLog("Script", TES3::Script::currentlyExecutingScript);
-			safePrintObjectToLog("Reference", TES3::Script::currentlyExecutingScriptReference);
-			log::getLog() << "  OpCode: 0x" << std::hex << *reinterpret_cast<DWORD*>(0x7A91C4) << std::endl;
-			log::getLog() << "  Cursor Offset: 0x" << std::hex << *reinterpret_cast<DWORD*>(0x7CEBB0) << std::endl;
-		}
-
-		// Show if we failed to load a mesh.
-		if (!TES3::DataHandler::currentlyLoadingMeshes.empty()) {
-			TES3::DataHandler::currentlyLoadingMeshesMutex.lock();
-			const auto worldController = TES3::WorldController::get();
-			for (const auto& itt : TES3::DataHandler::currentlyLoadingMeshes) {
-				log::getLog() << "Currently loading mesh: " << itt.second << "; Thread: " << GetThreadName(itt.first) << std::endl;
-			}
-			TES3::DataHandler::currentlyLoadingMeshesMutex.unlock();
-		}
-
 		// Open the file.
 		auto hFile = CreateFile("MWSE_MiniDump.dmp", GENERIC_READ | GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
@@ -2131,36 +2286,37 @@ namespace mwse::patch {
 		else {
 			log::getLog() << "MiniDump creation failed. Could not get file handle. Error: " << GetLastError() << std::endl;
 		}
-
-		if constexpr (CrashLogger::DEBUG_LOGGER) {
-			log::getLog() << "Attempting To Log Crash \n";
-		}
-		CrashLogger::AttemptLog(pep);
 	}
 
-	int __stdcall onWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd) {
+	static void ResetGamma() {
 		__try {
-			return reinterpret_cast<int(__stdcall*)(HINSTANCE, HINSTANCE, LPSTR, int)>(0x416E10)(hInstance, hPrevInstance, lpCmdLine, nShowCmd);
-		}
-		__except (CreateMiniDump(GetExceptionInformation()), EXCEPTION_EXECUTE_HANDLER) {
-			// Try to reset gamma.
 			auto game = TES3::Game::get();
 			if (game) {
 				game->setGamma(1.0f);
 			}
-
-			return 0;
 		}
+		__except (EXCEPTION_EXECUTE_HANDLER) {}
+	}
 
+	LONG WINAPI MWSEUnhandledExceptionFilter(__in  struct _EXCEPTION_POINTERS* info) {
+		log::getLog() << std::dec << std::endl;
+		log::getLog() << "Morrowind has crashed! To help improve game stability, send mwse.log to the #mwse channel at the Morrowind Modding Community Discord: https://discord.me/mwmods" << std::endl;
+
+		ResetGamma();
+
+		CreateMiniDump(info);
+		
+		if constexpr (CrashLogger::DEBUG_LOGGER) {
+			log::getLog() << "Attempting To Log Crash \n";
+		}
+		return CrashLogger::Filter(info);
 	}
 
 	bool installMiniDumpHook() {
 		if constexpr (INSTALL_MINIDUMP_HOOK) {
 			CrashLogger::Playtime::Init();
-			return genCallEnforced(0x7279AD, 0x416E10, reinterpret_cast<DWORD>(onWinMain));
+			CrashLogger::s_originalFilter = SetUnhandledExceptionFilter(MWSEUnhandledExceptionFilter);
 		}
-		else {
-			return true;
-		}
+		return true;
 	}
 }
