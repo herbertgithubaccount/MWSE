@@ -420,6 +420,9 @@ local function onClickKeybindMenuButton(e)
 	local Template = require("mcm.components.templates.Template")
 	local status, error = pcall(Template.create, keybindTemplate, modConfigContainer)
 
+	-- Change the mod config title bar to include the mod's name.
+	local menu = tes3ui.findMenu("MWSE:ModConfigMenu") --[[@as tes3uiElement]]
+	menu.text = mwse.mcm.i18n("Mod Configuration - %s", { "Keybind Menu" })
 	if (status == false) then
 		mwse.log("Error in mod config close callback: %s\n%s", error, debug.traceback())
 	end
@@ -577,6 +580,7 @@ local function onClickModConfigButton()
 
 		local keyBindMenuButton = bottomBlock:createButton({
 			id = "MWSE:ModConfigMenu_Keybind",
+			-- TODO: make this use i18n
 			text = "Keybinds"
 		})
 		keyBindMenuButton:register("mouseClick", onClickKeybindMenuButton)
