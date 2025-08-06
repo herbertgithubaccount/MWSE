@@ -25,8 +25,8 @@ local lastModName = nil
 local previousModConfigSelector = nil
 
 --- Reusable access to UI elements.
---- @type tes3uiElement?
-local modConfigContainer = nil
+--- @type tes3uiElement
+local modConfigContainer
 
 --- @type table
 local config = mwse.loadConfig("MWSE.MCM", {
@@ -127,19 +127,29 @@ end
 -- called when the MCM itself is closed, or when a different mod is selected
 local function closeCurrentModConfig()
 	if not currentModConfig then return end
-	
-	if currentModConfig.onClose then
-		local status, error = pcall(currentModConfig.onClose, modConfigContainer)
+
+	local activeModConfig = currentModConfig
+	currentModConfig = nil
+
+	if (previousModConfigSelector) then
+		previousModConfigSelector.widget.state = tes3.uiState.normal
+		previousModConfigSelector = nil
+	end
+
+	if activeModConfig.onClose then
+		local status, error = pcall(activeModConfig.onClose, modConfigContainer)
 		if (status == false) then
 			mwse.log("Error in mod config close callback: %s\n%s", error, debug.traceback())
 		end
 	end
+
 	-- Fire the event after `onClose` gets called.
 	local payload = {
-		modName = currentModConfig.name, 
-		isFavorite = isFavorite(currentModConfig.name),
+		modName = activeModConfig.name,
+		isFavorite = isFavorite(activeModConfig.name),
 	}
-	event.trigger(tes3.event.modConfigEntryClosed, payload, {filter = currentModConfig.name})
+
+	event.trigger(tes3.event.modConfigEntryClosed, payload, { filter = activeModConfig.name })
 end
 
 --- Callback for when a mod name has been clicked in the left pane.
@@ -295,8 +305,117 @@ end
 
 local function cleanupMCM(e)
 	currentModConfig = nil
+	---@diagnostic disable-next-line: cast-local-type
 	modConfigContainer = nil
 	previousModConfigSelector = nil
+end
+
+--- Stores the MCM Template used to update keybindings of all installed mods
+---@type mwseMCMTemplate|{_updatedTemplates: mwseMCMTemplate[]}
+local keybindTemplate = nil
+
+
+local function initializeKeybindTemplate()
+	local KEYBINDER_CLASSES = {
+		KeyBinder = true,
+		MouseBinder = true,
+	}
+	---@param keybindMenuCategory mwseMCMCategory
+	---@param modTemplate mwseMCMTemplate
+	---@param modCategory mwseMCMCategory
+	local function addAllKeybinds(keybindMenuCategory, modTemplate, modCategory)
+		for _, component in ipairs(modCategory.components) do
+			if component.componentType == "Setting" and KEYBINDER_CLASSES[component.class] then
+				local copy = table.copy(component)
+				local originalCallback = copy.callback
+				copy.callback = function(self)
+					if not table.contains(keybindTemplate._updatedTemplates, modTemplate) then
+						table.insert(keybindTemplate._updatedTemplates, modTemplate)
+					end
+					if originalCallback then
+						originalCallback(self)
+					end
+				end
+				if component.class == "KeyBinder" then
+					keybindMenuCategory:createKeyBinder(component)
+				elseif component.class == "MouseBinder" then
+					keybindMenuCategory:createMouseBinder(component)
+				end
+			elseif component.componentType == "Category" or component.componentType == "Page" then
+				---@cast component mwseMCMCategory
+				addAllKeybinds(keybindMenuCategory, modTemplate, component)
+			end
+		end
+	end
+
+	closeCurrentModConfig()
+
+	keybindTemplate = mwse.mcm.createTemplate {
+		name = "Keybind Menu",
+		postCreate = function(self)
+			---@diagnostic disable-next-line: inject-field
+			self._updatedTemplates = {}
+		end
+	}
+	-- Trigger the `modConfigEntryClosed` event and call the `onClose` function for each template
+	-- that had a keybinding updated.
+	-- This ensures that
+	-- 1) mods perform their necessary update logic
+	-- 2) The updated config gets properly saved to the corresponding json file (e.g. by `Template:saveOnClose`.)
+	keybindTemplate.onClose = function(modConfigContainer)
+		-- Fire the event after `onClose` gets called.
+		for _, template in ipairs(keybindTemplate._updatedTemplates) do
+			local payload = {
+				modName = template.name,
+				isFavorite = isFavorite(template.name),
+			}
+			event.trigger(tes3.event.modConfigEntryClosed, payload, { filter = template.name })
+			if template.onClose then
+				pcall(template.onClose, modConfigContainer)
+			end
+		end
+	end
+	local page = keybindTemplate:createSideBarPage()
+	local sortedModTemplates = {} --- @type mwseMCMTemplate[]
+	for _, package in pairs(configMods) do
+		-- if package.template and not package.hidden then
+		if package.template then
+			table.insert(sortedModTemplates, package.template)
+		end
+	end
+	table.sort(sortedModTemplates, sortPackages)
+
+
+	for _, modTemplate in ipairs(sortedModTemplates) do
+		-- HACK: Use the `__index` metamethod to ensure that the relevant keybinding category
+		-- gets created only when the mod in question has at least one keybind component.
+		-- (This works because `addAllKeybinds` only indexes `keybinderCategory`
+		-- when it finds a keybinder/mousebinder.
+		local keybinderCategory = setmetatable({}, {
+			__index = function(self, key)
+				if rawget(self, "__secretFieldThatStoresTheCategory") == nil then
+					self.__secretFieldThatStoresTheCategory = page:createCategory { label = modTemplate.name }
+				end
+				return self.__secretFieldThatStoresTheCategory[key]
+			end
+		})
+		for _, modPage in ipairs(modTemplate.pages) do
+			addAllKeybinds(keybinderCategory, modTemplate, modPage)
+		end
+	end
+end
+
+--- @param e tes3uiEventData
+local function onClickKeybindMenuButton(e)
+	-- Destroy and recreate the parent container.
+	modConfigContainer:destroyChildren()
+
+	local Template = require("mcm.components.templates.Template")
+	local status, error = pcall(Template.create, keybindTemplate, modConfigContainer)
+
+	if (status == false) then
+		mwse.log("Error in mod config close callback: %s\n%s", error, debug.traceback())
+	end
 end
 
 -- Callback for when the mod config button has been clicked.
@@ -449,6 +568,11 @@ local function onClickModConfigButton()
 		bottomBlock.childAlignX = 1.0
 
 
+		local keyBindMenuButton = bottomBlock:createButton({
+			id = "MWSE:ModConfigMenu_Keybind",
+			text = "Keybinds"
+		})
+		keyBindMenuButton:register("mouseClick", onClickKeybindMenuButton)
 		-- Add a close button to the bottom block.
 		local closeButton = bottomBlock:createButton({
 			id = "MWSE:ModConfigMenu_Close",
@@ -483,6 +607,7 @@ local function onClickModConfigButton()
 		mwse.log("Couldn't find main menu!")
 	end
 
+	initializeKeybindTemplate()
 	tes3ui.enterMenuMode(menu.id)
 end
 
