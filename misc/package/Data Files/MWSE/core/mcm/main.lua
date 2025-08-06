@@ -28,6 +28,12 @@ local previousModConfigSelector = nil
 --- @type tes3uiElement
 local modConfigContainer
 
+
+--- Stores the MCM Template used to update keybindings of all installed mods
+---@type mwseMCMTemplate|{_updatedTemplates: mwseMCMTemplate[]}
+local keybindTemplate = nil
+
+
 --- @type table
 local config = mwse.loadConfig("MWSE.MCM", {
 	favorites = {},
@@ -126,6 +132,9 @@ end
 -- Closes the currently opened mod config (if it exists)
 -- called when the MCM itself is closed, or when a different mod is selected
 local function closeCurrentModConfig()
+	-- HACK: try to close the keybind menu.
+	-- In the curent implementation, this will do nothing unless the keybindTemplate is active.
+	pcall(keybindTemplate.onClose, modConfigContainer)
 	if not currentModConfig then return end
 
 	local activeModConfig = currentModConfig
@@ -310,10 +319,6 @@ local function cleanupMCM(e)
 	previousModConfigSelector = nil
 end
 
---- Stores the MCM Template used to update keybindings of all installed mods
----@type mwseMCMTemplate|{_updatedTemplates: mwseMCMTemplate[]}
-local keybindTemplate = nil
-
 
 local function initializeKeybindTemplate()
 	local KEYBINDER_CLASSES = {
@@ -337,9 +342,9 @@ local function initializeKeybindTemplate()
 					end
 				end
 				if component.class == "KeyBinder" then
-					keybindMenuCategory:createKeyBinder(component)
+					keybindMenuCategory:createKeyBinder(copy)
 				elseif component.class == "MouseBinder" then
-					keybindMenuCategory:createMouseBinder(component)
+					keybindMenuCategory:createMouseBinder(copy)
 				end
 			elseif component.componentType == "Category" or component.componentType == "Page" then
 				---@cast component mwseMCMCategory
@@ -347,8 +352,6 @@ local function initializeKeybindTemplate()
 			end
 		end
 	end
-
-	closeCurrentModConfig()
 
 	keybindTemplate = mwse.mcm.createTemplate {
 		name = "Keybind Menu",
@@ -374,6 +377,9 @@ local function initializeKeybindTemplate()
 				pcall(template.onClose, modConfigContainer)
 			end
 		end
+		-- reset it so that future calls to `onClose` don't do anything.
+		---@diagnostic disable-next-line: inject-field
+		keybindTemplate._updatedTemplates = {}
 	end
 	local page = keybindTemplate:createSideBarPage()
 	local sortedModTemplates = {} --- @type mwseMCMTemplate[]
@@ -408,6 +414,7 @@ end
 --- @param e tes3uiEventData
 local function onClickKeybindMenuButton(e)
 	-- Destroy and recreate the parent container.
+	closeCurrentModConfig()
 	modConfigContainer:destroyChildren()
 
 	local Template = require("mcm.components.templates.Template")
