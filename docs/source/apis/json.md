@@ -79,7 +79,7 @@ local result = json.encode(object, state)
 **Parameters**:
 
 * `object` (table)
-* `state` (table?)
+* `state` ([jsonConfig](../types/jsonConfig.md)): *Optional*.
 
 **Returns**:
 
@@ -145,5 +145,5 @@ json.savefile(fileName, object, config)
 
 * `fileName` (string)
 * `object` (table)
-* `config` (table): *Optional*.
+* `config` ([jsonConfig](../types/jsonConfig.md)): *Optional*.
 
