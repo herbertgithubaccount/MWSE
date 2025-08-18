@@ -381,7 +381,7 @@ local function initializeKeybindTemplate()
 		---@diagnostic disable-next-line: inject-field
 		keybindTemplate._updatedTemplates = {}
 	end
-	local page = keybindTemplate:createSideBarPage()
+	local page = keybindTemplate:createFilterPage()
 	local sortedModTemplates = {} --- @type mwseMCMTemplate[]
 	for _, package in pairs(configMods) do
 		-- if package.template and not package.hidden then
