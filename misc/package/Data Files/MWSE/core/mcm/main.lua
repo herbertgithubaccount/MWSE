@@ -575,22 +575,35 @@ local function onClickModConfigButton()
 		local bottomBlock = menu:createBlock({ id = "BottomFlow" })
 		bottomBlock.widthProportional = 1.0
 		bottomBlock.autoHeight = true
-		bottomBlock.childAlignX = 1.0
+		-- bottomBlock.childAlignX = -1.0
 
+		do	-- bottom left buttons
+			local bottomLeftButtons = bottomBlock:createBlock{id = "BottomFlowLeft"}
+			bottomLeftButtons.widthProportional = 1.0
+			bottomLeftButtons.autoHeight = true
+			bottomLeftButtons.childAlignX = 0.0
 
-		local keyBindMenuButton = bottomBlock:createButton({
-			id = "MWSE:ModConfigMenu_Keybind",
-			-- TODO: make this use i18n
-			text = "Keybinds"
-		})
-		keyBindMenuButton:register("mouseClick", onClickKeybindMenuButton)
-		-- Add a close button to the bottom block.
-		local closeButton = bottomBlock:createButton({
-			id = "MWSE:ModConfigMenu_Close",
-			text = tes3.findGMST(tes3.gmst.sClose).value --[[@as string]]
-		})
-		closeButton:register("mouseClick", onClickCloseButton)
-		event.register("keyDown", onClickCloseButton, { filter = tes3.scanCode.escape })
+			local keyBindMenuButton = bottomLeftButtons:createButton({
+				id = "MWSE:ModConfigMenu_Keybind",
+				-- TODO: make this use i18n
+				text = "Keybinds"
+			})
+			keyBindMenuButton:register("mouseClick", onClickKeybindMenuButton)
+		end
+		do -- Bottom right buttons
+			local bottomRightButtons = bottomBlock:createBlock{id = "BottomFlowRight"}
+			bottomRightButtons.widthProportional = 1.0
+			bottomRightButtons.autoHeight = true
+			bottomRightButtons.childAlignX = 1.0
+			-- Add a close button to the bottom block.
+			local closeButton = bottomRightButtons:createButton({
+				id = "MWSE:ModConfigMenu_Close",
+				text = tes3.findGMST(tes3.gmst.sClose).value --[[@as string]]
+			})
+			closeButton:register("mouseClick", onClickCloseButton)
+			event.register("keyDown", onClickCloseButton, { filter = tes3.scanCode.escape })
+		end
+
 
 		-- Cause the menu to refresh itself.
 		menu:updateLayout()
