@@ -45,7 +45,7 @@ When exception is raised, this callback function will be called whenever the enc
 
 **Returns**:
 
-* `result` ((fun(reason: "reference cycle", "custom encoder failed", "unsupported type", value, state: jsonConfig, defaultMessage: string): (string, true, nil), string?)?)
+* `result` ((fun(reason: "reference cycle", "custom encoder failed", "unsupported type", value, state: jsonConfig, defaultMessage: string): string, true, nil, string?)?)
 
 ***
 
