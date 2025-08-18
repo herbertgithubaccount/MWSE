@@ -8,21 +8,54 @@ local Parent = require("mcm.components.pages.SideBarPage")
 local FilterPage = Parent:new()
 FilterPage.placeholderSearchText = mwse.mcm.i18n("Search...")
 
-function FilterPage:filterComponents()
-	local searchText = self.elements.searchBarInput.text:lower()
-	for _, component in ipairs(self.components) do
-		-- look for search text inside setting label
-		local label = component.label and component.label:lower()
-		if label then
-			if label:find(searchText) then
-				component.elements.outerContainer.visible = true
-			else
-				component.elements.outerContainer.visible = false
-			end
-
-			-- Do nothing for components without a label.
+--- Recursively makes a a category's components visible.
+---@param category mwseMCMCategory
+local function setComponentsVisibleRecursive(category)
+	for _, component in ipairs(category.components) do
+		component.elements.outerContainer.visible = true
+		if component.componentType == "Category" then
+			setComponentsVisibleRecursive(component)
 		end
 	end
+end
+
+--- Filters components recursively as follows:
+--- 1) If a category matches the search text: All subcomponents of that category are made visible.
+--- 2) If a setting withing a category matches the search text: That setting and its parent category are made visible.
+---    Other components within the same category are hidden, unless they also match the search text.
+---@param category mwseMCMCategory
+---@param searchText string
+---@return boolean atLeastOneComponentVisible True if at least one component in this category is visible, false otherwise.
+local function filterComponentsRecursive(category, searchText)
+	local atLeastOneComponentVisible = false
+	for _, component in ipairs(category.components) do
+		if component.label then
+
+			local labelMatched = component.label:lower():find(searchText, 1, true) ~= nil
+			atLeastOneComponentVisible = atLeastOneComponentVisible or labelMatched
+
+			if component.componentType ~= "Category" then
+				component.elements.outerContainer.visible = labelMatched
+			elseif labelMatched then
+				-- Category matched, make all subcomponents visible.
+				setComponentsVisibleRecursive(component)
+			else
+				-- Category didn't match, check if any subcomponents matched.
+				local isVisible = filterComponentsRecursive(component, searchText)
+				atLeastOneComponentVisible = atLeastOneComponentVisible or isVisible
+
+				-- Only make the category visible if at least one subcomponent matched.
+				component.elements.outerContainer.visible = isVisible
+			end
+		end
+	end
+
+	return atLeastOneComponentVisible
+end
+
+function FilterPage:filterComponents()
+	local searchText = self.elements.searchBarInput.text:lower()
+	filterComponentsRecursive(self, searchText)
 end
 
 -- UI Methods
@@ -89,7 +122,11 @@ function FilterPage:createSearchBar(parentBlock)
 		end
 
 		input:forwardEvent(e)
-		self:filterComponents()
+		if input.text:len() == 0 then
+			setComponentsVisibleRecursive(self)
+		else
+			self:filterComponents()
+		end
 		input:updateLayout()
 
 		-- Reset to placeholder if nothing there
