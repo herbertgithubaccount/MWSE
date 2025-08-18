@@ -6170,6 +6170,8 @@
       
         
       
+        
+      
     
     
     
@@ -6219,6 +6221,29 @@
   
   <span class="md-ellipsis">
     ioFile
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../types/jsonConfig/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    jsonConfig
     
   </span>
   
@@ -19763,6 +19788,7 @@ http://www.inf.puc-rio.br/~roberto/lpeg/</p>
 <p>Returns a pattern that matches only if the input string at the current position is preceded by pattern p.</p>
 <p>Pattern p must match only strings with some fixed length, and it cannot contain captures.</p>
 <p>Like the and predicate, this pattern never consumes any input, independently of success or failure.</p>
+<p><a href="http://www.inf.puc-rio.br/~roberto/lpeg/#op-behind">Official documentation</a>.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">lpeg</span><span class="p">.</span><span class="n">B</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
@@ -19779,6 +19805,7 @@ http://www.inf.puc-rio.br/~roberto/lpeg/</p>
 
 <p>Create a simple capture pattern, which captures the substring of the subject that matches pattern p.</p>
 <p>The captured value is a string. If p has other captures, their values are returned after this one.</p>
+<p><a href="http://www.inf.puc-rio.br/~roberto/lpeg/#cap-c">Official documentation</a>.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">lpeg</span><span class="p">.</span><span class="n">C</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
@@ -19796,6 +19823,7 @@ http://www.inf.puc-rio.br/~roberto/lpeg/</p>
 <p>Create an argument capture.</p>
 <p>This pattern matches the empty string and produces the value given as the nth extra argument given 
 in the call to lpeg.match.</p>
+<p><a href="http://www.inf.puc-rio.br/~roberto/lpeg/#cap-arg">Official documentation</a>.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">lpeg</span><span class="p">.</span><span class="n">Carg</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
@@ -19818,6 +19846,7 @@ means that the entire pattern corresponding to the capture has matched. An Outer
 that the capture is not inside another complete capture.</p>
 <p>In the same way that LPeg does not specify when it evaluates captures, it does not specify whether
 it reuses values previously produced by the group or re-evaluates them.</p>
+<p><a href="http://www.inf.puc-rio.br/~roberto/lpeg/#cap-b">Official documentation</a>.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">lpeg</span><span class="p">.</span><span class="n">Cb</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
@@ -19834,6 +19863,7 @@ it reuses values previously produced by the group or re-evaluates them.</p>
 
 <p>Create a constant capture.</p>
 <p>This pattern matches the empty string and produces all given values as its captured values.</p>
+<p><a href="http://www.inf.puc-rio.br/~roberto/lpeg/#cap-cc">Official documentation</a>.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">lpeg</span><span class="p">.</span><span class="n">Cc</span><span class="p">(...)</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
@@ -19858,6 +19888,7 @@ you may prefix a constant capture to p.) For each subsequent capture, LPeg calls
 accumulator as the first argument and all values produced by the capture as extra arguments; the 
 first result from this call becomes the new value for the accumulator. The final value of the 
 accumulator becomes the captured value.</p>
+<p><a href="http://www.inf.puc-rio.br/~roberto/lpeg/#cap-f">Official documentation</a>.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">lpeg</span><span class="p">.</span><span class="n">Cf</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
@@ -19879,6 +19910,7 @@ name is given) or named with the given name (which can be any non-nil Lua value)
 <p>An anonymous group serves to join values from several captures into a single capture. A named
 group has a different behavior. In most situations, a named group returns no values at all. Its
 values are only relevant for a following back capture or when used inside a table capture.</p>
+<p><a href="http://www.inf.puc-rio.br/~roberto/lpeg/#cap-g">Official documentation</a>.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">lpeg</span><span class="p">.</span><span class="n">Cg</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
@@ -19906,6 +19938,7 @@ and current position i, the returned number must be in the range [i, len(s) + 1]
 returns true, the match succeeds without consuming any input. (So, to return true is equivalent to 
 return i.) If the call returns false, nil, or no value, the match fails.</p>
 <p>Any extra values returned by f become the values produced by the capture. </p>
+<p><a href="http://www.inf.puc-rio.br/~roberto/lpeg/#matchtime">Official documentation</a>.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">lpeg</span><span class="p">.</span><span class="n">Cmt</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
@@ -19924,6 +19957,7 @@ return i.) If the call returns false, nil, or no value, the match fails.</p>
 <p>Create a position capture.</p>
 <p>It matches the empty string and captures the position in the subject where the match occurs. The 
 captured value is a number.</p>
+<p><a href="http://www.inf.puc-rio.br/~roberto/lpeg/#cap-p">Official documentation</a>.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">lpeg</span><span class="p">.</span><span class="n">Cp</span><span class="p">()</span>
 </code></pre></div>
 <p><strong>Returns</strong>:</p>
@@ -19938,6 +19972,7 @@ captured value is a number.</p>
 <p>For any capture inside p with a value, the substring that matched the capture is replaced by the 
 capture value (which should be a string). The final captured value is the string resulting from all
 replacements.</p>
+<p><a href="http://www.inf.puc-rio.br/~roberto/lpeg/#cap-s">Official documentation</a>.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">lpeg</span><span class="p">.</span><span class="n">Cs</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
@@ -19957,6 +19992,7 @@ replacements.</p>
 this table in successive integer keys, starting at 1. Moreover, for each named capture group 
 created by p, the first value of the group is put into the table with the group name as its key. 
 The captured value is only the table.</p>
+<p><a href="http://www.inf.puc-rio.br/~roberto/lpeg/#cap-t">Official documentation</a>.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">lpeg</span><span class="p">.</span><span class="n">Ct</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
@@ -19977,6 +20013,7 @@ and xdigit, each one containing a correspondent pattern. Each pattern matches an
 that belongs to its class.</p>
 <p>If called with an argument table, then it creates those fields inside the given table and returns 
 that table. </p>
+<p><a href="http://www.inf.puc-rio.br/~roberto/lpeg/#op-locale">Official documentation</a>.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">lpeg</span><span class="p">.</span><span class="n">locale</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
@@ -20001,6 +20038,7 @@ match the pattern with a prefix of the given subject string (at position init), 
 arbitrary substring of the subject. So, if we want to find a pattern anywhere in a string, we must
 either write a loop in Lua or write a pattern that matches anywhere. This second approach is easy
 and quite efficient; see examples in the full documentation for details.</p>
+<p><a href="http://www.inf.puc-rio.br/~roberto/lpeg/#f-match">Official documentation</a>.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">lpeg</span><span class="p">.</span><span class="n">match</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">subject</span><span class="p">,</span> <span class="n">init</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
@@ -20050,6 +20088,7 @@ operation in the full documentation for details.</p>
 for details.</p>
 <p>If the argument is a function, returns a pattern equivalent to a match-time capture over the empty
 string.</p>
+<p><a href="http://www.inf.puc-rio.br/~roberto/lpeg/#op-p">Official documentation</a>.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">lpeg</span><span class="p">.</span><span class="n">P</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
@@ -20067,6 +20106,7 @@ string.</p>
 <p>Returns a pattern that matches any single character belonging to one of the given ranges.</p>
 <p>Each range is a string xy of length 2, representing all characters with code between the codes of x and y (both inclusive).</p>
 <p>As an example, the pattern lpeg.R("09") matches any digit, and lpeg.R("az", "AZ") matches any ASCII letter.</p>
+<p><a href="http://www.inf.puc-rio.br/~roberto/lpeg/#op-r">Official documentation</a>.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">lpeg</span><span class="p">.</span><span class="n">R</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
@@ -20105,6 +20145,7 @@ string.</p>
 <p>Note that, if s is a character (that is, a string of length 1), then lpeg.P(s) is equivalent to 
 lpeg.S(s) which is equivalent to lpeg.R(s..s). Note also that both lpeg.S("") and lpeg.R() are 
 patterns that always fail.</p>
+<p><a href="http://www.inf.puc-rio.br/~roberto/lpeg/#op-s">Official documentation</a>.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">lpeg</span><span class="p">.</span><span class="n">S</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
@@ -20124,6 +20165,7 @@ patterns that always fail.</p>
 need to change this limit; before changing it you should try to rewrite your pattern to avoid the need for 
 extra space. Nevertheless, a few useful patterns may overflow. Also, with recursive grammars, subjects with
 deep recursion may also need larger limits.</p>
+<p><a href="http://www.inf.puc-rio.br/~roberto/lpeg/#f-setstack">Official documentation</a>.</p>
 <div class="highlight"><pre><span></span><code><span class="n">lpeg</span><span class="p">.</span><span class="n">setmaxstack</span><span class="p">(</span><span class="n">max</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
@@ -20135,6 +20177,7 @@ deep recursion may also need larger limits.</p>
 <div class="search_terms" style="display: none">type</div>
 
 <p>If the given value is a pattern, return the string "pattern". Otherwise return nil.</p>
+<p><a href="http://www.inf.puc-rio.br/~roberto/lpeg/#f-type">Official documentation</a>.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">lpeg</span><span class="p">.</span><span class="n">type</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
@@ -20152,6 +20195,7 @@ deep recursion may also need larger limits.</p>
 <p>Create a non-terminal (a variable) for a grammar.</p>
 <p>The created non-terminal refers to the rule indexed by v in the enclosing grammar. See Grammars
 in the full documentation for details.</p>
+<p><a href="http://www.inf.puc-rio.br/~roberto/lpeg/#op-v">Official documentation</a>.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">lpeg</span><span class="p">.</span><span class="n">V</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Parameters</strong>:</p>
@@ -20167,6 +20211,7 @@ in the full documentation for details.</p>
 <div class="search_terms" style="display: none">version</div>
 
 <p>Return a string with the running version of lpeg.</p>
+<p><a href="http://www.inf.puc-rio.br/~roberto/lpeg/#f-version">Official documentation</a>.</p>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span> <span class="n">result</span> <span class="o">=</span> <span class="n">lpeg</span><span class="p">.</span><span class="n">version</span><span class="p">()</span>
 </code></pre></div>
 <p><strong>Returns</strong>:</p>
@@ -20195,7 +20240,7 @@ in the full documentation for details.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="August 25, 2023 10:03:48 UTC">August 25, 2023 10:03:48</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="August 18, 2025 07:48:24 UTC">August 18, 2025 07:48:24</span>
   </span>
 
     
