@@ -168,5 +168,20 @@ function Dropdown:convertToLabelValue(variableValue)
 	return option and option.label
 end
 
+---@param lowercaseSearchText string The text being searched, in lowercase
+---@return boolean
+function Dropdown:searchTextMatches(lowercaseSearchText)
+	if Parent.searchTextMatches(self, lowercaseSearchText) then
+		return true
+	end
+
+	for _, option in ipairs(self.options) do
+		if option.label:lower():find(lowercaseSearchText, 1, true) then
+			return true
+		end
+	end
+	return false
+end
+
 
 return Dropdown

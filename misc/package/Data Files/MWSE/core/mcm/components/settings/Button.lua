@@ -84,4 +84,11 @@ function Button:createContentsContainer(parentBlock)
 	end
 end
 
+---@param lowercaseSearchText string The text being searched, in lowercase
+---@return boolean
+function Button:searchTextMatches(lowercaseSearchText)
+	return Parent.searchTextMatches(self, lowercaseSearchText)
+		or self:getText():lower():find(lowercaseSearchText, 1, true) ~= nil
+end
+
 return Button

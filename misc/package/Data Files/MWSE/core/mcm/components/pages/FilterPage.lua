@@ -30,13 +30,13 @@ local function filterComponentsRecursive(category, searchText)
 	local atLeastOneComponentVisible = false
 	for _, component in ipairs(category.components) do
 		if component.label then
+			local componentMatched = component:searchTextMatches(searchText)
 
-			local labelMatched = component.label:lower():find(searchText, 1, true) ~= nil
-			atLeastOneComponentVisible = atLeastOneComponentVisible or labelMatched
+			atLeastOneComponentVisible = atLeastOneComponentVisible or componentMatched
 
 			if component.componentType ~= "Category" then
-				component.elements.outerContainer.visible = labelMatched
-			elseif labelMatched then
+				component.elements.outerContainer.visible = componentMatched
+			elseif componentMatched then
 				-- Category matched, make all subcomponents visible.
 				setComponentsVisibleRecursive(component)
 			else

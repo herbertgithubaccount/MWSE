@@ -153,4 +153,12 @@ function TextField:makeComponent(parentBlock)
 	self:insertMouseovers(self.elements.border)
 end
 
+---@param lowercaseSearchText string The text being searched, in lowercase
+---@return boolean
+function TextField:searchTextMatches(lowercaseSearchText)
+	return Parent.searchTextMatches(self, lowercaseSearchText)
+		or tostring(self.variable.value):lower():find(lowercaseSearchText, 1, true) ~= nil
+end
+
+
 return TextField

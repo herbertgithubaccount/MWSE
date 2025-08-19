@@ -66,4 +66,12 @@ function ParagraphField:makeComponent(parentBlock)
 	self:insertMouseovers(border)
 end
 
+
+---@param lowercaseSearchText string The text being searched, in lowercase
+---@return boolean
+function ParagraphField:searchTextMatches(lowercaseSearchText)
+	return Parent.searchTextMatches(self, lowercaseSearchText)
+		or tostring(self.variable.value):lower():find(lowercaseSearchText, 1, true) ~= nil
+end
+
 return ParagraphField
