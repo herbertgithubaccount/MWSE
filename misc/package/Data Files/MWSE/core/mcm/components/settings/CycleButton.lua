@@ -10,6 +10,7 @@
 
 -- Parent class
 local Parent = require("mcm.components.settings.Button")
+local Setting = require("mcm.components.settings.Setting")
 
 --- Class object
 --- @class mwseMCMCycleButton
@@ -75,5 +76,13 @@ function CycleButton:getText() end
 function CycleButton:setText() end
 
 function CycleButton:press() end
+
+
+---@param lowercaseSearchText string The text being searched, in lowercase
+---@return boolean
+function CycleButton:searchTextMatches(lowercaseSearchText)
+    return Setting.searchTextMatches(self, lowercaseSearchText)
+        or self:convertToLabelValue(self.variable.value):lower():find(lowercaseSearchText, 1, true) ~= nil
+end
 
 return CycleButton
