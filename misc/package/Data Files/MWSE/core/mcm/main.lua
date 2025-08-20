@@ -423,8 +423,7 @@ local function onClickKeybindMenuButton(e)
 	closeCurrentModConfig()
 	modConfigContainer:destroyChildren()
 
-	local Template = require("mcm.components.templates.Template")
-	local status, error = pcall(Template.create, keybindMenu.template, modConfigContainer)
+	local status, error = pcall(keybindMenu.template.create, keybindMenu.template, modConfigContainer)
 
 	-- Change the mod config title bar to include the mod's name.
 	local menu = tes3ui.findMenu("MWSE:ModConfigMenu") --[[@as tes3uiElement]]
