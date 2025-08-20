@@ -591,8 +591,7 @@ local function onClickModConfigButton()
 
 			local keyBindMenuButton = bottomLeftButtons:createButton({
 				id = "MWSE:ModConfigMenu_Keybind",
-				-- TODO: make this use i18n
-				text = "Keybinds"
+				text = mwse.mcm.i18n("Open Keybind Menu")
 			})
 			keyBindMenuButton:register("mouseClick", onClickKeybindMenuButton)
 		end
