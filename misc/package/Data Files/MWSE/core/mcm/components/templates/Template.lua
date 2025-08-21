@@ -10,6 +10,7 @@ local Parent = require("mcm.components.Component")
 --- @class mwseMCMTemplate
 local Template = Parent:new()
 
+
 Template.componentType = "Template"
 
 --- @param data mwseMCMTemplate.new.data
@@ -48,83 +49,53 @@ function Template:saveOnClose(fileName, config)
 	end
 end
 
---- This can be replaced with fuzzy or wildcard matching
---- @param str string
---- @param substr string
-local function ciContains(str, substr)
-	return (str:lower():find(substr, 1, true)) and true or false
-end
-
---- @param searchText string
---- @param component mwseMCMCategory|mwseMCMSideBarPage|mwseMCMSetting|mwseMCMInfo
---- @param fields string[]
---- @return boolean?
-local function searchFields(searchText, component, fields)
-	for _, key in ipairs(fields) do
-		local text = component[key]
-		if text and ciContains(text, searchText) then
-			return true
-		end
-	end
-end
-
 --- Recursively iterates over all the subcomponents and returns true if searchText
 --- matches a label or description of a setting
 --- @param searchText string
 --- @param component mwseMCMCategory|mwseMCMSideBarPage|mwseMCMSetting|mwseMCMInfo
---- @param searchLabels boolean
---- @param searchDescriptions boolean
+--- @param caseSensitive boolean
 --- @return boolean?
-local function searchComponentRecursive(searchText, component, searchLabels, searchDescriptions)
-	-- Most components have a label. Infos and Hyperlinks have self.text.
-	if searchLabels and searchFields(searchText, component, { "label", "text" }) then
-		return true
-	end
-
-	-- Most components have a description.
-	if searchDescriptions and searchFields(searchText, component, { "description" }) then
+local function searchComponentRecursive(searchText, component, caseSensitive)
+	if component:searchTextMatches(searchText, caseSensitive) then
 		return true
 	end
 
 	-- Search through the settings on each page or nested category
 	for _, subcomp in ipairs(component.components or {}) do
-		if searchComponentRecursive(searchText, subcomp, searchLabels, searchDescriptions) then
-			return true
-		end
-	end
-
-	-- Search default description in SidebarPage
-	local sidebar = component.sidebar
-	if sidebar and searchComponentRecursive(searchText, sidebar, searchLabels, searchDescriptions) then
-		return true
-	end
-
-	-- Backwards compatibility for mods using `sidebarComponents` in SidebarPages
-	for _, subcomp in ipairs(component.sidebarComponents or {}) do
-		--- @cast subcomp mwseMCMSetting
-		if searchComponentRecursive(searchText, subcomp, searchLabels, searchDescriptions) then
+		if searchComponentRecursive(searchText, subcomp, caseSensitive) then
 			return true
 		end
 	end
 end
 
 --- @param searchText string
+--- @param caseSensitive boolean
 --- @return boolean result
-function Template:onSearchInternal(searchText)
-	local searchLabels = table.get(self, "searchChildLabels", true) --[[@as boolean]]
-	local searchDescriptions = table.get(self, "searchChildDescriptions", true) --[[@as boolean]]
+function Template:onSearchInternal(searchText, caseSensitive)
 
 	-- Go through and search children.
-	if (searchLabels or searchDescriptions) then
-		for _, page in ipairs(self.pages) do
-			if searchComponentRecursive(searchText, page, searchLabels, searchDescriptions) then
+	for _, page in ipairs(self.pages) do
+		if searchComponentRecursive(searchText, page, caseSensitive) then
+			return true
+		end
+		if page.class == "SideBarPage" then
+			-- Search default description in SidebarPage
+			local sidebar = page.sidebar
+			if sidebar and searchComponentRecursive(searchText, sidebar, caseSensitive) then
 				return true
+			end
+			-- Backwards compatibility for mods using `sidebarComponents` in SidebarPages
+			for _, subcomp in ipairs(page.sidebarComponents or {}) do
+				--- @cast subcomp mwseMCMSetting
+				if searchComponentRecursive(searchText, subcomp, caseSensitive) then
+					return true
+				end
 			end
 		end
 	end
 
 	-- Do we have a custom search handler?
-	if (self.onSearch and self.onSearch(searchText)) then
+	if (self.onSearch and self.onSearch(searchText, caseSensitive)) then
 		return true
 	end
 
@@ -170,7 +141,7 @@ end
 --- @param thisPage mwseMCMExclusionsPage|mwseMCMFilterPage|mwseMCMMouseOverPage|mwseMCMPage|mwseMCMSideBarPage
 function Template:clickTab(thisPage)
 	local pageBlock = self.elements.pageBlock
-	
+
 	-- Clear previous page
 	pageBlock:destroyChildren()
 	-- Create new page
@@ -344,9 +315,10 @@ function Template:register()
 	end
 
 	--- @param searchText string
+	--- @param caseSensitive boolean
 	--- @return boolean
-	mcm.onSearch = function(searchText)
-		return self:onSearchInternal(searchText)
+	mcm.onSearch = function(searchText, caseSensitive)
+		return self:onSearchInternal(searchText, caseSensitive)
 	end
 
 	mwse.registerModConfig(self.name, mcm)
@@ -354,10 +326,10 @@ function Template:register()
 end
 
 function Template.__index(tbl, key)
-	-- If the `key` starts with `"create"`, and if there's an `mwse.mcm.create<Component>` method, 
+	-- If the `key` starts with `"create"`, and if there's an `mwse.mcm.create<Component>` method,
 	-- Make a new `Template.create<Component>` method.
 	-- Otherwise, look the value up in the `metatable`.
-	
+
 	if not key:startswith("create") or mwse.mcm[key] == nil then
 		return getmetatable(tbl)[key]
 	end

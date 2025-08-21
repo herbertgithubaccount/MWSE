@@ -147,7 +147,7 @@ end
 local function onClickModName(e)
 	-- If we have a current mod, fire its close event.
 	closeCurrentModConfig()
-	
+
 	local modName = e.source.text
 
 	-- Update the current mod package.
@@ -250,7 +250,8 @@ end
 
 --- @param modName string
 --- @param searchText string
-local function filterModByName(modName, searchText)
+--- @param caseSensitive boolean
+local function filterModByName(modName, searchText, caseSensitive)
 	-- Perform a basic search.
 	local nameMatch = modName:lower():find(searchText, nil, true)
 	if (nameMatch ~= nil) then
@@ -261,7 +262,7 @@ local function filterModByName(modName, searchText)
 	local package = configMods[modName]
 
 	-- Do we have a custom filter package?
-	if (package.onSearch and package.onSearch(searchText)) then
+	if (package.onSearch and package.onSearch(searchText, caseSensitive)) then
 		return true
 	end
 
@@ -270,12 +271,19 @@ end
 
 --- @param e tes3uiEventData
 local function onSearchUpdated(e)
-	local lowerSearchText = e.source.text:lower()
+	local searchText = e.source.text
+
+	-- Note: we guarantee that the `searchText` is lowercased if doing case-insensitive searching.
+	-- But we only perform case-insensitive searching if the search-text contains no upper-case letters.
+	-- So, we don't need to modify the `searchText` in either case.
+	local containsUppercaseLetter = searchText:find("%u") ~= nil
+	local caseSensitive = containsUppercaseLetter
+
 	local mcm = e.source:getTopLevelMenu()
 	local modList = mcm:findChild("ModList")
 	local modListContents = modList:getContentElement()
 	for _, child in ipairs(modListContents.children) do
-		child.visible = filterModByName(child.children[1].text, lowerSearchText)
+		child.visible = filterModByName(child.children[1].text, searchText, caseSensitive)
 	end
 	mcm:updateLayout()
 	modList.widget:contentsChanged()
