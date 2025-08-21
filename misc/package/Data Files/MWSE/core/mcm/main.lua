@@ -554,6 +554,7 @@ event.register("uiActivated", onCreatedMenuOptions, { filter = "MenuOptions" })
 --- @field name string
 --- @field hidden boolean hide it?
 --- @field favorite boolean is this mod a favorite
+--- @field template mwseMCMTemplate? The template for this mod package, if it exists.
 
 --- Define a new function in the mwse namespace that lets mods register for mod config.
 --- @param name string

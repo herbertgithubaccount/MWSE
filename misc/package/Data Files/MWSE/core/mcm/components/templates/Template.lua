@@ -310,7 +310,8 @@ function Template:createContentsContainer(parentBlock)
 end
 
 function Template:register()
-	local mcm = {}
+	---@type mwse.registerModConfig.package
+	local mcm = { template = self }
 
 	--- @param container tes3uiElement
 	mcm.onCreate = function(container)
