@@ -327,6 +327,43 @@ local KEYBINDER_CLASSES = {
 	KeyBinder = true,
 	MouseBinder = true,
 }
+
+---@param category mwseMCMCategory
+---@return string?
+local function getCategoryDescriptionRecursive(category)
+	repeat
+		mwse.log("\tchecking %q", category.description)
+
+		if category.description ~= nil and category.description ~= "" then
+			return category.description
+		end
+		-- handle the special case where the description is in the sidebar components
+		if category.class == "SideBarPage" then
+			---@cast category mwseMCMSideBarPage
+			for _, comp in ipairs(category.sidebar.components) do
+				mwse.log("\tchecking %q", comp.description or comp.text)
+
+				if comp.componentType == "Info" then
+					---@cast comp mwseMCMInfo
+					local text = comp.text or comp.description
+					if text ~= nil and text ~= "" then
+						return text
+					end
+				end
+			end
+			for _, comp in ipairs(category.sidebarComponents or {}) do
+
+				if comp.componentType == "Info" then
+					---@cast comp mwseMCMInfo
+					if comp.text ~= nil and comp.text ~= "" then
+						return comp.text
+					end
+				end
+			end
+		end
+		category = category.parentComponent
+	until category == nil
+end
 --- Recursively adds all mwseBinder settings to the keybind menu template.
 ---@param keybindMenuCategory mwseMCMCategory
 ---@param modTemplate mwseMCMTemplate
@@ -349,7 +386,18 @@ local function addAllKeybindsRecursive(keybindMenuCategory, modTemplate, modCate
 			elseif component.class == "MouseBinder" then
 				keybindMenuCategory:createMouseBinder(copy --[[@as mwseMCMCategory.createMouseBinder.data]])
 			end
-		elseif component.componentType == "Category" or component.componentType == "Page" then
+			if keybindMenuCategory.description ~= false then
+				mwse.log("getting description for %q", modTemplate.name)
+				local categoryDescription = getCategoryDescriptionRecursive(modCategory)
+				if keybindMenuCategory.description == nil or keybindMenuCategory.description == "" then
+					keybindMenuCategory.description = categoryDescription
+					mwse.log("updated keybindMenuCategory.description = %q (%q)", keybindMenuCategory.description, categoryDescription)
+				elseif keybindMenuCategory.description ~= categoryDescription then
+					mwse.log("updated keybindMenuCategory.description = %s", false)
+					keybindMenuCategory.description = false
+				end
+			end
+		elseif component.componentType == "Category" then
 			---@cast component mwseMCMCategory
 			addAllKeybindsRecursive(keybindMenuCategory, modTemplate, component)
 		end
@@ -358,8 +406,8 @@ end
 
 local function initializeKeybindMenuTemplate()
 
-	keybindMenu.template = mwse.mcm.createTemplate {
-		name = "Keybind Menu",
+	keybindMenu.template = mwse.mcm.createTemplate{
+		name = mwse.mcm.i18n("KeybindMenu.name"),
 		postCreate = function(self)
 			---@diagnostic disable-next-line: inject-field
 			self.updatedTemplates = {}
@@ -387,7 +435,9 @@ local function initializeKeybindMenuTemplate()
 		end
 	}
 
-	local page = keybindMenu.template:createFilterPage()
+	local page = keybindMenu.template:createFilterPage{
+		description = mwse.mcm.i18n("KeybindMenu.description")
+	}
 	local sortedModTemplates = {} --- @type mwseMCMTemplate[]
 	for _, package in pairs(configMods) do
 		-- if package.template and not package.hidden then
@@ -406,13 +456,23 @@ local function initializeKeybindMenuTemplate()
 		local keybinderCategory = setmetatable({}, {
 			__index = function(self, key)
 				if rawget(self, "__secretFieldThatStoresTheCategory") == nil then
-					self.__secretFieldThatStoresTheCategory = page:createCategory { label = modTemplate.name }
+					rawset(self, "__secretFieldThatStoresTheCategory", page:createCategory { label = modTemplate.name })
 				end
 				return self.__secretFieldThatStoresTheCategory[key]
+			end,
+			__newindex = function(self, key, value)
+				if rawget(self, "__secretFieldThatStoresTheCategory") == nil then
+					rawset(self, "__secretFieldThatStoresTheCategory", page:createCategory { label = modTemplate.name })
+				end
+				self.__secretFieldThatStoresTheCategory[key] = value
 			end
 		})
 		for _, modPage in ipairs(modTemplate.pages) do
 			addAllKeybindsRecursive(keybinderCategory, modTemplate, modPage)
+		end
+		local category = rawget(keybinderCategory, "__secretFieldThatStoresTheCategory")
+		if category and category.description == false then
+			category.description = nil
 		end
 	end
 end
@@ -590,7 +650,7 @@ local function onClickModConfigButton()
 
 			local keyBindMenuButton = bottomLeftButtons:createButton({
 				id = "MWSE:ModConfigMenu_Keybind",
-				text = mwse.mcm.i18n("Open Keybind Menu")
+				text = mwse.mcm.i18n("KeybindMenu.buttonText")
 			})
 			keyBindMenuButton:register("mouseClick", onClickKeybindMenuButton)
 		end
