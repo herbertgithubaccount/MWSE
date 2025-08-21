@@ -71,18 +71,13 @@ function CycleButton:convertToLabelValue(variableValue)
 	end
 end
 
-function CycleButton:getText() end
+function CycleButton:getText()
+	return self:convertToLabelValue(self.variable.value)
+end
 
 function CycleButton:setText() end
 
 function CycleButton:press() end
 
-
----@param lowercaseSearchText string The text being searched, in lowercase
----@return boolean
-function CycleButton:searchTextMatches(lowercaseSearchText)
-    return Setting.searchTextMatches(self, lowercaseSearchText)
-        or self:convertToLabelValue(self.variable.value):lower():find(lowercaseSearchText, 1, true) ~= nil
-end
 
 return CycleButton

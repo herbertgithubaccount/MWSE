@@ -24,13 +24,14 @@ end
 --- 2) If a setting withing a category matches the search text: That setting and its parent category are made visible.
 ---    Other components within the same category are hidden, unless they also match the search text.
 ---@param category mwseMCMCategory
----@param searchText string
+---@param searchText string The text to search for. Will be lowercased if `caseSensitive == false`.
+---@param caseSensitive boolean Whether the search is case-sensitive or not.
 ---@return boolean atLeastOneComponentVisible True if at least one component in this category is visible, false otherwise.
-local function filterComponentsRecursive(category, searchText)
+local function filterComponentsRecursive(category, searchText, caseSensitive)
 	local atLeastOneComponentVisible = false
 	for _, component in ipairs(category.components) do
 		if component.label then
-			local componentMatched = component:searchTextMatches(searchText)
+			local componentMatched = component:searchTextMatches(searchText, caseSensitive)
 
 			atLeastOneComponentVisible = atLeastOneComponentVisible or componentMatched
 
@@ -41,7 +42,7 @@ local function filterComponentsRecursive(category, searchText)
 				setComponentsVisibleRecursive(component)
 			else
 				-- Category didn't match, check if any subcomponents matched.
-				local isVisible = filterComponentsRecursive(component, searchText)
+				local isVisible = filterComponentsRecursive(component, searchText, caseSensitive)
 				atLeastOneComponentVisible = atLeastOneComponentVisible or isVisible
 
 				-- Only make the category visible if at least one subcomponent matched.
@@ -54,8 +55,12 @@ local function filterComponentsRecursive(category, searchText)
 end
 
 function FilterPage:filterComponents()
-	local searchText = self.elements.searchBarInput.text:lower()
-	filterComponentsRecursive(self, searchText)
+	local searchText = self.elements.searchBarInput.text
+	local caseSensitive = searchText:find("%u") ~= nil
+	if not caseSensitive then
+		searchText = searchText:lower()
+	end
+	filterComponentsRecursive(self, searchText, caseSensitive)
 end
 
 -- UI Methods

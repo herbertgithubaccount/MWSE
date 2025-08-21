@@ -213,12 +213,16 @@ function Component:create(parentBlock)
 	end
 end
 
----@param lowercaseSearchText string The text being searched, in lowercase
+---@param searchText string The text being searched, in lowercase
+---@param caseSensitive boolean
 ---@return boolean
-function Component:searchTextMatches(lowercaseSearchText)
+function Component:searchTextMatches(searchText, caseSensitive)
 	-- Return true if the searchtext matches the label or description, and false otherwise.
-	return self.label:lower():find(lowercaseSearchText, 1, true) ~= nil
-		or self.description ~= nil and self.description:lower():find(lowercaseSearchText, 1, true) ~= nil
+	local label = caseSensitive and self.label or self.label:lower()
+	local description = self.description and (caseSensitive and self.description or self.description:lower())
+
+	return label:find(searchText, 1, true) ~= nil
+		or description ~= nil and description:find(searchText, 1, true) ~= nil
 end
 
 -- Returns the string that should be shown in the MouseOverInfo
