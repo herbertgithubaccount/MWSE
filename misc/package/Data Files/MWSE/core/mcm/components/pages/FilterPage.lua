@@ -56,10 +56,10 @@ end
 
 function FilterPage:filterComponents()
 	local searchText = self.elements.searchBarInput.text
+	-- Note: we guarantee that the `searchText` is lowercased if doing case-insensitive searching.
+	-- But we only perform case-insensitive searching if the search-text contains no upper-case letters.
+	-- So, we don't need to modify the `searchText` in either case.
 	local caseSensitive = searchText:find("%u") ~= nil
-	if not caseSensitive then
-		searchText = searchText:lower()
-	end
 	filterComponentsRecursive(self, searchText, caseSensitive)
 end
 
