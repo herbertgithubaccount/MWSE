@@ -153,6 +153,4 @@ function TextField:makeComponent(parentBlock)
 	self:insertMouseovers(self.elements.border)
 end
 
-
-
 return TextField

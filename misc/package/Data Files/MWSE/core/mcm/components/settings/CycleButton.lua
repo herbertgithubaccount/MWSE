@@ -10,7 +10,6 @@
 
 -- Parent class
 local Parent = require("mcm.components.settings.Button")
-local Setting = require("mcm.components.settings.Setting")
 
 --- Class object
 --- @class mwseMCMCycleButton
@@ -76,6 +75,5 @@ function CycleButton:getText() end
 function CycleButton:setText() end
 
 function CycleButton:press() end
-
 
 return CycleButton
