@@ -459,7 +459,7 @@ end
 
 --- @param parentBlock tes3uiElement
 function ExclusionsPage:createDescription(parentBlock)
-	if not self.description then
+	if self.description == "" then
 		return
 	end
 

@@ -5,6 +5,10 @@
 local utils = require("mcm.utils")
 
 local Parent = require("mcm.components.Component")
+local Component = require("mcm.components.Component")
+
+local currentSearchText = ""
+local currentCaseSensitive = true
 
 --- Class object
 --- @class mwseMCMTemplate
@@ -65,6 +69,42 @@ end
 ---@deprecated
 Template.onSearchInternal = Template.searchTextMatches
 
+---@param visibility boolean
+function Template:setVisibility(visibility)
+	self.elements.outerContainer.visible = visibility
+	for _, page in ipairs(self.pages) do
+		page:setVisibility(visibility)
+	end
+end
+
+---@param searchText string The text to search for. Will be lowercased if `caseSensitive == false`.
+---@param caseSensitive boolean Whether the search is case-sensitive or not.
+function Template:filterCurrentPage(searchText, caseSensitive)
+	if not self.currentPage then return end
+	self.currentPage:filter(searchText, caseSensitive)
+end
+
+--- Filters components recursively as follows:
+--- 1) If a category matches the search text: All subcomponents of that category are made visible.
+--- 2) If a setting withing a category matches the search text: That setting and its parent category are made visible.
+---    Other components within the same category are hidden, unless they also match the search text.
+---@param searchText string The text to search for. Will be lowercased if `caseSensitive == false`.
+---@param caseSensitive boolean Whether the search is case-sensitive or not.
+---@return boolean atLeastOneComponentVisible True if at least one component in this category is visible, false otherwise.
+function Template:filter(searchText, caseSensitive)
+	local atLeastOnePageVisible = false
+	if Component.searchTextMatches(self, searchText, caseSensitive) then
+		self:setVisibility(true)
+		return true
+	end
+	for _, page in ipairs(self.pages) do
+		local pageFiltered = page:filter(searchText, caseSensitive)
+		atLeastOnePageVisible = atLeastOnePageVisible or pageFiltered
+	end
+	Component.setVisibility(self, atLeastOnePageVisible)
+	return atLeastOnePageVisible
+end
+
 --- @param callback nil|fun(searchText: string): boolean
 function Template:setCustomSearchHandler(callback)
 	self.onSearch = callback
@@ -101,16 +141,17 @@ function Template:createLabel(parentBlock)
 
 end
 
---- @param thisPage mwseMCMExclusionsPage|mwseMCMFilterPage|mwseMCMMouseOverPage|mwseMCMPage|mwseMCMSideBarPage
-function Template:clickTab(thisPage)
+--- @param page mwseMCMExclusionsPage|mwseMCMFilterPage|mwseMCMMouseOverPage|mwseMCMPage|mwseMCMSideBarPage
+function Template:clickTab(page)
 	local pageBlock = self.elements.pageBlock
 
 	-- Clear previous page
 	pageBlock:destroyChildren()
 	-- Create new page
-	thisPage:create(pageBlock)
+	page:create(pageBlock)
 	-- Set new page to current
-	self.currentPage = thisPage
+	self.currentPage = page
+	self:filterCurrentPage(currentSearchText, currentCaseSensitive)
 
 	local tabsBlock = self.elements.tabsBlock
 
@@ -124,7 +165,7 @@ function Template:clickTab(thisPage)
 			totalWidth = totalWidth + tab.width
 		end
 		-- Enable tab for this page
-		local tab = tabsBlock:findChild(thisPage.tabUID)
+		local tab = tabsBlock:findChild(page.tabUID)
 		tab.widget.state = tes3.uiState.active
 
 		-- Ensure tabs are visible.
@@ -281,6 +322,8 @@ function Template:register()
 	--- @param caseSensitive boolean
 	--- @return boolean
 	mcm.onSearch = function(searchText, caseSensitive)
+		currentSearchText = searchText
+		currentCaseSensitive = caseSensitive
 		return self:searchTextMatches(searchText, caseSensitive)
 	end
 

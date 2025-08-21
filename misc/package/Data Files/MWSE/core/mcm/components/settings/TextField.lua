@@ -74,7 +74,7 @@ function TextField:getMouseOverText()
 	local defaultStr = self:convertToLabelValue(var.defaultSetting)
 
 	-- No description exists yet? Then we'll only write the default value.
-	if not self.description then
+	if self.description == "" then
 		return string.format("%s: \"%s\".", mwse.mcm.i18n("Default"), defaultStr)
 	end
 

@@ -15,7 +15,9 @@ function FilterPage:searchComponents()
 	-- But we only perform case-insensitive searching if the search-text contains no upper-case letters.
 	-- So, we don't need to modify the `searchText` in either case.
 	local caseSensitive = searchText:find("%u") ~= nil
-	self:filterComponents(searchText, caseSensitive)
+	for _, subcomp in ipairs(self.components) do
+		subcomp:filter(searchText, caseSensitive)
+	end
 end
 
 -- UI Methods

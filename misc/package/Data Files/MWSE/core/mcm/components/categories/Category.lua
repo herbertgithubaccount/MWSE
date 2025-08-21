@@ -23,6 +23,7 @@
 
 local utils = require("mcm.utils")
 local Parent = require("mcm.components.Component")
+local Component = require("mcm.components.Component")
 
 --- @class mwseMCMCategory
 local Category = Parent:new()
@@ -174,6 +175,34 @@ function Category:searchTextMatches(searchText, caseSensitive)
 	end
 end
 
+---@param visibility boolean
+function Category:setVisibility(visibility)
+	self.elements.outerContainer.visible = visibility
+	for _, subcomp in ipairs(self.components) do
+		subcomp:setVisibility(visibility)
+	end
+end
+
+--- Filters components recursively as follows:
+--- 1) If a category matches the search text: All subcomponents of that category are made visible.
+--- 2) If a setting withing a category matches the search text: That setting and its parent category are made visible.
+---    Other components within the same category are hidden, unless they also match the search text.
+---@param searchText string The text to search for. Will be lowercased if `caseSensitive == false`.
+---@param caseSensitive boolean Whether the search is case-sensitive or not.
+---@return boolean atLeastOneComponentVisible True if at least one component in this category is visible, false otherwise.
+function Category:filter(searchText, caseSensitive)
+	local atLeastOneComponentVisible = false
+	if Component.searchTextMatches(self, searchText, caseSensitive) then
+		self:setVisibility(true)
+		return true
+	end
+	for _, subcomp in ipairs(self.components) do
+		local subcompFiltered = subcomp:filter(searchText, caseSensitive)
+		atLeastOneComponentVisible = atLeastOneComponentVisible or subcompFiltered
+	end
+	Component.setVisibility(self, atLeastOneComponentVisible)
+	return atLeastOneComponentVisible
+end
 
 function Category.__index(tbl, key)
 	-- If the `key` starts with `"create"`, and if there's an `mwse.mcm.create<Component>` method,

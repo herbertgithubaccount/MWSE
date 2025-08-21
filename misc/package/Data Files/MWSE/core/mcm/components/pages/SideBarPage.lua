@@ -60,7 +60,7 @@ function SideBarPage:createRightColumn(parentBlock)
 		self:createSubcomponents(defaultView, self.sidebarComponents)
 
 		-- or description
-	elseif self.description then
+	elseif self.description ~= "" then
 		-- By default, sidebar is a mouseOver description pane
 		local sidebarInfo = Info:new({
 			-- label = self.label,
@@ -72,7 +72,7 @@ function SideBarPage:createRightColumn(parentBlock)
 
 	-- MouseOverInfo shows descriptions of settings.
 	local mouseOver = MouseOverInfo:new({
-		text = self.description or "",
+		text = self.description,
 		parentComponent = self
 	})
 	mouseOver:create(mouseoverView)

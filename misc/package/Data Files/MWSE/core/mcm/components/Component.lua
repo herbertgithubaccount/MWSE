@@ -15,6 +15,8 @@ end
 
 --- @class mwseMCMComponent
 local Component = {}
+Component.label = ""
+Component.description = ""
 Component.componentType = "Component"
 Component.paddingBottom = 4
 Component.indent = 12
@@ -219,16 +221,37 @@ end
 function Component:searchTextMatches(searchText, caseSensitive)
 	-- Return true if the searchtext matches the label or description, and false otherwise.
 	local label = caseSensitive and self.label or self.label:lower()
-	local description = self.description and (caseSensitive and self.description or self.description:lower())
+	local description = (caseSensitive and self.description or self.description:lower())
 
 	return label:find(searchText, 1, true) ~= nil
-		or description ~= nil and description:find(searchText, 1, true) ~= nil
+		or description:find(searchText, 1, true) ~= nil
+end
+
+
+--- Filters components recursively as follows:
+--- 1) If a category matches the search text: All subcomponents of that category are made visible.
+--- 2) If a setting withing a category matches the search text: That setting and its parent category are made visible.
+---    Other components within the same category are hidden, unless they also match the search text.
+---@param searchText string The text to search for. Will be lowercased if `caseSensitive == false`.
+---@param caseSensitive boolean Whether the search is case-sensitive or not.
+---@return boolean matched True if the component passed the search filter
+function Component:filter(searchText, caseSensitive)
+	local matched = self:searchTextMatches(searchText, caseSensitive)
+	self.elements.outerContainer.visible = matched
+	return matched
+end
+
+---@param visibility boolean
+function Component:setVisibility(visibility)
+	self.elements.outerContainer.visible = visibility
 end
 
 -- Returns the string that should be shown in the MouseOverInfo
 ---@return string?
 function Component:getMouseOverText()
-	return self.description
+	if self.description ~= "" then
+		return self.description
+	end
 end
 
 return Component

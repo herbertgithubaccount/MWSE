@@ -127,7 +127,7 @@ end
 -- called when the MCM itself is closed, or when a different mod is selected
 local function closeCurrentModConfig()
 	if not currentModConfig then return end
-	
+
 	if currentModConfig.onClose then
 		local status, error = pcall(currentModConfig.onClose, modConfigContainer)
 		if (status == false) then
@@ -136,7 +136,7 @@ local function closeCurrentModConfig()
 	end
 	-- Fire the event after `onClose` gets called.
 	local payload = {
-		modName = currentModConfig.name, 
+		modName = currentModConfig.name,
 		isFavorite = isFavorite(currentModConfig.name),
 	}
 	event.trigger(tes3.event.modConfigEntryClosed, payload, {filter = currentModConfig.name})
@@ -253,7 +253,8 @@ end
 --- @param caseSensitive boolean
 local function filterModByName(modName, searchText, caseSensitive)
 	-- Perform a basic search.
-	local nameMatch = modName:lower():find(searchText, nil, true)
+	modName = caseSensitive and modName or modName:lower()
+	local nameMatch = modName:find(searchText, nil, true)
 	if (nameMatch ~= nil) then
 		return true
 	end
@@ -284,6 +285,9 @@ local function onSearchUpdated(e)
 	local modListContents = modList:getContentElement()
 	for _, child in ipairs(modListContents.children) do
 		child.visible = filterModByName(child.children[1].text, searchText, caseSensitive)
+	end
+	if currentModConfig and currentModConfig.template then
+		currentModConfig.template:filterCurrentPage(searchText, caseSensitive)
 	end
 	mcm:updateLayout()
 	modList.widget:contentsChanged()
