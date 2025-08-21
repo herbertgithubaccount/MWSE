@@ -173,6 +173,7 @@ function Category:searchTextMatches(searchText, caseSensitive)
 			return true
 		end
 	end
+	return false
 end
 
 ---@param visibility boolean

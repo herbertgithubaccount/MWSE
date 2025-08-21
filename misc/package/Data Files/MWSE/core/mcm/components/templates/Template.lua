@@ -54,17 +54,16 @@ function Template:saveOnClose(fileName, config)
 end
 
 function Template:searchTextMatches(searchText, caseSensitive)
-	-- Do we have a custom search handler?
-	if (self.onSearch and self.onSearch(searchText, caseSensitive)) then
+	if Component.searchTextMatches(self, searchText, caseSensitive) then
 		return true
 	end
-
 	-- Go through and search children.
 	for _, page in ipairs(self.pages) do
 		if page:searchTextMatches(searchText, caseSensitive) then
 			return true
 		end
 	end
+	return false
 end
 ---@deprecated
 Template.onSearchInternal = Template.searchTextMatches
@@ -72,6 +71,11 @@ Template.onSearchInternal = Template.searchTextMatches
 ---@param visibility boolean
 function Template:setVisibility(visibility)
 	self.elements.outerContainer.visible = visibility
+
+	local tabsBlock = self.elements.tabsBlock or {}
+	for _, tab in ipairs(tabsBlock.children or {}) do
+		tab.visible = true
+	end
 	for _, page in ipairs(self.pages) do
 		page:setVisibility(visibility)
 	end
@@ -81,7 +85,12 @@ end
 ---@param caseSensitive boolean Whether the search is case-sensitive or not.
 function Template:filterCurrentPage(searchText, caseSensitive)
 	if not self.currentPage then return end
-	self.currentPage:filter(searchText, caseSensitive)
+	if Component.searchTextMatches(self, searchText, caseSensitive) then
+		self.currentPage:setVisibility(true)
+	else
+		self.currentPage:filter(searchText, caseSensitive)
+	end
+
 end
 
 --- Filters components recursively as follows:
@@ -90,18 +99,27 @@ end
 ---    Other components within the same category are hidden, unless they also match the search text.
 ---@param searchText string The text to search for. Will be lowercased if `caseSensitive == false`.
 ---@param caseSensitive boolean Whether the search is case-sensitive or not.
----@return boolean atLeastOneComponentVisible True if at least one component in this category is visible, false otherwise.
 function Template:filter(searchText, caseSensitive)
 	local atLeastOnePageVisible = false
+	local tabsBlock =  self.elements.tabsBlock
+	if not tabsBlock then
+		return
+	end
+
 	if Component.searchTextMatches(self, searchText, caseSensitive) then
-		self:setVisibility(true)
-		return true
+		for i, page in ipairs(self.pages) do
+			local tab = tabsBlock.children[i]
+			tab.visible = true
+		end
+	else
+		for i, page in ipairs(self.pages) do
+			local tab = tabsBlock.children[i]
+			local pageMatched = page:searchTextMatches(searchText, caseSensitive)
+			tab.visible = pageMatched
+			atLeastOnePageVisible = atLeastOnePageVisible or pageMatched
+		end
 	end
-	for _, page in ipairs(self.pages) do
-		local pageFiltered = page:filter(searchText, caseSensitive)
-		atLeastOnePageVisible = atLeastOnePageVisible or pageFiltered
-	end
-	Component.setVisibility(self, atLeastOnePageVisible)
+	-- tabsBlock:updateLayout()
 	return atLeastOnePageVisible
 end
 
@@ -159,8 +177,8 @@ function Template:clickTab(page)
 	if tabsBlock then
 		-- Disable tabs and tally width
 		local totalWidth = 0
-		for _id, page in pairs(self.pages) do
-			local tab = tabsBlock:findChild(page.tabUID)
+		for i, page in ipairs(self.pages) do
+			local tab = tabsBlock.children[i]
 			tab.widget.state =  tes3.uiState.normal
 			totalWidth = totalWidth + tab.width
 		end
@@ -222,8 +240,8 @@ end
 
 function Template:padTabBlock()
 	local totalWidth = 0
-	for _, page in pairs(self.pages) do
-		local tab = self.elements.tabsBlock:findChild(page.tabUID)
+	for i, page in ipairs(self.pages) do
+		local tab = self.elements.tabsBlock.children[i]
 		totalWidth = totalWidth + tab.width
 	end
 
@@ -258,7 +276,7 @@ function Template:createTabsBlock(parentBlock)
 	for _, page in ipairs(self.pages) do
 		self:createTab(page)
 	end
-	local firstTab = parentBlock:findChild(self.pages[1].tabUID)
+	local firstTab = tabsBlock.children[1]
 	firstTab.widget.state = tes3.uiState.active
 
 	-- Next Button
@@ -268,7 +286,7 @@ function Template:createTabsBlock(parentBlock)
 	self.elements.nextTabButton:register(tes3.uiEvent.mouseClick, function()
 		-- Move active tab forward 1
 		for i, page in ipairs(self.pages) do
-			local tab = tabsBlock:findChild(page.tabUID)
+			local tab = tabsBlock.children[i]
 			if tab.widget.state == tes3.uiState.active then
 				self:clickTab(self.pages[table.wrapindex(self.pages, i + 1)])
 				break
@@ -279,7 +297,7 @@ function Template:createTabsBlock(parentBlock)
 	self.elements.previousTabButton:register(tes3.uiEvent.mouseClick, function()
 		-- Move active tab back 1
 		for i, page in ipairs(self.pages) do
-			local tab = tabsBlock:findChild(page.tabUID)
+			local tab = tabsBlock.children[i]
 			if tab.widget.state == tes3.uiState.active then
 				self:clickTab(self.pages[table.wrapindex(self.pages, i - 1)])
 				break
@@ -299,7 +317,7 @@ function Template:createSubcomponentsContainer(parentBlock)
 	pageBlock.widthProportional = 1.0
 	pageBlock.flowDirection = tes3.flowDirection.leftToRight
 	self.elements.pageBlock = pageBlock
-	self:clickTab(self.currentPage or self.pages[1])
+
 end
 
 --- @param parentBlock tes3uiElement
@@ -307,6 +325,22 @@ function Template:createContentsContainer(parentBlock)
 	self:createLabel(parentBlock)
 	self:createTabsBlock(parentBlock)
 	self:createSubcomponentsContainer(parentBlock)
+	self:filter(currentSearchText, currentCaseSensitive)
+	local page = self.currentPage
+	if not page then
+		local tabsBlock = self.elements.tabsBlock
+		if not tabsBlock then
+			page = self.pages[1]
+		else
+			for i, tab in ipairs(tabsBlock.children) do
+				if tab.visible then
+					page = self.pages[i]
+					break
+				end
+			end
+		end
+	end
+	self:clickTab(page)
 end
 
 function Template:register()
@@ -325,6 +359,9 @@ function Template:register()
 	mcm.onSearch = function(searchText, caseSensitive)
 		currentSearchText = searchText
 		currentCaseSensitive = caseSensitive
+		if (self.onSearch and self.onSearch(searchText, caseSensitive)) then
+			return true
+		end
 		return self:searchTextMatches(searchText, caseSensitive)
 	end
 
@@ -337,6 +374,9 @@ function Template.__index(tbl, key)
 	-- Make a new `Template.create<Component>` method.
 	-- Otherwise, look the value up in the `metatable`.
 
+	if key == "label" then
+		return tbl.name
+	end
 	if not key:startswith("create") or mwse.mcm[key] == nil then
 		return getmetatable(tbl)[key]
 	end

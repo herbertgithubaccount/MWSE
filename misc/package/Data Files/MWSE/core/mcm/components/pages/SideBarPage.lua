@@ -141,5 +141,6 @@ function SideBarPage:searchTextMatches(searchText, caseSensitive)
 			return true
 		end
 	end
+	return false
 end
 return SideBarPage

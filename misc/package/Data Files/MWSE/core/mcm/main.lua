@@ -253,14 +253,17 @@ end
 --- @param caseSensitive boolean
 local function filterModByName(modName, searchText, caseSensitive)
 	-- Perform a basic search.
-	modName = caseSensitive and modName or modName:lower()
-	local nameMatch = modName:find(searchText, nil, true)
+	local modNameLower = caseSensitive and modName or modName:lower()
+	local nameMatch = modNameLower:find(searchText, nil, true)
 	if (nameMatch ~= nil) then
 		return true
 	end
 
 	-- Get the mod package.
 	local package = configMods[modName]
+	if not package then
+		error(string.format("%q is not a valid modname!", modName))
+	end
 
 	-- Do we have a custom filter package?
 	if (package.onSearch and package.onSearch(searchText, caseSensitive)) then
@@ -287,6 +290,7 @@ local function onSearchUpdated(e)
 		child.visible = filterModByName(child.children[1].text, searchText, caseSensitive)
 	end
 	if currentModConfig and currentModConfig.template then
+		currentModConfig.template:filter(searchText, caseSensitive)
 		currentModConfig.template:filterCurrentPage(searchText, caseSensitive)
 	end
 	mcm:updateLayout()
