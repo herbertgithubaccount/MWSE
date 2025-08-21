@@ -138,7 +138,9 @@ end
 local function closeCurrentModConfig()
 	-- HACK: try to close the keybind menu.
 	-- In the curent implementation, this will do nothing unless the keybindMenu.template is active.
-	pcall(keybindMenu.template.onClose, modConfigContainer)
+	if keybindMenu.template then
+		pcall(keybindMenu.template.onClose, modConfigContainer)
+	end
 	if not currentModConfig then return end
 
 	local activeModConfig = currentModConfig
@@ -400,6 +402,10 @@ local function addAllKeybindsRecursive(keybindMenuCategory, modTemplate, modCate
 end
 
 local function initializeKeybindMenuTemplate()
+	if keybindMenu.template then
+		return
+	end
+	mwse.log("MCM: Initializing Keybinds Menu.")
 
 	keybindMenu.template = mwse.mcm.createTemplate{
 		name = mwse.mcm.i18n("KeybindMenu.name"),
@@ -474,6 +480,7 @@ end
 
 --- @param e tes3uiEventData
 local function onClickKeybindMenuButton(e)
+	initializeKeybindMenuTemplate()
 	-- Destroy and recreate the parent container.
 	closeCurrentModConfig()
 	modConfigContainer:destroyChildren()
@@ -690,7 +697,6 @@ local function onClickModConfigButton()
 		mwse.log("Couldn't find main menu!")
 	end
 
-	initializeKeybindMenuTemplate()
 	tes3ui.enterMenuMode(menu.id)
 end
 
