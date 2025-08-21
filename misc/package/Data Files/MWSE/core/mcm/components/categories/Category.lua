@@ -152,6 +152,29 @@ function Category:createContentsContainer(parentBlock)
 	parentBlock:getTopLevelMenu():updateLayout()
 end
 
+--- Recursively makes a a category's components visible.
+function Category:setComponentsVisible()
+	for _, component in ipairs(self.components) do
+		component.elements.outerContainer.visible = true
+		if component.componentType == "Category" then
+			component:setComponentsVisible()
+		end
+	end
+end
+
+
+function Category:searchTextMatches(searchText, caseSensitive)
+	if Parent.searchTextMatches(self, searchText, caseSensitive) then
+		return true
+	end
+	for _, component in ipairs(self.components) do
+		if component:searchTextMatches(searchText, caseSensitive) then
+			return true
+		end
+	end
+end
+
+
 function Category.__index(tbl, key)
 	-- If the `key` starts with `"create"`, and if there's an `mwse.mcm.create<Component>` method,
 	-- Make a new `Category.create<Component>` method.

@@ -49,58 +49,21 @@ function Template:saveOnClose(fileName, config)
 	end
 end
 
---- Recursively iterates over all the subcomponents and returns true if searchText
---- matches a label or description of a setting
---- @param searchText string
---- @param component mwseMCMCategory|mwseMCMSideBarPage|mwseMCMSetting|mwseMCMInfo
---- @param caseSensitive boolean
---- @return boolean?
-local function searchComponentRecursive(searchText, component, caseSensitive)
-	if component:searchTextMatches(searchText, caseSensitive) then
-		return true
-	end
-
-	-- Search through the settings on each page or nested category
-	for _, subcomp in ipairs(component.components or {}) do
-		if searchComponentRecursive(searchText, subcomp, caseSensitive) then
-			return true
-		end
-	end
-end
-
---- @param searchText string
---- @param caseSensitive boolean
---- @return boolean result
-function Template:onSearchInternal(searchText, caseSensitive)
-
-	-- Go through and search children.
-	for _, page in ipairs(self.pages) do
-		if searchComponentRecursive(searchText, page, caseSensitive) then
-			return true
-		end
-		if page.class == "SideBarPage" then
-			-- Search default description in SidebarPage
-			local sidebar = page.sidebar
-			if sidebar and searchComponentRecursive(searchText, sidebar, caseSensitive) then
-				return true
-			end
-			-- Backwards compatibility for mods using `sidebarComponents` in SidebarPages
-			for _, subcomp in ipairs(page.sidebarComponents or {}) do
-				--- @cast subcomp mwseMCMSetting
-				if searchComponentRecursive(searchText, subcomp, caseSensitive) then
-					return true
-				end
-			end
-		end
-	end
-
+function Template:searchTextMatches(searchText, caseSensitive)
 	-- Do we have a custom search handler?
 	if (self.onSearch and self.onSearch(searchText, caseSensitive)) then
 		return true
 	end
 
-	return false
+	-- Go through and search children.
+	for _, page in ipairs(self.pages) do
+		if page:searchTextMatches(searchText, caseSensitive) then
+			return true
+		end
+	end
 end
+---@deprecated
+Template.onSearchInternal = Template.searchTextMatches
 
 --- @param callback nil|fun(searchText: string): boolean
 function Template:setCustomSearchHandler(callback)
@@ -318,7 +281,7 @@ function Template:register()
 	--- @param caseSensitive boolean
 	--- @return boolean
 	mcm.onSearch = function(searchText, caseSensitive)
-		return self:onSearchInternal(searchText, caseSensitive)
+		return self:searchTextMatches(searchText, caseSensitive)
 	end
 
 	mwse.registerModConfig(self.name, mcm)

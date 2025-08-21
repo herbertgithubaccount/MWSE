@@ -128,4 +128,18 @@ function SideBarPage:createContentsContainer(parentBlock)
 	Category.createContentsContainer(self, parentBlock)
 end
 
+function SideBarPage:searchTextMatches(searchText, caseSensitive)
+	if Parent.searchTextMatches(self, searchText, caseSensitive) then
+		return true
+	end
+	if self.sidebar:searchTextMatches(searchText, caseSensitive) then
+		return true
+	end
+	-- Backwards compatibility for mods using `sidebarComponents` in SidebarPages
+	for _, subcomp in ipairs(self.sidebarComponents or {}) do
+		if subcomp:searchTextMatches(searchText, caseSensitive) then
+			return true
+		end
+	end
+end
 return SideBarPage
