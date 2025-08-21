@@ -177,7 +177,8 @@ function Dropdown:searchTextMatches(searchText, caseSensitive)
 	end
 
 	for _, option in ipairs(self.options) do
-		if option.label:lower():find(searchText, 1, true) then
+		local label = caseSensitive and option.label or option.label:lower()
+		if label:find(searchText, 1, true) then
 			return true
 		end
 	end
