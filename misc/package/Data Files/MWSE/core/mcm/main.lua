@@ -170,7 +170,7 @@ end
 local function onClickModName(e)
 	-- If we have a current mod, fire its close event.
 	closeCurrentModConfig()
-	
+
 	local modName = e.source.text
 
 	-- Update the current mod package.
@@ -328,12 +328,12 @@ local KEYBINDER_CLASSES = {
 	MouseBinder = true,
 }
 
+--- Gets the description for a `Category`. This function will check parent components until a description is found.
+--- It will also check for `Info` components in a `SideBarPage` if appropriate.
 ---@param category mwseMCMCategory
 ---@return string?
-local function getCategoryDescriptionRecursive(category)
+local function getCategoryDescription(category)
 	repeat
-		mwse.log("\tchecking %q", category.description)
-
 		if category.description ~= nil and category.description ~= "" then
 			return category.description
 		end
@@ -341,8 +341,6 @@ local function getCategoryDescriptionRecursive(category)
 		if category.class == "SideBarPage" then
 			---@cast category mwseMCMSideBarPage
 			for _, comp in ipairs(category.sidebar.components) do
-				mwse.log("\tchecking %q", comp.description or comp.text)
-
 				if comp.componentType == "Info" then
 					---@cast comp mwseMCMInfo
 					local text = comp.text or comp.description
@@ -387,13 +385,10 @@ local function addAllKeybindsRecursive(keybindMenuCategory, modTemplate, modCate
 				keybindMenuCategory:createMouseBinder(copy --[[@as mwseMCMCategory.createMouseBinder.data]])
 			end
 			if keybindMenuCategory.description ~= false then
-				mwse.log("getting description for %q", modTemplate.name)
-				local categoryDescription = getCategoryDescriptionRecursive(modCategory)
+				local categoryDescription = getCategoryDescription(modCategory)
 				if keybindMenuCategory.description == nil or keybindMenuCategory.description == "" then
 					keybindMenuCategory.description = categoryDescription
-					mwse.log("updated keybindMenuCategory.description = %q (%q)", keybindMenuCategory.description, categoryDescription)
 				elseif keybindMenuCategory.description ~= categoryDescription then
-					mwse.log("updated keybindMenuCategory.description = %s", false)
 					keybindMenuCategory.description = false
 				end
 			end
