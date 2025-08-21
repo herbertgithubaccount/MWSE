@@ -114,13 +114,19 @@ function Setting:searchTextMatches(searchText, caseSensitive)
 		return true
 	end
 
-	local default = self.variable and self.variable.defaultSetting
+	-- Search variable text and defaultSetting text
+	if self.variable then
+		local value = self.variable.value
+		local default = self.variable.defaultSetting
+		if default ~= value then
+			local defaultText = tostring(self:convertToLabelValue(default))
+			defaultText = caseSensitive and defaultText or defaultText:lower()
+			return defaultText:find(searchText, 1, true) ~= nil
+		end
 
-	if default then
-		local text = tostring(self:convertToLabelValue(default))
-		text = caseSensitive and text or text:lower()
-
-		return text:find(searchText, 1, true) ~= nil
+		local valueText = tostring(self:convertToLabelValue(value))
+		valueText = caseSensitive and valueText or valueText:lower()
+		return valueText:find(searchText, 1, true) ~= nil
 	end
 
 	return false

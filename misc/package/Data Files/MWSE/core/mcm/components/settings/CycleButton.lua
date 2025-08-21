@@ -71,9 +71,7 @@ function CycleButton:convertToLabelValue(variableValue)
 	end
 end
 
-function CycleButton:getText()
-	return self:convertToLabelValue(self.variable.value)
-end
+function CycleButton:getText() end
 
 function CycleButton:setText() end
 

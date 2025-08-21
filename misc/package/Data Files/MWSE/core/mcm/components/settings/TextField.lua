@@ -153,17 +153,6 @@ function TextField:makeComponent(parentBlock)
 	self:insertMouseovers(self.elements.border)
 end
 
----@param searchText string The text to search for. Will be lowercased if `caseSensitive == false`.
----@param caseSensitive boolean Whether the search is case-sensitive or not.
----@return boolean
-function TextField:searchTextMatches(searchText, caseSensitive)
-	if Parent.searchTextMatches(self, searchText, caseSensitive) then
-		return true
-	end
-
-	local text = caseSensitive and tostring(self.variable.value) or tostring(self.variable.value):lower()
-	return text:find(searchText, 1, true) ~= nil
-end
 
 
 return TextField

@@ -91,8 +91,12 @@ function Button:searchTextMatches(searchText, caseSensitive)
 	if Parent.searchTextMatches(self, searchText, caseSensitive) then
 		return true
 	end
-	local text = caseSensitive and self:getText() or self:getText():lower()
-	return text:find(searchText, 1, true) ~= nil
+	-- Handle the special case in which there's no variable.
+	if not self.variable then
+		local text = caseSensitive and self.buttonText or self.buttonText:lower()
+		return text:find(searchText, 1, true) ~= nil
+	end
+	return false
 end
 
 return Button
