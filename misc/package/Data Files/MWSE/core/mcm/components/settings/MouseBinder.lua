@@ -23,9 +23,8 @@ MouseBinder.allowButtons = true
 --- @param data mwseMCMMouseBinder.new.data|nil
 --- @return mwseMCMMouseBinder
 function MouseBinder:new(data)
-	local t = Parent:new(data)
+	local t = Parent.new(self, data)
 
-	setmetatable(t, self)
 	--- @cast t mwseMCMMouseBinder
 
 	local bothDisabled = (not t.allowButtons) and (not t.allowWheel)

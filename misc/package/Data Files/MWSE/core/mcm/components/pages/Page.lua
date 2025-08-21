@@ -18,7 +18,7 @@ Page.indent = 6
 --- @return mwseMCMPage page
 function Page:new(data)
 	--- @diagnostic disable-next-line: param-type-mismatch
-	local t = Parent:new(data)
+	local t = Parent.new(self, data)
 
 	if data then
 		if data.parentComponent.pages then
@@ -31,7 +31,6 @@ function Page:new(data)
 		local tabUID = ("Page_" .. t.label)
 		t.tabUID = tes3ui.registerID(tabUID)
 	end
-	setmetatable(t, self)
 	return t --[[@as mwseMCMPage]]
 
 end

@@ -26,6 +26,8 @@ local Parent = require("mcm.components.Component")
 
 --- @class mwseMCMCategory
 local Category = Parent:new()
+-- Note: `Category.__index` metamethod is defined below.
+
 Category.componentType = "Category"
 -- Category.childSpacing = 20
 -- Category.childIndent = 40
@@ -35,10 +37,9 @@ Category.componentType = "Category"
 --- @return mwseMCMCategory
 function Category:new(data)
 	--- @diagnostic disable-next-line: param-type-mismatch
-	local t = Parent:new(data) --[[@as mwseMCMCategory]]
+	local t = Parent.new(self, data) --[[@as mwseMCMCategory]]
 	t.components = t.components or {}
 
-	setmetatable(t, self)
 	--- @cast t mwseMCMCategory
 
 	local parent = t.parentComponent

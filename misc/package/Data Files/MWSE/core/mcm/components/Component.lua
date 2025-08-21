@@ -32,6 +32,11 @@ Component.sOff = tes3.findGMST(tes3.gmst.sOff).value --[[@as string]]
 --- @param data mwseMCMComponent.new.data?
 --- @return mwseMCMComponent component
 function Component:new(data)
+	-- Warning: Unlike every other method, the `self` parameter in the `new` methods
+	-- refers to a _subclass_ of `Component`, rather than an _instance_ of `Component`.
+	-- So, `setmetatable(t, self)` should be read as `setmetatable(t, Subclass)`.
+
+
 	local t = data or {}
 
 	if t.parentComponent then

@@ -26,9 +26,8 @@ KeyBinder.allowMouse = false
 --- @param data mwseMCMKeyBinder.new.data|nil
 --- @return mwseMCMKeyBinder
 function KeyBinder:new(data)
-	local t = Parent:new(data)
+	local t = Parent.new(self, data)
 
-	setmetatable(t, self)
 	--- @cast t mwseMCMKeyBinder
 
 	-- All KeyBinders observe keyboard input.

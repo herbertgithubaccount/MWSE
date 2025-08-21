@@ -9,7 +9,7 @@ local Parent = require("mcm.components.Component")
 --- Class object
 --- @class mwseMCMTemplate
 local Template = Parent:new()
-Template.__index = Template
+-- Note: `Template.__index` metamethod is defined below.
 
 Template.componentType = "Template"
 
@@ -17,13 +17,11 @@ Template.componentType = "Template"
 --- @return mwseMCMTemplate template
 function Template:new(data)
 	data.name = data.name or data.label
-	local t = Parent:new(data)
-	setmetatable(t, self)
+	local t = Parent.new(self, data)
 
 	-- Create Pages
-	local pages = {}
 	t.pages = t.pages or {}
-	for _, page in ipairs(t.pages) do
+	for i, page in ipairs(t.pages) do
 		-- Make sure it's actually a `Page`.
 		if not page.componentType then
 			local componentClass = utils.getComponentClass(page.class or "Page")
@@ -31,11 +29,10 @@ function Template:new(data)
 				error(string.format("Could not intialize page %q", page.label))
 			end
 			page.parentComponent = t
-			page = componentClass:new(page)
+			t.pages[i] = componentClass:new(page)
 		end
-		table.insert(pages, page)
+
 	end
-	t.pages = pages
 
 	return t --[[@as mwseMCMTemplate]]
 end
@@ -359,21 +356,31 @@ function Template.__index(tbl, key)
 	-- Make a new `Template.create<Component>` method.
 	-- Otherwise, look the value up in the `metatable`.
 
-	if not key:startswith("create") or mwse.mcm[key] == nil then
-		return getmetatable(tbl)[key]
+	-- This should always be true.
+	-- But it still needs to be tested on larger mod lists before the PR is merged.
+	assert(getmetatable(tbl) == Template)
+
+	local templateValue = Template[key]
+	if templateValue ~= nil then
+		return templateValue
+	end
+	local createComponent = mwse.mcm[key]
+	if createComponent == nil or not key:startswith("create") then
+		return
 	end
 
-	Template[key] = function(self, data)
+	templateValue = function(self, data)
 		if not data then
 			data = {}
 		elseif type(data) == "string" then
 			data = { label = data }
 		end
 		data.parentComponent = self
-		local component = mwse.mcm[key](data)
+		local component = createComponent(data)
 		table.insert(self.pages, component)
 		return component
 	end
+	Template[key] = templateValue
 
 	return Template[key]
 end

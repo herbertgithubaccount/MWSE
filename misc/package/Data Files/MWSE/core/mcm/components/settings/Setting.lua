@@ -22,9 +22,8 @@ Setting.restartRequiredMessage = mwse.mcm.i18n("The game must be restarted befor
 --- @return mwseMCMSetting
 function Setting:new(data)
 	--- @diagnostic disable: param-type-mismatch
-	local t = Parent:new(data) --[[@as mwseMCMSetting]]
+	local t = Parent.new(self, data) --[[@as mwseMCMSetting]]
 	utils.getOrInheritVariableData(t)
-	setmetatable(t, self)
 	return t
 end
 

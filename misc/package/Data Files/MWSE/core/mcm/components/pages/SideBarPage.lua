@@ -25,10 +25,9 @@ SideBarPage.triggerOff = "MCM:MouseLeave"
 --- @return mwseMCMSideBarPage page
 function SideBarPage:new(data)
 	--- @diagnostic disable-next-line: param-type-mismatch
-	local t = Parent:new(data) --[[@as mwseMCMSideBarPage]]
+	local t = Parent.new(self, data) --[[@as mwseMCMSideBarPage]]
 	t.sidebar = MouseOverPage:new({ parentComponent = self})
 
-	setmetatable(t, self)
 	return t
 
 end
